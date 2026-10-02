@@ -1,0 +1,10 @@
+{"id":"S0001","name":"canon-adoption-and-ticket-store","status":"Verified","priority":90,"file":"PLAN/S0001_canon-adoption-and-ticket-store.md","created":"2026-10-02","updated":"2026-10-02 16:28","statusNote":"Foundation verified 2026-10-02: compliance gate exit 0, validators exit 0 (see Last Audit)."}
+{"id":"S0002","name":"gradle-skeleton-and-port-ledger","status":"Draft","priority":80,"file":"PLAN/S0002_gradle-skeleton-and-port-ledger.md","created":"2026-10-02","updated":"2026-10-02 16:23"}
+{"id":"S0003","name":"core-port","status":"Draft","priority":70,"file":"PLAN/S0003_core-port.md","created":"2026-10-02","updated":"2026-10-02 16:23"}
+{"id":"S0004","name":"phone-shell-and-dashboard","status":"Draft","priority":60,"file":"PLAN/S0004_phone-shell-and-dashboard.md","created":"2026-10-02","updated":"2026-10-02 16:23"}
+{"id":"S0005","name":"phone-lights","status":"Draft","priority":55,"file":"PLAN/S0005_phone-lights.md","created":"2026-10-02","updated":"2026-10-02 16:23"}
+{"id":"S0006","name":"phone-sos","status":"Draft","priority":55,"file":"PLAN/S0006_phone-sos.md","created":"2026-10-02","updated":"2026-10-02 16:23"}
+{"id":"S0007","name":"phone-stopwatch","status":"Draft","priority":50,"file":"PLAN/S0007_phone-stopwatch.md","created":"2026-10-02","updated":"2026-10-02 16:23"}
+{"id":"S0008","name":"wear-app","status":"Draft","priority":60,"file":"PLAN/S0008_wear-app.md","created":"2026-10-02","updated":"2026-10-02 16:23"}
+{"id":"S0009","name":"watch-face","status":"Draft","priority":40,"file":"PLAN/S0009_watch-face.md","created":"2026-10-02","updated":"2026-10-02 16:23"}
+{"id":"S0010","name":"release-pipeline-dry-run","status":"Draft","priority":50,"file":"PLAN/S0010_release-pipeline-dry-run.md","created":"2026-10-02","updated":"2026-10-02 16:23"}

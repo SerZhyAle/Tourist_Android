@@ -1,0 +1,53 @@
+{
+  "$comment": "Overlay B (Android), new repo adopted 2026-10-02. Nothing builds or ships yet: no tags (tagRegex null), no channel with a committed manifest (the first declaration waits for owner decisions 4.5, 4.7 and 4.9, ticket S0010), no site (decision 4.9 open), no changelog ledger yet. Shapes: flavor - two variants, store and noLegal, of one codebase; wear and watchface are sibling modules of the same build, not editions. privacy.sensitiveAccess stays false while no channel is declared; the product reads location and drives the camera torch, so S0010 revisits it together with the privacy page.",
+
+  "canon": {
+    "version": "2026.10.02.3",
+    "coreDigest": "sha256:410463a9ccdfd75af7a233fc91656c200fe05f047cf7617d7fc53d32e7b81afa",
+    "adoptedOn": "2026-10-02",
+    "reconciledOn": "2026-10-02",
+    "model": "reference",
+    "contribRecord": "contrib/tourist_mob.md"
+  },
+
+  "role": "product",
+
+  "overlay": ["B"],
+  "shapes": ["flavor"],
+  "editions": [],
+
+  "versionShape": {
+    "tagRegex": null,
+    "editionTagPrefixes": []
+  },
+
+  "ledgerShape": "none",
+  "ledgerFile": null,
+
+  "docRegistryShape": null,
+  "docRegistryFile": null,
+
+  "channels": [],
+
+  "site": {
+    "kind": "none",
+    "root": null,
+    "pages": []
+  },
+
+  "privacy": {
+    "page": null,
+    "carveOut": null,
+    "sensitiveAccess": false
+  },
+
+  "byteIdenticalPairs": [],
+  "vendorAllow": [],
+  "exemptions": [
+    {
+      "id": "SZA-CTR02",
+      "path": "docs/BOOTSTRAP_HANDOFF.md",
+      "reason": "Origin record of 2026-10-02, written by the FastMediaSorter session of its ticket S4070 before this repository's first commit and not edited from this repository's sessions. It names the catalog path because it predates this repository's rules; every living file cites contracts by id and CLAUDE.md is the one file that names the catalog."
+    }
+  ]
+}

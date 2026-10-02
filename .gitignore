@@ -1,0 +1,47 @@
+# Gradle / Android Studio build output
+.gradle/
+build/
+*/build/
+.kotlin/
+captures/
+.externalNativeBuild/
+.cxx/
+*.apk
+*.aab
+*.ap_
+*.dex
+output-metadata.json
+
+# IDE
+.idea/
+*.iml
+.vscode/*
+!.vscode/settings.json
+
+# Machine-local configuration
+local.properties
+
+# Signing material and secrets - never in the repository (keys live outside, next to the repo)
+*.jks
+*.keystore
+*.p12
+*.pem
+*.pfx
+*.snk
+*token*
+*secret*
+keystore.properties
+signing.properties
+google-services.json
+play-service-account*.json
+.env
+.env.*
+
+# Scratch and agent working files
+temp/
+tmp/
+
+# OS noise
+.DS_Store
+Thumbs.db
+desktop.ini
