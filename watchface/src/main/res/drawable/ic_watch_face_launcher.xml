@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Compass needle of the working branding; the real icon is re-captured with the composed face (S0009). -->
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="48dp"
+    android:height="48dp"
+    android:viewportWidth="108"
+    android:viewportHeight="108">
+    <path
+        android:fillColor="#FF0B3D2E"
+        android:pathData="M0,0 h108 v108 h-108 Z" />
+    <path
+        android:fillColor="#FFFFFFFF"
+        android:pathData="M54,18 L62,50 L94,54 L62,58 L54,90 L46,58 L14,54 L46,50 Z" />
+    <path
+        android:fillColor="#FFFF8A65"
+        android:pathData="M54,18 L62,50 L58,52 Z" />
+</vector>

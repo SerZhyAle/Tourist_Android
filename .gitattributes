@@ -13,6 +13,9 @@
 *.gradle text eol=lf
 *.toml text eol=lf
 *.sh text eol=lf
+*.jsonl text eol=lf
+# The Gradle wrapper script has no extension and must keep LF to run under sh.
+gradlew text eol=lf
 
 # Keep CRLF for Windows-specific scripts
 *.bat text eol=crlf
@@ -38,3 +41,10 @@
 *.woff binary
 *.woff2 binary
 *.pdf binary
+
+# Ported test fixtures keep the bytes they had in FastMediaSorter, so a port ledger row's SHA-256 stays
+# valid across line endings: the source is hashed as it is on disk there, and the ported copy here must
+# not drift through a checkout that rewrites EOL. Applies to every file of the unit-test resource trees
+# (conformance vectors, JSON fixtures, sample payloads).
+phone/src/test/resources/** binary
+wear/src/test/resources/** binary

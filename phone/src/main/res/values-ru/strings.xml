@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Турист</string>
+    <string name="skeleton_placeholder">Походный набор ещё не приехал; этот экран-заполнитель заменит стартовый экран одной из следующих фаз.</string>
+    <string name="distribution_store">издание store</string>
+    <string name="distribution_no_legal">издание noLegal</string>
+</resources>

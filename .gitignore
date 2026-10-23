@@ -2,6 +2,7 @@
 .gradle/
 build/
 */build/
+*/*/build/
 .kotlin/
 captures/
 .externalNativeBuild/
@@ -21,7 +22,8 @@ output-metadata.json
 # Machine-local configuration
 local.properties
 
-# Signing material and secrets - never in the repository (keys live outside, next to the repo)
+# Signing material and secrets - never in the repository (the key lives outside, in
+# P:\ANDROID\Tourist_credentials, per owner decision 4.2 of 2026-10-02; it is the owner's to create)
 *.jks
 *.keystore
 *.p12

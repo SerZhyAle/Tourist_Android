@@ -1,0 +1,59 @@
+# Version catalog. Toolchain pins follow FastMediaSorter's current values (docs/TECH_STACK.md read
+# 2026-10-23, S0002); the two products do not share a build, so a pin moves here on its own ticket,
+# never by reference.
+[versions]
+agp = "9.2.1"
+kotlin = "2.2.10"
+ksp = "2.3.8"
+hilt = "2.59"
+
+# Platform levels. minSdk of the phone and the watch app are the handoff reference values (tactical
+# decision); targetSdk is what Play requires at the first release and is re-checked by S0010. The
+# watch face floor is Watch Face Format version 4 (Wear OS 6, API 36), after the FastMediaSorter and
+# StreamsPlayer watch-face precedents; this product's composition is decided before S0009.
+compile-sdk = "37"
+target-sdk = "36"
+min-sdk-phone = "26"
+min-sdk-wear = "28"
+min-sdk-watchface = "36"
+
+androidx-core-ktx = "1.13.0"
+androidx-appcompat = "1.7.1"
+google-material = "1.14.0"
+androidx-activity-compose = "1.10.1"
+androidx-lifecycle = "2.8.7"
+compose-bom = "2024.12.01"
+androidx-wear-compose = "1.4.1"
+kotlinx-coroutines = "1.7.3"
+junit = "4.13.2"
+
+[libraries]
+android-gradle-plugin = { group = "com.android.tools.build", name = "gradle", version.ref = "agp" }
+
+androidx-core-ktx = { group = "androidx.core", name = "core-ktx", version.ref = "androidx-core-ktx" }
+androidx-appcompat = { group = "androidx.appcompat", name = "appcompat", version.ref = "androidx-appcompat" }
+google-material = { group = "com.google.android.material", name = "material", version.ref = "google-material" }
+androidx-activity-compose = { group = "androidx.activity", name = "activity-compose", version.ref = "androidx-activity-compose" }
+androidx-lifecycle-runtime-ktx = { group = "androidx.lifecycle", name = "lifecycle-runtime-ktx", version.ref = "androidx-lifecycle" }
+androidx-lifecycle-viewmodel-ktx = { group = "androidx.lifecycle", name = "lifecycle-viewmodel-ktx", version.ref = "androidx-lifecycle" }
+
+androidx-compose-bom = { group = "androidx.compose", name = "compose-bom", version.ref = "compose-bom" }
+androidx-compose-ui = { group = "androidx.compose.ui", name = "ui" }
+androidx-compose-ui-tooling-preview = { group = "androidx.compose.ui", name = "ui-tooling-preview" }
+androidx-wear-compose-foundation = { group = "androidx.wear.compose", name = "compose-foundation", version.ref = "androidx-wear-compose" }
+androidx-wear-compose-material = { group = "androidx.wear.compose", name = "compose-material", version.ref = "androidx-wear-compose" }
+
+kotlinx-coroutines-core = { group = "org.jetbrains.kotlinx", name = "kotlinx-coroutines-core", version.ref = "kotlinx-coroutines" }
+kotlinx-coroutines-android = { group = "org.jetbrains.kotlinx", name = "kotlinx-coroutines-android", version.ref = "kotlinx-coroutines" }
+kotlinx-coroutines-test = { group = "org.jetbrains.kotlinx", name = "kotlinx-coroutines-test", version.ref = "kotlinx-coroutines" }
+
+dagger-hilt-android = { group = "com.google.dagger", name = "hilt-android", version.ref = "hilt" }
+dagger-hilt-android-compiler = { group = "com.google.dagger", name = "hilt-android-compiler", version.ref = "hilt" }
+
+junit = { group = "junit", name = "junit", version.ref = "junit" }
+
+[plugins]
+android-application = { id = "com.android.application", version.ref = "agp" }
+ksp = { id = "com.google.devtools.ksp", version.ref = "ksp" }
+hilt = { id = "com.google.dagger.hilt.android", version.ref = "hilt" }
+kotlin-compose = { id = "org.jetbrains.kotlin.plugin.compose", version.ref = "kotlin" }

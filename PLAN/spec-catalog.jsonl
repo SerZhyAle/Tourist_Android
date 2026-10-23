@@ -1,5 +1,5 @@
 {"id":"S0001","name":"canon-adoption-and-ticket-store","status":"Verified","priority":90,"file":"PLAN/S0001_canon-adoption-and-ticket-store.md","created":"2026-10-02","updated":"2026-10-02 16:28","statusNote":"Foundation verified 2026-10-02: compliance gate exit 0, validators exit 0 (see Last Audit)."}
-{"id":"S0002","name":"gradle-skeleton-and-port-ledger","status":"Draft","priority":80,"file":"PLAN/S0002_gradle-skeleton-and-port-ledger.md","created":"2026-10-02","updated":"2026-10-02 16:23"}
+{"id":"S0002","name":"gradle-skeleton-and-port-ledger","status":"In Progress","priority":80,"file":"PLAN/S0002_gradle-skeleton-and-port-ledger.md","created":"2026-10-02","updated":"2026-10-23 11:32","statusNote":"Implementation session 2026-10-23: skeleton, stamp, ledger, drift check in progress."}
 {"id":"S0003","name":"core-port","status":"Draft","priority":70,"file":"PLAN/S0003_core-port.md","created":"2026-10-02","updated":"2026-10-02 16:23"}
 {"id":"S0004","name":"phone-shell-and-dashboard","status":"Draft","priority":60,"file":"PLAN/S0004_phone-shell-and-dashboard.md","created":"2026-10-02","updated":"2026-10-02 16:23"}
 {"id":"S0005","name":"phone-lights","status":"Draft","priority":55,"file":"PLAN/S0005_phone-lights.md","created":"2026-10-02","updated":"2026-10-02 16:23"}
@@ -8,3 +8,9 @@
 {"id":"S0008","name":"wear-app","status":"Draft","priority":60,"file":"PLAN/S0008_wear-app.md","created":"2026-10-02","updated":"2026-10-02 16:23"}
 {"id":"S0009","name":"watch-face","status":"Draft","priority":40,"file":"PLAN/S0009_watch-face.md","created":"2026-10-02","updated":"2026-10-02 16:23"}
 {"id":"S0010","name":"release-pipeline-dry-run","status":"Draft","priority":50,"file":"PLAN/S0010_release-pipeline-dry-run.md","created":"2026-10-02","updated":"2026-10-02 16:23"}
+{"id":"S0011","name":"contract-sync-2026-10-07","status":"Draft","priority":50,"file":"PLAN/S0011_contract-sync-2026-10-07.md","created":"2026-10-07","updated":"2026-10-07 03:07"}
+{"id":"S0012","name":"free-promotion-campaign","status":"Draft","priority":30,"file":"PLAN/S0012_free-promotion-campaign.md","created":"2026-10-09","updated":"2026-10-09 13:45","statusNote":"Blocked by S0010: outward steps wait for owner decisions 4.5, 4.6, 4.7, 4.9 (S0010 section 3.3)."}
+{"id":"S0013","name":"deep-dynamic-audit","status":"Draft","priority":40,"file":"PLAN/S0013_deep-dynamic-audit.md","created":"2026-10-11","updated":"2026-10-11 15:41"}
+{"id":"S0014","name":"in-app-help","status":"Draft","priority":50,"file":"PLAN/S0014_in-app-help.md","created":"2026-10-16","updated":"2026-10-16 17:14"}
+{"id":"S0015","name":"Adopt mandatory unified UI contracts","status":"Draft","priority":50,"file":"PLAN/S0015_unified-ui-contracts.md","created":"2026-10-17","updated":"2026-10-17 22:56"}
+{"id":"S0016","name":"Synchronize accepted contract proposals of 2026-10-17","status":"Draft","priority":50,"file":"PLAN/S0016_contract-sync-20261017.md","created":"2026-10-17","updated":"2026-10-17 22:58"}

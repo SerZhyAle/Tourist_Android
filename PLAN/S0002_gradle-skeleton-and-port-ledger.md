@@ -1,6 +1,7 @@
 # S0002 - Gradle skeleton, version stamping, port ledger and drift check
 
-**Status:** Draft
+**Status:** In Progress
+**Status note:** Implementation session 2026-10-23: skeleton, stamp, ledger, drift check in progress.
 **Phase:** 2 of 10 (handoff section 8)
 **Verification level:** build + install - every module and variant builds, each package installs on a device or
 emulator, versionName and versionCode read back from the installed package.

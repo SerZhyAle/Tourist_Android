@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+    Tourist watch face skeleton, Watch Face Format v4, 480x480 round.
+
+    The composition (a clone of the FastMediaSorter face, or a clone with tourist complications) is
+    owner decision 4.4, asked right before S0009. Until it is taken, the face shows the time and the
+    working name only, drawn with vector primitives and no animation, so it costs no memory budget.
+-->
+<WatchFace width="480" height="480" clipShape="CIRCLE">
+
+    <Metadata key="CLOCK_TYPE" value="DIGITAL" />
+    <Metadata key="PREVIEW_TIME" value="10:08" />
+
+    <Scene backgroundColor="#ff0b1210">
+
+        <PartText x="0" y="140" width="480" height="180">
+            <DigitalClock x="0" y="0" width="480" height="180">
+                <TimeText format="hh:mm" hourFormat="SYNC_TO_DEVICE" align="CENTER" x="0" y="0" width="480" height="180">
+                    <Font family="SYNC_TO_DEVICE" size="132" weight="BOLD" slant="NORMAL" color="#ffffffff" />
+                </TimeText>
+            </DigitalClock>
+        </PartText>
+
+        <PartText x="0" y="318" width="480" height="48">
+            <Text align="CENTER" ellipsis="TRUE">
+                <Font family="SYNC_TO_DEVICE" size="30" weight="MEDIUM" slant="NORMAL" color="#ff8fd8a8">
+                    <Template><![CDATA[TOURIST]]></Template>
+                </Font>
+            </Text>
+        </PartText>
+
+    </Scene>
+</WatchFace>

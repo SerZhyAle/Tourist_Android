@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Турист</string>
+    <string name="distribution_store">store</string>
+    <string name="distribution_no_legal">noLegal</string>
+</resources>

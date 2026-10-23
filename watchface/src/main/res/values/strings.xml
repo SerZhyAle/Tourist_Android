@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- "Tourist" is the working name; the store name is an open owner decision (S0010). -->
+    <string name="watch_face_name">Tourist</string>
+</resources>

@@ -5,7 +5,7 @@
   "projectName": "Tourist_mob",
   "envPrefix": "SZA",
 
-  "$comment_modules": "The three Gradle modules of handoff section 8 (owner decision 4.4 of 2026-10-02: the watch face module exists). Directory names are confirmed when phase 2 (S0002) creates them; the lock path rules below change in the same commit.",
+  "$comment_modules": "The three Gradle modules of handoff section 8 (owner decision 4.4 of 2026-10-02: the watch face module exists). Directory names confirmed by S0002 (the StreamsPlayer precedent: phone, wear, watchface), together with the lock path rules and probes below.",
   "modules": {
     "default": "phone",
     "names": ["phone", "wear", "watchface"]
@@ -19,7 +19,7 @@
     ],
     "pathRules": [
       { "pattern": "^PLAN/", "domain": null },
-      { "pattern": "^(settings\\.gradle\\.kts|build\\.gradle\\.kts|gradle\\.properties|gradle/)", "domain": "Code" },
+      { "pattern": "^(settings\\.gradle\\.kts|build\\.gradle\\.kts|gradle\\.properties|gradle/|build-logic/)", "domain": "Code" },
       { "pattern": "^(phone|wear|watchface)/", "domain": "Code.Main" },
       { "pattern": "^(tools|docs|\\.claude|\\.github)/", "domain": "Code.Scripts" },
       { "pattern": "^(CLAUDE|AGENTS|README)\\.md$", "domain": "Code.Scripts" },
@@ -28,11 +28,11 @@
     ]
   },
 
-  "$comment_probes": "Nothing is instrumented yet. S0002 sets scanRoots and sourceRoots to the module source trees and turns this on.",
+  "$comment_probes": "Instrumented since S0002: the probe gates walk the three module roots, previews and drift checks search their source trees. build-logic is build tooling, not a module, and stays outside.",
   "probes": {
-    "enabled": false,
-    "scanRoots": [],
-    "sourceRoots": []
+    "enabled": true,
+    "scanRoots": ["phone", "wear", "watchface"],
+    "sourceRoots": ["phone/src", "wear/src", "watchface/src"]
   },
 
   "commands": {

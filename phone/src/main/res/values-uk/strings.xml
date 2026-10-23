@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Турист</string>
+    <string name="skeleton_placeholder">Похідний набір ще не приїхав; цей екран-заповнювач замінить стартовий екран однієї з наступних фаз.</string>
+    <string name="distribution_store">видання store</string>
+    <string name="distribution_no_legal">видання noLegal</string>
+</resources>
