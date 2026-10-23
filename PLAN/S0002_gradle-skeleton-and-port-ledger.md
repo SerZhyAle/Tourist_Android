@@ -1,7 +1,7 @@
 # S0002 - Gradle skeleton, version stamping, port ledger and drift check
 
-**Status:** In Progress
-**Status note:** Implementation session 2026-10-23: skeleton, stamp, ledger, drift check in progress.
+**Status:** Implemented
+**Status note:** Implemented 2026-10-23: clean-checkout build exit 0 (all 10 module x variant x buildType tasks), install + version read-back on phone and wear emulators (disjoint bands live), port-ledger self-test 20/20 exit 0, drift check green on the empty ledger, band proposal filed beside PACKAGE-VERSIONING (status proposed). Open acceptance half: release signing waits for the owner's key (P:\ANDROID\Tourist_credentials), reopens with S0010.
 **Phase:** 2 of 10 (handoff section 8)
 **Verification level:** build + install - every module and variant builds, each package installs on a device or
 emulator, versionName and versionCode read back from the installed package.
@@ -74,10 +74,28 @@ exist before the first ported file lands in S0003.
 
 ## 4. Acceptance
 
-- [ ] Every module and both variants build from a clean checkout; exit codes cited.
-- [ ] Each package installs; `applicationId`, versionName and versionCode read back from the device.
+- [x] Every module and both variants build from a clean checkout; exit codes cited. Clean worktree at
+      commit 528e55f (2026-10-23): `phone`/`wear` store+noLegal debug and release, `watchface` debug and
+      release - BUILD SUCCESSFUL, exit 0, 444 tasks executed. In-tree first builds: debug exit 0, release
+      exit 0, build-logic tests exit 0 (one wrong test vector fixed on the way; the implementation was
+      right).
+- [x] Each package installs; `applicationId`, versionName and versionCode read back from the device.
+      Phone emulator: `com.sza.tourist` 2.61.0231.133 / 261023113 (store, then noLegal installed over it
+      under the same id). Wear emulator, one instant 261023135: `com.sza.tourist` 2.61.0231.135 / 261023118
+      (band 6..9) beside `com.sza.tourist.watchface` 2.61.0231.135 / 261023113 (own namespace) - disjoint
+      codes from one instant, both variants of the wear app installed. The phone app launches and its
+      process lives (pid read back; no AndroidRuntime errors).
 - [ ] Release builds signed from the out-of-repo key; no signing material tracked (`git ls-files` clean) -
-      waits for the owner's key.
-- [ ] Port ledger and drift-check script written, self-tested and run green on the empty ledger.
-- [ ] PACKAGE-VERSIONING amendment diff sent to the canon session; the contract stays at its registry version
-      until the owner folds the proposal in.
+      waits for the owner's key. The trackable half passed: `git ls-files` shows no key, keystore, token or
+      secret artifact (grep exit 1), `.gitignore` carries the leak globs, and release builds assemble
+      unsigned with a warning when no key is present. The signed half reopens with the owner's key
+      (S0010 territory).
+- [x] Port ledger and drift-check script written, self-tested and run green on the empty ledger.
+      `tools/port-ledger/` (record-port, check-drift, decide-drift, self-test, README) and an empty
+      `docs/port-ledger.jsonl`. Self-test 20/20 exit 0; check-drift on the real empty ledger against
+      `P:\ANDROID\FastMediaSorter_mob_v2` exit 0; the same check in the clean worktree exit 0.
+- [x] PACKAGE-VERSIONING amendment diff sent to canon session; the contract stays at its registry version
+      until the owner folds the proposal in. `P:\Contracts\package-versioning\PROPOSAL-2026-10-23-tourist-android-bands.md`
+      filed beside the contract (status proposed, 0.5 -> 0.6 additive diff); the contract, the registry
+      and this repository's registry row are untouched beyond the pointer note in
+      `docs/contracts/PACKAGE-VERSIONING.md`.

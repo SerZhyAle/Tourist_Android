@@ -6,7 +6,6 @@ line order are the owner's. Line shape: `ticket  changed  status`. Package headi
 
 current-next-release: 1
 1
-S0002_gradle-skeleton-and-port-ledger                          26-10-23 11:32  In Progress
 S0003_core-port                                                26-10-02 16:23  Draft
 S0004_phone-shell-and-dashboard                                26-10-02 16:23  Draft
 S0005_phone-lights                                             26-10-02 16:23  Draft
