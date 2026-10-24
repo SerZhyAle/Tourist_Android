@@ -1,31 +1,62 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/homeRoot"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:gravity="center"
-    android:orientation="vertical"
-    android:padding="24dp">
+    android:orientation="vertical">
 
     <TextView
-        android:id="@+id/app_title"
-        android:layout_width="wrap_content"
+        android:id="@+id/home_title"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="@string/app_name"
-        android:textAppearance="?attr/textAppearanceHeadlineMedium" />
-
-    <TextView
-        android:id="@+id/distribution"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
-        android:textAppearance="?attr/textAppearanceLabelMedium" />
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="32dp"
         android:gravity="center"
-        android:text="@string/skeleton_placeholder"
-        android:textAppearance="?attr/textAppearanceBodySmall" />
+        android:paddingTop="@dimen/margin_large"
+        android:paddingBottom="@dimen/margin_normal"
+        android:text="@string/app_name"
+        android:textAppearance="?attr/textAppearanceHeadlineSmall"
+        android:textStyle="bold" />
+
+    <!-- Program rows: the dashboard ships with S0004; lights, SOS and the stopwatch join with
+         S0005-S0007. The row is one control: icon, label, no colour-only state. -->
+    <com.google.android.material.card.MaterialCardView
+        android:id="@+id/row_dashboard"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/margin_normal"
+        android:layout_marginEnd="@dimen/margin_normal"
+        android:layout_marginTop="@dimen/margin_small"
+        android:clickable="true"
+        android:focusable="true"
+        app:cardCornerRadius="@dimen/tourist_secondary_card_corner_radius"
+        app:cardElevation="@dimen/tourist_secondary_card_elevation"
+        app:strokeWidth="@dimen/tourist_secondary_card_stroke_width"
+        app:strokeColor="?attr/colorPrimary">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_vertical"
+            android:orientation="horizontal"
+            android:padding="@dimen/padding_normal">
+
+            <ImageView
+                android:id="@+id/row_dashboard_icon"
+                android:layout_width="@dimen/icon_tier_32"
+                android:layout_height="@dimen/icon_tier_32"
+                android:contentDescription="@null"
+                android:src="@drawable/ic_compass"
+                app:tint="?attr/colorPrimary" />
+
+            <TextView
+                android:id="@+id/row_dashboard_label"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/margin_normal"
+                android:layout_weight="1"
+                android:text="@string/program_dashboard"
+                android:textAppearance="?attr/textAppearanceTitleMedium" />
+        </LinearLayout>
+    </com.google.android.material.card.MaterialCardView>
 
 </LinearLayout>

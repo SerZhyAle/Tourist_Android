@@ -3,4 +3,25 @@
     <color name="tourist_night">#FF0B1210</color>
     <color name="tourist_green">#FF2E7D32</color>
     <color name="launcher_background">#FF0B3D2E</color>
+
+    <!-- The ported dashboard and its widget (FastMediaSorter values, S0004). -->
+    <color name="black">#FF000000</color>
+    <color name="white">#FFFFFFFF</color>
+    <color name="text_color_secondary">#99000000</color>
+    <color name="focus_button_stroke">#FF1976D2</color>
+    <color name="tourist_tile_bg_speed">#FFFDE7</color>
+    <color name="tourist_tile_bg_altitude">#E0F7FA</color>
+    <color name="tourist_tile_bg_compass">#E8F5E9</color>
+    <color name="tourist_tile_bg_coordinates">#FFF3E0</color>
+    <color name="tourist_tile_bg_satellites">#EDE7F6</color>
+    <color name="tourist_tile_bg_steps">#F1F8E9</color>
+    <color name="tourist_tile_bg_trip_distance">#FCE4EC</color>
+    <color name="tourist_tile_bg_sun_time">#FFF8E1</color>
+    <color name="tourist_tile_bg_weather">#E1F5FE</color>
+    <color name="tourist_tile_bg_dew_point">#E0F2F1</color>
+    <color name="tourist_tile_bg_group_pressure">#E8EAF6</color>
+    <color name="tourist_tile_bg_group_trip">#F3E5F5</color>
+    <color name="tourist_tile_bg_group_navigation">#E0F7F4</color>
+    <color name="tourist_tile_bg_group_environment">#FFFDE0</color>
+    <color name="tourist_tile_bg_group_weather">#E3F2FD</color>
 </resources>

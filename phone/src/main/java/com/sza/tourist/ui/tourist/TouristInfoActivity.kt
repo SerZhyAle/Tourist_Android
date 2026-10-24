@@ -1,0 +1,136 @@
+package com.sza.tourist.ui.tourist
+
+import androidx.activity.result.contract.ActivityResultContracts
+import androidx.activity.viewModels
+import androidx.recyclerview.widget.GridLayoutManager
+import androidx.recyclerview.widget.SimpleItemAnimator
+import com.sza.tourist.core.format.QuantityFormatter
+import com.sza.tourist.core.ui.BaseActivity
+import com.sza.tourist.databinding.ActivityTouristInfoBinding
+import com.sza.tourist.domain.model.tourist.TouristTileType
+import com.sza.tourist.domain.unit.UnitSystemProvider
+import com.sza.tourist.ui.tourist.counter.TouristCounterActivity
+import com.sza.tourist.ui.tourist.helpers.TouristActionsManager
+import com.sza.tourist.ui.tourist.helpers.TouristHeroTileManager
+import com.sza.tourist.ui.tourist.helpers.TouristPermissionManager
+import com.sza.tourist.ui.tourist.helpers.TouristSecondaryTilesAdapter
+import com.sza.tourist.ui.tourist.helpers.TouristTileContentManager
+import com.sza.tourist.ui.tourist.helpers.TouristTileValueFormatter
+import com.sza.tourist.utils.applySystemBarInsetPadding
+import com.sza.tourist.utils.collectOnLifecycle
+import dagger.hilt.android.AndroidEntryPoint
+import javax.inject.Inject
+
+/**
+ * Tourist dashboard displaying live telemetry and navigational tiles.
+ */
+@AndroidEntryPoint
+class TouristInfoActivity : BaseActivity<ActivityTouristInfoBinding>() {
+
+    private val viewModel: TouristInfoViewModel by viewModels()
+
+    @Inject
+    lateinit var quantityFormatter: QuantityFormatter
+
+    @Inject
+    lateinit var unitSystemProvider: UnitSystemProvider
+
+    private lateinit var heroTileManager: TouristHeroTileManager
+    private lateinit var secondaryTilesAdapter: TouristSecondaryTilesAdapter
+    private lateinit var actionsManager: TouristActionsManager
+    private lateinit var permissionManager: TouristPermissionManager
+
+    private val permissionLauncher =
+        registerForActivityResult(ActivityResultContracts.RequestMultiplePermissions()) {
+            runWhenViewsReady { onResumeWithViews() }
+        }
+
+    override fun getViewBinding(): ActivityTouristInfoBinding =
+        ActivityTouristInfoBinding.inflate(layoutInflater)
+
+    override fun setupViews() {
+        binding.touristRoot.applySystemBarInsetPadding()
+        binding.toolbar.setUpNavigation(this)
+
+        val valueFormatter = TouristTileValueFormatter(this, quantityFormatter) {
+            unitSystemProvider.value
+        }
+
+        val contentManager = TouristTileContentManager(this, valueFormatter)
+
+        heroTileManager = TouristHeroTileManager(
+            binding,
+            contentManager,
+            onResetClicked = { focusedTile -> viewModel.resetFor(focusedTile) },
+            // The STOPWATCH tile runs inline; the row's two buttons are its whole control surface here.
+            onStopwatchToggleClicked = { viewModel.toggleStopwatch() },
+            onStopwatchResetClicked = { viewModel.resetStopwatch() },
+        )
+        actionsManager = TouristActionsManager(this)
+        permissionManager = TouristPermissionManager(this, binding) { permissionLauncher.launch(it) }
+
+        secondaryTilesAdapter = TouristSecondaryTilesAdapter(contentManager) { tileType ->
+            viewModel.selectTile(tileType)
+        }
+
+        binding.rvSecondaryTiles.layoutManager = GridLayoutManager(this, SECONDARY_TILE_SPAN_COUNT)
+        binding.rvSecondaryTiles.adapter = secondaryTilesAdapter
+        // Tiles are re-bound on every telemetry emission; the default change animation cross-fades each
+        // one and reads as a once-per-second blink that also keeps the GPU busy.
+        (binding.rvSecondaryTiles.itemAnimator as? SimpleItemAnimator)?.supportsChangeAnimations = false
+
+        binding.btnOpenMap.setOnClickListener {
+            val state = viewModel.state.value
+            actionsManager.openMap(state.latitude, state.longitude)
+        }
+
+        binding.btnShareLocation.setOnClickListener {
+            val state = viewModel.state.value
+            actionsManager.shareLocation(state.latitude, state.longitude)
+        }
+
+        binding.btnResetTrip.setOnClickListener { viewModel.resetFor(viewModel.state.value.focusedTile) }
+
+        binding.cardHeroTile.setOnClickListener {
+            val state = viewModel.state.value
+            when (state.focusedTile) {
+                TouristTileType.COORDINATES -> actionsManager.copyCoordinates(state.latitude, state.longitude)
+                // The COUNTER tile opens its own screen; the STOPWATCH tile is a stopwatch itself.
+                TouristTileType.COUNTER -> actionsManager.launchCounter()
+                else -> Unit
+            }
+        }
+    }
+
+    override fun observeData() {
+        collectOnLifecycle(viewModel.state) {
+            renderDashboard()
+        }
+        // The measurement system can flip while this screen is open, and every tile's unit depends on
+        // it, so the same state is re-bound rather than waiting for the next telemetry emission.
+        collectOnLifecycle(unitSystemProvider.current) {
+            renderDashboard()
+        }
+    }
+
+    private fun renderDashboard() {
+        val state = viewModel.state.value
+        heroTileManager.bind(state, this)
+        secondaryTilesAdapter.updateState(state)
+        permissionManager.bind(state)
+    }
+
+    // A grant changed in system settings, or a dialog that can no longer be shown, returns through here.
+    override fun onResumeWithViews() {
+        permissionManager.invalidate()
+        viewModel.refreshPermissions()
+        renderDashboard()
+    }
+
+    companion object {
+        private const val SECONDARY_TILE_SPAN_COUNT = 2
+
+        fun createIntent(context: android.content.Context): android.content.Intent =
+            android.content.Intent(context, TouristInfoActivity::class.java)
+    }
+}

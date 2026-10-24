@@ -1,0 +1,127 @@
+package com.sza.tourist.data.sensors
+
+import android.annotation.SuppressLint
+import android.content.Context
+import android.location.Location
+import android.location.LocationListener
+import android.location.LocationManager
+import android.os.Bundle
+import android.os.Looper
+import androidx.core.location.LocationCompat
+import com.sza.tourist.domain.model.sensors.MotionReading
+import com.sza.tourist.domain.model.tourist.TripMotionPolicy
+import dagger.hilt.android.qualifiers.ApplicationContext
+import kotlinx.coroutines.channels.awaitClose
+import kotlinx.coroutines.flow.Flow
+import kotlinx.coroutines.flow.callbackFlow
+import kotlinx.coroutines.flow.conflate
+import kotlinx.coroutines.flow.emptyFlow
+import timber.log.Timber
+import javax.inject.Inject
+import javax.inject.Singleton
+
+/**
+ * One position stream feeding the speed tile, the altitude tile and the trip.
+ *
+ * One source rather than one per tile, so two tiles reading at the same moment cannot disagree about
+ * the same fix. Platform [LocationManager] only, no GMS - the shape that already works on this
+ * project's minSdk.
+ *
+ * Updates are requested when a collector arrives and removed in `awaitClose`. Nothing here runs in
+ * the background: location is foreground-only, because background collection would pull in a
+ * background-location permission and a separate Play declaration.
+ *
+ * The caller guarantees the location grant before collecting; every platform call is wrapped so a
+ * provider that refuses cannot take the screen down.
+ */
+@Singleton
+class MotionReadingSource @Inject constructor(
+    @ApplicationContext private val context: Context,
+) {
+
+    @SuppressLint("MissingPermission")
+    fun readings(): Flow<MotionReading> {
+        val manager = context.getSystemService(Context.LOCATION_SERVICE) as? LocationManager
+            ?: return emptyFlow()
+
+        return callbackFlow {
+            var previous: Location? = null
+
+            // The four-method interface is implemented explicitly rather than as a SAM lambda: the
+            // default methods only exist from API 30, so on a minSdk-23 device a SAM proxy misses
+            // the other callbacks and throws at run time (same reason as CameraLocationProvider).
+            val listener = object : LocationListener {
+                override fun onLocationChanged(location: Location) {
+                    val delta = distanceSince(previous, location)
+                    previous = location
+                    val altitude = when {
+                        LocationCompat.hasMslAltitude(location) -> LocationCompat.getMslAltitudeMeters(location)
+                        location.hasAltitude() -> location.altitude
+                        else -> null
+                    }
+                    trySend(
+                        MotionReading.fromPlatformSpeed(
+                            rawSpeed = location.speed.takeIf { location.hasSpeed() },
+                            altitudeMeters = altitude,
+                            distanceDeltaMeters = delta,
+                            takenAtMillis = System.currentTimeMillis(),
+                        ).copy(
+                            horizontalAccuracyMeters = location.accuracy.takeIf { location.hasAccuracy() },
+                            // LocationCompat answers false below API 26, where the field does not exist.
+                            verticalAccuracyMeters = LocationCompat.getVerticalAccuracyMeters(location)
+                                .takeIf { LocationCompat.hasVerticalAccuracy(location) },
+                            bearingDegrees = location.bearing.takeIf { location.hasBearing() },
+                        ),
+                    )
+                }
+
+                @Deprecated("Deprecated in Java")
+                override fun onStatusChanged(provider: String?, status: Int, extras: Bundle?) = Unit
+
+                override fun onProviderEnabled(provider: String) = Unit
+
+                override fun onProviderDisabled(provider: String) = Unit
+            }
+
+            CANDIDATE_PROVIDERS.forEach { provider ->
+                if (!runCatching { manager.isProviderEnabled(provider) }.getOrDefault(false)) {
+                    return@forEach
+                }
+                runCatching {
+                    manager.requestLocationUpdates(
+                        provider,
+                        MIN_UPDATE_INTERVAL_MS,
+                        MIN_UPDATE_DISTANCE_M,
+                        listener,
+                        Looper.getMainLooper(),
+                    )
+                }.onFailure {
+                    Timber.w(it, "MotionReadingSource: cannot warm provider %s", provider)
+                }
+            }
+
+            awaitClose {
+                runCatching { manager.removeUpdates(listener) }
+                    .onFailure { Timber.w(it, "MotionReadingSource: removeUpdates failed") }
+            }
+        }.conflate()
+    }
+
+    /**
+     * Zero for the first fix, and zero for a fix too coarse to trust: a parked phone drifting
+     * between cell-tower fixes would otherwise accumulate kilometres of trip distance overnight,
+     * which is the failure that makes the trip meter untrustworthy.
+     */
+    private fun distanceSince(previous: Location?, current: Location): Double = when {
+        previous == null -> 0.0
+        current.hasAccuracy() && current.accuracy > TripMotionPolicy.TRUSTED_HORIZONTAL_ACCURACY_M -> 0.0
+        else -> previous.distanceTo(current).toDouble()
+    }
+
+    private companion object {
+        val CANDIDATE_PROVIDERS =
+            listOf(LocationManager.GPS_PROVIDER, LocationManager.NETWORK_PROVIDER)
+        const val MIN_UPDATE_INTERVAL_MS = 500L
+        const val MIN_UPDATE_DISTANCE_M = 0f
+    }
+}

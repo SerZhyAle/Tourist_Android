@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Tag key of the remembered pre-inset padding (utils/ViewExtensions.kt). -->
+    <item name="systemBarInsetBasePadding" type="id" />
+</resources>

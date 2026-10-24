@@ -1,9 +1,18 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android">
 
-    <!-- Skeleton: no permission is declared until the phase that uses it arrives (canon: only
-         actually-used permissions, each with a user-visible justification). The kit's permissions are
-         listed in handoff section 5 and land with S0005-S0008. -->
+    <!-- Only the permissions the S0004 surfaces use. The kit's remaining permissions land with the
+         phase that first uses them (handoff section 5): POST_NOTIFICATIONS with S0005, camera and
+         service permissions with S0005/S0006, the Data Layer with S0008. -->
+    <!-- The dashboard's fix: location, foreground only, through the platform LocationManager. -->
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+    <!-- The steps and cadence tiles (ACTIVITY_RECOGNITION is declared in BOTH variants - owner
+         decision 4.3, 2026-10-23, recorded in S0008). -->
+    <uses-permission android:name="android.permission.ACTIVITY_RECOGNITION" />
+    <!-- The weather tiles read Open-Meteo at the current fix. -->
+    <uses-permission android:name="android.permission.INTERNET" />
+
     <application
         android:name=".TouristApplication"
         android:allowBackup="false"
@@ -13,6 +22,7 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Tourist">
 
+        <!-- The program home: the start screen the launcher opens (owner decision, S0004 3.3). -->
         <activity
             android:name=".MainActivity"
             android:exported="true"
@@ -22,6 +32,34 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
+        <activity
+            android:name=".ui.tourist.TouristInfoActivity"
+            android:exported="false"
+            android:label="@string/tourist_info_title"
+            android:configChanges="keyboardHidden"
+            android:parentActivityName=".MainActivity" />
+
+        <!-- The tally counter, opened from its dashboard tile; rotation inflates layout-land. -->
+        <activity
+            android:name=".ui.tourist.counter.TouristCounterActivity"
+            android:exported="false"
+            android:label="@string/tourist_tile_counter"
+            android:configChanges="keyboardHidden"
+            android:parentActivityName=".ui.tourist.TouristInfoActivity" />
+
+        <receiver
+            android:name=".widget.TouristInfoWidgetProvider"
+            android:exported="true"
+            android:label="@string/widget_tourist_label"
+            android:icon="@drawable/ic_compass">
+            <intent-filter>
+                <action android:name="android.appwidget.action.APPWIDGET_UPDATE" />
+            </intent-filter>
+            <meta-data
+                android:name="android.appwidget.provider"
+                android:resource="@xml/widget_tourist_info_info" />
+        </receiver>
     </application>
 
 </manifest>

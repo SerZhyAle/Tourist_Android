@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Consumed by SettingsToggleRow.kt. All public attrs use the str_ prefix. The help attrs of the
+         source stay behind with the in-app help (S0014). -->
+    <declare-styleable name="SettingsToggleRow">
+        <attr name="str_title" format="string|reference" />
+        <attr name="str_subtitle" format="string|reference" />
+        <attr name="str_checked" format="boolean" />
+        <!-- Optional leading feature icon (decorative). Hidden when unset. -->
+        <attr name="str_icon" format="reference" />
+        <!-- Optional title/subtitle sizes; unset keeps toggler_*_text_size. -->
+        <attr name="str_titleTextSize" format="dimension" />
+        <attr name="str_subtitleTextSize" format="dimension" />
+    </declare-styleable>
+</resources>

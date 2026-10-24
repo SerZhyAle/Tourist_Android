@@ -1,32 +1,25 @@
 package com.sza.tourist
 
+import android.content.Intent
 import android.os.Bundle
+import android.view.View
 import androidx.appcompat.app.AppCompatActivity
-import com.sza.tourist.core.variant.Distribution
-import com.sza.tourist.core.variant.DistributionInfo
+import com.sza.tourist.ui.tourist.TouristInfoActivity
 import dagger.hilt.android.AndroidEntryPoint
-import javax.inject.Inject
 
 /**
- * The skeleton start screen: a placeholder that proves the package installs and opens. The product's
- * own start screen is a UI placement decision of S0004, settled before that phase.
+ * The program home: the start screen the launcher opens, listing the kit's programs. The dashboard
+ * ships with S0004; the lights, SOS and stopwatch rows join with S0005-S0007. Widgets and intents
+ * open their program directly, past this screen (owner decision, ticket 3.3).
  */
 @AndroidEntryPoint
 class MainActivity : AppCompatActivity() {
 
-    @Inject
-    lateinit var distributionInfo: DistributionInfo
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-        findViewById<android.widget.TextView>(R.id.distribution).text =
-            getString(distributionInfo.distribution.labelRes)
+        findViewById<View>(R.id.row_dashboard).setOnClickListener {
+            startActivity(TouristInfoActivity.createIntent(this))
+        }
     }
 }
-
-private val Distribution.labelRes: Int
-    get() = when (this) {
-        Distribution.STORE -> R.string.distribution_store
-        Distribution.NO_LEGAL -> R.string.distribution_no_legal
-    }

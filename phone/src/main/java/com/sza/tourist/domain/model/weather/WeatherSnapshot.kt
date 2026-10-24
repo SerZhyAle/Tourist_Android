@@ -1,0 +1,124 @@
+package com.sza.tourist.domain.model.weather
+
+import java.time.LocalTime
+
+/** A place the weather is shown for; `lat,lon,label` with the label last, as the only comma-bearing part. */
+data class WeatherLocation(
+    val latitude: Double,
+    val longitude: Double,
+    val label: String,
+) {
+
+    /** `lat,lon,label` - the label goes last because it is the only part allowed to contain commas. */
+    fun encode(): String = "$latitude,$longitude,$label"
+
+    companion object {
+
+        fun decode(raw: String?): WeatherLocation? {
+            // limit = 3 keeps a label with commas intact - it is always the last field.
+            val parts = raw?.trim().orEmpty().split(',', limit = PART_COUNT)
+            if (parts.size < PART_COUNT) return null
+            val latitude = parts[0].toDoubleOrNull()
+            val longitude = parts[1].toDoubleOrNull()
+            val label = parts[2].trim()
+            return if (latitude == null || longitude == null || label.isEmpty()) {
+                null
+            } else {
+                WeatherLocation(latitude, longitude, label)
+            }
+        }
+
+        private const val PART_COUNT = 3
+    }
+}
+
+enum class WeatherUnit {
+    CELSIUS,
+    FAHRENHEIT,
+}
+
+/**
+ * The condition groups the dashboard can draw. Deliberately coarse: the scope is a temperature plus one
+ * glyph, so WMO's 28 distinct codes collapse into the seven shapes an icon set can express.
+ */
+enum class WeatherCondition {
+    CLEAR,
+    PARTLY_CLOUDY,
+    CLOUDY,
+    FOG,
+    RAIN,
+    SNOW,
+    THUNDERSTORM,
+    UNKNOWN,
+    ;
+
+    companion object {
+
+        /** WMO 4677 weather codes as served by Open-Meteo's `weather_code` field. */
+        fun fromWmoCode(code: Int): WeatherCondition = when (code) {
+            CODE_CLEAR, CODE_MAINLY_CLEAR -> CLEAR
+            CODE_PARTLY_CLOUDY -> PARTLY_CLOUDY
+            CODE_OVERCAST -> CLOUDY
+            in CODE_FOG_RANGE -> FOG
+            in CODE_DRIZZLE_RANGE, in CODE_RAIN_RANGE, in CODE_SHOWERS_RANGE -> RAIN
+            in CODE_FREEZING_RANGE, in CODE_SNOW_RANGE, in CODE_SNOW_SHOWERS_RANGE -> SNOW
+            in CODE_THUNDERSTORM_RANGE -> THUNDERSTORM
+            else -> UNKNOWN
+        }
+
+        private const val CODE_CLEAR = 0
+        private const val CODE_MAINLY_CLEAR = 1
+        private const val CODE_PARTLY_CLOUDY = 2
+        private const val CODE_OVERCAST = 3
+        private val CODE_FOG_RANGE = 45..48
+        private val CODE_DRIZZLE_RANGE = 51..55
+        private val CODE_FREEZING_RANGE = 56..57
+        private val CODE_RAIN_RANGE = 61..65
+        private val CODE_SNOW_RANGE = 66..77
+        private val CODE_SHOWERS_RANGE = 80..82
+        private val CODE_SNOW_SHOWERS_RANGE = 85..86
+        private val CODE_THUNDERSTORM_RANGE = 95..99
+    }
+}
+
+/**
+ * One reading for one place. [observedAtMs] is our fetch time - it drives the staleness decision.
+ *
+ * [dewPoint] carries no unit of its own - it is a temperature and rides [unit], so a tile can never show
+ * two different degrees. [sunrise] / [sunset] are the SELECTED PLACE's own wall-clock time (Open-Meteo
+ * answers with `timezone=auto`), which is why they are [LocalTime] rather than an instant: converting
+ * through the device's zone would shift the hour whenever the picked city and the device disagree. All
+ * three are nullable - a provider gap means "not available", not a failed parse.
+ */
+data class WeatherSnapshot(
+    val location: WeatherLocation,
+    val temperature: Double,
+    val unit: WeatherUnit,
+    val condition: WeatherCondition,
+    val isDay: Boolean,
+    val observedAtMs: Long,
+    val dewPoint: Double? = null,
+    val sunrise: LocalTime? = null,
+    val sunset: LocalTime? = null,
+    val details: WeatherDetails = WeatherDetails(),
+)
+
+/**
+ * The extra current values the Tourist dashboard shows.
+ *
+ * [apparentTemperature] rides [WeatherSnapshot.unit] like the dew point. Wind is always km/h and
+ * visibility always metres, whatever the unit: they are converted at display, so a unit flip adds no
+ * refetch reason. Every field null means the provider did not send it.
+ */
+data class WeatherDetails(
+    val apparentTemperature: Double? = null,
+    val relativeHumidityPercent: Int? = null,
+    val windSpeedKmh: Double? = null,
+    val windGustsKmh: Double? = null,
+    val windDirectionDegrees: Int? = null,
+    val uvIndex: Double? = null,
+    val precipitationProbabilityPercent: Int? = null,
+    val cloudCoverPercent: Int? = null,
+    val visibilityMetres: Double? = null,
+    val pressureMslHpa: Double? = null,
+)

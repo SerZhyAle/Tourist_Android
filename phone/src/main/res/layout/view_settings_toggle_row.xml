@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  Layout for SettingsToggleRow compound view.
+  Canonical pattern: switch (leftmost) + text group (title + helper inline, subtitle below) + optional trailing slot.
+  The help icon of the source stays behind with the in-app help (S0014).
+-->
+<merge xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <com.google.android.material.materialswitch.MaterialSwitch
+        android:id="@+id/str_switch"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_vertical"
+        android:layout_marginEnd="@dimen/settings_switch_margin_end"
+        android:clickable="false"
+        android:duplicateParentState="true"
+        android:focusable="false" />
+
+    <!-- Optional leading feature icon. Decorative; sits next to the label, hidden when unset. -->
+    <ImageView
+        android:id="@+id/str_icon"
+        android:layout_width="@dimen/settings_help_icon_size"
+        android:layout_height="@dimen/settings_help_icon_size"
+        android:layout_gravity="center_vertical"
+        android:layout_marginEnd="@dimen/settings_help_icon_margin"
+        android:contentDescription="@null"
+        android:importantForAccessibility="no"
+        app:tint="?attr/colorOnSurfaceVariant"
+        android:visibility="gone" />
+
+    <LinearLayout
+        android:id="@+id/str_textGroup"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_vertical"
+        android:layout_weight="1"
+        android:orientation="vertical">
+
+        <!-- Title line: title + helper inline (helper sits next to the title, NOT at the right edge of the row). -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_vertical"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/str_title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="@dimen/toggler_title_text_size" />
+
+            <!-- Spacer fills remaining width so the helper sat next to the title in the source;
+                 here it keeps the title line stretched. setHugsTextContent() collapses it. -->
+            <View
+                android:id="@+id/str_titleLineSpacer"
+                android:layout_width="0dp"
+                android:layout_height="1dp"
+                android:layout_weight="1" />
+
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/str_subtitle"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textColor="@color/text_color_secondary"
+            android:textSize="@dimen/toggler_desc_text_size"
+            android:visibility="gone" />
+
+    </LinearLayout>
+
+    <!-- Optional trailing action slot for the rare row that needs a secondary action. Hidden by default. -->
+    <FrameLayout
+        android:id="@+id/str_trailingSlot"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_vertical"
+        android:visibility="gone" />
+
+</merge>

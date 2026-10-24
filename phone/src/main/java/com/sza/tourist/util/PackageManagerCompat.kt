@@ -1,0 +1,44 @@
+package com.sza.tourist.util
+
+import android.content.Intent
+import android.content.pm.ApplicationInfo
+import android.content.pm.PackageInfo
+import android.content.pm.PackageManager
+import android.content.pm.ResolveInfo
+import android.os.Build
+
+/**
+ * Single compat seam for the [PackageManager] query APIs whose raw-int flag overloads were
+ * deprecated in API 33 (Tiramisu) in favor of the type-safe `*Flags.of(Long)` overloads.
+ *
+ * Centralizing the one `Build.VERSION` branch here keeps call sites free of `@Suppress("DEPRECATION")`
+ * and stops new code from copying the deprecated raw-int pattern.
+ */
+
+fun PackageManager.getPackageInfoCompat(packageName: String, flags: Int = 0): PackageInfo =
+    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
+        getPackageInfo(packageName, PackageManager.PackageInfoFlags.of(flags.toLong()))
+    } else {
+        getPackageInfo(packageName, flags)
+    }
+
+fun PackageManager.getApplicationInfoCompat(packageName: String, flags: Int = 0): ApplicationInfo =
+    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
+        getApplicationInfo(packageName, PackageManager.ApplicationInfoFlags.of(flags.toLong()))
+    } else {
+        getApplicationInfo(packageName, flags)
+    }
+
+fun PackageManager.queryIntentActivitiesCompat(intent: Intent, flags: Int = 0): List<ResolveInfo> =
+    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
+        queryIntentActivities(intent, PackageManager.ResolveInfoFlags.of(flags.toLong()))
+    } else {
+        queryIntentActivities(intent, flags)
+    }
+
+fun PackageManager.resolveActivityCompat(intent: Intent, flags: Int = 0): ResolveInfo? =
+    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
+        resolveActivity(intent, PackageManager.ResolveInfoFlags.of(flags.toLong()))
+    } else {
+        resolveActivity(intent, flags)
+    }

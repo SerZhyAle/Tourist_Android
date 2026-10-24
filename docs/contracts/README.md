@@ -14,8 +14,9 @@ signal or its Data Layer messages, for example - it is written in the catalog fi
 | --- | --- | --- | --- | --- |
 | [PACKAGE-VERSIONING.md](PACKAGE-VERSIONING.md) | `PACKAGE-VERSIONING` | 0.2 | consumer (Android profile) | families not registered yet; S0002 |
 | [INPUT-PARITY.md](INPUT-PARITY.md) | `INPUT-PARITY` | 0.3 | adopter | declared; S0004 onward |
-| [ICONOGRAPHY.md](ICONOGRAPHY.md) | `ICON-SET`, `ICON-RENDER` | 0.17 / 0.15 | consumer, conditional | only if the ported screens keep the contract glyphs (S0004) |
+| [ICONOGRAPHY.md](ICONOGRAPHY.md) | `ICON-SET`, `ICON-RENDER` | 0.17 / 0.15 | consumer | the ported screens keep the contract glyphs; usage rows filed with the catalog 2026-10-23 (S0004) |
 | [DIAGNOSTIC-REPORT.md](DIAGNOSTIC-REPORT.md) | `DIAGNOSTIC-REPORT` | 0.12 | producer, conditional | only if a diagnostic bundle is exported |
 | [INSTALL-TRUST.md](INSTALL-TRUST.md) | `INSTALL-TRUST` | 1.1 | adopter, conditional | only if a sideload page ships (decision 4.5) |
 | [RULE-ADOPTION.md](RULE-ADOPTION.md) | `REPO-STAMP`, `HARNESS-PROFILE`, `REPO-LAYOUT`, `RULE-DELIVERY` | 0.11 / 0.10 / 0.10 / 0.11 | adopter | adopted in S0001 |
 | [PRODUCT-WEB-PAGES.md](PRODUCT-WEB-PAGES.md) | `PAGE-CONTENT`, `PAGE-STYLE`, `SITE-FAMILY-MAP` | 1.2 / 1.2 / 1.2 | adopter, conditional | only if the owner decides on a site (decision 4.9) |
+| [TEST-LAB.md](TEST-LAB.md) | `TEST-LAB` | 0.1 | reporter | report filed 2026-10-23 (S0017), proposed |
