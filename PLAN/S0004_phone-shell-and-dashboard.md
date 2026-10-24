@@ -1,7 +1,7 @@
 # S0004 - Phone shell and the Tourist dashboard
 
 **Status:** Implemented
-**Status note:** Implemented 2026-10-25: 55 files ported with ledger rows (84 total, drift check clean, exit 0);
+**Status note:** Implemented 2026-10-25: 55 files ported with ledger rows (84 total, drift check clean, exit 0); 111 unit tests green on store and noLegal (17 classes), both release variants assemble through R8. Second emulator pass closed acceptance 2 and the key walk: map/share driven, widget placed and opens the dashboard, D-pad focus walk with ENTER activation; durable screenshots in PLAN/S0004_phone-shell-and-dashboard/. The owner's personal-phone pass remains.
 111 unit tests green on store and noLegal (17 classes), both release variants assemble through R8. Second
 emulator pass (2026-10-25) closed acceptance 2 and the key walk: map/share driven (Maps opened at the fix,
 share chooser rendered), widget placed through the picker and opens the dashboard, D-pad focus walk over the
@@ -90,14 +90,16 @@ Source paths relative to `P:\ANDROID\FastMediaSorter_mob_v2` (read-only), `A` =
 
 - [x] On a phone without FastMediaSorter the app opens on the start screen and the dashboard shows altitude,
       heading, coordinates and sunrise/sunset from a real fix.
-      Verified on the phone emulator (2026-10-23, screenshots in `temp/S0004/`): start screen renders;
+      Verified on the phone emulator (2026-10-23, screenshots `01`, `04`, `05` in
+      `PLAN/S0004_phone-shell-and-dashboard/`): start screen renders;
       after the location grant and a `geo fix` (London) the dashboard showed coordinates 51.51/-0.13,
       altitude -16 m, compass 360° N, satellites 0/6, sunset 18:51 (SolarCalculator), weather 8.7 °C with the
       whole provider family from Open-Meteo, pressure 1013 hPa and barometric altitude -113 m. FastMediaSorter
       (debug build) was installed on the same emulator throughout - the two products coexist under their own
       ids. The strict form of this check - a personal phone - is the owner's verification pass.
 - [x] Map and share actions work; the widget updates.
-      Verified on the phone emulator (2026-10-25, screenshots `temp/S0004/17-30`): Map opens Google Maps
+      Verified on the phone emulator (2026-10-25, screenshots `17`, `18`, `25`, `26` in
+      `PLAN/S0004_phone-shell-and-dashboard/`): Map opens Google Maps
       centred on the fix (Leicester Square, London 51.51/-0.13); Share opens the chooser with
       "Coordinates: 51.51000, -0.13000" plus the maps link; the widget is placed through the picker
       (long-press -> Widgets -> search "Tourist" -> Add), renders on the home screen and its tap opens the
@@ -111,7 +113,8 @@ Source paths relative to `P:\ANDROID\FastMediaSorter_mob_v2` (read-only), `A` =
       (84 in step, 0 decided)", exit 0. Both release variants assemble through R8.
 - [x] Every action is reachable by touch, hardware keys, gamepad and TV remote (INPUT-PARITY).
       Touch: taps on the start-screen row, the action row and the widget (2026-10-23/25 passes). Hardware
-      keys: the key-by-key walk driven on the emulator D-pad (2026-10-25, screenshots `temp/S0004/27-30`) -
+      keys: the key-by-key walk driven on the emulator D-pad (2026-10-25, screenshots `27`, `29`, `30` in
+      `PLAN/S0004_phone-shell-and-dashboard/`) -
       the ring walks hero -> grid -> action row and ENTER activates the focused button (Share opened from
       it). Gamepad and TV remote share the D-pad keycode path on Android; a walk on physical gamepad or
       TV-remote hardware is the owner's device pass, as the personal phone is for check 1.
@@ -191,8 +194,8 @@ dimens and the button/toolbar styles renamed `Widget.Tourist.*` / `TextAppearanc
 
 ### 5.4 Device pass on the emulator (2026-10-23, storeDebug)
 
-Installed under `com.sza.tourist` next to FastMediaSorter (debug) - disjoint ids, both live. Screenshots in
-`temp/S0004/` (gitignored). Verified: the start screen with its focus ring; the grant flow (card -> system
+Installed under `com.sza.tourist` next to FastMediaSorter (debug) - disjoint ids, both live. Screenshots
+`01`, `04`, `05`, `07` in `PLAN/S0004_phone-shell-and-dashboard/`. Verified: the start screen with its focus ring; the grant flow (card -> system
 dialog -> granted -> card dismissed); the dashboard from a `geo fix` on London - coordinates, altitude,
 compass, satellites 0/6, sunset 18:51, the whole Open-Meteo family, pressure and barometric altitude, the
 level, light and magnetic-field tiles, the trip ticking; the counter screen rendered in full (value, starting
@@ -203,7 +206,8 @@ history)
 
 The half of acceptance 2 the shared-emulator reclaim had left open, plus the key walk. The rebuilt storeDebug
 APK reinstalled under `com.sza.tourist` next to FastMediaSorter debug (both live); a fresh `geo fix` (London
-51.51/-0.13), screenshots `temp/S0004/14-30` (gitignored). Driven: Map opens Google Maps centred on the fix;
+51.51/-0.13), screenshots `17`, `18`, `25`, `26`, `27`, `29`, `30` in `PLAN/S0004_phone-shell-and-dashboard/`
+(downscaled from the full-frame originals, each under 64 KB). Driven: Map opens Google Maps centred on the fix;
 Share opens the chooser carrying "Coordinates: 51.51000, -0.13000" and the maps link; the widget placed
 through the picker renders on the home screen and its tap opens the dashboard (the port's launch widget);
 the D-pad walk runs the focus ring hero -> grid -> action row and ENTER activates the focused Share button.
