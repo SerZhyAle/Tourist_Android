@@ -1,0 +1,209 @@
+{
+  "help": "home",
+  "locales": {
+    "en": {
+      "summary": "The start screen: pick the program you need.",
+      "lead": "The start screen lists the programs of the kit. Tap the one you need; each opens on its own screen and Back returns here.",
+      "alt": "The start screen with the four programs, {ui:settings_title} and Help.",
+      "order": [
+        "Pick the program you need from the four rows {e-dashboard} {e-lights} {e-sos} {e-stopwatch}.",
+        "Use Back on any program to return to this screen.",
+        "Press the question mark {e-help} on any screen to read how that screen works."
+      ],
+      "elements": {
+        "e-dashboard": {
+          "one": "Speed, altitude, compass, coordinates and the trip.",
+          "what": "Opens the dashboard: one large tile and a grid of smaller ones with the readings of your phone and, when it is paired, of your watch.",
+          "why": "It is the screen to keep open on the trail: where you are, which way you face and how far you have come.",
+          "next": "The dashboard asks for location access the first time and shows what it can read without it.",
+          "undo": "Opening it changes nothing; Back returns here."
+        },
+        "e-lights": {
+          "one": "Water, front and camera flashlights.",
+          "what": "Opens the lights: the water flashlight that wet touches cannot switch off, the front flashlight that turns the screen into a lamp, and the camera flashlight.",
+          "why": "Pick the light that fits the moment: the water flashlight for rain and rivers, the front one for reading a map, the camera one for the brightest beam.",
+          "next": "Each light opens on its own screen; the {ui:program_lights} page explains how to leave every one of them.",
+          "undo": "Opening the list switches no light on."
+        },
+        "e-sos": {
+          "one": "The emergency signal.",
+          "what": "Opens the SOS screen. The signal **starts as soon as the screen opens**: the siren and the strobe repeat the Morse SOS pattern, and a paired watch signals too.",
+          "why": "Use it when you need to be noticed. The signal sounds and blinks; it does not call anyone and sends no message.",
+          "next": "The signal keeps going until you press {ui:sos_stop_action} or leave the screen with Back.",
+          "undo": "{ui:sos_stop_action} ends it at once."
+        },
+        "e-stopwatch": {
+          "one": "A stopwatch for up to several people at once.",
+          "what": "Opens the stopwatch, which times several participants side by side, with laps, results and optional music.",
+          "why": "It suits a race, a relay or any case where more than one person needs a time.",
+          "next": "The count starts for everyone as soon as the screen opens; each participant has their own lap and stop buttons, and the group can be stopped or reset together.",
+          "undo": "Leaving the screen with Back clears the times; {ui:stopwatch_action_reset_all} starts over at once."
+        },
+        "e-help": {
+          "one": "Opens this page.",
+          "what": "Every screen of the app has this button in its top-right corner, beside what is already there.",
+          "why": "It explains the screen you are looking at, with a picture, without leaving the app and without a network.",
+          "shortcut": "[[F1]] on a connected keyboard does the same."
+        },
+        "e-settings": {
+          "one": "Application settings.",
+          "what": "Opens theme, language, units, screen-awake settings and About. Changes apply immediately."
+        }
+      },
+      "related": [
+        {
+          "help": "dashboard",
+          "note": "The readings and the trip."
+        },
+        {
+          "help": "lights",
+          "note": "The three lights and how to leave each."
+        },
+        {
+          "help": "sos",
+          "note": "What the signal does and how to stop it."
+        },
+        {
+          "help": "stopwatch",
+          "note": "Timing several people at once."
+        }
+      ]
+    },
+    "ru": {
+      "summary": "Стартовый экран: выберите нужную программу.",
+      "lead": "Стартовый экран перечисляет программы набора. Нажмите на нужную: каждая открывается на своём экране, а кнопка «Назад» возвращает сюда.",
+      "alt": "Стартовый экран с четырьмя программами, строкой {ui:settings_title} и справкой.",
+      "order": [
+        "Выберите нужную программу из четырёх строк {e-dashboard} {e-lights} {e-sos} {e-stopwatch}.",
+        "Кнопка «Назад» в любой программе возвращает на этот экран.",
+        "Нажмите знак вопроса {e-help} на любом экране, чтобы прочитать, как он устроен."
+      ],
+      "elements": {
+        "e-dashboard": {
+          "one": "Скорость, высота, компас, координаты и поездка.",
+          "what": "Открывает панель: одну крупную плитку и сетку мелких с показаниями телефона и, если часы подключены, часов.",
+          "why": "Это экран, который удобно держать открытым в пути: где вы, куда повёрнуты и сколько уже прошли.",
+          "next": "В первый раз панель попросит доступ к местоположению, а без него покажет то, что можно прочитать.",
+          "undo": "Открытие ничего не меняет; «Назад» возвращает сюда."
+        },
+        "e-lights": {
+          "one": "Водный, фронтальный и камерный фонари.",
+          "what": "Открывает фонари: водный, который нельзя выключить мокрым касанием, фронтальный, превращающий экран в лампу, и фонарь камеры.",
+          "why": "Выберите фонарь по случаю: водный - для дождя и переправ, фронтальный - чтобы прочитать карту, камерный - для самого яркого луча.",
+          "next": "Каждый фонарь открывается на своём экране; страница {ui:program_lights} объясняет, как выйти из каждого.",
+          "undo": "Открытие списка не включает ни один фонарь."
+        },
+        "e-sos": {
+          "one": "Сигнал бедствия.",
+          "what": "Открывает экран SOS. Сигнал **включается сразу при открытии экрана**: сирена и вспышка повторяют сигнал SOS азбукой Морзе, а подключённые часы сигналят тоже.",
+          "why": "Используйте, когда нужно привлечь внимание. Сигнал звучит и мигает; он никому не звонит и не отправляет сообщений.",
+          "next": "Сигнал продолжается, пока вы не нажмёте {ui:sos_stop_action} или не выйдете с экрана кнопкой «Назад».",
+          "undo": "{ui:sos_stop_action} прекращает его сразу."
+        },
+        "e-stopwatch": {
+          "one": "Секундомер сразу для нескольких человек.",
+          "what": "Открывает секундомер, который засекает время нескольких участников рядом, с кругами, результатом и музыкой по желанию.",
+          "why": "Подходит для забега, эстафеты и любого случая, где время нужно нескольким людям.",
+          "next": "Отсчёт идёт у всех сразу, как только экран открылся; у каждого участника свои кнопки круга и остановки, а всю группу можно остановить или сбросить разом.",
+          "undo": "Выход с экрана кнопкой «Назад» стирает время; {ui:stopwatch_action_reset_all} начинает заново сразу."
+        },
+        "e-help": {
+          "one": "Открывает эту страницу.",
+          "what": "Эта кнопка есть на каждом экране приложения, в правом верхнем углу, рядом с уже имеющимся.",
+          "why": "Она объясняет экран, на который вы смотрите, с картинкой, не выходя из приложения и без сети.",
+          "shortcut": "[[F1]] на подключённой клавиатуре делает то же самое."
+        },
+        "e-settings": {
+          "one": "Настройки приложения.",
+          "what": "Открывает тему, язык, единицы, параметр экрана и сведения о программе. Изменения применяются сразу."
+        }
+      },
+      "related": [
+        {
+          "help": "dashboard",
+          "note": "Показания и поездка."
+        },
+        {
+          "help": "lights",
+          "note": "Три фонаря и выход из каждого."
+        },
+        {
+          "help": "sos",
+          "note": "Что делает сигнал и как его остановить."
+        },
+        {
+          "help": "stopwatch",
+          "note": "Время нескольких людей сразу."
+        }
+      ]
+    },
+    "uk": {
+      "summary": "Стартовий екран: оберіть потрібну програму.",
+      "lead": "Стартовий екран перелічує програми набору. Натисніть на потрібну: кожна відкривається на своєму екрані, а кнопка «Назад» повертає сюди.",
+      "alt": "Стартовий екран із чотирма програмами, рядком {ui:settings_title} й довідкою.",
+      "order": [
+        "Оберіть потрібну програму з чотирьох рядків {e-dashboard} {e-lights} {e-sos} {e-stopwatch}.",
+        "Кнопка «Назад» у будь-якій програмі повертає на цей екран.",
+        "Натисніть знак питання {e-help} на будь-якому екрані, щоб прочитати, як він працює."
+      ],
+      "elements": {
+        "e-dashboard": {
+          "one": "Швидкість, висота, компас, координати та подорож.",
+          "what": "Відкриває панель: одну велику плитку й сітку менших із показами телефона та, якщо годинник підключено, годинника.",
+          "why": "Це екран, який зручно тримати відкритим у дорозі: де ви, куди повернуті й скільки вже пройшли.",
+          "next": "Першого разу панель попросить доступ до місцеположення, а без нього покаже те, що можна прочитати.",
+          "undo": "Відкриття нічого не змінює; «Назад» повертає сюди."
+        },
+        "e-lights": {
+          "one": "Водний, фронтальний і камерний ліхтарі.",
+          "what": "Відкриває ліхтарі: водний, який не вимкнути мокрим дотиком, фронтальний, що перетворює екран на лампу, та ліхтар камери.",
+          "why": "Оберіть ліхтар за нагодою: водний - для дощу й переправ, фронтальний - щоб прочитати мапу, камерний - для найяскравішого променя.",
+          "next": "Кожен ліхтар відкривається на своєму екрані; сторінка {ui:program_lights} пояснює, як вийти з кожного.",
+          "undo": "Відкриття списку не вмикає жодного ліхтаря."
+        },
+        "e-sos": {
+          "one": "Сигнал лиха.",
+          "what": "Відкриває екран SOS. Сигнал **вмикається одразу, щойно екран відкрито**: сирена й спалах повторюють сигнал SOS азбукою Морзе, а підключений годинник сигналізує теж.",
+          "why": "Користуйтеся, коли треба привернути увагу. Сигнал звучить і блимає; він нікому не телефонує й не надсилає повідомлень.",
+          "next": "Сигнал триває, доки ви не натиснете {ui:sos_stop_action} або не вийдете з екрана кнопкою «Назад».",
+          "undo": "{ui:sos_stop_action} припиняє його одразу."
+        },
+        "e-stopwatch": {
+          "one": "Секундомір одразу для кількох людей.",
+          "what": "Відкриває секундомір, який вимірює час кількох учасників поруч, з колами, результатом і музикою за бажанням.",
+          "why": "Підходить для забігу, естафети й будь-якого випадку, коли час потрібен кільком людям.",
+          "next": "Відлік іде в усіх одразу, щойно екран відкрито; у кожного учасника свої кнопки кола й зупинки, а всю групу можна зупинити або скинути разом.",
+          "undo": "Вихід з екрана кнопкою «Назад» стирає час; {ui:stopwatch_action_reset_all} починає заново одразу."
+        },
+        "e-help": {
+          "one": "Відкриває цю сторінку.",
+          "what": "Ця кнопка є на кожному екрані застосунку, у правому верхньому куті, поряд з наявним.",
+          "why": "Вона пояснює екран, на який ви дивитеся, з малюнком, не виходячи із застосунку й без мережі.",
+          "shortcut": "[[F1]] на підключеній клавіатурі робить те саме."
+        },
+        "e-settings": {
+          "one": "Налаштування застосунку.",
+          "what": "Відкриває тему, мову, одиниці, параметр екрана й відомості про програму. Зміни застосовуються одразу."
+        }
+      },
+      "related": [
+        {
+          "help": "dashboard",
+          "note": "Покази та подорож."
+        },
+        {
+          "help": "lights",
+          "note": "Три ліхтарі та вихід із кожного."
+        },
+        {
+          "help": "sos",
+          "note": "Що робить сигнал і як його зупинити."
+        },
+        {
+          "help": "stopwatch",
+          "note": "Час кількох людей одразу."
+        }
+      ]
+    }
+  }
+}

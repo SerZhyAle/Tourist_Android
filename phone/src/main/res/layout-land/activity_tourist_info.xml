@@ -14,6 +14,7 @@
         android:layout_width="match_parent"
         android:layout_height="?actionBarSize"
         app:navigationIcon="@drawable/ic_arrow_back"
+        app:navigationContentDescription="@string/back"
         app:title="@string/tourist_info_title" />
 
     <!-- explains a missing grant and offers the request; gone while every needed grant is present. -->
@@ -284,6 +285,14 @@
                             android:visibility="gone"
                             app:tint="?attr/colorOnSurface" />
 
+                        <!-- The GYROSCOPE tile's phone-shaped box, turned by the device attitude. -->
+                        <com.sza.tourist.ui.tourist.view.AttitudeBoxView
+                            android:id="@+id/viewHeroAttitude"
+                            android:layout_width="@dimen/tourist_compass_rose_size"
+                            android:layout_height="@dimen/tourist_compass_rose_size"
+                            android:layout_gravity="center"
+                            android:visibility="gone" />
+
                         <FrameLayout
                             android:id="@+id/layoutHeroLevel"
                             android:layout_width="@dimen/tourist_level_ring_size"
@@ -310,13 +319,11 @@
 
 
                     <!-- the STOPWATCH tile is itself a primitive stopwatch; the row is hidden for every other tile. -->
-                    <LinearLayout
+                    <com.sza.tourist.ui.common.widget.CommandFlowLayout
                         android:id="@+id/layoutHeroStopwatch"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="@dimen/margin_small"
-                        android:gravity="center"
-                        android:orientation="horizontal"
                         android:visibility="gone"
                         tools:visibility="gone">
 
@@ -339,7 +346,16 @@
                             app:icon="@drawable/ic_restore_defaults"
                             android:text="@string/tourist_stopwatch_action_reset"
                             tools:text="Reset" />
-                    </LinearLayout>
+
+                        <com.google.android.material.button.MaterialButton
+                            android:id="@+id/btnStopwatchOpen"
+                            style="@style/Widget.Tourist.Button.Tonal.Compact"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            app:icon="@drawable/ic_stopwatch"
+                            android:text="@string/tourist_stopwatch_action_open_full"
+                            tools:text="Open stopwatch" />
+                    </com.sza.tourist.ui.common.widget.CommandFlowLayout>
                     <TextView
                         android:id="@+id/tvHeroSecondaryDetail"
                         android:layout_width="match_parent"
@@ -353,26 +369,13 @@
             </androidx.core.widget.NestedScrollView>
 
             <!-- Action Bar -->
-            <androidx.constraintlayout.widget.ConstraintLayout
+            <com.sza.tourist.ui.common.widget.CommandFlowLayout
                 android:id="@+id/layoutActionButtons"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:paddingTop="@dimen/padding_small">
 
-                <androidx.constraintlayout.helper.widget.Flow
-                    android:id="@+id/flowActionButtons"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    app:constraint_referenced_ids="btnOpenMap,btnShareLocation,btnResetTrip"
-                    app:flow_wrapMode="chain"
-                    app:flow_horizontalStyle="packed"
-                    app:flow_horizontalBias="0.5"
-                    app:flow_horizontalGap="@dimen/margin_small"
-                    app:flow_verticalGap="@dimen/margin_small"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintTop_toTopOf="parent"
-                    app:layout_constraintBottom_toBottomOf="parent" />
+                
 
                 <com.google.android.material.button.MaterialButton
                     android:id="@+id/btnOpenMap"
@@ -398,9 +401,19 @@
                     app:icon="@drawable/ic_restore_defaults"
                     android:text="@string/tourist_action_reset_trip" />
 
-                <!-- The SOS signal joins this row with its program (S0006); the ported row leaves the
-                     seat empty until then rather than showing a button nothing opens. -->
-            </androidx.constraintlayout.widget.ConstraintLayout>
+                <!-- Last in the row and the only filled button among the four - the other three act
+                     on a location and this one calls for help, so it must not read as one more of them. -->
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/btnSos"
+                    style="@style/Widget.Tourist.Button.Filled.Compact"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:backgroundTint="@color/color_program_accent_red"
+            android:textColor="@color/white"
+            app:iconTint="@color/white"
+                    android:text="@string/tourist_action_sos"
+                    app:icon="@drawable/ic_sos" />
+            </com.sza.tourist.ui.common.widget.CommandFlowLayout>
         </LinearLayout>
 
         <!-- Right Side: Secondary Tiles Grid -->

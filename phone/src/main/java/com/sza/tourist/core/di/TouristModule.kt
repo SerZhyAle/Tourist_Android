@@ -14,7 +14,7 @@ import javax.inject.Singleton
 
 /**
  * Bindings for the Tourist dashboard's persisted surfaces: the trip, the tally counter and the watch
- * health holder (a stand-in until S0008 ports the Data Layer bridge that fills it).
+ * health holder (filled by the Data Layer bridge of S0008, `WearTouristHealthReceiver`).
  */
 @Module
 @InstallIn(SingletonComponent::class)

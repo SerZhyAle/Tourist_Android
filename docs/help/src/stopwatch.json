@@ -1,0 +1,224 @@
+{
+  "help": "stopwatch",
+  "locales": {
+    "en": {
+      "summary": "Timing one, two or four people at once, with laps.",
+      "lead": "The stopwatch times one, two or four people side by side, each with their own time and laps. It starts counting for everyone as soon as the screen opens and keeps counting while the phone is locked or another app is in front, but the times are gone once you leave the screen with Back. It is meant for everyday timing, not as an official timing device.",
+      "alt": "The {ui:stopwatch_title} screen: an area for each participant with a large time, the laps and two buttons; below them the {ui:stopwatch_volume_label} slider and a row of buttons - start or stop all, {ui:stopwatch_action_reset_all}, {ui:stopwatch_action_result} and the settings gear. The help button is in the top-right corner.",
+      "order": [
+        "If you time more than one person, open the settings {e-settings} first and pick two or four participants, so that everyone has an area before the start.",
+        "The count begins by itself when the screen opens. To start over from zero, press {e-reset-all}, then start each participant in their area {e-participants}, or everyone at once with {e-start-all} when there are several.",
+        "Press the first button in a participant's area {e-participants} to mark a lap without stopping the count.",
+        "Press the second button when a participant finishes; to stop everyone together press {e-start-all}, which now reads {ui:stopwatch_action_stop_all}.",
+        "Press {e-result} to turn the times into text you can save or share.",
+        "Press {e-reset-all} once the run is over and saved. The times are not kept: leaving the screen with Back clears them."
+      ],
+      "elements": {
+        "e-participants": {
+          "name": "Participants",
+          "one": "A separate area for each person you time.",
+          "what": "Each participant has an area with a large time (minutes, seconds and hundredths, with hours after the first hour) and a list of laps, newest on top. The first button reads {ui:stopwatch_action_start} while the participant is stopped and {ui:stopwatch_action_lap} while it counts; the second reads {ui:stopwatch_action_stop} while it counts and {ui:stopwatch_action_reset} when stopped.",
+          "why": "Every participant counts on their own, so starting, lapping or stopping one never touches another.",
+          "next": "{ui:stopwatch_action_lap} adds a line with the time shown at that moment and the count goes on; {ui:stopwatch_action_start} after a stop carries on from the stopped time.",
+          "undo": "After {ui:stopwatch_action_stop} you can press {ui:stopwatch_action_start} again, but {ui:stopwatch_action_reset} clears that participant's time and laps for good, with no confirmation.",
+          "shortcut": "On a connected keyboard: [[1]]-[[4]] select a participant, [[Space]] or [[Enter]] starts or laps, [[S]] stops, [[R]] clears the time (also while it counts). With one participant the keys act on it at once; with several, select the one you need first.",
+          "tip": "Tapping the large time works like the first button. With {ui:stopwatch_settings_volume_keys} turned on in the settings, volume up starts or laps and volume down stops - for the first participant, or for the one you selected with a keyboard."
+        },
+        "e-start-all": {
+          "one": "Starts or stops every participant together.",
+          "what": "While every participant is stopped it reads {ui:stopwatch_action_start_all} and starts them all together; while at least one participant is counting it reads {ui:stopwatch_action_stop_all} and stops them all together. It is shown when there are two or four participants.",
+          "why": "Use it for a common start or a common finish: everyone starts or stops at the same instant.",
+          "next": "Stopped participants keep their times and laps, and starting again carries on from them.",
+          "undo": "It clears nothing: {ui:stopwatch_action_stop_all} keeps every time, and the next start carries on from it."
+        },
+        "e-reset-all": {
+          "one": "Stops everyone and clears all times and laps.",
+          "what": "Stops every participant and sets the time and the lap list of each to zero, including participants hidden by a smaller participant count.",
+          "why": "Use it to prepare a new run, or once the result has been saved or shared.",
+          "next": "Every area shows zero and waits for {ui:stopwatch_action_start}.",
+          "undo": "No. The times and laps are lost for good and there is no confirmation, so save or share the result first."
+        },
+        "e-result": {
+          "one": "Turns the times into text to save or share.",
+          "what": "Opens the {ui:stopwatch_result_title} window with the times and laps of the participants on screen. If nothing has been measured, a short message says {ui:stopwatch_result_empty} instead.",
+          "why": "Use it to keep a record of a run or to pass the times on.",
+          "next": "The window shows the times as they were when you pressed the button; the stopwatch behind it keeps counting if it was counting.",
+          "undo": "Opening it changes nothing; {ui:cancel} returns to the stopwatch."
+        },
+        "e-settings": {
+          "one": "Participants, music and volume keys.",
+          "what": "The gear button opens the {ui:stopwatch_settings_title} window, where you choose how many people you time, whether music plays and what the volume keys do.",
+          "why": "Use it before a run to set the screen up for your group, or to add music.",
+          "next": "Choices take effect when you press {ui:apply}; the stopwatch keeps counting and no time is cleared.",
+          "undo": "Opening it changes nothing; {ui:cancel} closes the window without saving."
+        },
+        "e-help": {
+          "one": "Opens this page.",
+          "what": "A question mark in the top-right corner of the screen opens this page.",
+          "why": "It explains the screen with a picture, without leaving the app and without a network.",
+          "next": "The stopwatch keeps counting while help is open; Back returns to it.",
+          "shortcut": "[[F1]] on a connected keyboard does the same."
+        },
+        "e-volume": {
+          "one": "Sets the volume the music plays at.",
+          "what": "The slider above the buttons sets the phone's media volume, which is the level the music plays at. It is shown whether or not music is turned on.",
+          "why": "While {ui:stopwatch_settings_volume_keys} is on, the volume keys run the stopwatch instead of changing the sound, so this slider is the way to change the volume.",
+          "next": "The new level applies at once.",
+          "undo": "Yes, move the slider back."
+        }
+      },
+      "related": [
+        { "help": "home", "note": "The start screen; Back returns there." },
+        { "help": "dashboard", "note": "Its stopwatch tile has an {ui:tourist_stopwatch_action_open_full} button that opens this screen." },
+        { "help": "stopwatch-settings", "note": "Participants, music and volume keys." },
+        { "help": "stopwatch-result", "note": "Save or share the times as text." }
+      ]
+    },
+    "ru": {
+      "summary": "Время одного, двух или четырёх человек сразу, с кругами.",
+      "lead": "Секундомер засекает время одного, двух или четырёх человек рядом: у каждого своё время и свои круги. Отсчёт для всех начинается сам, как только открывается экран, и идёт дальше, пока телефон заблокирован или впереди другое приложение, но когда вы выходите с экрана кнопкой «Назад», времена пропадают. Он предназначен для обычного замера времени, а не для официального хронометража.",
+      "alt": "Экран {ui:stopwatch_title}: область каждого участника с крупным временем, кругами и двумя кнопками; ниже ползунок {ui:stopwatch_volume_label} и ряд кнопок - запуск или остановка всех, {ui:stopwatch_action_reset_all}, {ui:stopwatch_action_result} и шестерёнка настроек. Кнопка справки - в правом верхнем углу.",
+      "order": [
+        "Если вы засекаете не одного человека, сначала откройте настройки {e-settings} и выберите двух или четырёх участников, чтобы у каждого была своя область до старта.",
+        "Отсчёт начинается сам при открытии экрана. Чтобы начать с нуля, нажмите {e-reset-all}, а затем запустите каждого участника в его области {e-participants} или, если их несколько, всех сразу кнопкой {e-start-all}.",
+        "Нажмите первую кнопку в области участника {e-participants}, чтобы отметить круг, не останавливая отсчёт.",
+        "Когда участник финишировал, нажмите вторую кнопку; чтобы остановить всех сразу, нажмите {e-start-all} - сейчас на ней написано {ui:stopwatch_action_stop_all}.",
+        "Нажмите {e-result}, чтобы превратить времена в текст, который можно сохранить или отправить.",
+        "Нажмите {e-reset-all}, когда забег закончен и результат сохранён. Времена не хранятся: при выходе с экрана кнопкой «Назад» они стираются."
+      ],
+      "elements": {
+        "e-participants": {
+          "name": "Участники",
+          "one": "Отдельная область для каждого, чьё время вы засекаете.",
+          "what": "У каждого участника своя область с крупным временем (минуты, секунды и сотые доли, после первого часа - ещё и часы) и списком кругов, новые сверху. Первая кнопка называется {ui:stopwatch_action_start}, пока участник остановлен, и {ui:stopwatch_action_lap}, пока идёт отсчёт; вторая - {ui:stopwatch_action_stop} во время отсчёта и {ui:stopwatch_action_reset} после остановки.",
+          "why": "Каждый участник считает сам по себе: запуск, круг или остановка одного не затрагивает остальных.",
+          "next": "{ui:stopwatch_action_lap} добавляет строку со временем на этот момент, а отсчёт идёт дальше; {ui:stopwatch_action_start} после остановки продолжает с остановленного времени.",
+          "undo": "После {ui:stopwatch_action_stop} можно снова нажать {ui:stopwatch_action_start}, но {ui:stopwatch_action_reset} навсегда стирает время и круги участника, без подтверждения.",
+          "shortcut": "На подключённой клавиатуре: [[1]]-[[4]] выбирают участника, [[Space]] или [[Enter]] запускают или отмечают круг, [[S]] останавливает, [[R]] стирает время (и во время отсчёта). Если участник один, клавиши действуют на него сразу; если их несколько, сначала выберите нужного.",
+          "tip": "Касание крупного времени работает как первая кнопка. Если в настройках включён пункт {ui:stopwatch_settings_volume_keys}, клавиша громкости вверх запускает или отмечает круг, а вниз останавливает: у первого участника или у того, которого вы выбрали с клавиатуры."
+        },
+        "e-start-all": {
+          "one": "Запускает или останавливает всех участников разом.",
+          "what": "Пока все участники остановлены, на кнопке написано {ui:stopwatch_action_start_all}, и она запускает всех вместе; пока отсчёт идёт хотя бы у одного участника, написано {ui:stopwatch_action_stop_all}, и она останавливает всех вместе. Кнопка есть, когда участников двое или четверо.",
+          "why": "Нужна для общего старта или общего финиша: все начинают и заканчивают в один и тот же момент.",
+          "next": "Остановленные участники сохраняют время и круги, а новый запуск продолжает с них.",
+          "undo": "Она ничего не стирает: {ui:stopwatch_action_stop_all} оставляет все времена, а следующий запуск продолжает с них."
+        },
+        "e-reset-all": {
+          "one": "Останавливает всех и стирает времена и круги.",
+          "what": "Останавливает всех участников и обнуляет время и список кругов у каждого, в том числе у скрытых при меньшем числе участников.",
+          "why": "Нужна, чтобы подготовить новый забег или когда результат уже сохранён или отправлен.",
+          "next": "В каждой области ноль, и она ждёт нажатия {ui:stopwatch_action_start}.",
+          "undo": "Нет. Времена и круги стираются безвозвратно, подтверждения нет, поэтому сначала сохраните или отправьте результат."
+        },
+        "e-result": {
+          "one": "Превращает времена в текст, который можно сохранить или отправить.",
+          "what": "Открывает окно {ui:stopwatch_result_title} со временем и кругами показанных на экране участников. Если ничего не измерено, вместо него появляется короткое сообщение {ui:stopwatch_result_empty}.",
+          "why": "Нужна, чтобы оставить запись о забеге или передать времена другим.",
+          "next": "В окне времена такие, какими были в момент нажатия; секундомер за окном продолжает идти, если шёл.",
+          "undo": "Открытие ничего не меняет; {ui:cancel} возвращает к секундомеру."
+        },
+        "e-settings": {
+          "one": "Участники, музыка и кнопки громкости.",
+          "what": "Кнопка с шестерёнкой открывает окно {ui:stopwatch_settings_title}: сколько человек вы засекаете, играет ли музыка и что делают кнопки громкости.",
+          "why": "Нужна перед забегом, чтобы настроить экран под вашу группу, или чтобы добавить музыку.",
+          "next": "Выбор вступает в силу после {ui:apply}; секундомер идёт дальше, и ни одно время не стирается.",
+          "undo": "Открытие ничего не меняет; {ui:cancel} закрывает окно без сохранения."
+        },
+        "e-help": {
+          "one": "Открывает эту страницу.",
+          "what": "Знак вопроса в правом верхнем углу экрана открывает эту страницу.",
+          "why": "Она объясняет экран с картинкой, не выходя из приложения и без сети.",
+          "next": "Секундомер продолжает идти, пока справка открыта; «Назад» возвращает к нему.",
+          "shortcut": "[[F1]] на подключённой клавиатуре делает то же самое."
+        },
+        "e-volume": {
+          "one": "Задаёт громкость, с которой играет музыка.",
+          "what": "Ползунок над кнопками меняет громкость мультимедиа на телефоне - именно с ней играет музыка. Он показан независимо от того, включена ли музыка.",
+          "why": "Пока включён пункт {ui:stopwatch_settings_volume_keys}, кнопки громкости управляют секундомером, а не звуком, и громкость меняют этим ползунком.",
+          "next": "Новая громкость действует сразу.",
+          "undo": "Да, верните ползунок назад."
+        }
+      },
+      "related": [
+        { "help": "home", "note": "Стартовый экран; «Назад» возвращает на него." },
+        { "help": "dashboard", "note": "На его плитке секундомера есть кнопка {ui:tourist_stopwatch_action_open_full}, которая открывает этот экран." },
+        { "help": "stopwatch-settings", "note": "Участники, музыка и кнопки громкости." },
+        { "help": "stopwatch-result", "note": "Сохранить или отправить времена текстом." }
+      ]
+    },
+    "uk": {
+      "summary": "Час одного, двох або чотирьох людей одразу, з колами.",
+      "lead": "Секундомір вимірює час одного, двох або чотирьох людей поруч: у кожного свій час і свої кола. Відлік для всіх починається сам, щойно відкривається екран, і триває, поки телефон заблоковано або попереду інший застосунок, але коли ви виходите з екрана кнопкою «Назад», часи зникають. Він призначений для звичайного заміру часу, а не для офіційного хронометрування.",
+      "alt": "Екран {ui:stopwatch_title}: ділянка кожного учасника з великим часом, колами та двома кнопками; нижче повзунок {ui:stopwatch_volume_label} і ряд кнопок - запуск або зупинка всіх, {ui:stopwatch_action_reset_all}, {ui:stopwatch_action_result} і шестерня налаштувань. Кнопка довідки - у правому верхньому куті.",
+      "order": [
+        "Якщо ви вимірюєте час не однієї людини, спершу відкрийте налаштування {e-settings} і виберіть двох або чотирьох учасників, щоб у кожного була своя ділянка до старту.",
+        "Відлік починається сам, щойно відкривається екран. Щоб почати з нуля, натисніть {e-reset-all}, а потім запустіть кожного учасника в його ділянці {e-participants} або, якщо їх кілька, усіх одразу кнопкою {e-start-all}.",
+        "Натисніть першу кнопку в ділянці учасника {e-participants}, щоб позначити коло, не зупиняючи відліку.",
+        "Коли учасник фінішував, натисніть другу кнопку; щоб зупинити всіх одразу, натисніть {e-start-all} - зараз на ній написано {ui:stopwatch_action_stop_all}.",
+        "Натисніть {e-result}, щоб перетворити часи на текст, який можна зберегти чи надіслати.",
+        "Натисніть {e-reset-all}, коли забіг закінчено й результат збережено. Часи не зберігаються: коли ви виходите з екрана кнопкою «Назад», вони стираються."
+      ],
+      "elements": {
+        "e-participants": {
+          "name": "Учасники",
+          "one": "Окрема ділянка для кожного, чий час ви вимірюєте.",
+          "what": "У кожного учасника своя ділянка з великим часом (хвилини, секунди й соті частки секунди, після першої години - ще й години) та списком кіл, нові зверху. Перша кнопка зветься {ui:stopwatch_action_start}, поки учасник зупинений, і {ui:stopwatch_action_lap}, поки триває відлік; друга - {ui:stopwatch_action_stop} під час відліку та {ui:stopwatch_action_reset} після зупинки.",
+          "why": "Кожен учасник рахує сам по собі: запуск, коло чи зупинка одного не зачіпає решти.",
+          "next": "{ui:stopwatch_action_lap} додає рядок із часом на цей момент, а відлік іде далі; {ui:stopwatch_action_start} після зупинки продовжує із зупиненого часу.",
+          "undo": "Після {ui:stopwatch_action_stop} можна знову натиснути {ui:stopwatch_action_start}, але {ui:stopwatch_action_reset} назавжди стирає час і кола учасника, без підтвердження.",
+          "shortcut": "На підключеній клавіатурі: [[1]]-[[4]] вибирають учасника, [[Space]] або [[Enter]] запускають чи позначають коло, [[S]] зупиняє, [[R]] стирає час (і під час відліку). Якщо учасник один, клавіші діють на нього одразу; якщо їх кілька, спершу виберіть потрібного.",
+          "tip": "Дотик до великого часу працює як перша кнопка. Якщо в налаштуваннях увімкнено пункт {ui:stopwatch_settings_volume_keys}, клавіша гучності вгору запускає чи позначає коло, а вниз зупиняє: у першого учасника або в того, якого ви вибрали з клавіатури."
+        },
+        "e-start-all": {
+          "one": "Запускає або зупиняє всіх учасників одразу.",
+          "what": "Поки всі учасники зупинені, на кнопці написано {ui:stopwatch_action_start_all}, і вона запускає всіх разом; поки відлік триває хоча б в одного учасника, написано {ui:stopwatch_action_stop_all}, і вона зупиняє всіх разом. Кнопка є, коли учасників двоє або четверо.",
+          "why": "Потрібна для спільного старту чи спільного фінішу: усі починають і закінчують в один і той самий момент.",
+          "next": "Зупинені учасники зберігають час і кола, а новий запуск продовжує з них.",
+          "undo": "Вона нічого не стирає: {ui:stopwatch_action_stop_all} залишає всі часи, а наступний запуск продовжує з них."
+        },
+        "e-reset-all": {
+          "one": "Зупиняє всіх і стирає часи та кола.",
+          "what": "Зупиняє всіх учасників і обнуляє час та список кіл у кожного, зокрема в тих, кого приховано меншою кількістю учасників.",
+          "why": "Потрібна, щоб підготувати новий забіг або коли результат уже збережено чи надіслано.",
+          "next": "У кожній ділянці нуль, і вона чекає на натискання {ui:stopwatch_action_start}.",
+          "undo": "Ні. Часи й кола стираються безповоротно, підтвердження немає, тож спершу збережіть або надішліть результат."
+        },
+        "e-result": {
+          "one": "Перетворює часи на текст, який можна зберегти чи надіслати.",
+          "what": "Відкриває вікно {ui:stopwatch_result_title} з часом і колами показаних на екрані учасників. Якщо нічого не виміряно, замість нього з’являється коротке повідомлення {ui:stopwatch_result_empty}.",
+          "why": "Потрібна, щоб залишити запис про забіг або передати часи іншим.",
+          "next": "У вікні часи такі, якими були в мить натискання; секундомір за вікном іде далі, якщо йшов.",
+          "undo": "Відкриття нічого не змінює; {ui:cancel} повертає до секундоміра."
+        },
+        "e-settings": {
+          "one": "Учасники, музика й кнопки гучності.",
+          "what": "Кнопка з шестернею відкриває вікно {ui:stopwatch_settings_title}: скількох людей ви вимірюєте, чи грає музика і що роблять кнопки гучності.",
+          "why": "Потрібна перед забігом, щоб налаштувати екран під вашу групу, або щоб додати музику.",
+          "next": "Вибір набуває чинності після {ui:apply}; секундомір іде далі, і жоден час не стирається.",
+          "undo": "Відкриття нічого не змінює; {ui:cancel} закриває вікно без збереження."
+        },
+        "e-help": {
+          "one": "Відкриває цю сторінку.",
+          "what": "Знак питання у правому верхньому куті екрана відкриває цю сторінку.",
+          "why": "Вона пояснює екран із малюнком, не виходячи із застосунку й без мережі.",
+          "next": "Секундомір іде далі, поки довідка відкрита; «Назад» повертає до нього.",
+          "shortcut": "[[F1]] на підключеній клавіатурі робить те саме."
+        },
+        "e-volume": {
+          "one": "Задає гучність, з якою грає музика.",
+          "what": "Повзунок над кнопками змінює гучність мультимедіа на телефоні - саме з нею грає музика. Його показано незалежно від того, чи ввімкнено музику.",
+          "why": "Поки ввімкнено пункт {ui:stopwatch_settings_volume_keys}, кнопки гучності керують секундоміром, а не звуком, і гучність змінюють цим повзунком.",
+          "next": "Нова гучність діє одразу.",
+          "undo": "Так, поверніть повзунок назад."
+        }
+      },
+      "related": [
+        { "help": "home", "note": "Стартовий екран; «Назад» повертає на нього." },
+        { "help": "dashboard", "note": "На його плитці секундоміра є кнопка {ui:tourist_stopwatch_action_open_full}, що відкриває цей екран." },
+        { "help": "stopwatch-settings", "note": "Учасники, музика й кнопки гучності." },
+        { "help": "stopwatch-result", "note": "Зберегти або надіслати часи текстом." }
+      ]
+    }
+  }
+}

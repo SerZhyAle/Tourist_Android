@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  S0008, owner decision 4.3: the Google Play edition's own manifest, and the second half of the store
+  boundary.
+
+  Keeping the dashboard's declarations in wear/src/noLegal/ removes them from what THIS repository
+  contributes to the store artifact. It does not remove them from what a DEPENDENCY contributes: a library
+  manifest merges into every variant, so a future version of a Wear, health or GMS artifact could put a
+  body-sensor or location permission back into the store build with no file here changing. Each line below
+  names a permission the store edition must not carry, and a merger removal means it cannot be built in.
+  Returning one to the store edition is a decision of the owner first, and only then a deletion of its line.
+-->
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <!-- Category: automatic listening (never declared by this product; kept out against a dependency) -->
+    <uses-permission android:name="android.permission.USE_FULL_SCREEN_INTENT" tools:node="remove" />
+
+    <!-- Category: health body and motion data -->
+    <uses-permission android:name="android.permission.BODY_SENSORS" tools:node="remove" />
+    <uses-permission android:name="android.permission.health.READ_HEART_RATE" tools:node="remove" />
+    <uses-permission android:name="android.permission.ACTIVITY_RECOGNITION" tools:node="remove" />
+
+    <!-- Category: location (the dashboard is the only reader) -->
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" tools:node="remove" />
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" tools:node="remove" />
+
+</manifest>

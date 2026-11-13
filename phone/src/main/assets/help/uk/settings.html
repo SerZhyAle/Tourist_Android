@@ -1,0 +1,112 @@
+<!doctype html>
+<html lang="uk" dir="ltr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="referrer" content="no-referrer">
+<title>Довідка - Налаштування</title>
+<script>(function(){try{var q=new URLSearchParams(location.search).get("theme");var t=(q==="light"||q==="dark")?q:(matchMedia("(prefers-color-scheme: light)").matches?"light":"dark");document.documentElement.setAttribute("data-theme",t);}catch(e){}})();</script>
+<link rel="stylesheet" href="../sza-kit.css">
+<link rel="stylesheet" href="../help.css">
+</head>
+<body class="help">
+<main class="container">
+<nav class="help-crumbs" aria-label="Зміст довідки">
+  <a href="index.html">Зміст довідки</a><span class="sep" aria-hidden="true">/</span><span>Налаштування</span>
+</nav>
+<header class="hero">
+  <p class="kicker">Довідка про екран</p>
+  <h1>Налаштування</h1>
+  <p class="lead">Зміни застосовуються одразу й зберігаються після виходу. Кнопка <b>Розділи</b> перемикає <b>Основні</b> і <b>Про програму</b>.</p>
+</header>
+<figure class="shot">
+  <div class="frame">
+    <img class="on-dark" src="img/settings-dark.jpg" width="540" height="784" alt="Налаштування з меню розділів, темою, мовою, одиницями й параметром екрана.">
+    <img class="on-light" src="img/settings-light.jpg" width="540" height="784" alt="">
+      <a class="pin" style="--x:17.5%;--y:12.18%" href="#e-pages" aria-label="1, Розділи">1</a>
+      <a class="pin" style="--x:89.11%;--y:34.89%" href="#e-theme" aria-label="2, Тема">2</a>
+      <a class="pin" style="--x:89.11%;--y:50.7%" href="#e-language" aria-label="3, Мова">3</a>
+      <a class="pin" style="--x:89.11%;--y:66.52%" href="#e-units" aria-label="4, Система вимірювання">4</a>
+      <a class="pin" style="--x:89.11%;--y:81.86%" href="#e-awake" aria-label="5, Не вимикати екран">5</a>
+      <a class="pin" style="--x:94.17%;--y:12.18%" href="#e-help" aria-label="7, Довідка (F1)">7</a>
+  </div>
+  <figcaption>Демонстраційні дані. Натисніть на номер, щоб прочитати про цю частину екрана.</figcaption>
+</figure>
+<h2>У такому порядку</h2>
+<ol class="order">
+  <li>Відкрийте <b>Розділи</b> <a class="ref" href="#e-pages">1</a> і виберіть розділ.</li>
+  <li>Виберіть тему <a class="ref" href="#e-theme">2</a>, мову <a class="ref" href="#e-language">3</a> й одиниці <a class="ref" href="#e-units">4</a>.</li>
+  <li>Налаштуйте <b>Не вимикати екран</b> <a class="ref" href="#e-awake">5</a> для екранів приладів.</li>
+  <li>Відкрийте <b>Про програму</b> <a class="ref" href="#e-about">6</a> для ресурсів та експорту діагностики.</li>
+</ol>
+<h2>Елементи</h2>
+<div class="elements">
+  <details class="el" id="e-pages">
+    <summary><span class="mk">1</span><span><span class="name">Розділи</span><span class="one">Меню розділів</span></span></summary>
+    <div class="full">
+      <p>Перемикає основні налаштування й відомості про програму в тому самому вікні. На широкому екрані меню видно постійно.</p>
+      <dl class="facts">
+      </dl>
+    </div>
+  </details>
+  <details class="el" id="e-theme">
+    <summary><span class="mk">2</span><span><span class="name">Тема</span><span class="one">Тема</span></span></summary>
+    <div class="full">
+      <p>Системна тема відповідає налаштуванням пристрою; світла й темна задають постійний вигляд.</p>
+      <dl class="facts">
+      </dl>
+    </div>
+  </details>
+  <details class="el" id="e-language">
+    <summary><span class="mk">3</span><span><span class="name">Мова</span><span class="one">Мова</span></span></summary>
+    <div class="full">
+      <p>Виберіть назву мови або системний варіант. Мова застосунку змінюється одразу.</p>
+      <dl class="facts">
+      </dl>
+    </div>
+  </details>
+  <details class="el" id="e-units">
+    <summary><span class="mk">4</span><span><span class="name">Система вимірювання</span><span class="one">Система вимірювання</span></span></summary>
+    <div class="full">
+      <p>Метричні або британські одиниці застосовуються на телефоні й сполученому годиннику.</p>
+      <dl class="facts">
+      </dl>
+    </div>
+  </details>
+  <details class="el" id="e-awake">
+    <summary><span class="mk">5</span><span><span class="name">Не вимикати екран</span><span class="one">Не вимикати екран</span></span></summary>
+    <div class="full">
+      <p>Якщо ввімкнено, екрани приладів не гаснуть. Якщо вимкнено, діє системний час очікування. Блокування дотиків водного ліхтаря зберігається.</p>
+      <dl class="facts">
+      </dl>
+    </div>
+  </details>
+  <details class="el" id="e-about">
+    <summary><span class="mk">6</span><span><span class="name">Про програму</span> <span class="pill">З’являється лише за потреби</span><span class="one">Про програму</span></span></summary>
+    <div class="full">
+      <p>Показує збірку, ліцензію, відомості про конфіденційність, автономну довідку й інші продукти. Експорт діагностики відкриває системний вибір файла й зберігає ZIP із даними збірки та платформи. Координати, історія, шляхи до музики й користувацький текст виключено. Дані нікуди не надсилаються.</p>
+      <dl class="facts">
+      </dl>
+    </div>
+  </details>
+  <details class="el" id="e-help">
+    <summary><span class="mk">7</span><span><span class="name">Довідка (F1)</span><span class="one">Довідка</span></span></summary>
+    <div class="full">
+      <p>Відкриває цю сторінку. F1 на підключеній клавіатурі робить те саме.</p>
+      <dl class="facts">
+      </dl>
+    </div>
+  </details>
+</div>
+<h2>Пов’язане</h2>
+<ul class="related">
+  <li><a href="home.html"><b>Турист</b><span class="pill">Екран</span><small>Виберіть тему, мову й одиниці.</small></a></li>
+  <li><a href="index.html"><b>Зміст довідки</b><small>Кнопка &#171;Назад&#187; повертає на екран, з якого ви прийшли.</small></a></li>
+</ul>
+<footer class="help-foot">
+  <span>Знято з Турист 2.61.0271.444, 2026-10-27.</span>
+  <a href="index.html">Зміст довідки</a>
+</footer>
+</main>
+</body>
+</html>

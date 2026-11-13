@@ -1,6 +1,7 @@
 package com.sza.tourist.core.torch
 
 import android.content.Context
+import android.hardware.camera2.CameraAccessException
 import android.hardware.camera2.CameraCharacteristics
 import android.hardware.camera2.CameraManager
 import timber.log.Timber
@@ -23,6 +24,13 @@ class TorchController @Inject constructor() {
     @Volatile
     private var torchEnabled = false
 
+    // The flash camera is looked up once and kept. The lookup is two binder round trips to the camera
+    // service, and under a burst of toggles one of them failed (S0019) - the tap was answered "no flash
+    // unit", the state parted from the torch by one and a burst of an even length left it lit. A failed
+    // lookup is never stored, so a later call tries again.
+    @Volatile
+    private var flashCameraId: String? = null
+
     /**
      * The shade shortcut renders "lit" or "dark" and this is the only place that knows which.
      * Read-only on purpose - the state is still written by [setTorch] alone, and a subscriber that
@@ -42,28 +50,39 @@ class TorchController @Inject constructor() {
      */
     fun setTorch(context: Context, enabled: Boolean): Boolean {
         val cameraManager = context.getSystemService(Context.CAMERA_SERVICE) as? CameraManager
-        val flashCameraId = cameraManager?.let(::findFlashCameraId)
+        val cameraId = cameraManager?.let(::resolveFlashCameraId)
         return when {
             cameraManager == null -> {
                 Timber.w("TorchController: CameraManager unavailable, flashlight ignored")
                 false
             }
-            flashCameraId == null -> {
-                Timber.w("TorchController: no flash unit on this device, flashlight ignored")
+            cameraId == null -> {
+                Timber.w("TorchController: no flash unit found, flashlight ignored")
                 false
             }
             else -> runCatching {
-                cameraManager.setTorchMode(flashCameraId, enabled)
+                cameraManager.setTorchMode(cameraId, enabled)
                 torchEnabled = enabled
                 true
-            }.onFailure { Timber.w(it, "TorchController: setTorchMode failed") }.getOrDefault(false)
+            }.onFailure {
+                Timber.w(it, "TorchController: setTorchMode failed")
+                if (it.isCameraGone()) flashCameraId = null
+            }.getOrDefault(false)
         }
     }
 
-    /** The first camera carrying a flash unit, or null when this device has none. */
+    private fun resolveFlashCameraId(manager: CameraManager): String? =
+        flashCameraId ?: findFlashCameraId(manager)?.also { flashCameraId = it }
+
+    /** The first camera carrying a flash unit, or null when this device has none or the lookup failed. */
     private fun findFlashCameraId(manager: CameraManager): String? = runCatching {
         manager.cameraIdList.firstOrNull { id ->
             manager.getCameraCharacteristics(id).get(CameraCharacteristics.FLASH_INFO_AVAILABLE) == true
         }
-    }.getOrNull()
+    }.onFailure { Timber.w(it, "TorchController: flash unit lookup failed") }.getOrNull()
+
+    /** The remembered camera went away (a peripheral flash was unplugged); look the flash up afresh next time. */
+    private fun Throwable.isCameraGone(): Boolean =
+        this is IllegalArgumentException ||
+            (this is CameraAccessException && reason == CameraAccessException.CAMERA_DISCONNECTED)
 }

@@ -1,9 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android">
 
-    <!-- Only the permissions the S0004 surfaces use. The kit's remaining permissions land with the
-         phase that first uses them (handoff section 5): POST_NOTIFICATIONS with S0005, camera and
-         service permissions with S0005/S0006, the Data Layer with S0008. -->
+    <!-- Only the permissions the shipped surfaces use; each arrives with the phase that first uses it
+         (handoff section 5). -->
     <!-- The dashboard's fix: location, foreground only, through the platform LocationManager. -->
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
     <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
@@ -12,6 +11,24 @@
     <uses-permission android:name="android.permission.ACTIVITY_RECOGNITION" />
     <!-- The weather tiles read Open-Meteo at the current fix. -->
     <uses-permission android:name="android.permission.INTERNET" />
+    <!-- The camera torch: CameraManager.setTorchMode refuses without it on a device with a flash. -->
+    <uses-permission android:name="android.permission.CAMERA" />
+    <!-- The shade-shortcut notification this permission class posts (Android 13+ asks at runtime). -->
+    <uses-permission android:name="android.permission.POST_NOTIFICATIONS" />
+    <!-- Re-posts the shade shortcut after a reboot; nothing else listens for boot. -->
+    <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
+    <!-- SosService holds a partial wake lock so the Morse strobe and siren keep their cadence with the screen off. -->
+    <uses-permission android:name="android.permission.WAKE_LOCK" />
+    <!-- SosService runs as a foreground service so the distress signal survives the activity closing or the screen turning off. -->
+    <uses-permission android:name="android.permission.FOREGROUND_SERVICE" />
+    <!-- SosService uses the mediaPlayback foreground-service type to loop the alarm-channel siren continuously. -->
+    <uses-permission android:name="android.permission.FOREGROUND_SERVICE_MEDIA_PLAYBACK" />
+    <!-- MusicPickerDialogFragment lists device audio tracks in MediaStore on Android 13+ when the user chooses a stopwatch track. -->
+    <uses-permission android:name="android.permission.READ_MEDIA_AUDIO" />
+    <!-- MusicPickerDialogFragment lists device audio tracks in MediaStore on Android 9-12 when the user chooses a stopwatch track. -->
+    <uses-permission
+        android:name="android.permission.READ_EXTERNAL_STORAGE"
+        android:maxSdkVersion="32" />
 
     <application
         android:name=".TouristApplication"
@@ -33,6 +50,11 @@
             </intent-filter>
         </activity>
 
+        <service android:name="androidx.appcompat.app.AppLocalesMetadataHolderService" android:enabled="false" android:exported="false">
+            <meta-data android:name="autoStoreLocales" android:value="true" />
+        </service>
+        <activity android:name=".ui.settings.SettingsActivity" android:exported="false" android:label="@string/settings_title" android:parentActivityName=".MainActivity" />
+
         <activity
             android:name=".ui.tourist.TouristInfoActivity"
             android:exported="false"
@@ -48,6 +70,82 @@
             android:configChanges="keyboardHidden"
             android:parentActivityName=".ui.tourist.TouristInfoActivity" />
 
+        <!-- The lights program: the three lights and the shade-shortcut switch (S0005). -->
+        <activity
+            android:name=".ui.flashlight.LightsActivity"
+            android:exported="false"
+            android:label="@string/program_lights"
+            android:configChanges="keyboardHidden"
+            android:parentActivityName=".MainActivity" />
+
+        <activity
+            android:name=".ui.flashlight.FrontFlashlightActivity"
+            android:exported="false"
+            android:label="@string/front_flashlight_title"
+            android:configChanges="keyboardHidden"
+            android:parentActivityName=".MainActivity" />
+
+        <activity
+            android:name=".ui.flashlight.WaterFlashlightActivity"
+            android:exported="false"
+            android:label="@string/water_flashlight_title"
+            android:configChanges="keyboardHidden"
+            android:parentActivityName=".MainActivity" />
+
+        <!-- The torch trampoline: toggles and vanishes, so it never occupies Recents. -->
+        <activity
+            android:name=".ui.flashlight.FlashlightToggleActivity"
+            android:exported="false"
+            android:excludeFromRecents="true"
+            android:taskAffinity=""
+            android:noHistory="true"
+            android:theme="@style/Theme.Tourist.Transparent" />
+
+        <!-- The distress signal: siren and strobe on the Morse SOS cadence, and the same signal on the paired watch (S0006). -->
+        <activity
+            android:name=".ui.sos.SosActivity"
+            android:exported="false"
+            android:label="@string/sos_title"
+            android:configChanges="keyboardHidden"
+            android:parentActivityName=".MainActivity" />
+
+        <!-- The multi-participant stopwatch, its music picker and result export (S0007). -->
+        <activity
+            android:name=".ui.stopwatch.StopwatchActivity"
+            android:exported="false"
+            android:label="@string/stopwatch_title"
+            android:configChanges="keyboardHidden"
+            android:parentActivityName=".MainActivity" />
+
+        <!-- The signal itself, so it survives the window being destroyed; mediaPlayback matches the alarm-channel siren. -->
+        <service
+            android:name=".ui.sos.SosService"
+            android:exported="false"
+            android:foregroundServiceType="mediaPlayback" />
+
+        <!-- Receives SOS start and stop commands (messages) and the Tourist health report and weather request
+             (Data Items) from the paired watch over this product's /tourist/watch Data Layer prefix. -->
+        <service
+            android:name=".service.PhoneWearListenerService"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="com.google.android.gms.wearable.DATA_CHANGED" />
+                <action android:name="com.google.android.gms.wearable.MESSAGE_RECEIVED" />
+                <data
+                    android:host="*"
+                    android:pathPrefix="/tourist/watch"
+                    android:scheme="wear" />
+            </intent-filter>
+        </service>
+
+        <!-- The shade shortcut for the camera flashlight - the tap target, and the boot re-post. -->
+        <receiver android:name=".core.notification.FlashlightShortcutReceiver" android:exported="false" />
+        <receiver android:name=".core.notification.FlashlightShortcutBootReceiver" android:exported="true">
+            <intent-filter>
+                <action android:name="android.intent.action.BOOT_COMPLETED" />
+            </intent-filter>
+        </receiver>
+
         <receiver
             android:name=".widget.TouristInfoWidgetProvider"
             android:exported="true"
@@ -59,6 +157,47 @@
             <meta-data
                 android:name="android.appwidget.provider"
                 android:resource="@xml/widget_tourist_info_info" />
+        </receiver>
+
+        <receiver
+            android:name=".widget.FrontFlashlightWidgetProvider"
+            android:exported="true"
+            android:label="@string/widget_front_flashlight_label"
+            android:icon="@drawable/ic_widget_front_flashlight_accent">
+            <intent-filter>
+                <action android:name="android.appwidget.action.APPWIDGET_UPDATE" />
+            </intent-filter>
+            <meta-data
+                android:name="android.appwidget.provider"
+                android:resource="@xml/widget_front_flashlight_info" />
+        </receiver>
+
+        <receiver
+            android:name=".widget.WaterFlashlightWidgetProvider"
+            android:exported="true"
+            android:label="@string/widget_water_flashlight_label"
+            android:icon="@drawable/ic_widget_water_flashlight_accent">
+            <intent-filter>
+                <action android:name="android.appwidget.action.APPWIDGET_UPDATE" />
+            </intent-filter>
+            <meta-data
+                android:name="android.appwidget.provider"
+                android:resource="@xml/widget_water_flashlight_info" />
+        </receiver>
+
+        <receiver
+            android:name=".widget.StopwatchWidgetProvider"
+            android:exported="true"
+            android:label="@string/widget_stopwatch_label"
+            android:icon="@drawable/ic_widget_stopwatch_accent">
+            <intent-filter>
+                <action android:name="android.appwidget.action.APPWIDGET_UPDATE" />
+                <action android:name="com.sza.tourist.action.STOPWATCH_WIDGET_TOGGLE" />
+                <action android:name="android.intent.action.BOOT_COMPLETED" />
+            </intent-filter>
+            <meta-data
+                android:name="android.appwidget.provider"
+                android:resource="@xml/widget_stopwatch_info" />
         </receiver>
     </application>
 

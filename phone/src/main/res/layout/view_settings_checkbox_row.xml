@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  Layout for SettingsCheckboxRow (BOOLEAN-OPTION 2.0, S0015).
+  The heading area - visible square checkbox at reading start, then the cell's heading line
+  (optional semantic glyph + caption) - is one activation and focus target. The explanation sits
+  below the heading at the cell's reading-start inset and never toggles; the row background never
+  toggles. A drag the ScrollView recognizes as scrolling cancels the pending tap natively.
+-->
+<merge xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <LinearLayout
+        android:id="@+id/scr_headingArea"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="?attr/selectableItemBackground"
+        android:foreground="@drawable/focus_button_background"
+        android:gravity="top"
+        android:minHeight="@dimen/token_touch_target_min"
+        android:orientation="horizontal">
+
+        <com.google.android.material.checkbox.MaterialCheckBox
+            android:id="@+id/scr_checkbox"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:clickable="false"
+            android:duplicateParentState="true"
+            android:focusable="false"
+            android:importantForAccessibility="no"
+            app:buttonCompat="@drawable/checkbox_square_state"
+            app:buttonIcon="@null"
+            app:buttonTint="@null"
+            app:useMaterialThemeColors="false" />
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/boolean_checkbox_gap"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="top"
+                android:orientation="horizontal">
+
+                <!-- Optional leading semantic glyph; hidden when unset, no empty slot reserved. -->
+                <ImageView
+                    android:id="@+id/scr_icon"
+                    android:layout_marginTop="14dp"
+                    android:layout_width="@dimen/boolean_glyph_size"
+                    android:layout_height="@dimen/boolean_glyph_size"
+                    android:contentDescription="@null"
+                    android:importantForAccessibility="no"
+                    app:tint="?attr/colorOnSurfaceVariant"
+                    android:visibility="gone" />
+
+                <TextView
+                    android:id="@+id/scr_title"
+                    android:importantForAccessibility="no"
+                    android:minHeight="@dimen/token_touch_target_min"
+                    android:gravity="center_vertical"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    
+                    android:textAppearance="?attr/textAppearanceTitleMedium" />
+            </LinearLayout>
+        </LinearLayout>
+    </LinearLayout>
+
+    <!-- The explanation starts at the cell's reading-start inset. The inset equals the laid-out
+         checkbox plus the 8-unit gap and is applied at runtime, so text scaling keeps it aligned. -->
+    <TextView
+        android:id="@+id/scr_subtitle"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/boolean_heading_explanation_gap"
+        android:layout_marginBottom="@dimen/token_spacing_4"
+        android:textAppearance="?attr/textAppearanceBodySmall"
+        android:textColor="?attr/colorOnSurfaceVariant"
+        android:visibility="gone" />
+
+</merge>

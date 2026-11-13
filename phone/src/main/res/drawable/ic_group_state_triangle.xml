@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- COLLAPSIBLE-GROUP 1.1 s.3.2 current-state marker (S0015): a filled triangle pointing toward
+     reading end while collapsed (this base drawing, auto-mirrored in RTL) and rotated 90 degrees
+     (pointing down) while expanded. A vector path, never a typed Unicode arrow; colour comes from
+     the theme tint, never from the file. -->
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="@dimen/group_marker_size"
+    android:height="@dimen/group_marker_size"
+    android:viewportWidth="24"
+    android:viewportHeight="24"
+    android:autoMirrored="true"
+    android:tint="?attr/colorOnSurface">
+    <path
+        android:fillColor="@color/white"
+        android:pathData="M8,5.5 L8,18.5 L18.5,12 Z" />
+</vector>

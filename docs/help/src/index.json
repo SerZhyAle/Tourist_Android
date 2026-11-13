@@ -1,0 +1,8 @@
+{
+  "$comment": "Prose of the help index; the list of pages is generated from the help map.",
+  "locales": {
+    "en": { "lead": "How each screen works, with a picture and the usual order of use. Everything is in the app and needs no network." },
+    "ru": { "lead": "Как устроен каждый экран: с картинкой и обычным порядком действий. Всё внутри приложения и не требует сети." },
+    "uk": { "lead": "Як улаштований кожен екран: з малюнком і звичайним порядком дій. Усе всередині застосунку й не потребує мережі." }
+  }
+}

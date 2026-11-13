@@ -12,8 +12,9 @@ enum class Distribution {
 /**
  * The skeleton seam of the variant mechanism (handoff section 3): the interface lives in `src/main`,
  * each variant's implementation in its own source set, one DI module per variant binding it. What the
- * variants hide is owner decision 4.3 (S0008); nothing is hidden yet, and no default implementation
- * exists in `src/main` - a default would diverge silently from the variant that overrides it.
+ * variants hide is owner decision 4.3 (S0008), and no default implementation
+ * exists in `src/main` - a default would diverge silently from the variant that overrides it. S0008 settled
+ * the first answer: `WatchHealthCapability` (watch health on the dashboard) is offered by `noLegal` alone.
  */
 interface DistributionInfo {
     val distribution: Distribution

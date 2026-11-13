@@ -7,13 +7,14 @@ import android.content.Intent
 import android.net.Uri
 import android.widget.Toast
 import com.sza.tourist.R
+import com.sza.tourist.ui.sos.SosActivity
+import com.sza.tourist.ui.stopwatch.StopwatchActivity
 import com.sza.tourist.ui.tourist.counter.TouristCounterActivity
 import java.util.Locale
 
 /**
- * Manages map, sharing, and clipboard actions for the Tourist dashboard. The SOS signal and the full
- * stopwatch join with their programs (S0006, S0007); the counter opens here because it ports with the
- * dashboard.
+ * Manages map, sharing, and clipboard actions for the Tourist dashboard. The SOS signal joins in
+ * S0006 and the full stopwatch in S0007; the counter opens here because it ports with the dashboard.
  */
 class TouristActionsManager(
     private val context: Context,
@@ -65,9 +66,19 @@ class TouristActionsManager(
         }
     }
 
+    /** Opens the distress signal from the Tourist dashboard. */
+    fun launchSos() {
+        tryStartActivity(SosActivity.createIntent(context))
+    }
+
     /** Opens the tally counter from its hero card. */
     fun launchCounter() {
         tryStartActivity(TouristCounterActivity.createIntent(context))
+    }
+
+    /** Opens the multi-participant stopwatch from the dashboard's inline stopwatch hero card. */
+    fun launchStopwatch() {
+        tryStartActivity(StopwatchActivity.createIntent(context))
     }
 
     private fun tryStartActivity(intent: Intent, onFallback: (() -> Unit)? = null) {

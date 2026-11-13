@@ -11,7 +11,7 @@ They read FastMediaSorter and never write to it.
 | `check-drift.ps1 [-History] [-Json]` | start of every release | lists every ported file whose source changed since; exit 1 if any is uncarried |
 | `record-port.ps1 ... -Refresh` | after carrying a newer version of a file | the row takes the source's current hash and gets `carriedOn` |
 | `decide-drift.ps1 -Source <fms path> -Note "<why>"` | a change is deliberately not carried | writes the decision next to the row, pinned to that source version |
-| `test-port-ledger.ps1` | after editing these scripts | self-test on a throw-away tree; touches neither repository |
+| `test-port-ledger.ps1` | at release after editing these scripts | self-test on a throw-away tree; touches neither repository |
 
 Paths are relative to their repository root, with forward slashes. The FastMediaSorter root is
 `P:\ANDROID\FastMediaSorter_mob_v2` unless `-SourceRoot` or `$env:TOURIST_FMS_ROOT` says otherwise.
@@ -22,3 +22,4 @@ until it is carried or decided too. An empty ledger is in step by definition. Ex
 check could not run.
 
 Run every script as `pwsh -NoProfile -File tools/port-ledger/<script>.ps1 ..` from the repository root.
+Between releases, parse an edited script with `pwsh -NoProfile -File tools/fast-check.ps1 -Area scripts -Path <script.ps1>`.

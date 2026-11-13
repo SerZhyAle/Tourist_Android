@@ -17,8 +17,7 @@
             android:name="com.google.android.wearable.standalone"
             android:value="true" />
 
-        <!-- Watch Face Format version 4 (Wear OS 6, API 36), after the FastMediaSorter and
-             StreamsPlayer watch-face precedents; the composition is decided before S0009. -->
+        <!-- Watch Face Format version 4 (Wear OS 6, API 36) per owner composition decision 4.4. -->
         <property
             android:name="com.google.wear.watchface.format.version"
             android:value="4" />

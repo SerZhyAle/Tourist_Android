@@ -57,7 +57,7 @@ private fun AlertDialog.bindTo(owner: LifecycleOwner): AlertDialog {
  * chain. A dialog context already has to be an activity - one raised on an application context never
  * gets a window token in the first place.
  */
-private tailrec fun Context.findLifecycleOwner(): LifecycleOwner? =
+internal fun Context.findLifecycleOwner(): LifecycleOwner? =
     when (this) {
         is LifecycleOwner -> this
         is ContextWrapper -> baseContext.findLifecycleOwner()

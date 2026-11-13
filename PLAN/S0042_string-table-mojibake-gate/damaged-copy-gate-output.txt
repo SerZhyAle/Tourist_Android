@@ -1,0 +1,21 @@
+Gate run on 2026-11-13 against the 2026-10-27 scratch copy of the working tree (ticket S0018 build copy).
+Command: pwsh -NoProfile -File tools/strings/check-string-tables.ps1 -Root <that copy>
+Exit code: 1
+
+FAIL: phone/src/main/res/values/strings.xml:49 [tourist_detail_speed] signature: double-encoded: cp1251 reading of U+2022 (U+0432 U+0402 U+045E)
+FAIL: phone/src/main/res/values/strings.xml:51 [tourist_detail_coordinates] signature: double-encoded: cp1251 reading of U+2022 (U+0432 U+0402 U+045E)
+FAIL: phone/src/main/res/values/strings.xml:59 [tourist_detail_sun_time] signature: double-encoded: cp1251 reading of U+2022 (U+0432 U+0402 U+045E)
+FAIL: phone/src/main/res/values/strings.xml:66 [tourist_unit_celsius] signature: double-encoded: cp1251 reading of U+00B0 (U+0412 U+00B0)
+FAIL: phone/src/main/res/values/strings.xml:67 [tourist_unit_fahrenheit] signature: double-encoded: cp1251 reading of U+00B0 (U+0412 U+00B0)
+FAIL: phone/src/main/res/values/strings.xml:106 [tourist_unit_microtesla] signature: double-encoded: cp1251 reading of U+00B5 (U+0412 U+00B5)
+FAIL: phone/src/main/res/values/strings.xml:108 [tourist_unit_degrees] signature: double-encoded: cp1251 reading of U+00B0 (U+0412 U+00B0)
+FAIL: phone/src/main/res/values/strings.xml:129 [tourist_detail_true_heading] signature: double-encoded: cp1251 reading of U+2022 (U+0432 U+0402 U+045E)
+FAIL: phone/src/main/res/values/strings.xml:129 [tourist_detail_true_heading] signature: double-encoded: cp1251 reading of U+00B0 (U+0412 U+00B0)
+FAIL: phone/src/main/res/values/strings.xml:129 [tourist_detail_true_heading] signature: double-encoded: cp1251 reading of U+00B0 (U+0412 U+00B0)
+FAIL: phone/src/main/res/values/strings.xml:132 [tourist_detail_elevation_loss] signature: double-encoded: cp1251 reading of U+2022 (U+0432 U+0402 U+045E)
+FAIL: phone/src/main/res/values/strings.xml:136 [tourist_detail_wind] signature: double-encoded: cp1251 reading of U+2022 (U+0432 U+0402 U+045E)
+FAIL: phone/src/main/res/values/strings.xml:137 [tourist_detail_level] signature: double-encoded: cp1251 reading of U+00B0 (U+0412 U+00B0)
+FAIL: phone/src/main/res/values/strings.xml:137 [tourist_detail_level] signature: double-encoded: cp1251 reading of U+2022 (U+0432 U+0402 U+045E)
+FAIL: phone/src/main/res/values/strings.xml:137 [tourist_detail_level] signature: double-encoded: cp1251 reading of U+00B0 (U+0412 U+00B0)
+Checked 23 string table file(s) for double encoding, invalid UTF-8, BOM, replacement and C1 characters.
+string-tables: FAIL (15 finding(s))

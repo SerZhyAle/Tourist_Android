@@ -1,0 +1,93 @@
+<!doctype html>
+<html lang="en" dir="ltr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="referrer" content="no-referrer">
+<title>Help - SOS emergency signal</title>
+<script>(function(){try{var q=new URLSearchParams(location.search).get("theme");var t=(q==="light"||q==="dark")?q:(matchMedia("(prefers-color-scheme: light)").matches?"light":"dark");document.documentElement.setAttribute("data-theme",t);}catch(e){}})();</script>
+<link rel="stylesheet" href="../sza-kit.css">
+<link rel="stylesheet" href="../help.css">
+</head>
+<body class="help">
+<main class="container">
+<nav class="help-crumbs" aria-label="Help index">
+  <a href="index.html">Help index</a><span class="sep" aria-hidden="true">/</span><span>SOS emergency signal</span>
+</nav>
+<header class="hero">
+  <p class="kicker">Screen help</p>
+  <h1>SOS emergency signal</h1>
+  <p class="lead">The signal <b>starts as soon as this screen opens</b>: a siren and a flashing light repeat the Morse SOS pattern. To end it, press <b>Stop signal</b> or leave the screen with Back. It sounds and blinks, and a paired watch signals too; it sends no SMS, makes no call and contacts no one.</p>
+</header>
+<figure class="shot">
+  <div class="frame">
+    <img class="on-dark" src="img/sos-dark.jpg" width="540" height="1200" alt="The SOS emergency signal screen: the SOS sign, the modes Sound and light, Sound only and Light only, the large Stop signal button and the Help button in the top-right corner.">
+    <img class="on-light" src="img/sos-light.jpg" width="540" height="1200" alt="">
+      <a class="pin" style="--x:82.26%;--y:54.75%" href="#e-modes" aria-label="1, Signal mode">1</a>
+      <a class="pin" style="--x:49.95%;--y:63.94%" href="#e-stop" aria-label="2, Stop signal">2</a>
+      <a class="pin" style="--x:93.15%;--y:8.42%" href="#e-help" aria-label="3, Help (F1)">3</a>
+  </div>
+  <figcaption>Demo content. Select a number to read about that part of the screen.</figcaption>
+</figure>
+<h2>In this order</h2>
+<ol class="order">
+  <li>Open the screen only when you want the signal. It starts at once, in the mode you used last (<b>Sound and light</b> the first time), and a paired watch is asked to signal too.</li>
+  <li>Pick another mode with <a class="ref" href="#e-modes">1</a> if you need one: the running signal changes at once and the choice is kept for next time.</li>
+  <li>You can leave the screen or lock the phone: the signal goes on in the background. If notifications are allowed for the app, its notification has its own <b>Stop signal</b> button.</li>
+  <li>To end the signal press <a class="ref" href="#e-stop">2</a> or leave the screen with Back: the phone stops, a paired watch is asked to stop too, and the screen closes.</li>
+  <li>If you do not stop it, the phone ends its own signal after 30 minutes to spare the battery and the flash; the count starts again whenever the signal is started or its mode changes. Open the screen again to signal again.</li>
+  <li>Press <a class="ref" href="#e-help">3</a> to read this page: the signal goes on while you read.</li>
+</ol>
+<h2>The elements</h2>
+<div class="elements">
+  <details class="el" id="e-modes">
+    <summary><span class="mk">1</span><span><span class="name">Signal mode</span><span class="one">What the signal uses: sound, light or both.</span></span></summary>
+    <div class="full">
+      <p>Three buttons, one chosen at a time: <b>Sound and light</b> runs the siren and the light together, <b>Sound only</b> the siren alone, <b>Light only</b> the light alone - the camera flash and the flashing screen.</p>
+      <dl class="facts">
+        <dt>Why</dt><dd>Pick <b>Light only</b> where a siren would draw the wrong attention, and <b>Sound only</b> to keep the flash and the flashing screen off.</dd>
+        <dt>Next</dt><dd>The running signal changes at once, the choice is kept for next time, and a paired watch is asked to follow.</dd>
+        <dt>Undo</dt><dd>Tap another button to change it back.</dd>
+      </dl>
+      <div class="note"><span class="tag">Tip</span><p>The siren uses the alarm volume, which the phone raises to the maximum while the signal runs and puts back when it stops. On a phone without a flash the flashing screen is the light.</p></div>
+    </div>
+  </details>
+  <details class="el" id="e-stop">
+    <summary><span class="mk">2</span><span><span class="name">Stop signal</span><span class="one">Ends the signal on the phone and the watch.</span></span></summary>
+    <div class="full">
+      <p>A large button that stops the siren and the light, asks a paired watch to stop too, and closes the screen.</p>
+      <dl class="facts">
+        <dt>Why</dt><dd>It is larger than the other buttons, so that a cold or wet hand can find it.</dd>
+        <dt>Next</dt><dd>You are back where you came from, and the alarm volume is set back to what it was.</dd>
+        <dt>Undo</dt><dd>A stopped signal does not resume; open the screen again to start a new one.</dd>
+        <dt>Shortcut</dt><dd>On a keyboard or D-pad the button has the focus when the screen opens; <kbd>Enter</kbd> presses it.</dd>
+      </dl>
+      <div class="note"><span class="tag">Tip</span><p>Back does the same as this button. Going to the home screen or locking the phone does not: the signal goes on, and with notifications allowed for the app its notification has the same <b>Stop signal</b> button. Stopping on the watch stops the phone&#39;s signal too. A signal started on the watch asks the phone to signal as well; if Android refuses to start it in the background, the notification <b>SOS started on the watch</b> offers it - tap it.</p></div>
+    </div>
+  </details>
+  <details class="el" id="e-help">
+    <summary><span class="mk">3</span><span><span class="name">Help (F1)</span><span class="one">Opens this page.</span></span></summary>
+    <div class="full">
+      <p>The question mark in the top-right corner opens the page for this screen over the running signal.</p>
+      <dl class="facts">
+        <dt>Why</dt><dd>It explains the screen, with a picture, without leaving the app and without a network.</dd>
+        <dt>Next</dt><dd>The signal goes on while you read; Back closes the page and returns to the screen.</dd>
+        <dt>Shortcut</dt><dd><kbd>F1</kbd> on a connected keyboard does the same.</dd>
+      </dl>
+    </div>
+  </details>
+</div>
+<h2>Related</h2>
+<ul class="related">
+  <li><a href="dashboard.html"><b>Tourist dashboard</b><span class="pill">Screen</span><small>The dashboard has an <b>SOS signal</b> button that opens this screen.</small></a></li>
+  <li><a href="home.html"><b>Tourist</b><span class="pill">Screen</span><small>The start screen, where this program is one row.</small></a></li>
+  <li><a href="lights.html"><b>Lights</b><span class="pill">Screen</span><small>The lights are separate from the signal.</small></a></li>
+  <li><a href="index.html"><b>Help index</b><small>Back returns to the screen you came from.</small></a></li>
+</ul>
+<footer class="help-foot">
+  <span>Captured against Tourist 2.61.0271.444, 2026-10-27.</span>
+  <a href="index.html">Help index</a>
+</footer>
+</main>
+</body>
+</html>

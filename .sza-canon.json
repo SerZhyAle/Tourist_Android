@@ -1,5 +1,5 @@
 {
-  "$comment": "Overlay B (Android), new repo adopted 2026-10-02. Nothing builds or ships yet: no tags (tagRegex null), no channel with a committed manifest (the first declaration waits for owner decisions 4.5, 4.7 and 4.9, ticket S0010), no site (decision 4.9 open), no changelog ledger yet. Shapes: flavor - two variants, store and noLegal, of one codebase; wear and watchface are sibling modules of the same build, not editions. privacy.sensitiveAccess stays false while no channel is declared; the product reads location and drives the camera torch, so S0010 revisits it together with the privacy page.",
+  "$comment": "Overlay B (Android), new repo adopted 2026-10-02. Nothing ships yet: no tags (tagRegex null), no changelog ledger yet; the play channel, the privacy site and sensitiveAccess are declared below ($comment_presence). Shapes: flavor - two variants, store and noLegal, of one codebase; wear and watchface are sibling modules of the same build, not editions.",
 
   "canon": {
     "version": "2026.10.17.1",
@@ -24,21 +24,22 @@
   "ledgerShape": "none",
   "ledgerFile": null,
 
-  "docRegistryShape": null,
-  "docRegistryFile": null,
+  "docRegistryShape": 1,
+  "docRegistryFile": "docs/DOCUMENT_REGISTRY.jsonl",
 
-  "channels": [],
+  "$comment_presence": "Owner's order of 2026-11-13 (the public presence of DeviceInfo and StreamsPlayer): channel play (the store variant of phone and wear under com.sza.tourist, and the watch face com.sza.tourist.watchface; the Play Console apps exist, nothing is uploaded), the hand-written privacy pages in site/ on GitHub Pages, and sensitiveAccess true because the phone reads location (sent to Open-Meteo for the weather) and drives the camera torch. The sideload channel of the noLegal variant is declared with its first release (S0010).",
+  "channels": ["play"],
 
   "site": {
-    "kind": "none",
-    "root": null,
-    "pages": []
+    "kind": "product",
+    "root": "site",
+    "pages": ["privacy.html", "privacy-ru.html", "privacy-uk.html"]
   },
 
   "privacy": {
-    "page": null,
+    "page": "site/privacy.html",
     "carveOut": null,
-    "sensitiveAccess": false
+    "sensitiveAccess": true
   },
 
   "byteIdenticalPairs": [],

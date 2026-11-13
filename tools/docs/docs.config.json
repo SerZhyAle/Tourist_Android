@@ -1,0 +1,10 @@
+{
+  "$comment": "Configuration of tools/docs/check-docs.ps1 (DOC-INTERNAL-QUALITY, S0029). corpus: what reverse coverage walks - whole folders, plus files matched by pattern. registries: every document registry; each is classed tracked or local by git check-ignore of its own file. ignore: files of the corpus consciously left out of every registry, each {path, reason}; empty means every file is declared.",
+  "corpus": {
+    "folders": ["docs", "PLAN"],
+    "files": ["AGENTS.md", "CLAUDE.md", "README.md", "tools/**/*.md"]
+  },
+  "registries": ["docs/DOCUMENT_REGISTRY.jsonl", "PLAN/DOCUMENT_REGISTRY.jsonl"],
+  "ignore": [],
+  "baseline": "tools/docs/baseline.txt"
+}

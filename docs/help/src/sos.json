@@ -1,0 +1,140 @@
+{
+  "help": "sos",
+  "locales": {
+    "en": {
+      "summary": "The emergency signal: it starts when the screen opens and ends with the stop button.",
+      "lead": "The signal **starts as soon as this screen opens**: a siren and a flashing light repeat the Morse SOS pattern. To end it, press {ui:sos_stop_action} or leave the screen with Back. It sounds and blinks, and a paired watch signals too; it sends no SMS, makes no call and contacts no one.",
+      "alt": "The {ui:sos_title} screen: the SOS sign, the modes {ui:sos_mode_all}, {ui:sos_mode_sound_only} and {ui:sos_mode_light_only}, the large {ui:sos_stop_action} button and the Help button in the top-right corner.",
+      "order": [
+        "Open the screen only when you want the signal. It starts at once, in the mode you used last ({ui:sos_mode_all} the first time), and a paired watch is asked to signal too.",
+        "Pick another mode with {e-modes} if you need one: the running signal changes at once and the choice is kept for next time.",
+        "You can leave the screen or lock the phone: the signal goes on in the background. If notifications are allowed for the app, its notification has its own {ui:sos_stop_action} button.",
+        "To end the signal press {e-stop} or leave the screen with Back: the phone stops, a paired watch is asked to stop too, and the screen closes.",
+        "If you do not stop it, the phone ends its own signal after 30 minutes to spare the battery and the flash; the count starts again whenever the signal is started or its mode changes. Open the screen again to signal again.",
+        "Press {e-help} to read this page: the signal goes on while you read."
+      ],
+      "elements": {
+        "e-modes": {
+          "name": "Signal mode",
+          "one": "What the signal uses: sound, light or both.",
+          "what": "Three buttons, one chosen at a time: {ui:sos_mode_all} runs the siren and the light together, {ui:sos_mode_sound_only} the siren alone, {ui:sos_mode_light_only} the light alone - the camera flash and the flashing screen.",
+          "why": "Pick {ui:sos_mode_light_only} where a siren would draw the wrong attention, and {ui:sos_mode_sound_only} to keep the flash and the flashing screen off.",
+          "next": "The running signal changes at once, the choice is kept for next time, and a paired watch is asked to follow.",
+          "undo": "Tap another button to change it back.",
+          "tip": "The siren uses the alarm volume, which the phone raises to the maximum while the signal runs and puts back when it stops. On a phone without a flash the flashing screen is the light."
+        },
+        "e-stop": {
+          "one": "Ends the signal on the phone and the watch.",
+          "what": "A large button that stops the siren and the light, asks a paired watch to stop too, and closes the screen.",
+          "why": "It is larger than the other buttons, so that a cold or wet hand can find it.",
+          "next": "You are back where you came from, and the alarm volume is set back to what it was.",
+          "undo": "A stopped signal does not resume; open the screen again to start a new one.",
+          "shortcut": "On a keyboard or D-pad the button has the focus when the screen opens; [[Enter]] presses it.",
+          "tip": "Back does the same as this button. Going to the home screen or locking the phone does not: the signal goes on, and with notifications allowed for the app its notification has the same {ui:sos_stop_action} button. Stopping on the watch stops the phone's signal too. A signal started on the watch asks the phone to signal as well; if Android refuses to start it in the background, the notification {ui:sos_watch_start_title} offers it - tap it."
+        },
+        "e-help": {
+          "one": "Opens this page.",
+          "what": "The question mark in the top-right corner opens the page for this screen over the running signal.",
+          "why": "It explains the screen, with a picture, without leaving the app and without a network.",
+          "next": "The signal goes on while you read; Back closes the page and returns to the screen.",
+          "shortcut": "[[F1]] on a connected keyboard does the same."
+        }
+      },
+      "related": [
+        { "help": "dashboard", "note": "The dashboard has an {ui:tourist_action_sos} button that opens this screen." },
+        { "help": "home", "note": "The start screen, where this program is one row." },
+        { "help": "lights", "note": "The lights are separate from the signal." }
+      ]
+    },
+    "ru": {
+      "summary": "Аварийный сигнал: включается при открытии экрана и прекращается кнопкой остановки.",
+      "lead": "Сигнал **включается сразу при открытии этого экрана**: сирена и мигающий свет повторяют сигнал SOS азбукой Морзе. Чтобы прекратить его, нажмите {ui:sos_stop_action} или выйдите с экрана кнопкой «Назад». Он звучит и мигает, подключённые часы сигналят тоже; он не отправляет SMS, не звонит и ни с кем не связывается.",
+      "alt": "Экран {ui:sos_title}: знак SOS, режимы {ui:sos_mode_all}, {ui:sos_mode_sound_only} и {ui:sos_mode_light_only}, крупная кнопка {ui:sos_stop_action} и кнопка справки в правом верхнем углу.",
+      "order": [
+        "Открывайте экран только тогда, когда сигнал нужен. Он включается сразу, в том режиме, которым вы пользовались в прошлый раз ({ui:sos_mode_all} в первый раз), и подключённым часам отправляется команда включить сигнал тоже.",
+        "Нужен другой режим - выберите его в {e-modes}: идущий сигнал меняется сразу, а выбор запоминается на следующий раз.",
+        "Экран можно покинуть или заблокировать телефон: сигнал продолжается в фоне. Если уведомления для приложения разрешены, в его уведомлении есть своя кнопка {ui:sos_stop_action}.",
+        "Чтобы прекратить сигнал, нажмите {e-stop} или выйдите с экрана кнопкой «Назад»: телефон замолкает, подключённым часам отправляется команда остановиться, экран закрывается.",
+        "Если не остановить сигнал, телефон сам прекращает его через 30 минут, чтобы поберечь батарею и вспышку; отсчёт начинается заново при каждом запуске сигнала и смене режима. Чтобы сигналить снова, откройте экран ещё раз.",
+        "Нажмите {e-help}, чтобы прочитать эту страницу: сигнал продолжается, пока вы читаете."
+      ],
+      "elements": {
+        "e-modes": {
+          "name": "Режим сигнала",
+          "one": "Что использует сигнал: звук, свет или всё вместе.",
+          "what": "Три кнопки, выбрана всегда одна: {ui:sos_mode_all} - сирена и свет вместе, {ui:sos_mode_sound_only} - только сирена, {ui:sos_mode_light_only} - только свет, то есть вспышка камеры и мигающий экран.",
+          "why": "Выбирайте {ui:sos_mode_light_only}, когда сирена привлекла бы лишнее внимание, и {ui:sos_mode_sound_only}, чтобы вспышка и мигающий экран были выключены.",
+          "next": "Идущий сигнал меняется сразу, выбор запоминается на следующий раз, а подключённым часам отправляется команда перейти в тот же режим.",
+          "undo": "Нажмите другую кнопку, чтобы вернуть прежний режим.",
+          "tip": "Сирена звучит на громкости будильника: пока идёт сигнал, телефон поднимает её до максимума, а после остановки возвращает прежней. На телефоне без вспышки светом служит мигающий экран."
+        },
+        "e-stop": {
+          "one": "Прекращает сигнал на телефоне и на часах.",
+          "what": "Крупная кнопка: выключает сирену и свет, просит подключённые часы остановиться тоже и закрывает экран.",
+          "why": "Она крупнее остальных кнопок, чтобы её нашла и холодная, и мокрая рука.",
+          "next": "Вы вернётесь туда, откуда пришли, а громкость будильника станет прежней.",
+          "undo": "Остановленный сигнал не возобновляется; чтобы сигналить снова, откройте экран ещё раз.",
+          "shortcut": "С клавиатурой или D-pad кнопка получает фокус при открытии экрана; [[Enter]] нажимает её.",
+          "tip": "«Назад» делает то же, что эта кнопка. Выход на домашний экран или блокировка телефона - нет: сигнал продолжается, а если уведомления для приложения разрешены, в его уведомлении есть такая же кнопка {ui:sos_stop_action}. Остановка на часах останавливает и сигнал телефона. Сигнал, запущенный на часах, просит телефон сигналить тоже; если Android не даёт запустить его в фоне, уведомление {ui:sos_watch_start_title} предлагает сделать это - нажмите на него."
+        },
+        "e-help": {
+          "one": "Открывает эту страницу.",
+          "what": "Знак вопроса в правом верхнем углу открывает страницу об этом экране поверх идущего сигнала.",
+          "why": "Она объясняет экран с картинкой, не выходя из приложения и без сети.",
+          "next": "Сигнал продолжается, пока вы читаете; «Назад» закрывает страницу и возвращает на экран.",
+          "shortcut": "[[F1]] на подключённой клавиатуре делает то же самое."
+        }
+      },
+      "related": [
+        { "help": "dashboard", "note": "На панели есть кнопка {ui:tourist_action_sos}, которая открывает этот экран." },
+        { "help": "home", "note": "Стартовый экран, где эта программа - одна строка." },
+        { "help": "lights", "note": "Фонари существуют отдельно от сигнала." }
+      ]
+    },
+    "uk": {
+      "summary": "Аварійний сигнал: вмикається під час відкриття екрана й припиняється кнопкою зупинки.",
+      "lead": "Сигнал **вмикається одразу, щойно цей екран відкрито**: сирена й блимання світла повторюють сигнал SOS азбукою Морзе. Щоб припинити його, натисніть {ui:sos_stop_action} або вийдіть з екрана кнопкою «Назад». Він звучить і блимає, підключений годинник сигналізує теж; він не надсилає SMS, не телефонує й ні з ким не зв’язується.",
+      "alt": "Екран {ui:sos_title}: знак SOS, режими {ui:sos_mode_all}, {ui:sos_mode_sound_only} і {ui:sos_mode_light_only}, велика кнопка {ui:sos_stop_action} та кнопка довідки у правому верхньому куті.",
+      "order": [
+        "Відкривайте екран лише тоді, коли сигнал потрібен. Він вмикається одразу, у тому режимі, яким ви користувалися минулого разу ({ui:sos_mode_all} уперше), а підключеному годиннику надсилається команда ввімкнути сигнал теж.",
+        "Потрібен інший режим - оберіть його в {e-modes}: сигнал, що йде, змінюється одразу, а вибір запам’ятовується на наступний раз.",
+        "Екран можна залишити або заблокувати телефон: сигнал триває у фоні. Якщо сповіщення для застосунку дозволені, у його сповіщенні є власна кнопка {ui:sos_stop_action}.",
+        "Щоб припинити сигнал, натисніть {e-stop} або вийдіть з екрана кнопкою «Назад»: телефон змовкає, підключеному годиннику надсилається команда зупинитися, екран закривається.",
+        "Якщо не зупинити сигнал, телефон сам припиняє його через 30 хвилин, щоб поберегти батарею та спалах; відлік починається знову за кожного запуску сигналу й зміни режиму. Щоб сигналізувати знову, відкрийте екран ще раз.",
+        "Натисніть {e-help}, щоб прочитати цю сторінку: сигнал триває, поки ви читаєте."
+      ],
+      "elements": {
+        "e-modes": {
+          "name": "Режим сигналу",
+          "one": "Що використовує сигнал: звук, світло чи все разом.",
+          "what": "Три кнопки, обрана завжди одна: {ui:sos_mode_all} - сирена й світло разом, {ui:sos_mode_sound_only} - лише сирена, {ui:sos_mode_light_only} - лише світло, тобто спалах камери та екран, що блимає.",
+          "why": "Обирайте {ui:sos_mode_light_only}, коли сирена привернула б зайву увагу, і {ui:sos_mode_sound_only}, щоб спалах та екран, що блимає, були вимкнені.",
+          "next": "Сигнал, що йде, змінюється одразу, вибір запам’ятовується на наступний раз, а підключеному годиннику надсилається команда перейти в той самий режим.",
+          "undo": "Натисніть іншу кнопку, щоб повернути попередній режим.",
+          "tip": "Сирена звучить на гучності будильника: поки йде сигнал, телефон піднімає її до максимуму, а після зупинки повертає колишньою. На телефоні без спалаху світлом править екран, що блимає."
+        },
+        "e-stop": {
+          "one": "Припиняє сигнал на телефоні й на годиннику.",
+          "what": "Велика кнопка: вимикає сирену й світло, просить підключений годинник теж зупинитися та закриває екран.",
+          "why": "Вона більша за інші кнопки, щоб її намацала і холодна, і мокра рука.",
+          "next": "Ви повернетеся туди, звідки прийшли, а гучність будильника стане колишньою.",
+          "undo": "Зупинений сигнал не відновлюється; щоб сигналізувати знову, відкрийте екран ще раз.",
+          "shortcut": "З клавіатурою чи D-pad кнопка отримує фокус під час відкриття екрана; [[Enter]] натискає її.",
+          "tip": "«Назад» робить те саме, що ця кнопка. Вихід на домашній екран або блокування телефона - ні: сигнал триває, а якщо сповіщення для застосунку дозволені, у його сповіщенні є така сама кнопка {ui:sos_stop_action}. Зупинка на годиннику зупиняє й сигнал телефона. Сигнал, запущений на годиннику, просить телефон теж сигналізувати; якщо Android не дає запустити його у фоні, сповіщення {ui:sos_watch_start_title} пропонує це зробити - натисніть на нього."
+        },
+        "e-help": {
+          "one": "Відкриває цю сторінку.",
+          "what": "Знак питання у правому верхньому куті відкриває сторінку про цей екран поверх сигналу, що йде.",
+          "why": "Вона пояснює екран з малюнком, не виходячи із застосунку й без мережі.",
+          "next": "Сигнал триває, поки ви читаєте; «Назад» закриває сторінку й повертає на екран.",
+          "shortcut": "[[F1]] на підключеній клавіатурі робить те саме."
+        }
+      },
+      "related": [
+        { "help": "dashboard", "note": "На панелі є кнопка {ui:tourist_action_sos}, яка відкриває цей екран." },
+        { "help": "home", "note": "Стартовий екран, де ця програма - один рядок." },
+        { "help": "lights", "note": "Ліхтарики існують окремо від сигналу." }
+      ]
+    }
+  }
+}

@@ -1,0 +1,141 @@
+<!doctype html>
+<html lang="en" dir="ltr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="referrer" content="no-referrer">
+<title>Help - Stopwatch</title>
+<script>(function(){try{var q=new URLSearchParams(location.search).get("theme");var t=(q==="light"||q==="dark")?q:(matchMedia("(prefers-color-scheme: light)").matches?"light":"dark");document.documentElement.setAttribute("data-theme",t);}catch(e){}})();</script>
+<link rel="stylesheet" href="../sza-kit.css">
+<link rel="stylesheet" href="../help.css">
+</head>
+<body class="help">
+<main class="container">
+<nav class="help-crumbs" aria-label="Help index">
+  <a href="index.html">Help index</a><span class="sep" aria-hidden="true">/</span><span>Stopwatch</span>
+</nav>
+<header class="hero">
+  <p class="kicker">Screen help</p>
+  <h1>Stopwatch</h1>
+  <p class="lead">The stopwatch times one, two or four people side by side, each with their own time and laps. It starts counting for everyone as soon as the screen opens and keeps counting while the phone is locked or another app is in front, but the times are gone once you leave the screen with Back. It is meant for everyday timing, not as an official timing device.</p>
+</header>
+<figure class="shot">
+  <div class="frame">
+    <img class="on-dark" src="img/stopwatch-dark.jpg" width="540" height="1200" alt="The Stopwatch screen: an area for each participant with a large time, the laps and two buttons; below them the Music volume slider and a row of buttons - start or stop all, Reset all, Result and the settings gear. The help button is in the top-right corner.">
+    <img class="on-light" src="img/stopwatch-light.jpg" width="540" height="1200" alt="">
+      <a class="pin" style="--x:93%;--y:16.83%" href="#e-participants" aria-label="1, Participants">1</a>
+      <a class="pin" style="--x:91.98%;--y:88.58%" href="#e-volume" aria-label="2, Music volume">2</a>
+      <a class="pin" style="--x:10.79%;--y:94.29%" href="#e-start-all" aria-label="3, Start all">3</a>
+      <a class="pin" style="--x:32.92%;--y:94.29%" href="#e-reset-all" aria-label="4, Reset all">4</a>
+      <a class="pin" style="--x:53.98%;--y:94.29%" href="#e-result" aria-label="5, Result">5</a>
+      <a class="pin" style="--x:70.97%;--y:94.29%" href="#e-settings" aria-label="6, Stopwatch settings">6</a>
+      <a class="pin" style="--x:94.12%;--y:8.79%" href="#e-help" aria-label="7, Help (F1)">7</a>
+  </div>
+  <figcaption>Demo content. Select a number to read about that part of the screen.</figcaption>
+</figure>
+<h2>In this order</h2>
+<ol class="order">
+  <li>If you time more than one person, open the settings <a class="ref" href="#e-settings">6</a> first and pick two or four participants, so that everyone has an area before the start.</li>
+  <li>The count begins by itself when the screen opens. To start over from zero, press <a class="ref" href="#e-reset-all">4</a>, then start each participant in their area <a class="ref" href="#e-participants">1</a>, or everyone at once with <a class="ref" href="#e-start-all">3</a> when there are several.</li>
+  <li>Press the first button in a participant&#39;s area <a class="ref" href="#e-participants">1</a> to mark a lap without stopping the count.</li>
+  <li>Press the second button when a participant finishes; to stop everyone together press <a class="ref" href="#e-start-all">3</a>, which now reads <b>Stop all</b>.</li>
+  <li>Press <a class="ref" href="#e-result">5</a> to turn the times into text you can save or share.</li>
+  <li>Press <a class="ref" href="#e-reset-all">4</a> once the run is over and saved. The times are not kept: leaving the screen with Back clears them.</li>
+</ol>
+<h2>The elements</h2>
+<div class="elements">
+  <details class="el" id="e-participants">
+    <summary><span class="mk">1</span><span><span class="name">Participants</span><span class="one">A separate area for each person you time.</span></span></summary>
+    <div class="full">
+      <p>Each participant has an area with a large time (minutes, seconds and hundredths, with hours after the first hour) and a list of laps, newest on top. The first button reads <b>Start</b> while the participant is stopped and <b>Lap</b> while it counts; the second reads <b>Stop</b> while it counts and <b>Reset</b> when stopped.</p>
+      <dl class="facts">
+        <dt>Why</dt><dd>Every participant counts on their own, so starting, lapping or stopping one never touches another.</dd>
+        <dt>Next</dt><dd><b>Lap</b> adds a line with the time shown at that moment and the count goes on; <b>Start</b> after a stop carries on from the stopped time.</dd>
+        <dt>Undo</dt><dd>After <b>Stop</b> you can press <b>Start</b> again, but <b>Reset</b> clears that participant&#39;s time and laps for good, with no confirmation.</dd>
+        <dt>Shortcut</dt><dd>On a connected keyboard: <kbd>1</kbd>-<kbd>4</kbd> select a participant, <kbd>Space</kbd> or <kbd>Enter</kbd> starts or laps, <kbd>S</kbd> stops, <kbd>R</kbd> clears the time (also while it counts). With one participant the keys act on it at once; with several, select the one you need first.</dd>
+      </dl>
+      <div class="note"><span class="tag">Tip</span><p>Tapping the large time works like the first button. With <b>Volume keys start and stop</b> turned on in the settings, volume up starts or laps and volume down stops - for the first participant, or for the one you selected with a keyboard.</p></div>
+    </div>
+  </details>
+  <details class="el" id="e-volume">
+    <summary><span class="mk">2</span><span><span class="name">Music volume</span><span class="one">Sets the volume the music plays at.</span></span></summary>
+    <div class="full">
+      <p>The slider above the buttons sets the phone&#39;s media volume, which is the level the music plays at. It is shown whether or not music is turned on.</p>
+      <dl class="facts">
+        <dt>Why</dt><dd>While <b>Volume keys start and stop</b> is on, the volume keys run the stopwatch instead of changing the sound, so this slider is the way to change the volume.</dd>
+        <dt>Next</dt><dd>The new level applies at once.</dd>
+        <dt>Undo</dt><dd>Yes, move the slider back.</dd>
+      </dl>
+    </div>
+  </details>
+  <details class="el" id="e-start-all">
+    <summary><span class="mk">3</span><span><span class="name">Start all</span><span class="one">Starts or stops every participant together.</span></span></summary>
+    <div class="full">
+      <p>While every participant is stopped it reads <b>Start all</b> and starts them all together; while at least one participant is counting it reads <b>Stop all</b> and stops them all together. It is shown when there are two or four participants.</p>
+      <dl class="facts">
+        <dt>Why</dt><dd>Use it for a common start or a common finish: everyone starts or stops at the same instant.</dd>
+        <dt>Next</dt><dd>Stopped participants keep their times and laps, and starting again carries on from them.</dd>
+        <dt>Undo</dt><dd>It clears nothing: <b>Stop all</b> keeps every time, and the next start carries on from it.</dd>
+      </dl>
+    </div>
+  </details>
+  <details class="el" id="e-reset-all">
+    <summary><span class="mk">4</span><span><span class="name">Reset all</span><span class="one">Stops everyone and clears all times and laps.</span></span></summary>
+    <div class="full">
+      <p>Stops every participant and sets the time and the lap list of each to zero, including participants hidden by a smaller participant count.</p>
+      <dl class="facts">
+        <dt>Why</dt><dd>Use it to prepare a new run, or once the result has been saved or shared.</dd>
+        <dt>Next</dt><dd>Every area shows zero and waits for <b>Start</b>.</dd>
+        <dt>Undo</dt><dd>No. The times and laps are lost for good and there is no confirmation, so save or share the result first.</dd>
+      </dl>
+    </div>
+  </details>
+  <details class="el" id="e-result">
+    <summary><span class="mk">5</span><span><span class="name">Result</span><span class="one">Turns the times into text to save or share.</span></span></summary>
+    <div class="full">
+      <p>Opens the <b>Stopwatch result</b> window with the times and laps of the participants on screen. If nothing has been measured, a short message says <b>Nothing has been measured yet</b> instead.</p>
+      <dl class="facts">
+        <dt>Why</dt><dd>Use it to keep a record of a run or to pass the times on.</dd>
+        <dt>Next</dt><dd>The window shows the times as they were when you pressed the button; the stopwatch behind it keeps counting if it was counting.</dd>
+        <dt>Undo</dt><dd>Opening it changes nothing; <b>Cancel</b> returns to the stopwatch.</dd>
+      </dl>
+    </div>
+  </details>
+  <details class="el" id="e-settings">
+    <summary><span class="mk">6</span><span><span class="name">Stopwatch settings</span><span class="one">Participants, music and volume keys.</span></span></summary>
+    <div class="full">
+      <p>The gear button opens the <b>Stopwatch settings</b> window, where you choose how many people you time, whether music plays and what the volume keys do.</p>
+      <dl class="facts">
+        <dt>Why</dt><dd>Use it before a run to set the screen up for your group, or to add music.</dd>
+        <dt>Next</dt><dd>Choices take effect when you press <b>Apply</b>; the stopwatch keeps counting and no time is cleared.</dd>
+        <dt>Undo</dt><dd>Opening it changes nothing; <b>Cancel</b> closes the window without saving.</dd>
+      </dl>
+    </div>
+  </details>
+  <details class="el" id="e-help">
+    <summary><span class="mk">7</span><span><span class="name">Help (F1)</span><span class="one">Opens this page.</span></span></summary>
+    <div class="full">
+      <p>A question mark in the top-right corner of the screen opens this page.</p>
+      <dl class="facts">
+        <dt>Why</dt><dd>It explains the screen with a picture, without leaving the app and without a network.</dd>
+        <dt>Next</dt><dd>The stopwatch keeps counting while help is open; Back returns to it.</dd>
+        <dt>Shortcut</dt><dd><kbd>F1</kbd> on a connected keyboard does the same.</dd>
+      </dl>
+    </div>
+  </details>
+</div>
+<h2>Related</h2>
+<ul class="related">
+  <li><a href="home.html"><b>Tourist</b><span class="pill">Screen</span><small>The start screen; Back returns there.</small></a></li>
+  <li><a href="dashboard.html"><b>Tourist dashboard</b><span class="pill">Screen</span><small>Its stopwatch tile has an <b>Open stopwatch</b> button that opens this screen.</small></a></li>
+  <li><a href="stopwatch-settings.html"><b>Stopwatch settings</b><span class="pill">Window</span><small>Participants, music and volume keys.</small></a></li>
+  <li><a href="stopwatch-result.html"><b>Stopwatch result</b><span class="pill">Window</span><small>Save or share the times as text.</small></a></li>
+  <li><a href="index.html"><b>Help index</b><small>Back returns to the screen you came from.</small></a></li>
+</ul>
+<footer class="help-foot">
+  <span>Captured against Tourist 2.61.0271.444, 2026-10-27.</span>
+  <a href="index.html">Help index</a>
+</footer>
+</main>
+</body>
+</html>

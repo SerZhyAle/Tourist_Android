@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!--
+        S1706: the splash background. Deliberately not redefined under a newer qualifier - S0655 recorded
+        that a later-qualifier redefinition silently drops these attributes.
+
+        S2274: `windowSplashScreenAnimatedIcon` is deliberately ABSENT, and that absence is the fix.
+        Left unset, the platform draws the launcher icon itself, which is what Wear App Quality
+        requirement WO-V15 asks for - "the splash screen icon must match the app launcher icon".
+        Setting this attribute to another glyph re-opens a Play rejection that FastMediaSorter's watch
+        received (`Missing app icon in splash screen`).
+    -->
+    <style name="Theme.TouristWear" parent="@android:style/Theme.DeviceDefault.NoActionBar">
+        <item name="android:windowSplashScreenBackground">@android:color/black</item>
+    </style>
+</resources>

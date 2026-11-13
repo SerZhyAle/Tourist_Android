@@ -5,6 +5,14 @@
   "projectName": "Tourist_mob",
   "envPrefix": "SZA",
 
+  "$comment_archive": "Finished tickets live in PLAN/DONE (the folder in use), so the archive directory and the ticket-file pattern name it; the default PLAN/archive does not exist here.",
+  "paths": {
+    "specArchiveDir": "PLAN/DONE"
+  },
+  "grammar": {
+    "specFilePattern": "^PLAN/(DONE/)?S\\d{4}_(?!spec_)"
+  },
+
   "$comment_modules": "The three Gradle modules of handoff section 8 (owner decision 4.4 of 2026-10-02: the watch face module exists). Directory names confirmed by S0002 (the StreamsPlayer precedent: phone, wear, watchface), together with the lock path rules and probes below.",
   "modules": {
     "default": "phone",

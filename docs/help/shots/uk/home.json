@@ -1,0 +1,51 @@
+{
+  "help": "home",
+  "locale": "uk",
+  "version": "2.61.0271.444",
+  "capturedOn": "2026-10-27",
+  "layoutsSha256": "f0e3faa96239e2849fa6475607239c58e98db2723d04b3810452e0cfc85c5f29",
+  "stringsSha256": "049a475f97ff50094df2cc3ac02fa0bc86df46895b37ed9ceb83500cdd63d858",
+  "width": 1080,
+  "height": 1248,
+  "imageWidth": 540,
+  "imageHeight": 624,
+  "elements": {
+    "e-dashboard": {
+      "l": 21,
+      "t": 287,
+      "r": 1059,
+      "b": 435
+    },
+    "e-lights": {
+      "l": 21,
+      "t": 446,
+      "r": 1059,
+      "b": 594
+    },
+    "e-sos": {
+      "l": 21,
+      "t": 605,
+      "r": 1059,
+      "b": 753
+    },
+    "e-stopwatch": {
+      "l": 21,
+      "t": 764,
+      "r": 1059,
+      "b": 912
+    },
+    "e-settings": {
+      "l": 42,
+      "t": 954,
+      "r": 1038,
+      "b": 1080
+    },
+    "e-help": {
+      "l": 943,
+      "t": 139,
+      "r": 1069,
+      "b": 265
+    }
+  },
+  "missing": []
+}

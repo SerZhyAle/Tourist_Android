@@ -1,0 +1,185 @@
+{
+  "help": "stopwatch-result",
+  "locales": {
+    "en": {
+      "summary": "Save the times as a text file or share them.",
+      "lead": "This window opens from the stopwatch screen when you press {ui:stopwatch_action_result}. Add a description and a note if you like, check the preview, then save the text to a file or share it; {ui:cancel} or Back returns to the stopwatch.",
+      "alt": "The {ui:stopwatch_result_title} window over the stopwatch: the fields {ui:stopwatch_result_description_hint} and {ui:stopwatch_result_note_hint}, the {ui:stopwatch_result_preview_label} text with the times, the buttons {ui:cancel} and {ui:stopwatch_result_action_save}, the {ui:stopwatch_result_action_send} icon button and the help button in the title.",
+      "order": [
+        "Type a description {e-description} and, if you want, a note {e-note}. Both are optional, and an empty field is left out of the text.",
+        "Read the preview {e-preview}. It is the text that will be saved or shared, so correct the fields above until it reads as you want.",
+        "Press {e-save} to write the text into a file in your Downloads folder, or {e-send} to hand it to another app through the system share sheet.",
+        "Press {ui:cancel}, Back or [[Esc]] to close the window without saving or sharing; the stopwatch stays as it was."
+      ],
+      "elements": {
+        "e-description": {
+          "one": "A title line for the result (optional).",
+          "what": "A line placed at the top of the text, for example the name of the run. It is left out when empty.",
+          "why": "It tells whoever reads the text what was measured.",
+          "next": "The preview shows it at once.",
+          "undo": "Yes, edit or clear it; nothing leaves the window until you save or share.",
+          "tip": "What you have typed stays if you rotate the phone."
+        },
+        "e-note": {
+          "one": "An extra remark (optional).",
+          "what": "A second line below the description, for example a remark about the run. It is left out when empty.",
+          "why": "Use it for anything the times do not say by themselves.",
+          "next": "The preview shows it at once.",
+          "undo": "Yes, edit or clear it; nothing leaves the window until you save or share."
+        },
+        "e-preview": {
+          "one": "The exact text that will be saved or shared.",
+          "what": "Shows the description and the note, a line with the date and time of the measurement, then one line per participant with the total time and the lap times in the order they were recorded.",
+          "why": "Read it before you save or share: what you see here is what leaves the window.",
+          "next": "It follows what you type in the two fields above. The times are those of the moment you opened this window, even if the stopwatch is still counting behind it.",
+          "tip": "You can select text in the preview and copy it."
+        },
+        "e-save": {
+          "one": "Saves the text as a file in Downloads.",
+          "what": "Writes the preview as a plain text file into your Downloads folder; its name starts with Tourist_stopwatch and carries the date and time.",
+          "why": "Use it to keep a record of the run on the phone.",
+          "next": "The window closes and a short message names the saved file, or says that it could not be saved.",
+          "undo": "Saving again makes another file. A file you no longer want stays in Downloads until you delete it there.",
+          "shortcut": "[[Enter]] on a connected keyboard saves, unless a button in the window has the focus."
+        },
+        "e-send": {
+          "one": "Hands the text to another app.",
+          "what": "Opens the system share sheet with the preview as text; there you choose which app receives it. The text goes on only when you pick an app.",
+          "why": "Use it to pass the times on at once, without saving a file.",
+          "next": "The window closes and the share sheet opens; from there the text is in the hands of the app you choose.",
+          "undo": "Closing the share sheet without a choice sends nothing; text already sent from another app cannot be recalled from here."
+        },
+        "e-help": {
+          "one": "Opens this page.",
+          "what": "The question mark in the title of the window opens this page.",
+          "why": "It explains the window with a picture, without leaving the app and without a network.",
+          "next": "Back closes help and returns to this window.",
+          "shortcut": "[[F1]] on a connected keyboard does the same."
+        }
+      },
+      "related": [
+        { "help": "stopwatch", "anchor": "e-result", "note": "The stopwatch screen and the button that opens this window." }
+      ]
+    },
+    "ru": {
+      "summary": "Сохранить времена в файл или отправить текстом.",
+      "lead": "Это окно открывается с экрана секундомера кнопкой {ui:stopwatch_action_result}. При желании добавьте описание и заметку, проверьте предпросмотр, затем сохраните текст в файл или отправьте его; {ui:cancel} или «Назад» возвращает к секундомеру.",
+      "alt": "Окно {ui:stopwatch_result_title} поверх секундомера: поля {ui:stopwatch_result_description_hint} и {ui:stopwatch_result_note_hint}, текст {ui:stopwatch_result_preview_label} с временами, кнопки {ui:cancel} и {ui:stopwatch_result_action_save}, кнопка-значок {ui:stopwatch_result_action_send} и кнопка справки в заголовке.",
+      "order": [
+        "Впишите описание {e-description} и, если хотите, заметку {e-note}. Оба поля необязательны, а пустое поле в текст не попадает.",
+        "Прочитайте предпросмотр {e-preview}. Это тот самый текст, который будет сохранён или отправлен, поэтому правьте поля выше, пока он не станет таким, как нужно.",
+        "Нажмите {e-save}, чтобы записать текст в файл в папке «Загрузки», или {e-send}, чтобы передать его другому приложению через системное меню «Поделиться».",
+        "Нажмите {ui:cancel}, «Назад» или [[Esc]], чтобы закрыть окно, ничего не сохраняя и не отправляя; секундомер остаётся как был."
+      ],
+      "elements": {
+        "e-description": {
+          "one": "Строка-заголовок результата (необязательна).",
+          "what": "Строка в начале текста, например название забега. Если поле пусто, в текст она не попадает.",
+          "why": "Она говорит тому, кто прочтёт текст, что именно измерялось.",
+          "next": "Предпросмотр показывает её сразу.",
+          "undo": "Да, измените или очистите поле; из окна ничего не уходит, пока вы не сохраните или не отправите.",
+          "tip": "Набранное остаётся, если повернуть телефон."
+        },
+        "e-note": {
+          "one": "Дополнительное замечание (необязательно).",
+          "what": "Вторая строка под описанием, например замечание о забеге. Если поле пусто, в текст она не попадает.",
+          "why": "Пригодится для всего, о чём сами времена не говорят.",
+          "next": "Предпросмотр показывает её сразу.",
+          "undo": "Да, измените или очистите поле; из окна ничего не уходит, пока вы не сохраните или не отправите."
+        },
+        "e-preview": {
+          "one": "Точный текст, который будет сохранён или отправлен.",
+          "what": "Показывает описание и заметку, строку с датой и временем замера, а затем по строке на каждого участника: общее время и времена кругов в порядке записи.",
+          "why": "Прочитайте его перед сохранением или отправкой: то, что вы видите, и уйдёт из окна.",
+          "next": "Он следует за тем, что вы вводите в двух полях выше. Времена - на момент открытия этого окна, даже если секундомер за ним ещё идёт.",
+          "tip": "Текст в предпросмотре можно выделить и скопировать."
+        },
+        "e-save": {
+          "one": "Сохраняет текст файлом в «Загрузки».",
+          "what": "Записывает предпросмотр простым текстовым файлом в папку «Загрузки»; имя файла начинается с Tourist_stopwatch и содержит дату и время.",
+          "why": "Нужно, чтобы сохранить запись о забеге на телефоне.",
+          "next": "Окно закрывается, а короткое сообщение называет сохранённый файл или сообщает, что сохранить не удалось.",
+          "undo": "Повторное сохранение создаёт ещё один файл. Ненужный файл остаётся в «Загрузках», пока вы сами его не удалите.",
+          "shortcut": "[[Enter]] на подключённой клавиатуре сохраняет, если фокус не стоит на какой-нибудь кнопке окна."
+        },
+        "e-send": {
+          "one": "Передаёт текст другому приложению.",
+          "what": "Открывает системное меню «Поделиться» с предпросмотром в виде текста; там вы выбираете, какое приложение его получит. Текст уходит дальше, только когда вы выберете приложение.",
+          "why": "Нужно, чтобы сразу передать времена, не сохраняя файл.",
+          "next": "Окно закрывается, открывается системное меню, и дальше текст оказывается в руках выбранного приложения.",
+          "undo": "Если закрыть системное меню, ничего не выбрав, ничего не отправится; текст, уже отправленный из другого приложения, отсюда не вернуть."
+        },
+        "e-help": {
+          "one": "Открывает эту страницу.",
+          "what": "Знак вопроса в заголовке окна открывает эту страницу.",
+          "why": "Она объясняет окно с картинкой, не выходя из приложения и без сети.",
+          "next": "«Назад» закрывает справку и возвращает в это окно.",
+          "shortcut": "[[F1]] на подключённой клавиатуре делает то же самое."
+        }
+      },
+      "related": [
+        { "help": "stopwatch", "anchor": "e-result", "note": "Экран секундомера и кнопка, которая открывает это окно." }
+      ]
+    },
+    "uk": {
+      "summary": "Зберегти часи у файл або надіслати текстом.",
+      "lead": "Це вікно відкривається з екрана секундоміра кнопкою {ui:stopwatch_action_result}. За бажанням додайте опис і нотатку, перевірте попередній перегляд, потім збережіть текст у файл або надішліть його; {ui:cancel} чи «Назад» повертає до секундоміра.",
+      "alt": "Вікно {ui:stopwatch_result_title} поверх секундоміра: поля {ui:stopwatch_result_description_hint} і {ui:stopwatch_result_note_hint}, текст {ui:stopwatch_result_preview_label} із часами, кнопки {ui:cancel} та {ui:stopwatch_result_action_save}, кнопка-значок {ui:stopwatch_result_action_send} і кнопка довідки в заголовку.",
+      "order": [
+        "Впишіть опис {e-description} і, якщо хочете, нотатку {e-note}. Обидва поля необов’язкові, а порожнє поле в текст не потрапляє.",
+        "Прочитайте попередній перегляд {e-preview}. Це той самий текст, який буде збережено або надіслано, тож виправляйте поля вище, доки він не стане таким, як треба.",
+        "Натисніть {e-save}, щоб записати текст у файл у теці «Завантаження», або {e-send}, щоб передати його іншому застосунку через системне меню «Поділитися».",
+        "Натисніть {ui:cancel}, «Назад» або [[Esc]], щоб закрити вікно, нічого не зберігаючи й не надсилаючи; секундомір лишається, як був."
+      ],
+      "elements": {
+        "e-description": {
+          "one": "Рядок-заголовок результату (необов’язковий).",
+          "what": "Рядок на початку тексту, наприклад назва забігу. Якщо поле порожнє, у текст він не потрапляє.",
+          "why": "Він каже тому, хто прочитає текст, що саме вимірювали.",
+          "next": "Попередній перегляд показує його одразу.",
+          "undo": "Так, змініть або очистьте поле; із вікна нічого не йде, доки ви не збережете чи не надішлете.",
+          "tip": "Набране лишається, якщо повернути телефон."
+        },
+        "e-note": {
+          "one": "Додаткове зауваження (необов’язкове).",
+          "what": "Другий рядок під описом, наприклад зауваження про забіг. Якщо поле порожнє, у текст він не потрапляє.",
+          "why": "Згодиться для всього, про що самі часи не кажуть.",
+          "next": "Попередній перегляд показує його одразу.",
+          "undo": "Так, змініть або очистьте поле; із вікна нічого не йде, доки ви не збережете чи не надішлете."
+        },
+        "e-preview": {
+          "one": "Точний текст, який буде збережено або надіслано.",
+          "what": "Показує опис і нотатку, рядок з датою та часом заміру, а далі по рядку на кожного учасника: загальний час і часи кіл у порядку запису.",
+          "why": "Прочитайте його перед збереженням чи надсиланням: те, що ви бачите, і піде з вікна.",
+          "next": "Він іде слідом за тим, що ви вводите у двох полях вище. Часи - на мить відкриття цього вікна, навіть якщо секундомір за ним ще йде.",
+          "tip": "Текст у попередньому перегляді можна виділити й скопіювати."
+        },
+        "e-save": {
+          "one": "Зберігає текст файлом у «Завантаження».",
+          "what": "Записує попередній перегляд простим текстовим файлом у теку «Завантаження»; ім’я файлу починається з Tourist_stopwatch і містить дату та час.",
+          "why": "Потрібно, щоб зберегти запис про забіг на телефоні.",
+          "next": "Вікно закривається, а коротке повідомлення називає збережений файл або повідомляє, що зберегти не вдалося.",
+          "undo": "Повторне збереження створює ще один файл. Непотрібний файл лишається в «Завантаженнях», доки ви самі його не видалите.",
+          "shortcut": "[[Enter]] на підключеній клавіатурі зберігає, якщо фокус не стоїть на якійсь кнопці вікна."
+        },
+        "e-send": {
+          "one": "Передає текст іншому застосунку.",
+          "what": "Відкриває системне меню «Поділитися» з попереднім переглядом у вигляді тексту; там ви обираєте, який застосунок його отримає. Текст іде далі, лише коли ви оберете застосунок.",
+          "why": "Потрібно, щоб одразу передати часи, не зберігаючи файл.",
+          "next": "Вікно закривається, відкривається системне меню, і далі текст опиняється в руках обраного застосунку.",
+          "undo": "Якщо закрити системне меню, нічого не обравши, нічого не піде; текст, уже надісланий з іншого застосунку, звідси не повернути."
+        },
+        "e-help": {
+          "one": "Відкриває цю сторінку.",
+          "what": "Знак питання в заголовку вікна відкриває цю сторінку.",
+          "why": "Вона пояснює вікно з малюнком, не виходячи із застосунку й без мережі.",
+          "next": "«Назад» закриває довідку й повертає до цього вікна.",
+          "shortcut": "[[F1]] на підключеній клавіатурі робить те саме."
+        }
+      },
+      "related": [
+        { "help": "stopwatch", "anchor": "e-result", "note": "Екран секундоміра і кнопка, що відкриває це вікно." }
+      ]
+    }
+  }
+}

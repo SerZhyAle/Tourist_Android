@@ -5,6 +5,7 @@ import android.view.View
 import androidx.core.content.ContextCompat
 import com.sza.tourist.R
 import com.sza.tourist.databinding.ActivityTouristInfoBinding
+import com.sza.tourist.domain.model.sensors.AttitudeReading
 import com.sza.tourist.domain.model.tourist.TouristDashboardState
 import com.sza.tourist.domain.model.tourist.TouristTileType
 import java.util.Locale
@@ -13,10 +14,11 @@ import java.util.Locale
  * Binds the prominent Hero focus card on the Tourist dashboard.
  *
  * What a tile shows comes from [TouristTileContentManager], the same source the grid reads; this class
- * only decides which of the card's pictures - coordinates, compass rose, arrow or level - is shown. It
+ * only decides which of the card's pictures - coordinates, compass rose, arrow, level or 3D box - is shown. It
  * also owns the STOPWATCH tile's controls row - visibility and the toggle's label and icon - while the
  * actions themselves stay callbacks, so no stopwatch logic lives in the activity. The row's "open the
  * full stopwatch" button joins with its program (S0007); the ported card runs the inline stopwatch only.
+ * The GYROSCOPE tile shows the turning 3D box through [bindAttitude].
  */
 class TouristHeroTileManager(
     private val binding: ActivityTouristInfoBinding,
@@ -24,6 +26,7 @@ class TouristHeroTileManager(
     private val onResetClicked: (TouristTileType) -> Unit = {},
     private val onStopwatchToggleClicked: () -> Unit = {},
     private val onStopwatchResetClicked: () -> Unit = {},
+    private val onStopwatchOpenClicked: () -> Unit = {},
 ) {
 
     fun bind(state: TouristDashboardState, context: Context) {
@@ -46,8 +49,6 @@ class TouristHeroTileManager(
         bindStopwatchControls(state, tile)
 
         val isCompass = tile == TouristTileType.COMPASS
-        if (isCompass && binding.layoutHeroCompass.visibility != View.VISIBLE) {
-        }
         bindVisual(content.visual, isCompass, context)
     }
 
@@ -70,6 +71,7 @@ class TouristHeroTileManager(
         }
         binding.btnStopwatchToggle.setOnClickListener { onStopwatchToggleClicked() }
         binding.btnStopwatchReset.setOnClickListener { onStopwatchResetClicked() }
+        binding.btnStopwatchOpen.setOnClickListener { onStopwatchOpenClicked() }
     }
 
     private fun bindVisual(visual: HeroVisual, isCompass: Boolean, context: Context) {
@@ -79,17 +81,31 @@ class TouristHeroTileManager(
         binding.layoutHeroCompass.visibility = if (isCompass) View.VISIBLE else View.GONE
         binding.ivHeroCompassRose.rotation = if (visual is HeroVisual.CompassRose) -visual.azimuthDegrees else 0f
         binding.layoutHeroVisual.visibility =
-            if (visual is HeroVisual.Arrow || visual is HeroVisual.Level) View.VISIBLE else View.GONE
+            if (visual is HeroVisual.Arrow || visual is HeroVisual.Level || visual is HeroVisual.Attitude) {
+                View.VISIBLE
+            } else {
+                View.GONE
+            }
         binding.ivHeroDirectionArrow.visibility = if (visual is HeroVisual.Arrow) View.VISIBLE else View.GONE
         binding.layoutHeroLevel.visibility = if (visual is HeroVisual.Level) View.VISIBLE else View.GONE
+        binding.viewHeroAttitude.visibility = if (visual is HeroVisual.Attitude) View.VISIBLE else View.GONE
 
         when (visual) {
             is HeroVisual.Coordinates -> bindCoordinates(visual)
             is HeroVisual.CompassRose -> Unit
             is HeroVisual.Arrow -> binding.ivHeroDirectionArrow.rotation = visual.rotationDegrees
             is HeroVisual.Level -> bindLevel(visual, context)
+            HeroVisual.Attitude -> Unit
             HeroVisual.None -> Unit
         }
+    }
+
+    /**
+     * The 3D box is fed from its own sensor-rate stream, not from [bind], so the card and grid are
+     * not rebound for every attitude sample. A null reading - the tile left focus - rests the box.
+     */
+    fun bindAttitude(reading: AttitudeReading?) {
+        binding.viewHeroAttitude.setAttitude(reading)
     }
 
     private fun bindCoordinates(visual: HeroVisual.Coordinates) {

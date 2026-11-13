@@ -1,11 +1,35 @@
 # S0013 - Deep dynamic audit: five properties
 
-**Status:** Draft
-**Status note:** Design only - no script, runner, emulator profile or product change is written in this ticket.
+## Remaining development (as of 2026-10-27)
+
+What is still to be built or fixed before this ticket can leave In Progress. Counts are read from the matrix of
+section 3.2 on this date: 65 cells PASS, 55 FAIL, 50 COULD NOT VERIFY, 21 open, the rest `n/a`.
+
+1. **Stand: the 50 COULD NOT VERIFY cells.** Each is an invalid or unreachable run, not a verdict. The paired scenes
+   (B3, C6, F6, G3) need a working phone-watch pair on the emulators (M9's pairing health check, section 12); for
+   every other cell the stand cause is found and fixed, or the cell is left open with its reason (sections 5 and 7).
+2. **Stand: the 21 open P5 cells.** The `locale-a11y.ps1` sweep (M7) has not run for them; run it, or mark the cell
+   `n/a` with a reason.
+3. **Findings: the 55 FAIL cells.** A P0 or P1 is admitted only with rank T or L (section 9): re-run each FAIL cell
+   with `-Repeat 3`, dedupe by symptom, and file what is real. Six findings are already parked as S0018-S0023
+   (Draft); whether they cover every FAIL cell is not recorded yet.
+4. **This document.** Section 4 still carries the design-only acceptance criteria (all unchecked) and section 13 still
+   says "None"; rewrite the acceptance for the implementing phases and fill section 13 with the findings and the run
+   journal.
+5. **Phase 4 again, then Phase 5.** The understandability sweep repeats once the S0015 migration has landed (the
+   strings and the UI must be stable); Phase 5, the full matrix on the release candidate with the store variant
+   (decision 8.6), is the last run and feeds S0010.
+
+Owner inputs that are not development, listed so they are not lost (section 3.3): 8.1 re-issues the `[h]` budgets
+after the first baseline (decided 2026-11-10); 8.7 approves the known-outcome set, `stand/outcomes.json` being a draft until then (decided 2026-11-10, approved stamped).
+
+**Status:** BlockByOtherTask
+**Status note:** Missing: every open acceptance item (section 4, items 3-8) is an emulator-pair run - unmeasured, above the 5-second ceiling, release tier: COULD NOT VERIFY re-runs incl. the pair scenes, the open P5 M7 sweep, FAIL cells with -Repeat 3 and their finding map. Blocker: S0015 (Phase 4 repeats after the UI migration lands). Blocker: S0010 (Phase 5 runs on the release candidate). Stand fixes done (S0031); decisions 8.1 and 8.7 approved. Not built, not tested until the release; commands in section 13.
 Every section below is a contract for the implementing phases. Nothing is measurable until the port lands
 (S0002 onward); Phase 0 stand work can start once S0002 pins the API levels and variants.
 **Phase:** quality work beside the handoff section 8 order - starts measuring at the first feature phase and
 feeds the S0010 release dry-run
+**Complexity:** hard - reassessed 2026-10-29: the cross-device measurement stand, variants, fault matrix and release-candidate audit span many scripts and require owner decisions.
 **Verification level:** design - the scene matrix, instrument registry, runner contracts and budgets are
 complete and mutually consistent on paper; the implementing phase proves each script by running it
 
@@ -125,84 +149,85 @@ columns of the sampler.
 
 | Scene | P1 | P2 | P3 | P4 | P5 |
 | --- | --- | --- | --- | --- | --- |
-| A1 cold start `[p,w]` | open M1, M2 | open M3 | open M3 | open M3, M4 | open M7 |
-| A2 warm and hot return `[p,w]` | open M1, M2 | open M3 | open M3 | open M3, M4 | open M7 |
-| A3 exit (back from root, recents swipe) `[p,w]` | n/a: nobody waits after exit | open M3 | open M3 | open M3, M4 | open M7 |
-| A4 process death and restore (`am kill`, reclaim) `[p,w]` | open M1, M2 | open M5 | open M3 | open M3 | open M7 |
+| A1 cold start `[p,w]` | measured M1, M2: FAIL (phone+watch; base-phone, base-watch) | measured M3: PASS (phone+watch; base-phone, base-watch) | measured M3: PASS (phone+watch; base-phone, base-watch) | measured M3, M4: COULD NOT VERIFY (phone+watch; base-phone, base-watch) | measured M7: PASS (watch; p5-watch) |
+| A2 warm and hot return `[p,w]` | measured M1, M2: FAIL (phone+watch; base-phone, base-watch) | measured M3: PASS (phone+watch; base-phone, base-watch) | measured M3: COULD NOT VERIFY (phone+watch; base-phone, base-watch) | measured M3, M4: COULD NOT VERIFY (phone+watch; base-phone, base-watch) | open M7 |
+| A3 exit (back from root, recents swipe) `[p,w]` | n/a: nobody waits after exit | measured M3: PASS (phone+watch; base-phone, base-watch) | measured M3: PASS (phone+watch; base-phone, base-watch) | measured M3, M4: COULD NOT VERIFY (phone+watch; base-phone, base-watch) | open M7 |
+| A4 process death and restore (`am kill`, reclaim) `[p,w]` | measured M1, M2: FAIL (phone+watch; base-phone, verify-watch) | measured M5: FAIL (phone+watch; base-phone, verify-watch) | measured M3: COULD NOT VERIFY (phone+watch; base-phone, verify-watch) | measured M3: FAIL (phone+watch; base-phone, verify-watch) | open M7 |
 
 **B. Power and session**
 
 | Scene | P1 | P2 | P3 | P4 | P5 |
 | --- | --- | --- | --- | --- | --- |
-| B1 screen off and on mid-feature `[p,w]` | open M1, M2 | open M3 | open M3 | open M3, M4 | n/a: no UI while off; resume wording is A4 and B2's cell |
-| B2 Doze and app standby (forced idle, standby buckets) `[p,w]` | open M1 | open M5 | open M3 | open M3, M4 | n/a: no UI during idle |
-| B3 watch link loss and regain (the session-mobility case) `[pair]` | open M1, M2 | open M5 | open M3 | open M3, M4 | open M7 |
-| B4 phone reboot with the torch shortcut enabled `[p]` | open M1 | open M5 | open M3 | open M3 | open M7 |
-| B5 watch charger dock and undock (ambient <-> active) `[w]` | open M2 | open M3 | open M3 | open M3 | open M7 |
+| B1 screen off and on mid-feature `[p,w]` | measured M1, M2: FAIL (phone+watch; base-phone, verify-watch) | measured M3: PASS (phone+watch; base-phone, verify-watch) | measured M3: FAIL (phone+watch; base-phone, verify-watch) | measured M3, M4: FAIL (phone+watch; base-phone, verify-watch) | n/a: no UI while off; resume wording is A4 and B2's cell |
+| B2 Doze and app standby (forced idle, standby buckets) `[p,w]` | measured M1: FAIL (phone+watch; verify-phone, verify-watch) | measured M5: PASS (phone+watch; verify-phone, verify-watch) | measured M3: FAIL (phone+watch; verify-phone, verify-watch) | measured M3, M4: FAIL (phone+watch; verify-phone, verify-watch) | n/a: no UI during idle |
+| B3 watch link loss and regain (the session-mobility case) `[pair]` | measured M1, M2: COULD NOT VERIFY (pair; base-watch) | measured M5: COULD NOT VERIFY (pair; base-watch) | measured M3: COULD NOT VERIFY (pair; base-watch) | measured M3, M4: COULD NOT VERIFY (pair; base-watch) | open M7 |
+| B4 phone reboot with the torch shortcut enabled `[p]` | measured M1: FAIL (phone; base-phone) | measured M5: PASS (phone; base-phone) | measured M3: PASS (phone; base-phone) | measured M3: PASS (phone; base-phone) | open M7 |
+| B5 watch charger dock and undock (ambient <-> active) `[w]` | measured M2: FAIL (watch; base-watch) | measured M3: PASS (watch; base-watch) | measured M3: FAIL (watch; base-watch) | measured M3: PASS (watch; base-watch) | open M7 |
 
 **C. Main actions**
 
 | Scene | P1 | P2 | P3 | P4 | P5 |
 | --- | --- | --- | --- | --- | --- |
-| C1 dashboard live (rotation, steps, simulated fix, sun) `[p]` | open M1, M2 | open M3 | open M3 | open M3, M4 | open M7 |
-| C2 compass/heading storm held on the hero tile `[p,w]` | open M1, M2 | open M3 | open M3 | open M3, M4 | open M7 |
-| C3 torch on/off (camera torch, screen light) `[p]` | open M2 | open M5 | open M3 | open M3 | open M7 |
-| C4 water flashlight full cycle incl. the exit rule `[p,w]` | open M2 | open M3 | open M3 | open M3, M4 | open M7 |
-| C5 SOS phone-only full cycle, all modes `[p]` | open M2 | open M5 | open M3 | open M3 | open M7 |
-| C6 SOS Data Layer pair, start and stop from both sides `[pair]` | open M1, M2 | open M5 | open M3 | open M3, M4 | open M7 |
-| C7 stopwatch multi-participant, laps, music, ongoing activity `[p,w]` | open M2 | open M5 | open M3 | open M3, M4 | open M7 |
-| C8 home-screen widgets (tourist, front light, water, stopwatch) `[p]` | open M2 | open M3 | open M3 | open M3 | open M7 |
-| C9 notification-shade torch shortcut `[p]` | open M2 | open M5 | open M3 | open M3 | open M7 |
-| C10 open in external map, share the location `[p]` | open M2 | open M5 | open M3 | open M3 | open M7 |
+| C1 dashboard live (rotation, steps, simulated fix, sun) `[p]` | measured M1, M2: FAIL (phone; base-phone) | measured M3: PASS (phone; base-phone) | measured M3: PASS (phone; base-phone) | measured M3, M4: COULD NOT VERIFY (phone; base-phone) | measured M7: COULD NOT VERIFY (phone; p5-phone) |
+| C2 compass/heading storm held on the hero tile `[p,w]` | measured M1, M2: FAIL (phone+watch; base-phone, base-watch) | measured M3: PASS (phone+watch; base-phone, base-watch) | measured M3: PASS (phone+watch; base-phone, base-watch) | measured M3, M4: COULD NOT VERIFY (phone+watch; base-phone, base-watch) | measured M7: FAIL (watch+phone; p5-watch, p5-phone) |
+| C3 torch on/off (camera torch, screen light) `[p]` | measured M2: FAIL (phone; base-phone) | measured M5: COULD NOT VERIFY (phone; base-phone) | measured M3: COULD NOT VERIFY (phone; base-phone) | measured M3: PASS (phone; base-phone) | measured M7: FAIL (phone; p5-phone) |
+| C4 water flashlight full cycle incl. the exit rule `[p,w]` | measured M2: FAIL (phone+watch; verify-phone, base-watch) | measured M3: FAIL (phone+watch; verify-phone, base-watch) | measured M3: FAIL (phone+watch; verify-phone, base-watch) | measured M3, M4: COULD NOT VERIFY (phone+watch; verify-phone, base-watch) | measured M7: COULD NOT VERIFY (watch+phone; p5-watch, p5-phone) |
+| C5 SOS phone-only full cycle, all modes `[p]` | measured M2: FAIL (phone; base-phone) | measured M5: COULD NOT VERIFY (phone; base-phone) | measured M3: PASS (phone; base-phone) | measured M3: PASS (phone; base-phone) | measured M7: PASS (phone; p5-phone) |
+| C6 SOS Data Layer pair, start and stop from both sides `[pair]` | measured M1, M2: COULD NOT VERIFY (pair; base-watch) | measured M5: COULD NOT VERIFY (pair; base-watch) | measured M3: COULD NOT VERIFY (pair; base-watch) | measured M3, M4: COULD NOT VERIFY (pair; base-watch) | open M7 |
+| C7 stopwatch multi-participant, laps, music, ongoing activity `[p,w]` | measured M2: FAIL (phone+watch; base-phone, base-watch) | measured M5: COULD NOT VERIFY (phone+watch; base-phone, base-watch) | measured M3: PASS (phone+watch; base-phone, base-watch) | measured M3, M4: COULD NOT VERIFY (phone+watch; base-phone, base-watch) | measured M7: FAIL (watch+phone; p5-watch, p5-phone) |
+| C8 home-screen widgets (tourist, front light, water, stopwatch) `[p]` | measured M2: COULD NOT VERIFY (phone; base-phone) | measured M3: PASS (phone; base-phone) | measured M3: PASS (phone; base-phone) | measured M3: PASS (phone; base-phone) | measured M7: COULD NOT VERIFY (phone; p5-phone) |
+| C9 notification-shade torch shortcut `[p]` | measured M2: FAIL (phone; verify-phone) | measured M5: FAIL (phone; verify-phone) | measured M3: PASS (phone; verify-phone) | measured M3: PASS (phone; verify-phone) | measured M7: FAIL (phone; p5-phone) |
+| C10 open in external map, share the location `[p]` | measured M2: FAIL (phone; verify-phone) | measured M5: FAIL (phone; verify-phone) | measured M3: PASS (phone; verify-phone) | measured M3: PASS (phone; verify-phone) | measured M7: COULD NOT VERIFY (phone; p5-phone) |
 
 **D. Storms**
 
 | Scene | P1 | P2 | P3 | P4 | P5 |
 | --- | --- | --- | --- | --- | --- |
-| D1 torch and water toggle storm (100x) `[p]` | open M1, M2 | open M3 | open M3 | open M3, M4 | n/a: stress, no new UI semantics |
-| D2 key/tap storm with the touch lock on `[w]` | open M2 | open M3 | open M3 | open M3, M4 | n/a: stress; the lock's wording is C1 and C4's cell |
-| D3 SOS mode-flip storm (sound/light) with notifications `[p,w]` | open M2 | open M3 | open M3 | open M3 | n/a: stress |
-| D4 sensor storm at max injection rate `[p]` | open M1 | open M3 | open M3 | open M3, M4 | n/a: stress |
-| D5 locale and unit flip-flop (EN, RU, UK; metric/imperial; 12/24h) `[p]` | open M2 | open M3 | n/a: no shared resource held | open M3 | open M7 |
-| D6 rapid screen ping-pong `[p,w]` | open M1, M2 | open M3 | open M3 | open M3, M4 | n/a: stress |
+| D1 torch and water toggle storm (100x) `[p]` | measured M1, M2: FAIL (phone; verify-phone) | measured M3: PASS (phone; verify-phone) | measured M3: FAIL (phone; verify-phone) | measured M3, M4: COULD NOT VERIFY (phone; verify-phone) | n/a: stress, no new UI semantics |
+| D2 key/tap storm with the touch lock on `[w]` | measured M2: FAIL (watch; base-watch) | measured M3: FAIL (watch; base-watch) | measured M3: FAIL (watch; base-watch) | measured M3, M4: COULD NOT VERIFY (watch; base-watch) | n/a: stress; the lock's wording is C1 and C4's cell |
+| D3 SOS mode-flip storm (sound/light) with notifications `[p,w]` | measured M2: FAIL (phone+watch; verify-phone, base-watch) | measured M3: PASS (phone+watch; verify-phone, base-watch) | measured M3: FAIL (phone+watch; verify-phone, base-watch) | measured M3: PASS (phone+watch; verify-phone, base-watch) | n/a: stress |
+| D4 sensor storm at max injection rate `[p]` | measured M1: FAIL (phone; base-phone) | measured M3: PASS (phone; base-phone) | measured M3: PASS (phone; base-phone) | measured M3, M4: COULD NOT VERIFY (phone; base-phone) | n/a: stress |
+| D5 locale and unit flip-flop (EN, RU, UK; metric/imperial; 12/24h) `[p]` | measured M2: FAIL (phone; base-phone) | measured M3: PASS (phone; base-phone) | n/a: no shared resource held | measured M3: PASS (phone; base-phone) | open M7 |
+| D6 rapid screen ping-pong `[p,w]` | measured M1, M2: FAIL (phone+watch; base-phone, verify-watch) | measured M3: COULD NOT VERIFY (phone+watch; base-phone, verify-watch) | measured M3: COULD NOT VERIFY (phone+watch; base-phone, verify-watch) | measured M3, M4: FAIL (phone+watch; base-phone, verify-watch) | n/a: stress |
 
 **E. Large inputs**
 
 | Scene | P1 | P2 | P3 | P4 | P5 |
 | --- | --- | --- | --- | --- | --- |
-| E1 stopwatch scale (max participants, thousands of laps, days-long restore) `[p,w]` | open M2 | open M5 | open M3 | open M3, M4 | open M7 |
-| E2 sensor and clock extremes (poles, equator, 0 satellites, polar day) `[p]` | open M2 | open M5 | open M3 | open M3 | open M7 |
-| E3 max-length participant names, large share payload `[w]` | open M2 | open M3 | open M3 | open M3 | open M7 |
+| E1 stopwatch scale (max participants, thousands of laps, days-long restore) `[p,w]` | measured M2: PASS (phone+watch; base-phone, base-watch) | measured M5: PASS (phone+watch; base-phone, base-watch) | measured M3: PASS (phone+watch; base-phone, base-watch) | measured M3, M4: FAIL (phone+watch; base-phone, base-watch) | open M7 |
+| E2 sensor and clock extremes (poles, equator, 0 satellites, polar day) `[p]` | measured M2: FAIL (phone; base-phone) | measured M5: PASS (phone; base-phone) | measured M3: PASS (phone; base-phone) | measured M3: PASS (phone; base-phone) | open M7 |
+| E3 max-length participant names, large share payload `[w]` | measured M2: COULD NOT VERIFY (watch; base-watch) | measured M3: PASS (watch; base-watch) | measured M3: PASS (watch; base-watch) | measured M3: FAIL (watch; base-watch) | open M7 |
 
 **F. Boundary failures (all injected by M5 unless tagged)**
 
 | Scene | P1 | P2 | P3 | P4 | P5 |
 | --- | --- | --- | --- | --- | --- |
-| F1 permission revoked at runtime (location, notifications, and activity-recognition where the variant has it) `[p,w]` | open M2 | open M5 | open M3 | open M3 | open M7 |
-| F2 location and satellites off, cold GNSS `[p]` | open M2 | open M5 | open M3 | open M3 | open M7 |
-| F3 sensor absent (barometer on phone-class hardware, no step counter) `[p,w]` | open M2 | open M5 | open M3 | open M3 | open M7 |
-| F4 camera busy when the torch is requested `[p]` | open M2 | open M5 | open M3 | open M3 | open M7 |
-| F5 audio failure and focus loss mid-siren (call, DND) `[p]` | open M2 | open M5 | open M3 | open M3 | open M7 |
-| F6 Data Layer down at SOS start `[pair]` | open M2 | open M5 | open M3 | open M3 | open M7 |
-| F7 storage full, preferences write fails `[p,w]` | open M2 | open M5 | open M3 | open M3, M4 | open M7 |
-| F8 hard kill mid-feature, then restore `[p,w]` | open M1, M2 | open M5 | open M3 | open M3 | open M7 |
-| F9 boot with every shortcut enabled and one failing (B4's fault twin) `[p]` | open M1 | open M5 | open M3 | open M3 | open M7 |
+| F1 permission revoked at runtime (location, notifications, and activity-recognition where the variant has it) `[p,w]` | measured M2: FAIL (phone+watch; base-phone, base-watch) | measured M5: FAIL (phone+watch; base-phone, base-watch) | measured M3: PASS (phone+watch; base-phone, base-watch) | measured M3: PASS (phone+watch; base-phone, base-watch) | open M7 |
+| F2 location and satellites off, cold GNSS `[p]` | measured M2: COULD NOT VERIFY (phone; base-phone) | measured M5: PASS (phone; base-phone) | measured M3: PASS (phone; base-phone) | measured M3: PASS (phone; base-phone) | open M7 |
+| F3 sensor absent (barometer on phone-class hardware, no step counter) `[p,w]` | measured M2: COULD NOT VERIFY (phone+watch; base-phone, base-watch) | measured M5: FAIL (phone+watch; base-phone, base-watch) | measured M3: FAIL (phone+watch; base-phone, base-watch) | measured M3: PASS (phone+watch; base-phone, base-watch) | open M7 |
+| F4 camera busy when the torch is requested `[p]` | measured M2: PASS (phone; base-phone) | measured M5: PASS (phone; base-phone) | measured M3: COULD NOT VERIFY (phone; base-phone) | measured M3: PASS (phone; base-phone) | open M7 |
+| F5 audio failure and focus loss mid-siren (call, DND) `[p]` | measured M2: COULD NOT VERIFY (phone; base-phone) | measured M5: PASS (phone; base-phone) | measured M3: PASS (phone; base-phone) | measured M3: PASS (phone; base-phone) | open M7 |
+| F6 Data Layer down at SOS start `[pair]` | measured M2: COULD NOT VERIFY (pair; base-watch) | measured M5: COULD NOT VERIFY (pair; base-watch) | measured M3: COULD NOT VERIFY (pair; base-watch) | measured M3: COULD NOT VERIFY (pair; base-watch) | open M7 |
+| F7 storage full, preferences write fails `[p,w]` | measured M2: PASS (phone+watch; base-phone, base-watch) | measured M5: PASS (phone+watch; base-phone, base-watch) | measured M3: PASS (phone+watch; base-phone, base-watch) | measured M3, M4: COULD NOT VERIFY (phone+watch; base-phone, base-watch) | open M7 |
+| F8 hard kill mid-feature, then restore `[p,w]` | measured M1, M2: COULD NOT VERIFY (phone+watch; verify-phone, verify-watch) | measured M5: FAIL (phone+watch; verify-phone, verify-watch) | measured M3: PASS (phone+watch; verify-phone, verify-watch) | measured M3: FAIL (phone+watch; verify-phone, verify-watch) | open M7 |
+| F9 boot with every shortcut enabled and one failing (B4's fault twin) `[p]` | measured M1: FAIL (phone; base-phone) | measured M5: PASS (phone; base-phone) | measured M3: COULD NOT VERIFY (phone; base-phone) | measured M3: PASS (phone; base-phone) | open M7 |
 
 **G. Idle soak (M3 samples throughout)**
 
 | Scene | P1 | P2 | P3 | P4 | P5 |
 | --- | --- | --- | --- | --- | --- |
-| G1 each active screen held (dashboard live, water on, SOS on, stopwatch running) `[p,w]` | open M1 | open M3 | open M3 | open M3, M4 | n/a: static UI; wording measured in C |
-| G2 backgrounded and in standby all day `[p,w]` | n/a: user absent; wake latency is B2's cell | open M3 | open M3 | open M3, M4 | n/a: no UI shown |
-| G3 paired idle overnight, SOS off `[pair]` | n/a: as G2 | open M3 | open M3 | open M3, M4 | n/a: no UI shown |
+| G1 each active screen held (dashboard live, water on, SOS on, stopwatch running) `[p,w]` | measured M1: FAIL (phone+watch; base-phone, base-watch) | measured M3: COULD NOT VERIFY (phone+watch; base-phone, base-watch) | measured M3: FAIL (phone+watch; verify-phone-soak, base-phone, base-watch) | measured M3, M4: FAIL (phone+watch; verify-phone-soak, base-phone, base-watch) | n/a: static UI; wording measured in C |
+| G2 backgrounded and in standby all day `[p,w]` | n/a: user absent; wake latency is B2's cell | measured M3: PASS (phone+watch; base-phone, base-watch) | measured M3: FAIL (phone+watch; base-phone, base-watch) | measured M3, M4: COULD NOT VERIFY (phone+watch; base-phone, base-watch) | n/a: no UI shown |
+| G3 paired idle overnight, SOS off `[pair]` | n/a: as G2 | measured M3: COULD NOT VERIFY (pair; base-watch) | measured M3: COULD NOT VERIFY (pair; base-watch) | measured M3, M4: COULD NOT VERIFY (pair; base-watch) | n/a: no UI shown |
 
 **H. Watch face - conditional**
 
 | Scene | P1 | P2 | P3 | P4 | P5 |
 | --- | --- | --- | --- | --- | --- |
-| H1 watch face selection and live render `[w]` | n/a: module undecided (4.4, S0009) | n/a: 4.4 | n/a: 4.4 | n/a: 4.4 | n/a: 4.4 |
+| H1 watch face selection and live render `[w]` | measured M1: COULD NOT VERIFY (watch; base-watch) | measured M3: PASS (watch; base-watch) | measured M3: PASS (watch; base-watch) | measured M3, M4: COULD NOT VERIFY (watch; base-watch) | open M7 |
 
-The row is kept so M0 sees the capability; the cells turn open the day S0009 ships a face.
+The row is kept so M0 sees the capability; its cells turned open on 2026-10-25, when S0009 shipped the face
+(decision 8.5).
 
 ### 3.3 Owner inputs (Approval gate)
 
@@ -210,35 +235,59 @@ The row is kept so M0 sees the capability; the cells turn open the day S0009 shi
   the Phase 5 pass), S0004's strings (Phase 4's input).
 - **8.1 Budget values.** Approve or re-cut every `[h]` row of section 8 after the first baseline run,
   before Phase 1 verdicts count.
+  **Decided (owner, 2026-11-10, quiz): approved as written in section 8 and budgets.json.** The hypothesis budgets `[h]` become operational benchmarks (with 8.3c tolerance <= 7.5 s as measured per S0020).
 - **8.2 Reference hardware.** Emulator-only, or add one physical phone-watch pair for GNSS and barometer
   realism. Hardware brings section 6's physical-device rules and never the owner's daily watch without a
   per-run approval.
+  **Decided (owner, 2026-10-25): emulator-only.** F2, F3 and the GNSS/barometer parts of C1 stay weaker than
+  hardware (section 12); no physical device is touched by this ticket.
 - **8.3 Soak durations.** G1 and G3 lengths. Proposed reference: 30 minutes per active screen per device,
   one overnight pair run; cost scales linearly with the choice.
+  **Decided (owner, 2026-10-25): short - G1 10 minutes per active screen per device, G2 10 minutes, G3 one
+  hour.** The slope CI is wider than the reference would give; a P4 finding still needs T or L (section 9).
 - **8.4 Cadence.** Per phase boundary and release candidate, or release candidate only. If it becomes a
   gate, a `CHECK-PLACEMENT` record lands with the implementing ticket.
+  **Decided (owner, 2026-10-25): release candidate only; not a gate.** No `CHECK-PLACEMENT` record is written.
 - **8.5 Watch face scope.** Group H activates only if decision 4.4 keeps a face (S0009).
+  **Resolved 2026-10-25 by fact: S0009 is Implemented, the face exists, group H is open.**
 - **8.6 Variant order.** Both variants in every phase, or noLegal first with store measured at Phase 5.
+  **Decided (owner, 2026-10-25): noLegal first; store is measured at Phase 5.**
 - **8.7 The known-outcome set.** The owner approves the closed list of failure outcomes for property 2
   (drafted by the Phase 1 session from the ported behaviour) before F-group verdicts count.
+  **Decided (owner, 2026-11-10, quiz): approved.** C4-exit: left-by-back is a breach of the water rule (not in outcomes; only left-by-hardware-key allowed); F2: silent-stale-data allowed alongside location-off-explained; F8-sos: sos-ended-cleanly allowed (START_NOT_STICKY); F8-watch: stopwatch-resumed and ended-cleanly both allowed (S0022/S0031). `stand/outcomes.json` stamped approved: "2026-11-10".
 - **8.8 The secret-class list.** The owner approves what the logcat scan treats as secret. Draft: coordinate
   pairs, absolute paths, account and token patterns.
+  **Decided (owner, 2026-10-25): coordinate pairs, and account and token patterns.** Absolute paths and
+  participant names are not secret-class.
+
+### Quiz decisions (2026-11-10)
+
+- Approve hypothesis budgets [h] after baseline (decision 8.1)? -> "(Рекомендуется) Утвердить текущие бюджеты [h] из budgets.json (допуск 8.3c <= 7.5с по S0020; гипотезы становятся утвержденными нормативами)" (hypothesis budgets confirmed as operational standards).
+- Water flashlight exit by Back key/gesture (decision 8.7, C4-exit)? -> "(Рекомендуется) Нарушение правила: выход по Back запрещен (в outcomes остается только left-by-hardware-key; исключает случайный выход от капель)" (enforces product signature rule: leave by exit rule and nothing else).
+- Location turned off on live dashboard (decision 8.7, F2)? -> "(Рекомендуется) Допустить silent-stale-data наряду с location-off-explained (соответствует поведению портированного кода без рефакторинга)" (preserves ported behaviour without rewrite).
+- Hard kill outcomes for SOS and watch stopwatch (decision 8.7, F8-sos, F8-watch)? -> "(Рекомендуется) Утвердить оба исхода (SOS не перезапускается самопроизвольно, секундомер восстанавливает время по S0022/S0031)" (matches START_NOT_STICKY and time-origin persistence).
 
 ## 4. Acceptance
 
-Design-only ticket; each criterion is a static predicate of this document:
+Rewritten 2026-11-10 for the implementing phases (the design-only list it replaces was satisfied when the
+stand was built: matrix, registry, budgets, invalid-run rule, journal row through the harness). Each item is
+a static predicate of this document or of a named command's verdict line.
 
-- [ ] 1. Every scene group A-H lists all five properties; every cell is `open` (with instrument ids that
-      exist in 3.1) or `n/a` with a reason; no cell is `measured` at Draft.
-- [ ] 2. Every script row declares exactly the codes 0/1/2 with the `CHECK-VERDICT` §2 meanings, and M0's
-      contract names its ground truth: CLAUDE.md section 1 plus handoff section 3.
-- [ ] 3. Every `[hard]` budget row names the CLAUDE.md or handoff rule it encodes; every other row is
-      marked `[h]`, a hypothesis until the first baseline.
-- [ ] 4. The invalid-run rule of section 7 covers at minimum: control-band overlap, probe self-check
-      failure, version readback mismatch, backup-gate failure.
-- [ ] 5. No product code, script, runner or emulator image is written by this ticket; scratch stays under
-      `temp/S0013/` if any is ever needed.
-- [ ] 6. The journal row was inserted through the harness, never by hand.
+- [x] 1. The stand exists under `PLAN/S0013_deep-dynamic-audit/stand/`: one script per registry row M0-M10
+      of section 3.1, the approved budget set (`budgets.json`, decision 8.1) and the approved known-outcome
+      set (`outcomes.json` stamped `approved`, decision 8.7). No product code was written for measurement.
+- [x] 2. The stand readers named by S0019 section 4.4 and S0022 (dead-client torch entry, D1 quiet window,
+      notification enqueue copy, F8-watch resume) are corrected - S0031, Implemented.
+- [ ] 3. No cell of section 3.2 is `COULD NOT VERIFY` without a recorded stand cause: each is re-run valid,
+      or left `open` with its reason (sections 5 and 7). The `[pair]` scenes B3, C6, F6, G3 pass M9's
+      pairing health check first.
+- [ ] 4. No P5 cell is `open`: each holds an M7 verdict with its run id, or `n/a` with a reason.
+- [ ] 5. Every FAIL cell is re-run with `-Repeat 3`; every cell still failing 3 of 3 maps to a finding
+      ticket by symptom (S0018-S0023, S0031-S0035, or a fresh Draft), and a P0/P1 carries rank T or L.
+- [ ] 6. Phase 4 is repeated after S0015 lands (strings and UI stable).
+- [ ] 7. Phase 5: `run-matrix.ps1 -Phase all -Variant store -WithM7` on the release candidate exits with
+      its verdict line recorded in section 13; S0010 consumes it, and a P0/P1 with T or L blocks it.
+- [ ] 8. Scratch and run folders stay under `temp/S0013/`; nothing of a run is committed (section 11).
 
 ## 5. The measurement stand - outside the app
 
@@ -408,4 +457,33 @@ to `measured` with run ids.
 
 ## 13. Findings and run journal
 
-None. The matrix holds no measured cells at Draft - nothing builds yet (S0002 onward).
+The section 3.2 matrix records the historical 2026-10-25 baseline, verification and P5 run ids; its verdicts
+are historical, not a fresh pass. The remaining-development inventory above records the 2026-10-27 counts.
+Findings from those runs were recorded as S0018-S0023; their coverage of all FAIL cells remains to be mapped.
+S0019 section 4.4 identifies the stand's dead-client torch reader and D1 quiet window as needing correction,
+followed by an F8/D1 three-repeat run. The owner decisions in section 3.3, items 8.1 and 8.7, were decided on 2026-11-10 (budgets and outcomes set approved).
+
+2026-10-29 unattended spec gate: complex work; required owner decisions 8.1 (re-issue every hypothesis
+budget after the baseline) and 8.7 (approve the known-outcome set, including its listed questions) are
+missing. F-group verdicts and Phase 1 budget verdicts cannot count before those decisions. Phase 4 must be
+repeated after S0015 lands; Phase 5 consumes a release candidate. The document registry is not yet available
+(S0029); this ticket and its tactical index are the relevant records, and product documentation is unchanged.
+
+2026-11-10 quiz pass: owner decisions 8.1 (hypothesis budgets approved) and 8.7 (known-outcome set approved) are decided. `stand/outcomes.json` stamped approved: "2026-11-10". F-group verdicts now count.
+
+RELEASE: after the decisions and the required stand fixes, run
+`pwsh -NoProfile -File PLAN/S0013_deep-dynamic-audit/stand/run-matrix.ps1 -Scenes F8,D1 -Devices phone -Repeat 3`,
+`pwsh -NoProfile -File PLAN/S0013_deep-dynamic-audit/stand/locale-a11y.ps1`, and
+`pwsh -NoProfile -File PLAN/S0013_deep-dynamic-audit/stand/run-matrix.ps1 -Phase all -Variant store -WithM7`
+as appropriate to the phase and release candidate. These slow or unmeasured device runs are not run between
+releases. The matrix, its findings and the stand have not been newly verified in this pass.
+
+2026-11-10 unattended queue pass (run-spec-queue pq2): section 4 rewritten for the implementing phases
+(items 1-2 met by the stand and S0031; items 3-8 open). Every open item is a device run on the emulator
+pair - unmeasured, above the 5-second ceiling, release tier (CLAUDE.md section 7) - or waits on another
+ticket: Phase 4 on S0015 (In Progress), Phase 5 on the release candidate that S0010 (Draft) dry-runs.
+The FAIL-to-finding map of item 5 is drawn from the `-Repeat 3` re-run, not from the single 2026-10-25
+runs. No device was driven and nothing was built or tested in this pass.
+
+Blocked by: S0015
+Blocked by: S0010

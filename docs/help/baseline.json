@@ -1,0 +1,7 @@
+{
+  "$comment": "CHECK-BASELINE for tools/help/check-help.ps1: the finding keys accepted as debt. The file may only fall; a key nothing raises any more fails the gate until it is removed. Both entries below are one defect of the stopwatch screen, not of the help: its bottom row is wrap_content buttons in one horizontal LinearLayout, and with the long Russian and Ukrainian labels (Стартовать всех / Сбросить всех, Стартувати всіх / Скинути всіх) the row overflows a 411 dp phone and the settings gear is squeezed to zero width (measured 2026-10-25 on a Pixel 6 emulator, API 33). Out of S0014; found by this ticket's capture, to be fixed by the stopwatch screen's owner (S0013 M7 measures it), and the entries leave this file with that fix.",
+  "accepted": [
+    "capture-missing:ru/stopwatch#e-settings",
+    "capture-missing:uk/stopwatch#e-settings"
+  ]
+}

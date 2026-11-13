@@ -16,6 +16,9 @@ android {
         // differs across the two devices. The noLegal variant shares it too. Never a suffix, never a
         // rename once a package ships.
         applicationId = "com.sza.tourist"
+        val license = rootProject.file("LICENSE").readText().replace("\\", "\\\\")
+            .replace("\"", "\\\"").replace("\r", "").replace("\n", "\\n")
+        buildConfigField("String", "LICENSE_TEXT", "\"$license\"")
     }
 
     buildFeatures {
@@ -57,11 +60,15 @@ dependencies {
     implementation(libs.androidx.recyclerview)
     implementation(libs.androidx.constraintlayout)
     implementation(libs.okhttp.okhttp)
+    implementation(libs.androidx.fragment.ktx)
     implementation(libs.androidx.lifecycle.runtime.ktx)
     implementation(libs.androidx.lifecycle.viewmodel.ktx)
 
     implementation(libs.kotlinx.coroutines.core)
     implementation(libs.kotlinx.coroutines.android)
+    implementation(libs.kotlinx.coroutines.play.services)
+    implementation(libs.google.gms.play.services.wearable)
+    implementation(libs.gson)
 
     implementation(libs.timber)
 

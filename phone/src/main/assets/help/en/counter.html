@@ -1,0 +1,154 @@
+<!doctype html>
+<html lang="en" dir="ltr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="referrer" content="no-referrer">
+<title>Help - Counter</title>
+<script>(function(){try{var q=new URLSearchParams(location.search).get("theme");var t=(q==="light"||q==="dark")?q:(matchMedia("(prefers-color-scheme: light)").matches?"light":"dark");document.documentElement.setAttribute("data-theme",t);}catch(e){}})();</script>
+<link rel="stylesheet" href="../sza-kit.css">
+<link rel="stylesheet" href="../help.css">
+</head>
+<body class="help">
+<main class="container">
+<nav class="help-crumbs" aria-label="Help index">
+  <a href="index.html">Help index</a><span class="sep" aria-hidden="true">/</span><span>Counter</span>
+</nav>
+<header class="hero">
+  <p class="kicker">Screen help</p>
+  <h1>Counter</h1>
+  <p class="lead">The counter tallies anything you count by hand on the way. Each count is one tap on <b>+1</b>; the number is kept when you leave the screen or close the app. Open it from the dashboard: tap the <b>Counter</b> tile, then tap the big card.</p>
+</header>
+<figure class="shot">
+  <div class="frame">
+    <img class="on-dark" src="img/counter-dark.jpg" width="540" height="768" alt="The Counter screen: the count in large figures with the starting number under it, the buttons -1 and +1, the More buttons: +3 to +1000 switch, the buttons Starting number and Reset, and the History list; the Help button is in the top-right corner.">
+    <img class="on-light" src="img/counter-light.jpg" width="540" height="768" alt="">
+      <a class="pin" style="--x:90.04%;--y:27.86%" href="#e-value" aria-label="1, The count">1</a>
+      <a class="pin" style="--x:36.99%;--y:49.22%" href="#e-plus-one" aria-label="2, Add one">2</a>
+      <a class="pin" style="--x:13.66%;--y:49.22%" href="#e-minus-one" aria-label="3, Subtract one">3</a>
+      <a class="pin" style="--x:90.04%;--y:60.03%" href="#e-extra-steps" aria-label="4, More buttons: +3 to +1000">4</a>
+      <a class="pin" style="--x:19.26%;--y:69.6%" href="#e-start" aria-label="5, Starting number">5</a>
+      <a class="pin" style="--x:45.74%;--y:69.6%" href="#e-reset" aria-label="6, Reset">6</a>
+      <a class="pin" style="--x:90.04%;--y:82.55%" href="#e-history" aria-label="7, History">7</a>
+      <a class="pin" style="--x:94.12%;--y:13.74%" href="#e-help" aria-label="8, Help (F1)">8</a>
+  </div>
+  <figcaption>Demo content. Select a number to read about that part of the screen.</figcaption>
+</figure>
+<h2>In this order</h2>
+<ol class="order">
+  <li>Read the count <a class="ref" href="#e-value">1</a>: the large number is the current count, with the starting number under it.</li>
+  <li>If the count should not begin at 0, press <b>Starting number</b> <a class="ref" href="#e-start">5</a> first: the number you enter becomes the count at once.</li>
+  <li>Tap the <b>+1</b> button <a class="ref" href="#e-plus-one">2</a> for each item you count, and the <b>-1</b> button <a class="ref" href="#e-minus-one">3</a> to correct a miscount.</li>
+  <li>For larger steps switch on <b>More buttons: +3 to +1000</b> <a class="ref" href="#e-extra-steps">4</a> and use the extra buttons.</li>
+  <li>When one count is finished, press <b>Reset</b> <a class="ref" href="#e-reset">6</a> and confirm: the result goes to the history and the count returns to the starting number.</li>
+  <li>Look up earlier results in <b>History</b> <a class="ref" href="#e-history">7</a>; the <b>Clear</b> button there empties the list after you confirm.</li>
+  <li>Press <a class="ref" href="#e-help">8</a> to read this page again.</li>
+</ol>
+<h2>The elements</h2>
+<div class="elements">
+  <details class="el" id="e-value">
+    <summary><span class="mk">1</span><span><span class="name">The count</span><span class="one">The current count, in large figures.</span></span></summary>
+    <div class="full">
+      <p>Shows the number you have counted, with the starting number under it and, once you have counted something since the last reset, the time that count began.</p>
+      <dl class="facts">
+        <dt>Why</dt><dd>It is the one number to read: the dashboard&#39;s <b>Counter</b> tile shows the same count.</dd>
+        <dt>Next</dt><dd>It changes at once with every button, and each change is saved.</dd>
+        <dt>Undo</dt><dd>It never goes below 0 and stops at 999999999; <b>-1</b> takes one back and <b>Reset</b> returns it to the starting number.</dd>
+      </dl>
+    </div>
+  </details>
+  <details class="el" id="e-plus-one">
+    <summary><span class="mk">2</span><span><span class="name">Add one</span><span class="one">Adds one to the count.</span></span></summary>
+    <div class="full">
+      <p>The large button on the right. Each tap adds 1 to the count at once.</p>
+      <dl class="facts">
+        <dt>Why</dt><dd>Use it for every item you count.</dd>
+        <dt>Next</dt><dd>The number updates and is saved; the first tap after a reset also records when this count began.</dd>
+        <dt>Undo</dt><dd>Tap <b>-1</b> to take one back.</dd>
+      </dl>
+      <div class="note"><span class="tag">Tip</span><p>With a keyboard or a D-pad the screen opens with this button focused, so <kbd>Enter</kbd> adds one.</p></div>
+    </div>
+  </details>
+  <details class="el" id="e-minus-one">
+    <summary><span class="mk">3</span><span><span class="name">Subtract one</span><span class="one">Takes one off the count.</span></span></summary>
+    <div class="full">
+      <p>The smaller button on the left. Each tap subtracts 1; at 0 it is dimmed and does nothing, because the count never goes below zero.</p>
+      <dl class="facts">
+        <dt>Why</dt><dd>Use it to correct a miscount or to take back an extra tap.</dd>
+        <dt>Next</dt><dd>The number updates and is saved at once.</dd>
+        <dt>Undo</dt><dd>Tap <b>+1</b> to put it back.</dd>
+      </dl>
+    </div>
+  </details>
+  <details class="el" id="e-extra-steps">
+    <summary><span class="mk">4</span><span><span class="name">More buttons: +3 to +1000</span><span class="one">Shows buttons for larger steps.</span></span></summary>
+    <div class="full">
+      <p>A switch that shows or hides six more buttons - <b>+3</b>, <b>+5</b>, <b>+10</b>, <b>+50</b>, <b>+100</b> and <b>+1000</b> - each adding that many at once. They only add; there are no larger subtract buttons.</p>
+      <dl class="facts">
+        <dt>Why</dt><dd>Use them when you count in groups or the number is large.</dd>
+        <dt>Next</dt><dd>The checkbox is remembered, so the buttons are still there the next time you open the counter.</dd>
+        <dt>Undo</dt><dd>Switching it off hides the buttons and changes no number.</dd>
+      </dl>
+    </div>
+  </details>
+  <details class="el" id="e-start">
+    <summary><span class="mk">5</span><span><span class="name">Starting number</span><span class="one">Sets the number the count begins from.</span></span></summary>
+    <div class="full">
+      <p>Opens a small window with one field for a whole number from 0, nine digits at most; <b>OK</b> accepts it and <b>Cancel</b> closes the window without changes. The number becomes the starting number <b>and the current count at once</b>, and the count it replaces is not saved in the history.</p>
+      <dl class="facts">
+        <dt>Why</dt><dd>Use it when the count should not begin at 0, for example to carry on from a number you noted earlier.</dd>
+        <dt>Next</dt><dd>The large number jumps to it, and <b>Reset</b> will return to it later. An empty field keeps the window open with the message <b>Enter a whole number from 0</b>.</dd>
+        <dt>Undo</dt><dd>There is no undo, and the replaced count does not go to the history.</dd>
+      </dl>
+      <div class="note"><span class="tag">Tip</span><p>The window has its own help button, and <kbd>F1</kbd> in it opens this entry too.</p></div>
+    </div>
+  </details>
+  <details class="el" id="e-reset">
+    <summary><span class="mk">6</span><span><span class="name">Reset</span><span class="one">Ends this count and starts the next.</span></span></summary>
+    <div class="full">
+      <p>Asks you to confirm, naming the starting number; on <b>Reset</b> it saves the current count in the history with its start and end time and returns the number to the starting number. <b>Cancel</b> leaves everything as it was.</p>
+      <dl class="facts">
+        <dt>Why</dt><dd>Use it when one count is done and a new one begins, and you want to keep the result.</dd>
+        <dt>Next</dt><dd>The large number shows the starting number again, and the finished count is at the top of the history.</dd>
+        <dt>Undo</dt><dd>The reset cannot be undone, but the finished count stays in the history.</dd>
+      </dl>
+      <div class="note"><span class="tag">Tip</span><p>A reset when nothing has been counted since the last reset, or since the starting number was set, adds nothing to the history.</p></div>
+    </div>
+  </details>
+  <details class="el" id="e-history">
+    <summary><span class="mk">7</span><span><span class="name">History</span><span class="one">Finished counts, newest first.</span></span></summary>
+    <div class="full">
+      <p>Lists each count you ended with <b>Reset</b>: the number it reached and the period it ran; until there is one, the list reads <b>No finished counts yet</b>.</p>
+      <dl class="facts">
+        <dt>Why</dt><dd>Use it to look up how earlier counts ended.</dd>
+        <dt>Next</dt><dd><b>Clear</b> asks <b>Clear the counter history?</b> and, when you confirm, removes every row; it is dimmed while the list is empty.</dd>
+        <dt>Undo</dt><dd>Clearing cannot be undone, and it does not change the current count.</dd>
+      </dl>
+      <div class="note"><span class="tag">Tip</span><p>The history keeps the latest 100 counts; older ones drop off the end of the list.</p></div>
+    </div>
+  </details>
+  <details class="el" id="e-help">
+    <summary><span class="mk">8</span><span><span class="name">Help (F1)</span><span class="one">Opens this page.</span></span></summary>
+    <div class="full">
+      <p>The help button in the top-right corner of the top bar opens this page without leaving the app.</p>
+      <dl class="facts">
+        <dt>Why</dt><dd>It explains the counter with a picture, without a network.</dd>
+        <dt>Undo</dt><dd>Opening it changes nothing; Back closes it.</dd>
+        <dt>Shortcut</dt><dd><kbd>F1</kbd> on a connected keyboard does the same.</dd>
+      </dl>
+    </div>
+  </details>
+</div>
+<h2>Related</h2>
+<ul class="related">
+  <li><a href="dashboard.html"><b>Tourist dashboard</b><span class="pill">Screen</span><small>Its <b>Counter</b> tile shows the same count and leads here.</small></a></li>
+  <li><a href="home.html"><b>Tourist</b><span class="pill">Screen</span><small>The start screen.</small></a></li>
+  <li><a href="index.html"><b>Help index</b><small>Back returns to the screen you came from.</small></a></li>
+</ul>
+<footer class="help-foot">
+  <span>Captured against Tourist 2.61.0271.444, 2026-10-27.</span>
+  <a href="index.html">Help index</a>
+</footer>
+</main>
+</body>
+</html>

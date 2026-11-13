@@ -1,0 +1,112 @@
+<!doctype html>
+<html lang="en" dir="ltr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="referrer" content="no-referrer">
+<title>Help - Settings</title>
+<script>(function(){try{var q=new URLSearchParams(location.search).get("theme");var t=(q==="light"||q==="dark")?q:(matchMedia("(prefers-color-scheme: light)").matches?"light":"dark");document.documentElement.setAttribute("data-theme",t);}catch(e){}})();</script>
+<link rel="stylesheet" href="../sza-kit.css">
+<link rel="stylesheet" href="../help.css">
+</head>
+<body class="help">
+<main class="container">
+<nav class="help-crumbs" aria-label="Help index">
+  <a href="index.html">Help index</a><span class="sep" aria-hidden="true">/</span><span>Settings</span>
+</nav>
+<header class="hero">
+  <p class="kicker">Screen help</p>
+  <h1>Settings</h1>
+  <p class="lead">Changes apply immediately and remain after you leave. Use <b>Pages</b> to switch between <b>Main</b> and <b>About</b>.</p>
+</header>
+<figure class="shot">
+  <div class="frame">
+    <img class="on-dark" src="img/settings-dark.jpg" width="540" height="784" alt="Settings with the page menu, theme, language, units and screen-awake option.">
+    <img class="on-light" src="img/settings-light.jpg" width="540" height="784" alt="">
+      <a class="pin" style="--x:17.5%;--y:12.18%" href="#e-pages" aria-label="1, Pages">1</a>
+      <a class="pin" style="--x:89.11%;--y:34.89%" href="#e-theme" aria-label="2, Theme">2</a>
+      <a class="pin" style="--x:89.11%;--y:50.7%" href="#e-language" aria-label="3, Language">3</a>
+      <a class="pin" style="--x:89.11%;--y:66.52%" href="#e-units" aria-label="4, Measurement system">4</a>
+      <a class="pin" style="--x:89.11%;--y:81.86%" href="#e-awake" aria-label="5, Keep screen awake">5</a>
+      <a class="pin" style="--x:94.17%;--y:12.18%" href="#e-help" aria-label="7, Help (F1)">7</a>
+  </div>
+  <figcaption>Demo content. Select a number to read about that part of the screen.</figcaption>
+</figure>
+<h2>In this order</h2>
+<ol class="order">
+  <li>Open <b>Pages</b> <a class="ref" href="#e-pages">1</a> to select a page.</li>
+  <li>Choose theme <a class="ref" href="#e-theme">2</a>, language <a class="ref" href="#e-language">3</a> and units <a class="ref" href="#e-units">4</a>.</li>
+  <li>Set <b>Keep screen awake</b> <a class="ref" href="#e-awake">5</a> for instrument screens.</li>
+  <li>Open <b>About</b> <a class="ref" href="#e-about">6</a> for resources and diagnostic export.</li>
+</ol>
+<h2>The elements</h2>
+<div class="elements">
+  <details class="el" id="e-pages">
+    <summary><span class="mk">1</span><span><span class="name">Pages</span><span class="one">Page menu</span></span></summary>
+    <div class="full">
+      <p>Selects Main or About in the same window. On wide screens the menu stays visible.</p>
+      <dl class="facts">
+      </dl>
+    </div>
+  </details>
+  <details class="el" id="e-theme">
+    <summary><span class="mk">2</span><span><span class="name">Theme</span><span class="one">Theme</span></span></summary>
+    <div class="full">
+      <p>System default follows the device; Light and Dark select a fixed appearance.</p>
+      <dl class="facts">
+      </dl>
+    </div>
+  </details>
+  <details class="el" id="e-language">
+    <summary><span class="mk">3</span><span><span class="name">Language</span><span class="one">Language</span></span></summary>
+    <div class="full">
+      <p>Choose an endonym or follow the system. The application updates its language immediately.</p>
+      <dl class="facts">
+      </dl>
+    </div>
+  </details>
+  <details class="el" id="e-units">
+    <summary><span class="mk">4</span><span><span class="name">Measurement system</span><span class="one">Measurement system</span></span></summary>
+    <div class="full">
+      <p>Metric or imperial units apply to readings on the phone and paired watch.</p>
+      <dl class="facts">
+      </dl>
+    </div>
+  </details>
+  <details class="el" id="e-awake">
+    <summary><span class="mk">5</span><span><span class="name">Keep screen awake</span><span class="one">Keep screen awake</span></span></summary>
+    <div class="full">
+      <p>Enabled keeps instrument screens awake. Disabled uses the system timeout. Touch-lock behavior of the water flashlight is unchanged.</p>
+      <dl class="facts">
+      </dl>
+    </div>
+  </details>
+  <details class="el" id="e-about">
+    <summary><span class="mk">6</span><span><span class="name">About</span> <span class="pill">Shown only when needed</span><span class="one">About</span></span></summary>
+    <div class="full">
+      <p>Shows the running build, license, privacy, offline help and related products. Export diagnostics opens the system file destination picker and saves a ZIP containing build and platform values. It excludes coordinates, history, music paths and user text. Nothing is uploaded.</p>
+      <dl class="facts">
+      </dl>
+    </div>
+  </details>
+  <details class="el" id="e-help">
+    <summary><span class="mk">7</span><span><span class="name">Help (F1)</span><span class="one">Help</span></span></summary>
+    <div class="full">
+      <p>Opens this page. F1 on a connected keyboard does the same.</p>
+      <dl class="facts">
+      </dl>
+    </div>
+  </details>
+</div>
+<h2>Related</h2>
+<ul class="related">
+  <li><a href="home.html"><b>Tourist</b><span class="pill">Screen</span><small>Choose theme, language and units.</small></a></li>
+  <li><a href="index.html"><b>Help index</b><small>Back returns to the screen you came from.</small></a></li>
+</ul>
+<footer class="help-foot">
+  <span>Captured against Tourist 2.61.0271.444, 2026-10-27.</span>
+  <a href="index.html">Help index</a>
+</footer>
+</main>
+</body>
+</html>

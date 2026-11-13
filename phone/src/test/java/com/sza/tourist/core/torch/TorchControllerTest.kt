@@ -102,6 +102,77 @@ class TorchControllerTest {
         assertFalse(torch.isTorchOn)
     }
 
+    /** A context whose camera manager answers the lookup as [idList] says and records the torch in [lit]. */
+    private class ScriptedCamera(idList: () -> Array<String>) {
+        var lit = false
+        val characteristics = mockk<CameraCharacteristics> {
+            every { get(CameraCharacteristics.FLASH_INFO_AVAILABLE) } returns true
+        }
+        val manager = mockk<CameraManager> {
+            every { cameraIdList } answers { idList() }
+            every { getCameraCharacteristics(any()) } returns characteristics
+            every { setTorchMode(any(), any()) } answers { lit = secondArg() }
+        }
+        val context = mockk<Context> {
+            every { getSystemService(Context.CAMERA_SERVICE) } returns manager
+        }
+    }
+
+    @Test
+    fun `the flash camera is looked up once and remembered`() {
+        var lookups = 0
+        val camera = ScriptedCamera { lookups++; arrayOf("0") }
+        val torch = TorchController()
+
+        repeat(5) { assertTrue(torch.toggleFlashlight(camera.context)) }
+
+        assertEquals(1, lookups)
+    }
+
+    @Test
+    fun `a burst of toggles of an even length ends dark even if the camera lookup breaks after the first`() {
+        var lookups = 0
+        val camera = ScriptedCamera {
+            if (lookups++ == 0) arrayOf("0") else throw CameraAccessException(CameraAccessException.CAMERA_ERROR)
+        }
+        val torch = TorchController()
+
+        repeat(100) { assertTrue(torch.toggleFlashlight(camera.context)) }
+
+        assertFalse(camera.lit)
+        assertFalse(torch.isTorchOn)
+    }
+
+    @Test
+    fun `a lookup that failed is tried again on the next call`() {
+        var lookups = 0
+        val camera = ScriptedCamera {
+            if (lookups++ == 0) throw CameraAccessException(CameraAccessException.CAMERA_ERROR) else arrayOf("0")
+        }
+        val torch = TorchController()
+
+        assertFalse(torch.setTorch(camera.context, true))
+        assertFalse(torch.isTorchOn)
+
+        assertTrue(torch.setTorch(camera.context, true))
+        assertTrue(camera.lit)
+    }
+
+    @Test
+    fun `a remembered camera that has gone is looked up afresh`() {
+        var ids = arrayOf("0")
+        val camera = ScriptedCamera { ids }
+        every { camera.manager.setTorchMode("0", any()) } throws IllegalArgumentException("no camera 0")
+        val torch = TorchController()
+
+        assertFalse(torch.setTorch(camera.context, true))
+
+        ids = arrayOf("1")
+        every { camera.manager.setTorchMode("1", any()) } answers { camera.lit = secondArg() }
+        assertTrue(torch.setTorch(camera.context, true))
+        assertTrue(camera.lit)
+    }
+
     @Test
     fun `a platform that refuses the switch leaves the state where it was`() {
         val characteristics = mockk<CameraCharacteristics> {

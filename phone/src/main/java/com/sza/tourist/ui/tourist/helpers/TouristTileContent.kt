@@ -35,6 +35,9 @@ sealed interface HeroVisual {
     data class Arrow(val rotationDegrees: Float) : HeroVisual
 
     data class Level(val pitchDegrees: Float, val rollDegrees: Float) : HeroVisual
+
+    /** The turning 3D phone; its attitude arrives on its own stream, not through the dashboard state. */
+    data object Attitude : HeroVisual
 }
 
 /**

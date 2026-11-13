@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- A dialog title with the help button standing in the title row's trailing corner (CONTEXT-HELP rule 2); the
+     title text stays where the dialog's own title would be. -->
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:gravity="center_vertical"
+    android:orientation="horizontal"
+    android:paddingStart="@dimen/margin_large"
+    android:paddingTop="@dimen/margin_normal"
+    android:paddingEnd="@dimen/margin_small">
+
+    <TextView
+        android:id="@+id/helpDialogTitle"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:accessibilityHeading="true"
+        android:textAppearance="?attr/textAppearanceHeadlineSmall"
+        android:textColor="?attr/colorOnSurface" />
+
+    <com.sza.tourist.help.HelpButton
+        android:id="@+id/helpDialogButton"
+        android:layout_width="@dimen/touch_target_min_height"
+        android:layout_height="@dimen/touch_target_min_height" />
+</LinearLayout>

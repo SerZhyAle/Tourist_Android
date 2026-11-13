@@ -1,0 +1,35 @@
+{
+  "$comment": "The closed known-outcome set of property 2 (S0013 decision 8.7). Each fault id lists the outcomes the ported behaviour may produce; anything else a scene observes is a finding under 8.2a. Approved 2026-11-10 by owner quiz (C4-exit: left-by-back is a breach; F2: silent-stale-data allowed; F8-sos: sos-ended-cleanly allowed; F8-watch: stopwatch-resumed and ended-cleanly allowed).",
+  "approved": "2026-11-10",
+  "outcomes": {
+    "A4": ["restored-running"],
+    "B2": ["sos-kept-sounding", "stopwatch-kept-time"],
+    "B4": ["shortcut-restored"],
+    "C4-wet": ["water-stays-on"],
+    "C4-exit": ["left-by-hardware-key"],
+    "C9": ["shortcut-lights-torch"],
+    "C10-map": ["handed-to-other-app", "stayed-with-message"],
+    "C10-share": ["share-sheet", "handed-to-other-app"],
+    "D2": ["lock-held"],
+    "E1": ["restored-with-laps"],
+    "E2": ["tiles-degrade-in-words"],
+    "F1-location": ["permission-card-shown"],
+    "F1-notifications": ["sos-runs-without-notification"],
+    "F1-activity": ["tile-explains"],
+    "F2": ["location-off-explained", "silent-stale-data"],
+    "F3": ["tile-says-unavailable"],
+    "F4": ["busy-explained", "torch-lit-camera-yielded"],
+    "F5": ["siren-continues"],
+    "F7": ["writes-failed-quietly-app-intact"],
+    "F8-sos": ["sos-ended-cleanly", "sos-service-restarted"],
+    "F8-water": ["torch-released-by-system"],
+    "F8-watch": ["stopwatch-resumed", "ended-cleanly"],
+    "F9": ["shortcut-skipped-quietly"]
+  },
+  "questions": {
+    "C4-exit": "KEYCODE_BACK is not among the water flashlight's exit keys by design (it cannot be told from a wet gesture). If a BACK press leaves the lamp, is that an allowed outcome ('left-by-back') or a breach of 'leave by its exit rule and nothing else'?",
+    "F2": "With location switched off while the dashboard is open, is silently keeping the last values ('silent-stale-data') acceptable, or must the dashboard say location is off?",
+    "F8-sos": "SosService is START_NOT_STICKY: a hard kill ends the signal. Is 'sos-ended-cleanly' acceptable for a distress signal, or must it come back ('sos-service-restarted')?",
+    "F8-watch": "The watch stopwatch is a stored time origin: after a hard kill the measurement is stored and the next open shows it still running ('stopwatch-resumed', added 2026-10-29 by S0022 section 4.3 and S0031, proposed). Is that the only acceptable outcome, or is a dropped measurement with no notification left ('ended-cleanly') also allowed?"
+  }
+}

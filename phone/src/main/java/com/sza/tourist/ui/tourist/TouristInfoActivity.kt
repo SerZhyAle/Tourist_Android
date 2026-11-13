@@ -62,9 +62,10 @@ class TouristInfoActivity : BaseActivity<ActivityTouristInfoBinding>() {
             binding,
             contentManager,
             onResetClicked = { focusedTile -> viewModel.resetFor(focusedTile) },
-            // The STOPWATCH tile runs inline; the row's two buttons are its whole control surface here.
+            // The STOPWATCH tile runs inline; the row's three buttons are its whole control surface.
             onStopwatchToggleClicked = { viewModel.toggleStopwatch() },
             onStopwatchResetClicked = { viewModel.resetStopwatch() },
+            onStopwatchOpenClicked = { actionsManager.launchStopwatch() },
         )
         actionsManager = TouristActionsManager(this)
         permissionManager = TouristPermissionManager(this, binding) { permissionLauncher.launch(it) }
@@ -91,6 +92,10 @@ class TouristInfoActivity : BaseActivity<ActivityTouristInfoBinding>() {
 
         binding.btnResetTrip.setOnClickListener { viewModel.resetFor(viewModel.state.value.focusedTile) }
 
+        // The dashboard is where the owner already is when something goes wrong outdoors, so the
+        // distress signal is one tap from it rather than back through the start screen.
+        binding.btnSos.setOnClickListener { actionsManager.launchSos() }
+
         binding.cardHeroTile.setOnClickListener {
             val state = viewModel.state.value
             when (state.focusedTile) {
@@ -105,6 +110,11 @@ class TouristInfoActivity : BaseActivity<ActivityTouristInfoBinding>() {
     override fun observeData() {
         collectOnLifecycle(viewModel.state) {
             renderDashboard()
+        }
+        // The GYROSCOPE tile's box turns at sensor rate on its own stream; collecting it only while the
+        // screen is started keeps the sensors registered only while the dashboard is open.
+        collectOnLifecycle(viewModel.attitude) { reading ->
+            heroTileManager.bindAttitude(reading)
         }
         // The measurement system can flip while this screen is open, and every tile's unit depends on
         // it, so the same state is re-bound rather than waiting for the next telemetry emission.

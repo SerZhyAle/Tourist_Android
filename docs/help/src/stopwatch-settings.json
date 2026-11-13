@@ -1,0 +1,167 @@
+{
+  "help": "stopwatch-settings",
+  "locales": {
+    "en": {
+      "summary": "Participants, music and the volume keys.",
+      "lead": "This window opens from the stopwatch screen with the gear button ({ui:stopwatch_action_settings}). Choose how many people you time, whether music plays and what the volume keys do; {ui:apply} keeps the choices, and {ui:cancel} or Back returns to the stopwatch without changes.",
+      "alt": "The {ui:stopwatch_settings_title} window over the stopwatch: the rows {ui:stopwatch_settings_participants}, {ui:stopwatch_settings_music}, {ui:stopwatch_settings_track} and {ui:stopwatch_settings_volume_keys}, the buttons {ui:cancel} and {ui:apply}, and the help button in the title.",
+      "order": [
+        "Pick the number of participants {e-participants}: 1, 2 or 4. Do it first, because it decides how the stopwatch screen is divided.",
+        "Turn on {e-music} if you want a track during the run, then open {e-track} and tap a track; choosing a track turns the music on by itself.",
+        "Decide what the volume keys do {e-volume-keys}: leave it on to start, lap and stop with the volume buttons, or turn it off to keep them for the volume.",
+        "Press {ui:apply} to keep the choices. {ui:cancel}, Back or [[Esc]] closes the window and leaves everything as it was."
+      ],
+      "elements": {
+        "e-participants": {
+          "one": "How many people are timed: 1, 2 or 4.",
+          "what": "A drop-down list with three choices: 1, 2 or 4. The stopwatch screen is divided between that many participants, each with their own time and laps.",
+          "why": "Pick as many participants as you have people to time; with one, the whole screen shows a single time.",
+          "next": "After {ui:apply} the stopwatch screen shows that many areas, and with two or four a button for all participants at once appears.",
+          "undo": "Yes, choose another number. Lowering it only hides participants, and their times come back when you raise it again.",
+          "tip": "A hidden participant is not stopped: one that was counting keeps counting out of sight, and only the participants on screen go into the result."
+        },
+        "e-music": {
+          "one": "Plays a track while a measurement runs.",
+          "what": "When on, the chosen track plays on a loop for as long as at least one participant is counting, and falls silent when all are stopped.",
+          "why": "Turn it on for a run you want to do to music, off for a silent one.",
+          "next": "Pick the track in the {ui:stopwatch_settings_track} row; without one the stopwatch stays silent.",
+          "undo": "Yes, turn it off again.",
+          "tip": "The music plays only while the stopwatch screen is in front: it stops when you switch to another app or lock the phone, and starts again when you come back while a measurement is running. A change made during a run is heard from the next start."
+        },
+        "e-track": {
+          "one": "Chooses the music from the phone.",
+          "what": "Opens the {ui:stopwatch_music_picker_title} list of the audio files on the phone: the title, with the artist and the length under it when known; tap a track to choose it. The row shows the chosen track, or {ui:stopwatch_settings_track_none}.",
+          "why": "Choose the music you want to hear during a run.",
+          "next": "Tapping a track returns here, shows its name in the row and turns {ui:stopwatch_settings_music} on; the choice is kept when you press {ui:apply}.",
+          "undo": "Yes, choose another track or turn the music off; Back closes the list without choosing.",
+          "tip": "The list asks for access to your audio files, and it can show tracks only once you allow it. If it says that no music was found, copy audio files to the phone and open the list again."
+        },
+        "e-volume-keys": {
+          "one": "Lets the volume buttons run the stopwatch.",
+          "what": "On by default. While the stopwatch is open, volume up starts or laps and volume down stops; turned off, the buttons go back to the system and change the volume as usual.",
+          "why": "Use it when pressing a button is easier than touching the screen; turn it off if you would rather keep the buttons for the volume.",
+          "next": "With several participants the buttons act on the first one, or on the one you selected with a keyboard. While this is on, the music volume is set with the slider on the stopwatch screen.",
+          "undo": "Yes, turn it off and press {ui:apply}; the buttons return to the system."
+        },
+        "e-help": {
+          "one": "Opens this page.",
+          "what": "The question mark in the title of the window opens this page.",
+          "why": "It explains the window with a picture, without leaving the app and without a network.",
+          "next": "Back closes help and returns to this window.",
+          "shortcut": "[[F1]] on a connected keyboard does the same."
+        }
+      },
+      "related": [
+        { "help": "stopwatch", "anchor": "e-settings", "note": "The stopwatch screen and the gear button that opens this window." }
+      ]
+    },
+    "ru": {
+      "summary": "Участники, музыка и кнопки громкости.",
+      "lead": "Это окно открывается с экрана секундомера кнопкой с шестерёнкой ({ui:stopwatch_action_settings}). Выберите, сколько человек вы засекаете, играет ли музыка и что делают кнопки громкости; {ui:apply} сохраняет выбор, а {ui:cancel} или «Назад» возвращает к секундомеру без изменений.",
+      "alt": "Окно {ui:stopwatch_settings_title} поверх секундомера: строки {ui:stopwatch_settings_participants}, {ui:stopwatch_settings_music}, {ui:stopwatch_settings_track} и {ui:stopwatch_settings_volume_keys}, кнопки {ui:cancel} и {ui:apply} и кнопка справки в заголовке.",
+      "order": [
+        "Выберите число участников {e-participants}: 1, 2 или 4. Сделайте это первым, потому что от него зависит, как делится экран секундомера.",
+        "Включите {e-music}, если хотите музыку во время забега, затем откройте {e-track} и нажмите на дорожку: выбор дорожки сам включает музыку.",
+        "Решите, что делают кнопки громкости {e-volume-keys}: оставьте пункт включённым, чтобы запускать, отмечать круги и останавливать ими, или выключите, чтобы оставить их для громкости.",
+        "Нажмите {ui:apply}, чтобы сохранить выбор. {ui:cancel}, «Назад» или [[Esc]] закрывают окно, и всё остаётся как было."
+      ],
+      "elements": {
+        "e-participants": {
+          "one": "Сколько человек засекается: 1, 2 или 4.",
+          "what": "Выпадающий список из трёх вариантов: 1, 2 или 4. Экран секундомера делится между таким числом участников, у каждого своё время и свои круги.",
+          "why": "Выберите столько участников, сколько у вас людей для замера; при одном весь экран занимает одно время.",
+          "next": "После {ui:apply} на экране секундомера появится столько областей, а при двух или четырёх - кнопка для всех участников сразу.",
+          "undo": "Да, выберите другое число. Уменьшение лишь прячет участников, а их времена возвращаются, когда число снова увеличено.",
+          "tip": "Скрытый участник не останавливается: если у него шёл отсчёт, он продолжает считать вне экрана, а в результат попадают только участники на экране."
+        },
+        "e-music": {
+          "one": "Играет дорожку, пока идёт замер.",
+          "what": "Когда включено, выбранная дорожка играет по кругу, пока отсчёт идёт хотя бы у одного участника, и стихает, когда остановлены все.",
+          "why": "Включайте для забега под музыку, выключайте для тихого.",
+          "next": "Дорожку выбирают в строке {ui:stopwatch_settings_track}; без неё секундомер молчит.",
+          "undo": "Да, выключите снова.",
+          "tip": "Музыка играет, только пока экран секундомера на виду: она стихает, когда вы переключаетесь в другое приложение или блокируете телефон, и возобновляется при возвращении, если замер идёт. Изменение, сделанное во время забега, слышно со следующего запуска."
+        },
+        "e-track": {
+          "one": "Выбирает музыку из телефона.",
+          "what": "Открывает список {ui:stopwatch_music_picker_title} с аудиофайлами телефона: название, а под ним исполнитель и длительность, если они известны; нажмите на дорожку, чтобы выбрать её. В строке показана выбранная дорожка или {ui:stopwatch_settings_track_none}.",
+          "why": "Выберите музыку, которую хотите слышать во время забега.",
+          "next": "Нажатие на дорожку возвращает сюда, показывает её название в строке и включает {ui:stopwatch_settings_music}; выбор сохраняется после {ui:apply}.",
+          "undo": "Да, выберите другую дорожку или выключите музыку; «Назад» закрывает список без выбора.",
+          "tip": "Список просит доступ к вашим аудиофайлам и может показать дорожки, только когда вы его разрешили. Если он сообщает, что музыка не найдена, скопируйте аудиофайлы на телефон и откройте список снова."
+        },
+        "e-volume-keys": {
+          "one": "Позволяет кнопкам громкости управлять секундомером.",
+          "what": "Включено по умолчанию. Пока секундомер открыт, громкость вверх запускает или отмечает круг, а вниз останавливает; при выключении кнопки возвращаются системе и меняют громкость как обычно.",
+          "why": "Нужно, когда нажать кнопку проще, чем коснуться экрана; выключите, если хотите оставить кнопки для громкости.",
+          "next": "При нескольких участниках кнопки действуют на первого или на того, кого вы выбрали с клавиатуры. Пока пункт включён, громкость музыки меняют ползунком на экране секундомера.",
+          "undo": "Да, выключите и нажмите {ui:apply}: кнопки вернутся системе."
+        },
+        "e-help": {
+          "one": "Открывает эту страницу.",
+          "what": "Знак вопроса в заголовке окна открывает эту страницу.",
+          "why": "Она объясняет окно с картинкой, не выходя из приложения и без сети.",
+          "next": "«Назад» закрывает справку и возвращает в это окно.",
+          "shortcut": "[[F1]] на подключённой клавиатуре делает то же самое."
+        }
+      },
+      "related": [
+        { "help": "stopwatch", "anchor": "e-settings", "note": "Экран секундомера и кнопка с шестерёнкой, которая открывает это окно." }
+      ]
+    },
+    "uk": {
+      "summary": "Учасники, музика й кнопки гучності.",
+      "lead": "Це вікно відкривається з екрана секундоміра кнопкою з шестернею ({ui:stopwatch_action_settings}). Виберіть, скількох людей ви вимірюєте, чи грає музика і що роблять кнопки гучності; {ui:apply} зберігає вибір, а {ui:cancel} або «Назад» повертає до секундоміра без змін.",
+      "alt": "Вікно {ui:stopwatch_settings_title} поверх секундоміра: рядки {ui:stopwatch_settings_participants}, {ui:stopwatch_settings_music}, {ui:stopwatch_settings_track} і {ui:stopwatch_settings_volume_keys}, кнопки {ui:cancel} та {ui:apply} і кнопка довідки в заголовку.",
+      "order": [
+        "Виберіть кількість учасників {e-participants}: 1, 2 або 4. Зробіть це першим, бо від цього залежить, як ділиться екран секундоміра.",
+        "Увімкніть {e-music}, якщо хочете музику під час забігу, потім відкрийте {e-track} і натисніть на доріжку: вибір доріжки сам вмикає музику.",
+        "Вирішіть, що роблять кнопки гучності {e-volume-keys}: залиште пункт увімкненим, щоб запускати, позначати кола й зупиняти ними, або вимкніть, щоб залишити їх для гучності.",
+        "Натисніть {ui:apply}, щоб зберегти вибір. {ui:cancel}, «Назад» або [[Esc]] закривають вікно, і все лишається як було."
+      ],
+      "elements": {
+        "e-participants": {
+          "one": "Скількох людей вимірюють: 1, 2 або 4.",
+          "what": "Випадний список із трьох варіантів: 1, 2 або 4. Екран секундоміра ділиться між такою кількістю учасників, у кожного свій час і свої кола.",
+          "why": "Виберіть стільки учасників, скільки у вас людей для заміру; за одного весь екран займає один час.",
+          "next": "Після {ui:apply} на екрані секундоміра з’явиться стільки ділянок, а за двох чи чотирьох - кнопка для всіх учасників одразу.",
+          "undo": "Так, виберіть іншу кількість. Зменшення лише ховає учасників, а їхні часи повертаються, коли кількість знову збільшено.",
+          "tip": "Прихований учасник не зупиняється: якщо в нього йшов відлік, він продовжує рахувати поза екраном, а в результат потрапляють лише учасники на екрані."
+        },
+        "e-music": {
+          "one": "Грає доріжку, поки триває замір.",
+          "what": "Коли ввімкнено, вибрана доріжка грає по колу, поки відлік іде бодай в одного учасника, і стихає, коли зупинено всіх.",
+          "why": "Вмикайте для забігу під музику, вимикайте для тихого.",
+          "next": "Доріжку вибирають у рядку {ui:stopwatch_settings_track}; без неї секундомір мовчить.",
+          "undo": "Так, вимкніть знову.",
+          "tip": "Музика грає, лише поки екран секундоміра на видноті: вона стихає, коли ви перемикаєтеся в інший застосунок або блокуєте телефон, і відновлюється після повернення, якщо замір іде. Зміну, зроблену під час забігу, чути з наступного запуску."
+        },
+        "e-track": {
+          "one": "Вибирає музику з телефона.",
+          "what": "Відкриває список {ui:stopwatch_music_picker_title} з аудіофайлами телефона: назва, а під нею виконавець і тривалість, якщо вони відомі; натисніть на доріжку, щоб вибрати її. У рядку показано вибрану доріжку або {ui:stopwatch_settings_track_none}.",
+          "why": "Виберіть музику, яку хочете чути під час забігу.",
+          "next": "Натискання на доріжку повертає сюди, показує її назву в рядку й вмикає {ui:stopwatch_settings_music}; вибір зберігається після {ui:apply}.",
+          "undo": "Так, виберіть іншу доріжку або вимкніть музику; «Назад» закриває список без вибору.",
+          "tip": "Список просить доступ до ваших аудіофайлів і може показати доріжки, лише коли ви його дозволили. Якщо він повідомляє, що музики не знайдено, скопіюйте аудіофайли на телефон і відкрийте список знову."
+        },
+        "e-volume-keys": {
+          "one": "Дає кнопкам гучності керувати секундоміром.",
+          "what": "Увімкнено за замовчуванням. Поки секундомір відкритий, гучність вгору запускає чи позначає коло, а вниз зупиняє; коли вимкнути, кнопки повертаються системі й змінюють гучність як звичайно.",
+          "why": "Потрібно, коли натиснути кнопку простіше, ніж торкнутися екрана; вимкніть, якщо хочете залишити кнопки для гучності.",
+          "next": "За кількох учасників кнопки діють на першого або на того, кого ви вибрали з клавіатури. Поки пункт увімкнено, гучність музики змінюють повзунком на екрані секундоміра.",
+          "undo": "Так, вимкніть і натисніть {ui:apply}: кнопки повернуться системі."
+        },
+        "e-help": {
+          "one": "Відкриває цю сторінку.",
+          "what": "Знак питання в заголовку вікна відкриває цю сторінку.",
+          "why": "Вона пояснює вікно з малюнком, не виходячи із застосунку й без мережі.",
+          "next": "«Назад» закриває довідку й повертає до цього вікна.",
+          "shortcut": "[[F1]] на підключеній клавіатурі робить те саме."
+        }
+      },
+      "related": [
+        { "help": "stopwatch", "anchor": "e-settings", "note": "Екран секундоміра і кнопка з шестернею, що відкриває це вікно." }
+      ]
+    }
+  }
+}

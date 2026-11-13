@@ -9,9 +9,9 @@ import javax.inject.Inject
 import javax.inject.Singleton
 
 /**
- * The phone-side holder of the last watch health report, until S0008 ports the Data Layer bridge that
- * fills it. The dashboard reads the interface, never this class, so the bridge lands behind the same
- * seam.
+ * The phone-side holder of the last watch health report. Filled by `WearTouristHealthReceiver` from the
+ * Data Layer bridge (S0008). The dashboard reads the interface, never this class, so the bridge sits
+ * behind the same seam.
  */
 @Singleton
 class WatchHealthRepositoryImpl @Inject constructor() : WatchHealthRepository {

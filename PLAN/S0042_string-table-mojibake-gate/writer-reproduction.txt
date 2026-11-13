@@ -1,0 +1,10 @@
+Writer reproduction, 2026-11-13. Sample: a UTF-8 table, no BOM, LF, holding the degree sign (C2 B0) and the bullet (E2 80 A2).
+System ANSI code page: 1251 (Windows PowerShell 5.1 reads through it); culture code page seen by pwsh 7: 1252, OEM 437.
+First 40 bytes of each result (the degree sign sits at offset 23-24 of the clean file):
+
+clean sample                                                   : 3C 72 3E 0A 20 20 3C 73 74 72 69 6E 67 20 6E 61 6D 65 3D 22 75 22 3E C2 B0 3C 2F 73 74 72 69 6E 67 3E 0A 20 20 3C 73 74
+powershell.exe  Get-Content -Raw | Set-Content -Encoding UTF8   : EF BB BF 3C 72 3E 0A 20 20 3C 73 74 72 69 6E 67 20 6E 61 6D 65 3D 22 75 22 3E D0 92 C2 B0 3C 2F 73 74 72 69 6E 67 3E 0A
+powershell.exe  Get-Content -Raw | Set-Content (no encoding)    : 3C 72 3E 0A 20 20 3C 73 74 72 69 6E 67 20 6E 61 6D 65 3D 22 75 22 3E C2 B0 3C 2F 73 74 72 69 6E 67 3E 0A 20 20 3C 73 74
+powershell.exe  Get-Content -Raw + WriteAllText UTF8 (no BOM)   : 3C 72 3E 0A 20 20 3C 73 74 72 69 6E 67 20 6E 61 6D 65 3D 22 75 22 3E D0 92 C2 B0 3C 2F 73 74 72 69 6E 67 3E 0A 20 20 3C
+
+Reading: the first variant writes a BOM (EF BB BF) and D0 92 C2 B0; the fourth writes D0 92 C2 B0 with no BOM, the exact bytes ticket S0041 found; the third is lossless (ANSI in, ANSI out).

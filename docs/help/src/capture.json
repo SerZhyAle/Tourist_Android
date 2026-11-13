@@ -1,0 +1,127 @@
+{
+  "$comment": "How capture-help.ps1 reaches each page's screen and what demo content it shows. The capture runs as root on a debuggable emulator, so a screen that is not exported can be started directly (start = the Activity); steps are taps found by view id (tapId), wait (seconds) and key back; expect names the screen that must be in front afterwards; cleanup runs after the capture so the app is left idle; avoidWhite waits out a white strobe frame. geo is the synthetic fix of the dashboard: the null point of the coordinate grid in the open sea, never a real place. seed writes demo state into the apps shared preferences before it starts; dump accessibility reads the window in front through uiautomator (a dialog is its own window) after the steps, so a page that uses it first stops whatever ticks.",
+  "package": "com.sza.tourist",
+  "geo": {
+    "lon": 0.0,
+    "lat": 0.0
+  },
+  "pages": {
+    "home": {
+      "start": ".MainActivity",
+      "expect": "MainActivity"
+    },
+    "dashboard": {
+      "start": ".ui.tourist.TouristInfoActivity",
+      "geo": true,
+      "wait": 6,
+      "expect": "TouristInfoActivity",
+      "steps": [
+        {
+          "wait": 3
+        },
+        {
+          "scrollTop": true
+        }
+      ]
+    },
+    "counter": {
+      "start": ".ui.tourist.counter.TouristCounterActivity",
+      "expect": "TouristCounterActivity",
+      "steps": [
+        {
+          "tapId": "btnPlusOne"
+        },
+        {
+          "tapId": "btnPlusOne"
+        },
+        {
+          "tapId": "btnPlusOne"
+        }
+      ]
+    },
+    "lights": {
+      "start": ".ui.flashlight.LightsActivity",
+      "expect": "LightsActivity"
+    },
+    "sos": {
+      "start": ".ui.sos.SosActivity",
+      "expect": "SosActivity",
+      "avoidWhite": true,
+      "settle": 3,
+      "cleanup": [
+        {
+          "tapId": "btnSosStop"
+        }
+      ]
+    },
+    "stopwatch": {
+      "start": ".ui.stopwatch.StopwatchActivity",
+      "expect": "StopwatchActivity",
+      "wait": 3,
+      "seed": {
+        "settings": {
+          "stopwatch_participant_count": 4
+        }
+      }
+    },
+    "stopwatch-settings": {
+      "start": ".ui.stopwatch.StopwatchActivity",
+      "expect": "StopwatchActivity",
+      "steps": [
+        {
+          "wait": 2
+        },
+        {
+          "tapId": "btnStopwatchStartAll"
+        },
+        {
+          "tapId": "btnStopwatchSettings"
+        },
+        {
+          "wait": 1.5
+        },
+        {
+          "wait": 1.5
+        }
+      ],
+      "seed": {
+        "settings": {
+          "stopwatch_participant_count": 4
+        }
+      },
+      "dump": "accessibility"
+    },
+    "stopwatch-result": {
+      "start": ".ui.stopwatch.StopwatchActivity",
+      "expect": "StopwatchActivity",
+      "steps": [
+        {
+          "wait": 3
+        },
+        {
+          "tapId": "btnStopwatchStartAll"
+        },
+        {
+          "tapId": "btnStopwatchResult"
+        },
+        {
+          "wait": 1.5
+        },
+        {
+          "wait": 1.5
+        }
+      ],
+      "seed": {
+        "settings": {
+          "stopwatch_participant_count": 4
+        }
+      },
+      "dump": "accessibility"
+    },
+    "settings": {
+      "start": ".ui.settings.SettingsActivity",
+      "expect": "SettingsActivity",
+      "wait": 1.5
+    }
+  }
+}

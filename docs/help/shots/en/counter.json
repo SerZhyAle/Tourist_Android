@@ -1,0 +1,63 @@
+{
+  "help": "counter",
+  "locale": "en",
+  "version": "2.61.0271.444",
+  "capturedOn": "2026-10-27",
+  "layoutsSha256": "f0e3faa96239e2849fa6475607239c58e98db2723d04b3810452e0cfc85c5f29",
+  "stringsSha256": "60fba24c1cf7c66b3f0848eebd4c72ab63a2205a79907884ef3b87eac8fccbed",
+  "width": 1080,
+  "height": 1536,
+  "imageWidth": 540,
+  "imageHeight": 768,
+  "elements": {
+    "e-value": {
+      "l": 32,
+      "t": 328,
+      "r": 1048,
+      "b": 528
+    },
+    "e-plus-one": {
+      "l": 284,
+      "t": 674,
+      "r": 515,
+      "b": 838
+    },
+    "e-minus-one": {
+      "l": 32,
+      "t": 674,
+      "r": 263,
+      "b": 838
+    },
+    "e-extra-steps": {
+      "l": 32,
+      "t": 859,
+      "r": 1048,
+      "b": 985
+    },
+    "e-start": {
+      "l": 32,
+      "t": 1006,
+      "r": 384,
+      "b": 1132
+    },
+    "e-reset": {
+      "l": 405,
+      "t": 1006,
+      "r": 583,
+      "b": 1132
+    },
+    "e-history": {
+      "l": 32,
+      "t": 1174,
+      "r": 1048,
+      "b": 1362
+    },
+    "e-help": {
+      "l": 953,
+      "t": 148,
+      "r": 1080,
+      "b": 274
+    }
+  },
+  "missing": []
+}

@@ -1,33 +1,995 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!--
-    Tourist watch face skeleton, Watch Face Format v4, 480x480 round.
+    S1677 - Tourist watch face, Watch Face Format v4, 480x480 round.
 
-    The composition (a clone of the FastMediaSorter face, or a clone with tourist complications) is
-    owner decision 4.4, asked right before S0009. Until it is taken, the face shows the time and the
-    working name only, drawn with vector primitives and no animation, so it costs no memory budget.
+    Composition signed off by the owner on 2026-08-26: large time in the centre, date beneath it,
+    an arc of complication slots along the bottom edge, waves as a background across the lower
+    half, and particles the tilt of the case pushes around.
+    S3763 (2026-09-26): the four bottom slots are enlarged to 87 px, two more slots of the same
+    size flank the top, the empty-slot guide rings are gone, and a slot with nothing bound draws
+    nothing at all - including the Play build, whose slots 1-3 no longer fall back to system
+    providers (S3548 reversed).
+    S3707 (2026-09-27): the wave lanes and particles were redrawn to the WAVE-PARTICLES geometry
+    the watch app's backdrop renders - the mapping lives in the section comments below.
+
+    Everything moving here is drawn with vector primitives and moved by <Transform>/<Gyro>, never
+    by a sequence of frames. That is a budget decision, not a stylistic one: an image counts
+    against the memory limit after decompression at 4 bytes per pixel, so one full-screen 480x480
+    frame costs about 0.9 MB and a frame-by-frame wave animation would eat the entire 10 MB
+    ambient allowance on its own. Vector primitives cost nothing.
 -->
 <WatchFace width="480" height="480" clipShape="CIRCLE">
 
     <Metadata key="CLOCK_TYPE" value="DIGITAL" />
-    <Metadata key="PREVIEW_TIME" value="10:08" />
+    <Metadata key="PREVIEW_TIME" value="10:08:32" />
 
     <Scene backgroundColor="#ff0b1210">
 
-        <PartText x="0" y="140" width="480" height="180">
-            <DigitalClock x="0" y="0" width="480" height="180">
-                <TimeText format="hh:mm" hourFormat="SYNC_TO_DEVICE" align="CENTER" x="0" y="0" width="480" height="180">
-                    <Font family="SYNC_TO_DEVICE" size="132" weight="BOLD" slant="NORMAL" color="#ffffffff" />
+        <!-- ========== photo backdrop slot (S3708) ==========
+             When the watch app's backdrop is a delivered photo, its WearFacePhotoComplicationService
+             answers PHOTO_IMAGE with that frame, centre-cropped to 480x480 JPEG; any other backdrop
+             answers NO_DATA and the slot draws nothing. The style code's backdrop digit 3 hides waves
+             and particles at the same time. First in the scene so every other layer draws over it.
+             Hidden in ambient, as the format reference recommends for PHOTO_IMAGE: ambient keeps the
+             black scene and ~0.9 MB of decoded photo stays out of the 10 MB ambient budget.
+             The tappable area is a 2x2 box at the bottom edge, so this full-screen slot never competes
+             with the dial's Launch or the slot arc for a tap. No provider - Play watch build - leaves it
+             EMPTY and the face is unchanged. -->
+        <ComplicationSlot x="0" y="0" width="480" height="480" slotId="6" displayName="slot_face_photo_label" supportedTypes="PHOTO_IMAGE EMPTY" isCustomizable="FALSE">
+            <Variant mode="AMBIENT" target="alpha" value="0" />
+            <DefaultProviderPolicy defaultSystemProvider="EMPTY" defaultSystemProviderType="EMPTY" />
+            <BoundingBox x="239" y="476" width="2" height="2" />
+            <Complication type="PHOTO_IMAGE">
+                <PartImage x="0" y="0" width="480" height="480">
+                    <Image resource="[COMPLICATION.PHOTO_IMAGE]" />
+                </PartImage>
+                <!-- Dial legibility over an arbitrary photo, the role the app's own scrim plays. -->
+                <PartDraw x="0" y="0" width="480" height="480">
+                    <Rectangle x="0" y="0" width="480" height="480">
+                        <Fill color="#66000000" />
+                    </Rectangle>
+                </PartDraw>
+            </Complication>
+        </ComplicationSlot>
+
+        <!-- ========== clock style slot (S3557) ==========
+             The face has no code, so the phone's clock style reaches it as data of this one slot: the
+             watch app's WearClockStyleComplicationService answers RANGED_VALUE with
+               value  = seconds (0/1) + 2 x typeface (0 default, 1 condensed, 2 serif, 3 monospace,
+                        4 casual) + 10 x palette (0 DYNAMIC, 1 GREEN, 2 PINK, 3 BLUE)
+                        + 40 x backdrop (0 animation, 1 still, 2 none, 3 photo - the watch app's own backdrop,
+                        S3707, S3708)
+                        + 400 x phoneBattery (0..100 discharging, 101..201 charging as 101 + percent,
+                        255 stale or absent - S3764, S4039)
+               colors = dial, wave lane 1..4, particle
+             and every value leaves the slot through a Reference (measured S3557 research 03). With no
+             provider - Play watch build, debug id, app absent - the slot is EMPTY, the references keep
+             their defaults and the face is the S1677 face. The slot is 1 px, draws nothing and is not
+             customizable, so the editor never offers it. -->
+        <ComplicationSlot x="239" y="2" width="2" height="2" slotId="5" displayName="slot_clock_style_label" supportedTypes="RANGED_VALUE EMPTY" isCustomizable="FALSE">
+            <DefaultProviderPolicy defaultSystemProvider="EMPTY" defaultSystemProviderType="EMPTY" />
+            <BoundingBox x="0" y="0" width="2" height="2" />
+            <Complication type="RANGED_VALUE">
+                <PartDraw x="0" y="0" width="1" height="1" alpha="0">
+                    <Transform target="x" value="[COMPLICATION.RANGED_VALUE_VALUE]" />
+                    <Reference name="touristStyleCode" source="x" defaultValue="-1" />
+                    <!-- The schema requires one draw element in a PartDraw; transparent, the part is a carrier. -->
+                    <Rectangle x="0" y="0" width="1" height="1">
+                        <Fill color="#00000000" />
+                    </Rectangle>
+                </PartDraw>
+                <Group name="touristDialColor_probe" x="0" y="0" width="1" height="1" tintColor="#ffffffff">
+                    <Transform target="tintColor" value="extractColorFromColors([COMPLICATION.RANGED_VALUE_COLORS], false, 0.083)" />
+                    <Reference name="touristDialColor" source="tintColor" defaultValue="#ffffffff" />
+                </Group>
+                <Group name="touristLane1_probe" x="0" y="0" width="1" height="1" tintColor="#ff1b5e20">
+                    <Transform target="tintColor" value="extractColorFromColors([COMPLICATION.RANGED_VALUE_COLORS], false, 0.250)" />
+                    <Reference name="touristLane1" source="tintColor" defaultValue="#ff1b5e20" />
+                </Group>
+                <Group name="touristLane2_probe" x="0" y="0" width="1" height="1" tintColor="#ff2e7d32">
+                    <Transform target="tintColor" value="extractColorFromColors([COMPLICATION.RANGED_VALUE_COLORS], false, 0.417)" />
+                    <Reference name="touristLane2" source="tintColor" defaultValue="#ff2e7d32" />
+                </Group>
+                <Group name="touristLane3_probe" x="0" y="0" width="1" height="1" tintColor="#ff388e3c">
+                    <Transform target="tintColor" value="extractColorFromColors([COMPLICATION.RANGED_VALUE_COLORS], false, 0.583)" />
+                    <Reference name="touristLane3" source="tintColor" defaultValue="#ff388e3c" />
+                </Group>
+                <Group name="touristLane4_probe" x="0" y="0" width="1" height="1" tintColor="#ff4caf50">
+                    <Transform target="tintColor" value="extractColorFromColors([COMPLICATION.RANGED_VALUE_COLORS], false, 0.750)" />
+                    <Reference name="touristLane4" source="tintColor" defaultValue="#ff4caf50" />
+                </Group>
+                <Group name="touristParticleFar_probe" x="0" y="0" width="1" height="1" tintColor="#ffa5d6a7">
+                    <Transform target="tintColor" value="extractColorFromColors([COMPLICATION.RANGED_VALUE_COLORS], false, 0.917)" />
+                    <Reference name="touristParticleFar" source="tintColor" defaultValue="#ffa5d6a7" />
+                </Group>
+                <Group name="touristParticleMid_probe" x="0" y="0" width="1" height="1" tintColor="#ffc8e6c9">
+                    <Transform target="tintColor" value="extractColorFromColors([COMPLICATION.RANGED_VALUE_COLORS], false, 0.917)" />
+                    <Reference name="touristParticleMid" source="tintColor" defaultValue="#ffc8e6c9" />
+                </Group>
+                <Group name="touristParticleNear_probe" x="0" y="0" width="1" height="1" tintColor="#ffe8f5e9">
+                    <Transform target="tintColor" value="extractColorFromColors([COMPLICATION.RANGED_VALUE_COLORS], false, 0.917)" />
+                    <Reference name="touristParticleNear" source="tintColor" defaultValue="#ffe8f5e9" />
+                </Group>
+            </Complication>
+        </ComplicationSlot>
+
+        <!-- ========== backdrop (S3707) ==========
+             The face repeats the watch app's backdrop: the code's backdrop digit (code / 40) stops the
+             wave lanes at digit 1 and hides waves and particles at digits 2 and 3 (S3708 photo). A code of -1 (no provider)
+             clamps to 0, so a face nobody feeds keeps the S1677 motion. Tilt parallax is left alone:
+             a Gyro expression reading a reference is unmeasured, and a rejected expression would
+             blank the whole face.
+             S3764: the style digits every decoder reads are now the mod idiom
+             (clamp(code, 0, 102159) - floor(clamp(code, 0, 102159) / 400) * 400), so the phone
+             battery band riding at x400 folds out; the leading clamp guards the -1 no-provider
+             default, whose floor would otherwise fold into a false style of 399 and freeze the sea. -->
+        <Group name="backdrop" x="0" y="0" width="480" height="480" alpha="255">
+            <Transform target="alpha" value="255 * (1 - clamp(floor((clamp([REFERENCE.touristStyleCode], 0, 102159) - floor(clamp([REFERENCE.touristStyleCode], 0, 102159) / 400) * 400) / 80), 0, 1))" />
+
+        <!-- ========== motion direction (S4019) ==========
+             WAVE-PARTICLES rule 5: lanes and particles travel along one session direction d, at any
+             angle. Everything that moves sits in this group and is drawn horizontally in its own
+             frame; the group turns that frame about the face centre. The format has no random
+             source, so the session is the hour: ([DAY_OF_YEAR] * 24 + [HOUR_0_23]) stepped by the
+             golden ratio gives a direction unrelated to the previous hour's. Turning the 480x480
+             frame about its centre keeps the round clip covered at every angle, because a point
+             outside the square is farther than 240 px from the centre and so outside the circle. -->
+        <Group name="motion_dir" x="0" y="0" width="480" height="480" pivotX="0.5" pivotY="0.5" angle="0">
+            <Transform target="angle" value="360 * fract(([DAY_OF_YEAR] * 24 + [HOUR_0_23]) * 0.618034)" />
+
+        <!-- ========== waves, interactive (S3707 redraw, S4019 centred) ==========
+             The lanes follow the WAVE-PARTICLES contract v0.12 the watch app's WaveParticleBackground
+             renders, within the format's vector limits (no polyline primitive, so a sine lane stays
+             an arc chain, one arc per half wave):
+             - 4 lanes (contract rolls 3-6; the style slot carries 4 lane colours) bunched around the
+               field centre as section 4 places them (c = (w/2, h/2)): baselines 213/231/249/267, the
+               contract's 0.038 x 480 spacing, with per-lane phase 0.8 rad = 152 px steps
+               (0/152/305/457) - the offsets are what break the uniform-sea read;
+             - wavelength 1200 px (contract frequency 0.0105 rad per buffer pixel at half resolution);
+             - amplitude fraction 0.38 (contract rolls 0.28-0.48): a crest reaches baseline +/- 182 px,
+               so the lanes sweep the whole face and not only its lower half;
+             - one speed for every lane: 1200 px per 60 s - the app's 22.9 px/s rounded to a cycle
+               that divides the minute, so the fract sawtooth wraps without a seam;
+             - breathing: the app's amplitude envelope 0.40 + 0.60|sin(0.4t + 0.2 lane)| (65.4 s
+               period) drawn as a scaleY about the lane's baseline, 60 s cycle, lanes 0.2 rad apart;
+               the still digit freezes it at full amplitude with the same motion factor as the slide;
+             - stroke 5 px at alpha 0.30 (contract (0.28 + 0.16) x 0.70 = 0.308).
+             The app's accumulating trail wash has no vector equivalent. Each hump is the 125-degree
+             arc of the circle through its two crossings and its peak (radius 338.25 for half-period
+             600, amplitude 182), so neighbouring humps meet at matching tangents. -->
+        <Group name="waves" x="0" y="0" width="480" height="480" alpha="255">
+            <Variant mode="AMBIENT" target="alpha" value="0" />
+            <!-- Lane 1: baseline 213, phase 0 px. Arcs cover the 1680 px the slide can expose. -->
+            <Group name="wave_lane_1" x="0" y="0" width="1680" height="480" tintColor="#ff1b5e20" pivotY="0.44375">
+                <Transform target="tintColor" value="[REFERENCE.touristLane1]" />
+                <Transform target="x" value="(0 - 1200) * fract([SECOND_MILLISECOND] / 60) * (1 - clamp(floor((clamp([REFERENCE.touristStyleCode], 0, 102159) - floor(clamp([REFERENCE.touristStyleCode], 0, 102159) / 400) * 400) / 40), 0, 1))" />
+                <Transform target="scaleY" value="1 - 0.6 * (1 - abs(sin(3.14159 * [SECOND_MILLISECOND] / 60))) * (1 - clamp(floor((clamp([REFERENCE.touristStyleCode], 0, 102159) - floor(clamp([REFERENCE.touristStyleCode], 0, 102159) / 400) * 400) / 40), 0, 1))" />
+                <PartDraw x="0" y="0" width="1680" height="480">
+                    <Gyro x="[ACCELEROMETER_ANGLE_X] * 0.1" y="[ACCELEROMETER_ANGLE_Y] * 0.04" />
+                    <Arc centerX="300" centerY="369.25" width="676.5" height="676.5" startAngle="297.5" endAngle="62.5">
+                        <Stroke color="#4dffffff" thickness="5" cap="ROUND" />
+                    </Arc>
+                    <Arc centerX="900" centerY="56.75" width="676.5" height="676.5" startAngle="117.5" endAngle="242.5">
+                        <Stroke color="#4dffffff" thickness="5" cap="ROUND" />
+                    </Arc>
+                    <Arc centerX="1500" centerY="369.25" width="676.5" height="676.5" startAngle="297.5" endAngle="62.5">
+                        <Stroke color="#4dffffff" thickness="5" cap="ROUND" />
+                    </Arc>
+                </PartDraw>
+            </Group>
+            <!-- Lane 2: baseline 231, phase 152 px. -->
+            <Group name="wave_lane_2" x="0" y="0" width="1680" height="480" tintColor="#ff2e7d32" pivotY="0.48125">
+                <Transform target="tintColor" value="[REFERENCE.touristLane2]" />
+                <Transform target="x" value="(0 - 1200) * fract([SECOND_MILLISECOND] / 60) * (1 - clamp(floor((clamp([REFERENCE.touristStyleCode], 0, 102159) - floor(clamp([REFERENCE.touristStyleCode], 0, 102159) / 400) * 400) / 40), 0, 1))" />
+                <Transform target="scaleY" value="1 - 0.6 * (1 - abs(sin(3.14159 * [SECOND_MILLISECOND] / 60 + 0.2))) * (1 - clamp(floor((clamp([REFERENCE.touristStyleCode], 0, 102159) - floor(clamp([REFERENCE.touristStyleCode], 0, 102159) / 400) * 400) / 40), 0, 1))" />
+                <PartDraw x="0" y="0" width="1680" height="480">
+                    <Gyro x="[ACCELEROMETER_ANGLE_X] * 0.1" y="[ACCELEROMETER_ANGLE_Y] * 0.04" />
+                    <Arc centerX="-148" centerY="74.75" width="676.5" height="676.5" startAngle="117.5" endAngle="242.5">
+                        <Stroke color="#4dffffff" thickness="5" cap="ROUND" />
+                    </Arc>
+                    <Arc centerX="452" centerY="387.25" width="676.5" height="676.5" startAngle="297.5" endAngle="62.5">
+                        <Stroke color="#4dffffff" thickness="5" cap="ROUND" />
+                    </Arc>
+                    <Arc centerX="1052" centerY="74.75" width="676.5" height="676.5" startAngle="117.5" endAngle="242.5">
+                        <Stroke color="#4dffffff" thickness="5" cap="ROUND" />
+                    </Arc>
+                    <Arc centerX="1652" centerY="387.25" width="676.5" height="676.5" startAngle="297.5" endAngle="62.5">
+                        <Stroke color="#4dffffff" thickness="5" cap="ROUND" />
+                    </Arc>
+                </PartDraw>
+            </Group>
+            <!-- Lane 3: baseline 249, phase 305 px. -->
+            <Group name="wave_lane_3" x="0" y="0" width="1680" height="480" tintColor="#ff388e3c" pivotY="0.51875">
+                <Transform target="tintColor" value="[REFERENCE.touristLane3]" />
+                <Transform target="x" value="(0 - 1200) * fract([SECOND_MILLISECOND] / 60) * (1 - clamp(floor((clamp([REFERENCE.touristStyleCode], 0, 102159) - floor(clamp([REFERENCE.touristStyleCode], 0, 102159) / 400) * 400) / 40), 0, 1))" />
+                <Transform target="scaleY" value="1 - 0.6 * (1 - abs(sin(3.14159 * [SECOND_MILLISECOND] / 60 + 0.4))) * (1 - clamp(floor((clamp([REFERENCE.touristStyleCode], 0, 102159) - floor(clamp([REFERENCE.touristStyleCode], 0, 102159) / 400) * 400) / 40), 0, 1))" />
+                <PartDraw x="0" y="0" width="1680" height="480">
+                    <Gyro x="[ACCELEROMETER_ANGLE_X] * 0.1" y="[ACCELEROMETER_ANGLE_Y] * 0.04" />
+                    <Arc centerX="5" centerY="92.75" width="676.5" height="676.5" startAngle="117.5" endAngle="242.5">
+                        <Stroke color="#4dffffff" thickness="5" cap="ROUND" />
+                    </Arc>
+                    <Arc centerX="605" centerY="405.25" width="676.5" height="676.5" startAngle="297.5" endAngle="62.5">
+                        <Stroke color="#4dffffff" thickness="5" cap="ROUND" />
+                    </Arc>
+                    <Arc centerX="1205" centerY="92.75" width="676.5" height="676.5" startAngle="117.5" endAngle="242.5">
+                        <Stroke color="#4dffffff" thickness="5" cap="ROUND" />
+                    </Arc>
+                    <Arc centerX="1805" centerY="405.25" width="676.5" height="676.5" startAngle="297.5" endAngle="62.5">
+                        <Stroke color="#4dffffff" thickness="5" cap="ROUND" />
+                    </Arc>
+                </PartDraw>
+            </Group>
+            <!-- Lane 4: baseline 267, phase 457 px. -->
+            <Group name="wave_lane_4" x="0" y="0" width="1680" height="480" tintColor="#ff4caf50" pivotY="0.55625">
+                <Transform target="tintColor" value="[REFERENCE.touristLane4]" />
+                <Transform target="x" value="(0 - 1200) * fract([SECOND_MILLISECOND] / 60) * (1 - clamp(floor((clamp([REFERENCE.touristStyleCode], 0, 102159) - floor(clamp([REFERENCE.touristStyleCode], 0, 102159) / 400) * 400) / 40), 0, 1))" />
+                <Transform target="scaleY" value="1 - 0.6 * (1 - abs(sin(3.14159 * [SECOND_MILLISECOND] / 60 + 0.6))) * (1 - clamp(floor((clamp([REFERENCE.touristStyleCode], 0, 102159) - floor(clamp([REFERENCE.touristStyleCode], 0, 102159) / 400) * 400) / 40), 0, 1))" />
+                <PartDraw x="0" y="0" width="1680" height="480">
+                    <Gyro x="[ACCELEROMETER_ANGLE_X] * 0.1" y="[ACCELEROMETER_ANGLE_Y] * 0.04" />
+                    <Arc centerX="157" centerY="110.75" width="676.5" height="676.5" startAngle="117.5" endAngle="242.5">
+                        <Stroke color="#4dffffff" thickness="5" cap="ROUND" />
+                    </Arc>
+                    <Arc centerX="757" centerY="423.25" width="676.5" height="676.5" startAngle="297.5" endAngle="62.5">
+                        <Stroke color="#4dffffff" thickness="5" cap="ROUND" />
+                    </Arc>
+                    <Arc centerX="1357" centerY="110.75" width="676.5" height="676.5" startAngle="117.5" endAngle="242.5">
+                        <Stroke color="#4dffffff" thickness="5" cap="ROUND" />
+                    </Arc>
+                    <Arc centerX="1957" centerY="423.25" width="676.5" height="676.5" startAngle="297.5" endAngle="62.5">
+                        <Stroke color="#4dffffff" thickness="5" cap="ROUND" />
+                    </Arc>
+                </PartDraw>
+            </Group>
+        </Group>
+
+        <!-- ========== waves, ambient ========== -->
+        <!-- One lane, thin, static and dim: lane 3's geometry frozen at the envelope minimum
+             (amplitude 73 px) on its centred baseline 249, turned with the interactive lanes, so the
+             always-on frame is a still of the same sea the interactive face draws. The always-on
+             screen is held to 15% lit pixels averaged across the whole face, sampled roughly every
+             ten minutes for a full day, and every sample has to pass - so ambient gets an outline,
+             never a wash. -->
+        <Group name="waves_ambient" x="0" y="0" width="480" height="480" alpha="0">
+            <Variant mode="AMBIENT" target="alpha" value="255" />
+            <PartDraw x="0" y="0" width="480" height="480">
+                <Arc centerX="5" centerY="-331" width="1306" height="1306" startAngle="152.65" endAngle="207.35">
+                    <Stroke color="#ff2e7d32" thickness="2" cap="ROUND" />
+                </Arc>
+                <Arc centerX="605" centerY="829" width="1306" height="1306" startAngle="332.65" endAngle="27.35">
+                    <Stroke color="#ff2e7d32" thickness="2" cap="ROUND" />
+                </Arc>
+            </PartDraw>
+        </Group>
+
+        <!-- ========== particles (S3707 redraw, S4019 two-axis motion) ==========
+             Section 3.2 moves a particle along d with a jitter on both axes; the dots here drift
+             along d with the frame above and sway across it, so no layer travels on one straight
+             line. Far drifts 12 px/s and mid 24 px/s with the waves, near 8 px/s against them - the
+             contract's counter-drift, whose -0.35 factor makes it the slowest. Each layer also sways
+             +/-32 px across d on its own sine, with a period that divides the minute so the
+             SECOND_MILLISECOND wrap is seamless. A dot field cannot drift in a sawtooth without a
+             jump at the wrap, so every layer is a dot tile one 240 px drift period wide, copied at
+             +240 and +480, and 480 + 2 x the sway tall: the canvas covers the field in both axes
+             wherever the slide and the sway stand. Counts are the reduced profile's (rule 13: at
+             most 20 on screen - 10 per tile, two tiles across the face) and no dot is brighter
+             than the contract's settled particle opacity 0.49 (rule 16). Hidden entirely in
+             ambient: motion on an always-on screen costs power and reads as nothing, and every lit
+             particle spends part of the 15% budget. -->
+        <Group name="particles" x="0" y="0" width="480" height="480" alpha="255">
+            <Variant mode="AMBIENT" target="alpha" value="0" />
+            <!-- far layer: 12 px/s along d with the waves, sways across d every 30 s;
+                 each layer carries its own Gyro coefficient on purpose - one shared value would
+                 move the whole field as a single rigid sheet instead of a scatter with depth. -->
+            <PartDraw name="particles_far" x="0" y="0" width="720" height="544" tintColor="#ffa5d6a7">
+                <Transform target="tintColor" value="[REFERENCE.touristParticleFar]" />
+                <Transform target="x" value="(0 - 240) * fract([SECOND_MILLISECOND] / 20) * (1 - clamp(floor((clamp([REFERENCE.touristStyleCode], 0, 102159) - floor(clamp([REFERENCE.touristStyleCode], 0, 102159) / 400) * 400) / 40), 0, 1))" />
+                <Transform target="y" value="(0 - 32) + 32 * sin(6.28318 * [SECOND_MILLISECOND] / 30) * (1 - clamp(floor((clamp([REFERENCE.touristStyleCode], 0, 102159) - floor(clamp([REFERENCE.touristStyleCode], 0, 102159) / 400) * 400) / 40), 0, 1))" />
+                <Gyro x="[ACCELEROMETER_ANGLE_X] * 0.25" y="[ACCELEROMETER_ANGLE_Y] * 0.08" />
+                <Ellipse x="147.8" y="59.5" width="4" height="4">
+                    <Fill color="#52ffffff" />
+                </Ellipse>
+                <Ellipse x="30.3" y="195" width="4.5" height="4.5">
+                    <Fill color="#52ffffff" />
+                </Ellipse>
+                <Ellipse x="92.7" y="389.2" width="4.6" height="4.6">
+                    <Fill color="#52ffffff" />
+                </Ellipse>
+                <Ellipse x="118.5" y="461.2" width="4.8" height="4.8">
+                    <Fill color="#52ffffff" />
+                </Ellipse>
+                <Ellipse x="387.8" y="59.5" width="4" height="4">
+                    <Fill color="#52ffffff" />
+                </Ellipse>
+                <Ellipse x="270.3" y="195" width="4.5" height="4.5">
+                    <Fill color="#52ffffff" />
+                </Ellipse>
+                <Ellipse x="332.7" y="389.2" width="4.6" height="4.6">
+                    <Fill color="#52ffffff" />
+                </Ellipse>
+                <Ellipse x="358.5" y="461.2" width="4.8" height="4.8">
+                    <Fill color="#52ffffff" />
+                </Ellipse>
+                <Ellipse x="627.8" y="59.5" width="4" height="4">
+                    <Fill color="#52ffffff" />
+                </Ellipse>
+                <Ellipse x="510.3" y="195" width="4.5" height="4.5">
+                    <Fill color="#52ffffff" />
+                </Ellipse>
+                <Ellipse x="572.7" y="389.2" width="4.6" height="4.6">
+                    <Fill color="#52ffffff" />
+                </Ellipse>
+                <Ellipse x="598.5" y="461.2" width="4.8" height="4.8">
+                    <Fill color="#52ffffff" />
+                </Ellipse>
+            </PartDraw>
+            <!-- mid layer: 24 px/s along d with the waves, sways across d every 20 s;
+                 each layer carries its own Gyro coefficient on purpose - one shared value would
+                 move the whole field as a single rigid sheet instead of a scatter with depth. -->
+            <PartDraw name="particles_mid" x="0" y="0" width="720" height="544" tintColor="#ffc8e6c9">
+                <Transform target="tintColor" value="[REFERENCE.touristParticleMid]" />
+                <Transform target="x" value="(0 - 240) * fract([SECOND_MILLISECOND] / 10) * (1 - clamp(floor((clamp([REFERENCE.touristStyleCode], 0, 102159) - floor(clamp([REFERENCE.touristStyleCode], 0, 102159) / 400) * 400) / 40), 0, 1))" />
+                <Transform target="y" value="(0 - 32) + 32 * sin(6.28318 * [SECOND_MILLISECOND] / 20 + 1) * (1 - clamp(floor((clamp([REFERENCE.touristStyleCode], 0, 102159) - floor(clamp([REFERENCE.touristStyleCode], 0, 102159) / 400) * 400) / 40), 0, 1))" />
+                <Gyro x="[ACCELEROMETER_ANGLE_X] * 0.45" y="[ACCELEROMETER_ANGLE_Y] * 0.15" />
+                <Ellipse x="61.8" y="149.8" width="6.6" height="6.6">
+                    <Fill color="#6bffffff" />
+                </Ellipse>
+                <Ellipse x="22.4" y="340.8" width="6.8" height="6.8">
+                    <Fill color="#6bffffff" />
+                </Ellipse>
+                <Ellipse x="43.5" y="411.5" width="6.8" height="6.8">
+                    <Fill color="#6bffffff" />
+                </Ellipse>
+                <Ellipse x="301.8" y="149.8" width="6.6" height="6.6">
+                    <Fill color="#6bffffff" />
+                </Ellipse>
+                <Ellipse x="262.4" y="340.8" width="6.8" height="6.8">
+                    <Fill color="#6bffffff" />
+                </Ellipse>
+                <Ellipse x="283.5" y="411.5" width="6.8" height="6.8">
+                    <Fill color="#6bffffff" />
+                </Ellipse>
+                <Ellipse x="541.8" y="149.8" width="6.6" height="6.6">
+                    <Fill color="#6bffffff" />
+                </Ellipse>
+                <Ellipse x="502.4" y="340.8" width="6.8" height="6.8">
+                    <Fill color="#6bffffff" />
+                </Ellipse>
+                <Ellipse x="523.5" y="411.5" width="6.8" height="6.8">
+                    <Fill color="#6bffffff" />
+                </Ellipse>
+            </PartDraw>
+            <!-- near layer: 8 px/s along d against the waves, sways across d every 15 s;
+                 each layer carries its own Gyro coefficient on purpose - one shared value would
+                 move the whole field as a single rigid sheet instead of a scatter with depth. -->
+            <PartDraw name="particles_near" x="0" y="0" width="720" height="544" tintColor="#ffe8f5e9">
+                <Transform target="tintColor" value="[REFERENCE.touristParticleNear]" />
+                <Transform target="x" value="(0 - 240) + 240 * fract([SECOND_MILLISECOND] / 30) * (1 - clamp(floor((clamp([REFERENCE.touristStyleCode], 0, 102159) - floor(clamp([REFERENCE.touristStyleCode], 0, 102159) / 400) * 400) / 40), 0, 1))" />
+                <Transform target="y" value="(0 - 32) + 32 * sin(6.28318 * [SECOND_MILLISECOND] / 15 + 2) * (1 - clamp(floor((clamp([REFERENCE.touristStyleCode], 0, 102159) - floor(clamp([REFERENCE.touristStyleCode], 0, 102159) / 400) * 400) / 40), 0, 1))" />
+                <Gyro x="[ACCELEROMETER_ANGLE_X] * 0.7" y="[ACCELEROMETER_ANGLE_Y] * 0.24" />
+                <Ellipse x="182.3" y="35.6" width="8.3" height="8.3">
+                    <Fill color="#7dffffff" />
+                </Ellipse>
+                <Ellipse x="34.8" y="279.4" width="7.6" height="7.6">
+                    <Fill color="#7dffffff" />
+                </Ellipse>
+                <Ellipse x="109.5" y="377.8" width="9.7" height="9.7">
+                    <Fill color="#7dffffff" />
+                </Ellipse>
+                <Ellipse x="422.3" y="35.6" width="8.3" height="8.3">
+                    <Fill color="#7dffffff" />
+                </Ellipse>
+                <Ellipse x="274.8" y="279.4" width="7.6" height="7.6">
+                    <Fill color="#7dffffff" />
+                </Ellipse>
+                <Ellipse x="349.5" y="377.8" width="9.7" height="9.7">
+                    <Fill color="#7dffffff" />
+                </Ellipse>
+                <Ellipse x="662.3" y="35.6" width="8.3" height="8.3">
+                    <Fill color="#7dffffff" />
+                </Ellipse>
+                <Ellipse x="514.8" y="279.4" width="7.6" height="7.6">
+                    <Fill color="#7dffffff" />
+                </Ellipse>
+                <Ellipse x="589.5" y="377.8" width="9.7" height="9.7">
+                    <Fill color="#7dffffff" />
+                </Ellipse>
+            </PartDraw>
+        </Group>
+
+        </Group>
+
+        </Group>
+
+        <!-- ========== watch battery bar (S3764) ==========
+             The watch's own charge, top center above the clock and clear of the top pair slots
+             (their top edge is y=23; the bar sits at y=6..16). Length comes from the format's
+             built-in [BATTERY_PERCENT] source - no slot and no code (ADR-3) - scaled about the
+             fill's left edge so the bar grows from left to right. Color repeats the wear app's
+             reference bar (WearScreenScaffold BATTERY_HIGH_THRESHOLD 25 / BATTERY_LOW_THRESHOLD 10):
+             white above 25, amber #FFFFC107 at 25 and below, red #FFF44336 at 10 and below (ADR-2);
+             S4039: while [BATTERY_CHARGING_STATUS] is true the fill is green #FF4CAF50 at any percent
+             and the discharging thresholds sit in a nested Condition under the Default branch, so
+             the verdict never depends on branch order (a Condition takes the first true Compare).
+             The 90x10 track fits the 480x480 clip circle (farthest corner 238.3 px against the
+             240 px radius) and mirrors the reference bar's translucent dark track. Hidden in
+             ambient like every other secondary element: the always-on budget already holds the
+             dim clock, the date and the ambient wave outline, and [BATTERY_PERCENT] re-evaluates
+             only on a charge change, so nothing here adds wake-ups. -->
+        <Group name="watch_battery_bar" x="195" y="6" width="90" height="10" alpha="255">
+            <ScreenReader stringId="watch_battery_bar_reader"><Parameter expression="[BATTERY_PERCENT]" /></ScreenReader>
+            <Variant mode="AMBIENT" target="alpha" value="0" />
+            <PartDraw x="0" y="0" width="90" height="10">
+                <Rectangle x="0" y="0" width="90" height="10">
+                    <Fill color="#66000000" />
+                </Rectangle>
+            </PartDraw>
+            <Group name="watch_battery_fill" x="0" y="0" width="90" height="10" pivotX="0">
+                <Transform target="scaleX" value="[BATTERY_PERCENT] / 100" />
+                <Condition>
+                    <Expressions>
+                        <Expression name="charging"><![CDATA[[BATTERY_CHARGING_STATUS]]]></Expression>
+                    </Expressions>
+                    <Compare expression="charging">
+                        <PartDraw x="0" y="0" width="90" height="10">
+                            <Rectangle x="0" y="0" width="90" height="10">
+                                <Fill color="#FF4CAF50" />
+                            </Rectangle>
+                        </PartDraw>
+                    </Compare>
+                    <Default>
+                        <Condition>
+                            <Expressions>
+                                <Expression name="low"><![CDATA[[BATTERY_PERCENT] <= 10]]></Expression>
+                                <Expression name="mid"><![CDATA[[BATTERY_PERCENT] > 10 && [BATTERY_PERCENT] <= 25]]></Expression>
+                            </Expressions>
+                            <Compare expression="low">
+                                <PartDraw x="0" y="0" width="90" height="10">
+                                    <Rectangle x="0" y="0" width="90" height="10">
+                                        <Fill color="#FFF44336" />
+                                    </Rectangle>
+                                </PartDraw>
+                            </Compare>
+                            <Compare expression="mid">
+                                <PartDraw x="0" y="0" width="90" height="10">
+                                    <Rectangle x="0" y="0" width="90" height="10">
+                                        <Fill color="#FFFFC107" />
+                                    </Rectangle>
+                                </PartDraw>
+                            </Compare>
+                            <Default>
+                                <PartDraw x="0" y="0" width="90" height="10">
+                                    <Rectangle x="0" y="0" width="90" height="10">
+                                        <Fill color="#FFFFFFFF" />
+                                    </Rectangle>
+                                </PartDraw>
+                            </Default>
+                        </Condition>
+                    </Default>
+                </Condition>
+            </Group>
+            <!-- S4039: the charging contour sits outside the scaled fill, so it keeps its full width at
+                 any percent and marks the state without relying on color (green vs white). -->
+            <Condition>
+                <Expressions>
+                    <Expression name="charging"><![CDATA[[BATTERY_CHARGING_STATUS]]]></Expression>
+                </Expressions>
+                <Compare expression="charging">
+                    <PartDraw x="0" y="0" width="90" height="10">
+                        <Rectangle x="1" y="1" width="88" height="8">
+                            <Stroke color="#FFFFFFFF" thickness="2" />
+                        </Rectangle>
+                    </PartDraw>
+                </Compare>
+                <Default>
+                    <PartDraw x="0" y="0" width="1" height="1">
+                        <Rectangle x="0" y="0" width="1" height="1">
+                            <Fill color="#00000000" />
+                        </Rectangle>
+                    </PartDraw>
+                </Default>
+            </Condition>
+        </Group>
+
+        <!-- ========== time and date ========== -->
+        <!-- The group stops at y=302 and the bottom slot arc starts at y=304; the top slots end at
+             y=110, two pixels above the group's top edge at 112. Those two-pixel gaps are
+             deliberate: <Launch> fires on a tap anywhere inside this group, nothing in the format
+             documents how a tap is arbitrated between an overlapping Launch and a complication
+             slot, and the cheapest way not to depend on an undocumented rule is not to overlap.
+             S3799: the time is 1.2x the S1677/S3557 sizes. The group widened to 440 px so the widest
+             reading (monospace hh:mm:ss at 91 px, about 437 px) still fits; only its left and right
+             edges moved, so both two-pixel gaps above hold. -->
+        <Group name="dial_core" x="20" y="112" width="440" height="190">
+            <Launch target="com.sza.tourist/com.sza.tourist.wear.MainActivity" />
+
+            <!-- S3557: the interactive time follows the phone's clock gadget. Each branch draws white and
+                 the group tint turns it into the phone's dial colour - a TimeText Font ignores a colour
+                 Transform, a Group tint does not (research 03). The Default branch is the S1677 time,
+                 shown whenever no style arrived. -->
+            <Group name="dial_style" x="0" y="0" width="440" height="154" alpha="255" tintColor="#ffffffff">
+                <Variant mode="AMBIENT" target="alpha" value="0" />
+                <Transform target="tintColor" value="[REFERENCE.touristDialColor]" />
+                <Condition>
+                    <Expressions>
+                        <Expression name="style0"><![CDATA[[REFERENCE.touristStyleCode] >= 0 && [REFERENCE.touristStyleCode] - floor([REFERENCE.touristStyleCode] / 10) * 10 == 0]]></Expression>
+                        <Expression name="style1"><![CDATA[[REFERENCE.touristStyleCode] >= 0 && [REFERENCE.touristStyleCode] - floor([REFERENCE.touristStyleCode] / 10) * 10 == 1]]></Expression>
+                        <Expression name="style2"><![CDATA[[REFERENCE.touristStyleCode] >= 0 && [REFERENCE.touristStyleCode] - floor([REFERENCE.touristStyleCode] / 10) * 10 == 2]]></Expression>
+                        <Expression name="style3"><![CDATA[[REFERENCE.touristStyleCode] >= 0 && [REFERENCE.touristStyleCode] - floor([REFERENCE.touristStyleCode] / 10) * 10 == 3]]></Expression>
+                        <Expression name="style4"><![CDATA[[REFERENCE.touristStyleCode] >= 0 && [REFERENCE.touristStyleCode] - floor([REFERENCE.touristStyleCode] / 10) * 10 == 4]]></Expression>
+                        <Expression name="style5"><![CDATA[[REFERENCE.touristStyleCode] >= 0 && [REFERENCE.touristStyleCode] - floor([REFERENCE.touristStyleCode] / 10) * 10 == 5]]></Expression>
+                        <Expression name="style6"><![CDATA[[REFERENCE.touristStyleCode] >= 0 && [REFERENCE.touristStyleCode] - floor([REFERENCE.touristStyleCode] / 10) * 10 == 6]]></Expression>
+                        <Expression name="style7"><![CDATA[[REFERENCE.touristStyleCode] >= 0 && [REFERENCE.touristStyleCode] - floor([REFERENCE.touristStyleCode] / 10) * 10 == 7]]></Expression>
+                        <Expression name="style8"><![CDATA[[REFERENCE.touristStyleCode] >= 0 && [REFERENCE.touristStyleCode] - floor([REFERENCE.touristStyleCode] / 10) * 10 == 8]]></Expression>
+                        <Expression name="style9"><![CDATA[[REFERENCE.touristStyleCode] >= 0 && [REFERENCE.touristStyleCode] - floor([REFERENCE.touristStyleCode] / 10) * 10 == 9]]></Expression>
+                    </Expressions>
+                    <Compare expression="style0">
+                        <DigitalClock x="0" y="0" width="440" height="154">
+                            <TimeText format="hh:mm" hourFormat="SYNC_TO_DEVICE" align="CENTER" x="0" y="0" width="440" height="154">
+                                <Font family="SYNC_TO_DEVICE" size="142" weight="BOLD" slant="NORMAL" color="#ffffffff" />
+                            </TimeText>
+                        </DigitalClock>
+                    </Compare>
+                    <Compare expression="style1">
+                        <DigitalClock x="0" y="0" width="440" height="154">
+                            <TimeText format="hh:mm:ss" hourFormat="SYNC_TO_DEVICE" align="CENTER" x="0" y="0" width="440" height="154">
+                                <Font family="SYNC_TO_DEVICE" size="101" weight="BOLD" slant="NORMAL" color="#ffffffff" />
+                            </TimeText>
+                        </DigitalClock>
+                    </Compare>
+                    <Compare expression="style2">
+                        <DigitalClock x="0" y="0" width="440" height="154">
+                            <TimeText format="hh:mm" hourFormat="SYNC_TO_DEVICE" align="CENTER" x="0" y="0" width="440" height="154">
+                                <Font family="tourist_clock_condensed" size="142" weight="BOLD" slant="NORMAL" color="#ffffffff" />
+                            </TimeText>
+                        </DigitalClock>
+                    </Compare>
+                    <Compare expression="style3">
+                        <DigitalClock x="0" y="0" width="440" height="154">
+                            <TimeText format="hh:mm:ss" hourFormat="SYNC_TO_DEVICE" align="CENTER" x="0" y="0" width="440" height="154">
+                                <Font family="tourist_clock_condensed" size="115" weight="BOLD" slant="NORMAL" color="#ffffffff" />
+                            </TimeText>
+                        </DigitalClock>
+                    </Compare>
+                    <Compare expression="style4">
+                        <DigitalClock x="0" y="0" width="440" height="154">
+                            <TimeText format="hh:mm" hourFormat="SYNC_TO_DEVICE" align="CENTER" x="0" y="0" width="440" height="154">
+                                <Font family="tourist_clock_serif" size="142" weight="BOLD" slant="NORMAL" color="#ffffffff" />
+                            </TimeText>
+                        </DigitalClock>
+                    </Compare>
+                    <Compare expression="style5">
+                        <DigitalClock x="0" y="0" width="440" height="154">
+                            <TimeText format="hh:mm:ss" hourFormat="SYNC_TO_DEVICE" align="CENTER" x="0" y="0" width="440" height="154">
+                                <Font family="tourist_clock_serif" size="101" weight="BOLD" slant="NORMAL" color="#ffffffff" />
+                            </TimeText>
+                        </DigitalClock>
+                    </Compare>
+                    <Compare expression="style6">
+                        <DigitalClock x="0" y="0" width="440" height="154">
+                            <TimeText format="hh:mm" hourFormat="SYNC_TO_DEVICE" align="CENTER" x="0" y="0" width="440" height="154">
+                                <Font family="tourist_clock_mono" size="134" weight="BOLD" slant="NORMAL" color="#ffffffff" />
+                            </TimeText>
+                        </DigitalClock>
+                    </Compare>
+                    <Compare expression="style7">
+                        <DigitalClock x="0" y="0" width="440" height="154">
+                            <TimeText format="hh:mm:ss" hourFormat="SYNC_TO_DEVICE" align="CENTER" x="0" y="0" width="440" height="154">
+                                <Font family="tourist_clock_mono" size="91" weight="BOLD" slant="NORMAL" color="#ffffffff" />
+                            </TimeText>
+                        </DigitalClock>
+                    </Compare>
+                    <Compare expression="style8">
+                        <DigitalClock x="0" y="0" width="440" height="154">
+                            <TimeText format="hh:mm" hourFormat="SYNC_TO_DEVICE" align="CENTER" x="0" y="0" width="440" height="154">
+                                <Font family="tourist_clock_casual" size="142" weight="BOLD" slant="NORMAL" color="#ffffffff" />
+                            </TimeText>
+                        </DigitalClock>
+                    </Compare>
+                    <Compare expression="style9">
+                        <DigitalClock x="0" y="0" width="440" height="154">
+                            <TimeText format="hh:mm:ss" hourFormat="SYNC_TO_DEVICE" align="CENTER" x="0" y="0" width="440" height="154">
+                                <Font family="tourist_clock_casual" size="101" weight="BOLD" slant="NORMAL" color="#ffffffff" />
+                            </TimeText>
+                        </DigitalClock>
+                    </Compare>
+                    <Default>
+                        <DigitalClock x="0" y="0" width="440" height="154">
+                            <TimeText format="hh:mm" hourFormat="SYNC_TO_DEVICE" align="CENTER" x="0" y="0" width="440" height="154">
+                                <Font family="SYNC_TO_DEVICE" size="142" weight="MEDIUM" slant="NORMAL" color="#ffffffff" />
+                            </TimeText>
+                        </DigitalClock>
+                    </Default>
+                </Condition>
+            </Group>
+
+            <DigitalClock x="0" y="0" width="440" height="154">
+                <!-- The ambient twin of the same reading: thinner weight and a dimmer grey, swapped
+                     in by alpha rather than by restyling one element, which is the idiom the format
+                     documents for an ambient appearance change. -->
+                <TimeText format="hh:mm" hourFormat="SYNC_TO_DEVICE" align="CENTER" x="0" y="0" width="440" height="154" alpha="0">
+                    <Variant mode="AMBIENT" target="alpha" value="255" />
+                    <Font family="SYNC_TO_DEVICE" size="142" weight="THIN" slant="NORMAL" color="#ffb9c6d6" />
                 </TimeText>
             </DigitalClock>
-        </PartText>
 
-        <PartText x="0" y="318" width="480" height="48">
-            <Text align="CENTER" ellipsis="TRUE">
-                <Font family="SYNC_TO_DEVICE" size="30" weight="MEDIUM" slant="NORMAL" color="#ff8fd8a8">
-                    <Template><![CDATA[TOURIST]]></Template>
-                </Font>
-            </Text>
-        </PartText>
+            <PartText x="0" y="154" width="440" height="36" alpha="255">
+                <Variant mode="AMBIENT" target="alpha" value="140" />
+                <Text align="CENTER" ellipsis="TRUE">
+                    <Font family="SYNC_TO_DEVICE" size="30" weight="MEDIUM" slant="NORMAL" color="#ffd2dbe6">
+                        <Template><![CDATA[%s %s %s]]><Parameter expression="[DAY_OF_WEEK_S]" /><Parameter expression="[DAY]" /><Parameter expression="[MONTH_S]" /></Template>
+                    </Font>
+                </Text>
+            </PartText>
+        </Group>
+
+        <!-- ========== phone battery bar (S3764) ==========
+             The paired phone's charge, bottom center below the icon arc (the bottom slots' lowest
+             edge is y=433; the bar sits at y=446..456). A plain scene element - no slot - fed by the
+             style slot's multiplexed code: the phone band decodes as
+             floor(clamp([REFERENCE.touristStyleCode], 0, 102159) / 400): 0..100 is a discharging percent,
+             101..201 a charging one (S4039, percent = band - 101), 202..254 is reserved and 255 is the
+             stale sentinel. The fill's scaleX folds every band above 201 back to zero, so a stale,
+             reserved or never-received report renders the bare track (strategic §3.3's recorded
+             default) with no contour; the color Condition never shows, then, because the fill has
+             no width. Threshold colors
+             follow the reference bar (ADR-2) and the 140x10 track fits the clip circle (farthest
+             corner 227.1 px against the 240 px radius). Hidden in ambient like the watch bar above. -->
+        <Group name="phone_battery_bar" x="170" y="446" width="140" height="10" alpha="255">
+            <ScreenReader stringId="phone_battery_bar_reader"><Parameter expression="(floor(clamp([REFERENCE.touristStyleCode], 0, 102159) / 400) - 101 * clamp(floor(floor(clamp([REFERENCE.touristStyleCode], 0, 102159) / 400) / 101), 0, 1)) * (1 - clamp(floor(floor(clamp([REFERENCE.touristStyleCode], 0, 102159) / 400) / 202), 0, 1)) + 255 * clamp(floor(floor(clamp([REFERENCE.touristStyleCode], 0, 102159) / 400) / 202), 0, 1)" /></ScreenReader>
+            <Variant mode="AMBIENT" target="alpha" value="0" />
+            <PartDraw x="0" y="0" width="140" height="10">
+                <Rectangle x="0" y="0" width="140" height="10">
+                    <Fill color="#66000000" />
+                </Rectangle>
+            </PartDraw>
+            <Group name="phone_battery_fill" x="0" y="0" width="140" height="10" pivotX="0">
+                <Transform target="scaleX" value="(floor(clamp([REFERENCE.touristStyleCode], 0, 102159) / 400) - 101 * clamp(floor(floor(clamp([REFERENCE.touristStyleCode], 0, 102159) / 400) / 101), 0, 1)) / 100 * (1 - clamp(floor(floor(clamp([REFERENCE.touristStyleCode], 0, 102159) / 400) / 202), 0, 1))" />
+                <Condition>
+                    <Expressions>
+                        <Expression name="charging"><![CDATA[floor(clamp([REFERENCE.touristStyleCode], 0, 102159) / 400) >= 101 && floor(clamp([REFERENCE.touristStyleCode], 0, 102159) / 400) <= 201]]></Expression>
+                    </Expressions>
+                    <Compare expression="charging">
+                        <PartDraw x="0" y="0" width="140" height="10">
+                            <Rectangle x="0" y="0" width="140" height="10">
+                                <Fill color="#FF4CAF50" />
+                            </Rectangle>
+                        </PartDraw>
+                    </Compare>
+                    <Default>
+                        <Condition>
+                            <Expressions>
+                                <Expression name="low"><![CDATA[floor(clamp([REFERENCE.touristStyleCode], 0, 102159) / 400) <= 10]]></Expression>
+                                <Expression name="mid"><![CDATA[floor(clamp([REFERENCE.touristStyleCode], 0, 102159) / 400) > 10 && floor(clamp([REFERENCE.touristStyleCode], 0, 102159) / 400) <= 25]]></Expression>
+                            </Expressions>
+                            <Compare expression="low">
+                                <PartDraw x="0" y="0" width="140" height="10">
+                                    <Rectangle x="0" y="0" width="140" height="10">
+                                        <Fill color="#FFF44336" />
+                                    </Rectangle>
+                                </PartDraw>
+                            </Compare>
+                            <Compare expression="mid">
+                                <PartDraw x="0" y="0" width="140" height="10">
+                                    <Rectangle x="0" y="0" width="140" height="10">
+                                        <Fill color="#FFFFC107" />
+                                    </Rectangle>
+                                </PartDraw>
+                            </Compare>
+                            <Default>
+                                <PartDraw x="0" y="0" width="140" height="10">
+                                    <Rectangle x="0" y="0" width="140" height="10">
+                                        <Fill color="#FFFFFFFF" />
+                                    </Rectangle>
+                                </PartDraw>
+                            </Default>
+                        </Condition>
+                    </Default>
+                </Condition>
+            </Group>
+            <!-- S4039: contour of a fresh charging report, outside the scaled fill; stale and reserved
+                 bands (above 201) never match, so they keep the bare track. -->
+            <Condition>
+                <Expressions>
+                    <Expression name="charging"><![CDATA[floor(clamp([REFERENCE.touristStyleCode], 0, 102159) / 400) >= 101 && floor(clamp([REFERENCE.touristStyleCode], 0, 102159) / 400) <= 201]]></Expression>
+                </Expressions>
+                <Compare expression="charging">
+                    <PartDraw x="0" y="0" width="140" height="10">
+                        <Rectangle x="1" y="1" width="138" height="8">
+                            <Stroke color="#FFFFFFFF" thickness="2" />
+                        </Rectangle>
+                    </PartDraw>
+                </Compare>
+                <Default>
+                    <PartDraw x="0" y="0" width="1" height="1">
+                        <Rectangle x="0" y="0" width="1" height="1">
+                            <Fill color="#00000000" />
+                        </Rectangle>
+                    </PartDraw>
+                </Default>
+            </Condition>
+        </Group>
+
+        <!-- ========== complication slots ==========
+             Six customizable buttons, at the format ceiling of eight - the other two are the hidden
+             style and photo service slots above. Each of the bottom four carries a primaryProvider
+             naming its own slot service in the wear module, written from the .debug application id
+             of the watch app, and a secondaryProvider naming the same component under the RELEASE
+             application id (S4022). The watch tries the primary first and falls back to the
+             secondary, so one store face serves a release watch app and a debug one alike; neither
+             id alone would do, because a slot bound to a package that is not installed sits empty.
+             The debug id goes first because a watch can carry both apps: the store build installed
+             beside the owner's noLegal debug one has no slot services, so release-first left the
+             owner's slots bound to a package that cannot serve them.
+             The same pair sits on the style, photo and screen-off service slots. The one thing that
+             cannot follow is the <Launch> on the dial group: its target has no fallback, so on a
+             watch that carries only the debug app the centre tap opens nothing.
+
+             S3763: the buttons are 87 px - 1.5x the original 58 - because the icon and value were
+             hard to read, and the outer pair moved outward along its arc direction so the larger
+             circles keep the two-pixel gap to the dial's Launch group. An unbound button draws
+             nothing at all: the guide rings are gone, every slot still lists EMPTY so a wearer's
+             own "empty" choice stays valid, and slots 1-3 now fall back to EMPTY like slot 4. The
+             S3548 system providers (steps, battery, unread count) showed data that nobody ever
+             bound on a Play build, which is exactly what the owner asked to stop; S3548's premise
+             is gone with the rings - an empty slot is invisible now, not unfinished.
+
+             S3558: every bottom slot's default provider is its own WearFaceSlotN service, which
+             serves the option the wearer picked for that position in the phone companion - a watch
+             section, a watch program, app data or a system shortcut. One service per slot because a
+             request does not say which slot asks. The slots stay customizable, so the system editor
+             can still put steps or heart rate there. The answer is always SHORT_TEXT with an icon:
+             a shortcut sends an empty text and shows the icon alone, a value shows both.
+
+             The top-left slot (S3763) has no default provider at all - no per-slot service exists for
+             it, so nothing is bound out of the box and the editor is the only binder: the wear
+             module's stand-alone providers (favourites, now playing, last resource) and every
+             system provider appear in the picker. Hidden in ambient like the bottom four, per the
+             ambient pixel budget.
+
+             S3799: icon and value draw white inside a group tinted by the phone's dial colour, the
+             dial_style idiom, so the buttons repeat the digits' colour; the dark backdrop stays out
+             of the tint and slot 4's full-colour SMALL_IMAGE is never tinted. A shortcut answers an
+             empty text, so the SHORT_TEXT icon drops by 12 px to the button centre whenever
+             textLength([COMPLICATION.TEXT]) is 0 instead of floating above an empty value line.
+
+             S4017: every icon box sits on whole pixels, one pixel wider than the design size so its
+             centre still lands on the button's 43.5. The renderer reads a fractional x as 0: measured
+             on the Wear emulator, a box at x=25.5 drew 25 px left of its button while the value line
+             under it stayed centred, and a wrapping Group at x=25.5 lost its x the same way. -->
+
+        <ComplicationSlot x="48" y="304" width="87" height="87" slotId="1" displayName="slot_outer_left_label" supportedTypes="SHORT_TEXT MONOCHROMATIC_IMAGE EMPTY">
+            <Variant mode="AMBIENT" target="alpha" value="0" />
+            <DefaultProviderPolicy defaultSystemProvider="EMPTY" defaultSystemProviderType="EMPTY" />
+            <BoundingOval x="0" y="0" width="87" height="87" outlinePadding="2.0" />
+            <Complication type="SHORT_TEXT">
+                <PartDraw x="0" y="0" width="87" height="87">
+                    <Ellipse x="0" y="0" width="87" height="87">
+                        <Fill color="#e605070c" />
+                    </Ellipse>
+                </PartDraw>
+                <Group name="slot_content_tint" x="0" y="0" width="87" height="87" tintColor="#ffffffff">
+                    <Transform target="tintColor" value="[REFERENCE.touristDialColor]" />
+                    <PartImage x="25" y="13" width="37" height="37">
+                        <Transform target="y" value="13 + 12 * (1 - clamp(textLength([COMPLICATION.TEXT]), 0, 1))" />
+                        <Image resource="[COMPLICATION.MONOCHROMATIC_IMAGE]" />
+                    </PartImage>
+                    <PartText x="6" y="48" width="75" height="27">
+                        <Text align="CENTER" ellipsis="TRUE">
+                            <Font family="SYNC_TO_DEVICE" size="21" weight="MEDIUM" slant="NORMAL" color="#ffffffff">
+                                <Template><![CDATA[%s]]><Parameter expression="[COMPLICATION.TEXT]" /></Template>
+                            </Font>
+                        </Text>
+                    </PartText>
+                </Group>
+            </Complication>
+            <Complication type="MONOCHROMATIC_IMAGE">
+                <PartDraw x="0" y="0" width="87" height="87">
+                    <Ellipse x="0" y="0" width="87" height="87">
+                        <Fill color="#e605070c" />
+                    </Ellipse>
+                </PartDraw>
+                <Group name="slot_content_tint" x="0" y="0" width="87" height="87" tintColor="#ffffffff">
+                    <Transform target="tintColor" value="[REFERENCE.touristDialColor]" />
+                    <PartImage x="22" y="22" width="43" height="43">
+                        <Image resource="[COMPLICATION.MONOCHROMATIC_IMAGE]" />
+                    </PartImage>
+                </Group>
+            </Complication>
+        </ComplicationSlot>
+
+        <ComplicationSlot x="148" y="346" width="87" height="87" slotId="2" displayName="slot_inner_left_label" supportedTypes="SHORT_TEXT EMPTY">
+            <Variant mode="AMBIENT" target="alpha" value="0" />
+            <DefaultProviderPolicy defaultSystemProvider="EMPTY" defaultSystemProviderType="EMPTY" />
+            <BoundingOval x="0" y="0" width="87" height="87" outlinePadding="2.0" />
+            <Complication type="SHORT_TEXT">
+                <PartDraw x="0" y="0" width="87" height="87">
+                    <Ellipse x="0" y="0" width="87" height="87">
+                        <Fill color="#e605070c" />
+                    </Ellipse>
+                </PartDraw>
+                <Group name="slot_content_tint" x="0" y="0" width="87" height="87" tintColor="#ffffffff">
+                    <Transform target="tintColor" value="[REFERENCE.touristDialColor]" />
+                    <PartImage x="25" y="13" width="37" height="37">
+                        <Transform target="y" value="13 + 12 * (1 - clamp(textLength([COMPLICATION.TEXT]), 0, 1))" />
+                        <Image resource="[COMPLICATION.MONOCHROMATIC_IMAGE]" />
+                    </PartImage>
+                    <PartText x="6" y="48" width="75" height="27">
+                        <Text align="CENTER" ellipsis="TRUE">
+                            <Font family="SYNC_TO_DEVICE" size="21" weight="MEDIUM" slant="NORMAL" color="#ffffffff">
+                                <Template><![CDATA[%s]]><Parameter expression="[COMPLICATION.TEXT]" /></Template>
+                            </Font>
+                        </Text>
+                    </PartText>
+                </Group>
+            </Complication>
+        </ComplicationSlot>
+
+        <ComplicationSlot x="245" y="346" width="87" height="87" slotId="3" displayName="slot_inner_right_label" supportedTypes="SHORT_TEXT EMPTY">
+            <Variant mode="AMBIENT" target="alpha" value="0" />
+            <DefaultProviderPolicy defaultSystemProvider="EMPTY" defaultSystemProviderType="EMPTY" />
+            <BoundingOval x="0" y="0" width="87" height="87" outlinePadding="2.0" />
+            <Complication type="SHORT_TEXT">
+                <PartDraw x="0" y="0" width="87" height="87">
+                    <Ellipse x="0" y="0" width="87" height="87">
+                        <Fill color="#e605070c" />
+                    </Ellipse>
+                </PartDraw>
+                <Group name="slot_content_tint" x="0" y="0" width="87" height="87" tintColor="#ffffffff">
+                    <Transform target="tintColor" value="[REFERENCE.touristDialColor]" />
+                    <PartImage x="25" y="13" width="37" height="37">
+                        <Transform target="y" value="13 + 12 * (1 - clamp(textLength([COMPLICATION.TEXT]), 0, 1))" />
+                        <Image resource="[COMPLICATION.MONOCHROMATIC_IMAGE]" />
+                    </PartImage>
+                    <PartText x="6" y="48" width="75" height="27">
+                        <Text align="CENTER" ellipsis="TRUE">
+                            <Font family="SYNC_TO_DEVICE" size="21" weight="MEDIUM" slant="NORMAL" color="#ffffffff">
+                                <Template><![CDATA[%s]]><Parameter expression="[COMPLICATION.TEXT]" /></Template>
+                            </Font>
+                        </Text>
+                    </PartText>
+                </Group>
+            </Complication>
+        </ComplicationSlot>
+
+        <ComplicationSlot x="345" y="304" width="87" height="87" slotId="4" displayName="slot_outer_right_label" supportedTypes="SMALL_IMAGE MONOCHROMATIC_IMAGE SHORT_TEXT EMPTY">
+            <Variant mode="AMBIENT" target="alpha" value="0" />
+            <DefaultProviderPolicy defaultSystemProvider="EMPTY" defaultSystemProviderType="EMPTY" />
+            <BoundingOval x="0" y="0" width="87" height="87" outlinePadding="2.0" />
+            <Complication type="SMALL_IMAGE">
+                <PartDraw x="0" y="0" width="87" height="87">
+                    <Ellipse x="0" y="0" width="87" height="87">
+                        <Fill color="#e605070c" />
+                    </Ellipse>
+                </PartDraw>
+                <PartImage x="16" y="16" width="55" height="55">
+                    <Image resource="[COMPLICATION.SMALL_IMAGE]" />
+                </PartImage>
+            </Complication>
+            <Complication type="MONOCHROMATIC_IMAGE">
+                <PartDraw x="0" y="0" width="87" height="87">
+                    <Ellipse x="0" y="0" width="87" height="87">
+                        <Fill color="#e605070c" />
+                    </Ellipse>
+                </PartDraw>
+                <Group name="slot_content_tint" x="0" y="0" width="87" height="87" tintColor="#ffffffff">
+                    <Transform target="tintColor" value="[REFERENCE.touristDialColor]" />
+                    <PartImage x="22" y="22" width="43" height="43">
+                        <Image resource="[COMPLICATION.MONOCHROMATIC_IMAGE]" />
+                    </PartImage>
+                </Group>
+            </Complication>
+            <Complication type="SHORT_TEXT">
+                <PartDraw x="0" y="0" width="87" height="87">
+                    <Ellipse x="0" y="0" width="87" height="87">
+                        <Fill color="#e605070c" />
+                    </Ellipse>
+                </PartDraw>
+                <Group name="slot_content_tint" x="0" y="0" width="87" height="87" tintColor="#ffffffff">
+                    <Transform target="tintColor" value="[REFERENCE.touristDialColor]" />
+                    <PartImage x="25" y="13" width="37" height="37">
+                        <Transform target="y" value="13 + 12 * (1 - clamp(textLength([COMPLICATION.TEXT]), 0, 1))" />
+                        <Image resource="[COMPLICATION.MONOCHROMATIC_IMAGE]" />
+                    </PartImage>
+                    <PartText x="6" y="48" width="75" height="27">
+                        <Text align="CENTER" ellipsis="TRUE">
+                            <Font family="SYNC_TO_DEVICE" size="21" weight="MEDIUM" slant="NORMAL" color="#ffffffff">
+                                <Template><![CDATA[%s]]><Parameter expression="[COMPLICATION.TEXT]" /></Template>
+                            </Font>
+                        </Text>
+                    </PartText>
+                </Group>
+            </Complication>
+        </ComplicationSlot>
+
+        <!-- S3763: the top pair. Same 87 px button, mirrored about the dial's vertical centre, kept
+             two pixels clear of the dial's Launch group (bottom edge y=110 against the group's
+             y=112) and fully inside the 480x480 clip circle (farthest point 237 px from the face
+             centre against the 240 px radius). -->
+        <ComplicationSlot x="111" y="23" width="87" height="87" slotId="7" displayName="slot_top_left_label" supportedTypes="SHORT_TEXT MONOCHROMATIC_IMAGE EMPTY">
+            <Variant mode="AMBIENT" target="alpha" value="0" />
+            <DefaultProviderPolicy defaultSystemProvider="EMPTY" defaultSystemProviderType="EMPTY" />
+            <BoundingOval x="0" y="0" width="87" height="87" outlinePadding="2.0" />
+            <Complication type="SHORT_TEXT">
+                <PartDraw x="0" y="0" width="87" height="87">
+                    <Ellipse x="0" y="0" width="87" height="87">
+                        <Fill color="#e605070c" />
+                    </Ellipse>
+                </PartDraw>
+                <Group name="slot_content_tint" x="0" y="0" width="87" height="87" tintColor="#ffffffff">
+                    <Transform target="tintColor" value="[REFERENCE.touristDialColor]" />
+                    <PartImage x="25" y="13" width="37" height="37">
+                        <Transform target="y" value="13 + 12 * (1 - clamp(textLength([COMPLICATION.TEXT]), 0, 1))" />
+                        <Image resource="[COMPLICATION.MONOCHROMATIC_IMAGE]" />
+                    </PartImage>
+                    <PartText x="6" y="48" width="75" height="27">
+                        <Text align="CENTER" ellipsis="TRUE">
+                            <Font family="SYNC_TO_DEVICE" size="21" weight="MEDIUM" slant="NORMAL" color="#ffffffff">
+                                <Template><![CDATA[%s]]><Parameter expression="[COMPLICATION.TEXT]" /></Template>
+                            </Font>
+                        </Text>
+                    </PartText>
+                </Group>
+            </Complication>
+            <Complication type="MONOCHROMATIC_IMAGE">
+                <PartDraw x="0" y="0" width="87" height="87">
+                    <Ellipse x="0" y="0" width="87" height="87">
+                        <Fill color="#e605070c" />
+                    </Ellipse>
+                </PartDraw>
+                <Group name="slot_content_tint" x="0" y="0" width="87" height="87" tintColor="#ffffffff">
+                    <Transform target="tintColor" value="[REFERENCE.touristDialColor]" />
+                    <PartImage x="22" y="22" width="43" height="43">
+                        <Image resource="[COMPLICATION.MONOCHROMATIC_IMAGE]" />
+                    </PartImage>
+                </Group>
+            </Complication>
+        </ComplicationSlot>
+
+        <!-- S4018: the top-right button defaults to the watch app's screen-off provider, a glyph whose
+             tap opens the app under its dark sheet. Release component, as for the bottom four; both watch
+             flavors ship the provider since S4029. The policy type stays MONOCHROMATIC_IMAGE, the WFF
+             name; the provider's manifest must list it under its legacy tag ICON, or the platform
+             rejects the policy and the slot stays empty (S4018 sweep, 2026-10-03). -->
+        <ComplicationSlot x="282" y="23" width="87" height="87" slotId="8" displayName="slot_top_right_label" supportedTypes="SHORT_TEXT MONOCHROMATIC_IMAGE EMPTY">
+            <Variant mode="AMBIENT" target="alpha" value="0" />
+            <DefaultProviderPolicy defaultSystemProvider="EMPTY" defaultSystemProviderType="EMPTY" />
+            <BoundingOval x="0" y="0" width="87" height="87" outlinePadding="2.0" />
+            <Complication type="SHORT_TEXT">
+                <PartDraw x="0" y="0" width="87" height="87">
+                    <Ellipse x="0" y="0" width="87" height="87">
+                        <Fill color="#e605070c" />
+                    </Ellipse>
+                </PartDraw>
+                <Group name="slot_content_tint" x="0" y="0" width="87" height="87" tintColor="#ffffffff">
+                    <Transform target="tintColor" value="[REFERENCE.touristDialColor]" />
+                    <PartImage x="25" y="13" width="37" height="37">
+                        <Transform target="y" value="13 + 12 * (1 - clamp(textLength([COMPLICATION.TEXT]), 0, 1))" />
+                        <Image resource="[COMPLICATION.MONOCHROMATIC_IMAGE]" />
+                    </PartImage>
+                    <PartText x="6" y="48" width="75" height="27">
+                        <Text align="CENTER" ellipsis="TRUE">
+                            <Font family="SYNC_TO_DEVICE" size="21" weight="MEDIUM" slant="NORMAL" color="#ffffffff">
+                                <Template><![CDATA[%s]]><Parameter expression="[COMPLICATION.TEXT]" /></Template>
+                            </Font>
+                        </Text>
+                    </PartText>
+                </Group>
+            </Complication>
+            <Complication type="MONOCHROMATIC_IMAGE">
+                <PartDraw x="0" y="0" width="87" height="87">
+                    <Ellipse x="0" y="0" width="87" height="87">
+                        <Fill color="#e605070c" />
+                    </Ellipse>
+                </PartDraw>
+                <Group name="slot_content_tint" x="0" y="0" width="87" height="87" tintColor="#ffffffff">
+                    <Transform target="tintColor" value="[REFERENCE.touristDialColor]" />
+                    <PartImage x="22" y="22" width="43" height="43">
+                        <Image resource="[COMPLICATION.MONOCHROMATIC_IMAGE]" />
+                    </PartImage>
+                </Group>
+            </Complication>
+        </ComplicationSlot>
 
     </Scene>
+
 </WatchFace>

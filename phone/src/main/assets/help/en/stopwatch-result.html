@@ -1,0 +1,124 @@
+<!doctype html>
+<html lang="en" dir="ltr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="referrer" content="no-referrer">
+<title>Help - Stopwatch result</title>
+<script>(function(){try{var q=new URLSearchParams(location.search).get("theme");var t=(q==="light"||q==="dark")?q:(matchMedia("(prefers-color-scheme: light)").matches?"light":"dark");document.documentElement.setAttribute("data-theme",t);}catch(e){}})();</script>
+<link rel="stylesheet" href="../sza-kit.css">
+<link rel="stylesheet" href="../help.css">
+</head>
+<body class="help">
+<main class="container">
+<nav class="help-crumbs" aria-label="Help index">
+  <a href="index.html">Help index</a><span class="sep" aria-hidden="true">/</span><span>Stopwatch result</span>
+</nav>
+<header class="hero">
+  <p class="kicker">Window help</p>
+  <h1>Stopwatch result</h1>
+  <p class="lead">This window opens from the stopwatch screen when you press <b>Result</b>. Add a description and a note if you like, check the preview, then save the text to a file or share it; <b>Cancel</b> or Back returns to the stopwatch.</p>
+</header>
+<figure class="shot">
+  <div class="frame">
+    <img class="on-dark" src="img/stopwatch-result-dark.jpg" width="540" height="1200" alt="The Stopwatch result window over the stopwatch: the fields Description and Note, the Preview text with the times, the buttons Cancel and Save to file, the Share icon button and the help button in the title.">
+    <img class="on-light" src="img/stopwatch-result-light.jpg" width="540" height="1200" alt="">
+      <a class="pin" style="--x:81.61%;--y:41.06%" href="#e-description" aria-label="1, Description">1</a>
+      <a class="pin" style="--x:81.61%;--y:48.23%" href="#e-note" aria-label="2, Note">2</a>
+      <a class="pin" style="--x:81.61%;--y:59.9%" href="#e-preview" aria-label="3, Preview">3</a>
+      <a class="pin" style="--x:47.04%;--y:68.5%" href="#e-save" aria-label="4, Save to file">4</a>
+      <a class="pin" style="--x:72.08%;--y:68.5%" href="#e-send" aria-label="5, Share">5</a>
+      <a class="pin" style="--x:84.72%;--y:33.75%" href="#e-help" aria-label="6, Help (F1)">6</a>
+  </div>
+  <figcaption>Demo content. Select a number to read about that part of the window.</figcaption>
+</figure>
+<h2>In this order</h2>
+<ol class="order">
+  <li>Type a description <a class="ref" href="#e-description">1</a> and, if you want, a note <a class="ref" href="#e-note">2</a>. Both are optional, and an empty field is left out of the text.</li>
+  <li>Read the preview <a class="ref" href="#e-preview">3</a>. It is the text that will be saved or shared, so correct the fields above until it reads as you want.</li>
+  <li>Press <a class="ref" href="#e-save">4</a> to write the text into a file in your Downloads folder, or <a class="ref" href="#e-send">5</a> to hand it to another app through the system share sheet.</li>
+  <li>Press <b>Cancel</b>, Back or <kbd>Esc</kbd> to close the window without saving or sharing; the stopwatch stays as it was.</li>
+</ol>
+<h2>The elements</h2>
+<div class="elements">
+  <details class="el" id="e-description">
+    <summary><span class="mk">1</span><span><span class="name">Description</span><span class="one">A title line for the result (optional).</span></span></summary>
+    <div class="full">
+      <p>A line placed at the top of the text, for example the name of the run. It is left out when empty.</p>
+      <dl class="facts">
+        <dt>Why</dt><dd>It tells whoever reads the text what was measured.</dd>
+        <dt>Next</dt><dd>The preview shows it at once.</dd>
+        <dt>Undo</dt><dd>Yes, edit or clear it; nothing leaves the window until you save or share.</dd>
+      </dl>
+      <div class="note"><span class="tag">Tip</span><p>What you have typed stays if you rotate the phone.</p></div>
+    </div>
+  </details>
+  <details class="el" id="e-note">
+    <summary><span class="mk">2</span><span><span class="name">Note</span><span class="one">An extra remark (optional).</span></span></summary>
+    <div class="full">
+      <p>A second line below the description, for example a remark about the run. It is left out when empty.</p>
+      <dl class="facts">
+        <dt>Why</dt><dd>Use it for anything the times do not say by themselves.</dd>
+        <dt>Next</dt><dd>The preview shows it at once.</dd>
+        <dt>Undo</dt><dd>Yes, edit or clear it; nothing leaves the window until you save or share.</dd>
+      </dl>
+    </div>
+  </details>
+  <details class="el" id="e-preview">
+    <summary><span class="mk">3</span><span><span class="name">Preview</span><span class="one">The exact text that will be saved or shared.</span></span></summary>
+    <div class="full">
+      <p>Shows the description and the note, a line with the date and time of the measurement, then one line per participant with the total time and the lap times in the order they were recorded.</p>
+      <dl class="facts">
+        <dt>Why</dt><dd>Read it before you save or share: what you see here is what leaves the window.</dd>
+        <dt>Next</dt><dd>It follows what you type in the two fields above. The times are those of the moment you opened this window, even if the stopwatch is still counting behind it.</dd>
+      </dl>
+      <div class="note"><span class="tag">Tip</span><p>You can select text in the preview and copy it.</p></div>
+    </div>
+  </details>
+  <details class="el" id="e-save">
+    <summary><span class="mk">4</span><span><span class="name">Save to file</span><span class="one">Saves the text as a file in Downloads.</span></span></summary>
+    <div class="full">
+      <p>Writes the preview as a plain text file into your Downloads folder; its name starts with Tourist_stopwatch and carries the date and time.</p>
+      <dl class="facts">
+        <dt>Why</dt><dd>Use it to keep a record of the run on the phone.</dd>
+        <dt>Next</dt><dd>The window closes and a short message names the saved file, or says that it could not be saved.</dd>
+        <dt>Undo</dt><dd>Saving again makes another file. A file you no longer want stays in Downloads until you delete it there.</dd>
+        <dt>Shortcut</dt><dd><kbd>Enter</kbd> on a connected keyboard saves, unless a button in the window has the focus.</dd>
+      </dl>
+    </div>
+  </details>
+  <details class="el" id="e-send">
+    <summary><span class="mk">5</span><span><span class="name">Share</span><span class="one">Hands the text to another app.</span></span></summary>
+    <div class="full">
+      <p>Opens the system share sheet with the preview as text; there you choose which app receives it. The text goes on only when you pick an app.</p>
+      <dl class="facts">
+        <dt>Why</dt><dd>Use it to pass the times on at once, without saving a file.</dd>
+        <dt>Next</dt><dd>The window closes and the share sheet opens; from there the text is in the hands of the app you choose.</dd>
+        <dt>Undo</dt><dd>Closing the share sheet without a choice sends nothing; text already sent from another app cannot be recalled from here.</dd>
+      </dl>
+    </div>
+  </details>
+  <details class="el" id="e-help">
+    <summary><span class="mk">6</span><span><span class="name">Help (F1)</span><span class="one">Opens this page.</span></span></summary>
+    <div class="full">
+      <p>The question mark in the title of the window opens this page.</p>
+      <dl class="facts">
+        <dt>Why</dt><dd>It explains the window with a picture, without leaving the app and without a network.</dd>
+        <dt>Next</dt><dd>Back closes help and returns to this window.</dd>
+        <dt>Shortcut</dt><dd><kbd>F1</kbd> on a connected keyboard does the same.</dd>
+      </dl>
+    </div>
+  </details>
+</div>
+<h2>Related</h2>
+<ul class="related">
+  <li><a href="stopwatch.html#e-result"><b>Stopwatch</b><span class="pill">Screen</span><small>The stopwatch screen and the button that opens this window.</small></a></li>
+  <li><a href="index.html"><b>Help index</b><small>Back returns to the screen you came from.</small></a></li>
+</ul>
+<footer class="help-foot">
+  <span>Captured against Tourist 2.61.0271.444, 2026-10-27.</span>
+  <a href="index.html">Help index</a>
+</footer>
+</main>
+</body>
+</html>

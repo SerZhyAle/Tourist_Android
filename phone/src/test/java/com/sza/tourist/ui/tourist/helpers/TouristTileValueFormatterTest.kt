@@ -3,7 +3,10 @@ package com.sza.tourist.ui.tourist.helpers
 import android.content.Context
 import com.sza.tourist.core.format.QuantityFormatter
 import com.sza.tourist.domain.model.UnitSystem
+import com.sza.tourist.domain.model.tourist.EnvironmentStats
 import com.sza.tourist.domain.model.tourist.GpsAccuracyGrade
+import com.sza.tourist.domain.model.tourist.PressureStats
+import com.sza.tourist.domain.model.tourist.TouristDashboardState
 import com.sza.tourist.domain.model.tourist.PressureTrend
 import com.sza.tourist.domain.model.weather.WeatherCondition
 import org.junit.Assert.assertEquals
@@ -80,6 +83,47 @@ class TouristTileValueFormatterTest {
     fun `pressure keeps hPa on metric and converts to inHg on imperial`() {
         assertEquals("1013", metricFormatter().pressure(1013f).value)
         assertEquals("29.91", imperialFormatter().pressure(1013f).value)
+    }
+
+    @Test
+    fun `magnetic detail uses millibars regardless of unit system`() {
+        for (formatter in listOf(metricFormatter(), imperialFormatter())) {
+            val reading = formatter.millibars(1013.4f)
+            assertEquals("1013", reading.value)
+            assertEquals(context.getString(com.sza.tourist.R.string.tourist_unit_mbar), reading.unit)
+            assertEquals(TouristTileValueFormatter.NO_VALUE, formatter.millibars(null).value)
+        }
+    }
+
+    @Test
+    fun `magnetic detail keeps sensor status with and without pressure`() {
+        val builder = TouristNavigationTileContentBuilder(context, imperialFormatter())
+        val normal = context.getString(com.sza.tourist.R.string.tourist_detail_magnetic_normal)
+        val warning = context.getString(com.sza.tourist.R.string.tourist_detail_magnetic_interference)
+        val waiting = context.getString(com.sza.tourist.R.string.tourist_status_sensor_waiting)
+        val unit = context.getString(com.sza.tourist.R.string.tourist_unit_mbar)
+        fun combined(status: String, value: String) = context.getString(
+            com.sza.tourist.R.string.tourist_detail_magnetic_pressure, status, value, unit,
+        )
+        val state = TouristDashboardState(environment = EnvironmentStats(magneticMicrotesla = 45f))
+        assertEquals(normal, builder.magneticField(state).detail)
+        assertEquals(
+            combined(normal, "1013"),
+            builder.magneticField(state.copy(pressure = PressureStats(1013f))).detail,
+        )
+        assertEquals(
+            combined(warning, "1000"),
+            builder.magneticField(
+                state.copy(
+                    pressure = PressureStats(1000f),
+                    environment = state.environment.copy(magneticInterference = true),
+                ),
+            ).detail,
+        )
+        assertEquals(
+            combined(waiting, "1013"),
+            builder.magneticField(TouristDashboardState(pressure = PressureStats(1013f))).detail,
+        )
     }
 
     @Test

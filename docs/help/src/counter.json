@@ -1,0 +1,248 @@
+{
+  "help": "counter",
+  "locales": {
+    "en": {
+      "summary": "A tally counter: add, subtract, set a starting number, keep a history.",
+      "lead": "The counter tallies anything you count by hand on the way. Each count is one tap on **+1**; the number is kept when you leave the screen or close the app. Open it from the dashboard: tap the {ui:tourist_tile_counter} tile, then tap the big card.",
+      "alt": "The {ui:tourist_tile_counter} screen: the count in large figures with the starting number under it, the buttons **-1** and **+1**, the {ui:tourist_counter_extra_steps} switch, the buttons {ui:tourist_counter_set_start} and {ui:tourist_counter_reset}, and the {ui:tourist_counter_history} list; the Help button is in the top-right corner.",
+      "order": [
+        "Read the count {e-value}: the large number is the current count, with the starting number under it.",
+        "If the count should not begin at 0, press {ui:tourist_counter_set_start} {e-start} first: the number you enter becomes the count at once.",
+        "Tap the **+1** button {e-plus-one} for each item you count, and the **-1** button {e-minus-one} to correct a miscount.",
+        "For larger steps switch on {ui:tourist_counter_extra_steps} {e-extra-steps} and use the extra buttons.",
+        "When one count is finished, press {ui:tourist_counter_reset} {e-reset} and confirm: the result goes to the history and the count returns to the starting number.",
+        "Look up earlier results in {ui:tourist_counter_history} {e-history}; the {ui:tourist_counter_clear_history} button there empties the list after you confirm.",
+        "Press {e-help} to read this page again."
+      ],
+      "elements": {
+        "e-value": {
+          "name": "The count",
+          "one": "The current count, in large figures.",
+          "what": "Shows the number you have counted, with the starting number under it and, once you have counted something since the last reset, the time that count began.",
+          "why": "It is the one number to read: the dashboard's {ui:tourist_tile_counter} tile shows the same count.",
+          "next": "It changes at once with every button, and each change is saved.",
+          "undo": "It never goes below 0 and stops at 999999999; **-1** takes one back and {ui:tourist_counter_reset} returns it to the starting number."
+        },
+        "e-plus-one": {
+          "one": "Adds one to the count.",
+          "what": "The large button on the right. Each tap adds 1 to the count at once.",
+          "why": "Use it for every item you count.",
+          "next": "The number updates and is saved; the first tap after a reset also records when this count began.",
+          "undo": "Tap **-1** to take one back.",
+          "tip": "With a keyboard or a D-pad the screen opens with this button focused, so [[Enter]] adds one."
+        },
+        "e-minus-one": {
+          "one": "Takes one off the count.",
+          "what": "The smaller button on the left. Each tap subtracts 1; at 0 it is dimmed and does nothing, because the count never goes below zero.",
+          "why": "Use it to correct a miscount or to take back an extra tap.",
+          "next": "The number updates and is saved at once.",
+          "undo": "Tap **+1** to put it back."
+        },
+        "e-extra-steps": {
+          "one": "Shows buttons for larger steps.",
+          "what": "A switch that shows or hides six more buttons - **+3**, **+5**, **+10**, **+50**, **+100** and **+1000** - each adding that many at once. They only add; there are no larger subtract buttons.",
+          "why": "Use them when you count in groups or the number is large.",
+          "next": "The checkbox is remembered, so the buttons are still there the next time you open the counter.",
+          "undo": "Switching it off hides the buttons and changes no number."
+        },
+        "e-start": {
+          "one": "Sets the number the count begins from.",
+          "what": "Opens a small window with one field for a whole number from 0, nine digits at most; {ui:ok} accepts it and {ui:cancel} closes the window without changes. The number becomes the starting number **and the current count at once**, and the count it replaces is not saved in the history.",
+          "why": "Use it when the count should not begin at 0, for example to carry on from a number you noted earlier.",
+          "next": "The large number jumps to it, and {ui:tourist_counter_reset} will return to it later. An empty field keeps the window open with the message {ui:tourist_counter_start_invalid}.",
+          "undo": "There is no undo, and the replaced count does not go to the history.",
+          "tip": "The window has its own help button, and [[F1]] in it opens this entry too."
+        },
+        "e-reset": {
+          "one": "Ends this count and starts the next.",
+          "what": "Asks you to confirm, naming the starting number; on {ui:tourist_counter_reset} it saves the current count in the history with its start and end time and returns the number to the starting number. {ui:cancel} leaves everything as it was.",
+          "why": "Use it when one count is done and a new one begins, and you want to keep the result.",
+          "next": "The large number shows the starting number again, and the finished count is at the top of the history.",
+          "undo": "The reset cannot be undone, but the finished count stays in the history.",
+          "tip": "A reset when nothing has been counted since the last reset, or since the starting number was set, adds nothing to the history."
+        },
+        "e-history": {
+          "one": "Finished counts, newest first.",
+          "what": "Lists each count you ended with {ui:tourist_counter_reset}: the number it reached and the period it ran; until there is one, the list reads {ui:tourist_counter_history_empty}.",
+          "why": "Use it to look up how earlier counts ended.",
+          "next": "{ui:tourist_counter_clear_history} asks {ui:tourist_counter_clear_history_title} and, when you confirm, removes every row; it is dimmed while the list is empty.",
+          "undo": "Clearing cannot be undone, and it does not change the current count.",
+          "tip": "The history keeps the latest 100 counts; older ones drop off the end of the list."
+        },
+        "e-help": {
+          "one": "Opens this page.",
+          "what": "The help button in the top-right corner of the top bar opens this page without leaving the app.",
+          "why": "It explains the counter with a picture, without a network.",
+          "undo": "Opening it changes nothing; Back closes it.",
+          "shortcut": "[[F1]] on a connected keyboard does the same."
+        }
+      },
+      "related": [
+        { "help": "dashboard", "note": "Its {ui:tourist_tile_counter} tile shows the same count and leads here." },
+        { "help": "home", "note": "The start screen." }
+      ]
+    },
+    "ru": {
+      "summary": "Счётчик: прибавляйте, отнимайте, задайте начальное число, смотрите историю.",
+      "lead": "Счётчик считает всё, что вы отмечаете вручную в пути. Каждый отсчёт - одно нажатие **+1**; число сохраняется, когда вы уходите с экрана или закрываете приложение. Открывается с дашборда: нажмите плитку {ui:tourist_tile_counter}, а затем крупную плитку.",
+      "alt": "Экран {ui:tourist_tile_counter}: счёт крупными цифрами и начальное число под ним, кнопки **-1** и **+1**, флажок {ui:tourist_counter_extra_steps}, кнопки {ui:tourist_counter_set_start} и {ui:tourist_counter_reset}, список {ui:tourist_counter_history}; в правом верхнем углу - кнопка справки.",
+      "order": [
+        "Посмотрите на счёт {e-value}: крупное число - текущий счёт, под ним начальное число.",
+        "Если счёт должен начинаться не с 0, сначала нажмите {ui:tourist_counter_set_start} {e-start}: введённое число сразу становится счётом.",
+        "Нажимайте кнопку **+1** {e-plus-one} при каждом отсчёте, а кнопкой **-1** {e-minus-one} исправляйте ошибку.",
+        "Для крупных шагов включите флажок {ui:tourist_counter_extra_steps} {e-extra-steps} и пользуйтесь дополнительными кнопками.",
+        "Когда счёт закончен, нажмите {ui:tourist_counter_reset} {e-reset} и подтвердите: итог попадёт в историю, а счёт вернётся к начальному числу.",
+        "Прежние итоги смотрите в разделе {ui:tourist_counter_history} {e-history}; кнопка {ui:tourist_counter_clear_history} там очищает список после подтверждения.",
+        "Нажмите {e-help}, чтобы снова прочитать эту страницу."
+      ],
+      "elements": {
+        "e-value": {
+          "name": "Счёт",
+          "one": "Текущий счёт крупными цифрами.",
+          "what": "Показывает насчитанное число, под ним - начальное число и, если после последнего сброса вы уже считали, время, с которого идёт этот счёт.",
+          "why": "Это то число, которое нужно читать: такой же счёт показывает плитка {ui:tourist_tile_counter} на дашборде.",
+          "next": "Меняется сразу при каждом нажатии, и каждое изменение сохраняется.",
+          "undo": "Ниже 0 не опускается и останавливается на 999999999; **-1** возвращает на единицу, {ui:tourist_counter_reset} - к начальному числу."
+        },
+        "e-plus-one": {
+          "one": "Прибавляет к счёту единицу.",
+          "what": "Большая кнопка справа. Каждое нажатие сразу добавляет 1 к счёту.",
+          "why": "Нажимайте на каждый отсчёт.",
+          "next": "Число обновляется и сохраняется; первое нажатие после сброса ещё и фиксирует, когда начался этот счёт.",
+          "undo": "Одно нажатие отменяет **-1**.",
+          "tip": "С клавиатурой или D-pad экран открывается с фокусом на этой кнопке, поэтому [[Enter]] прибавляет единицу."
+        },
+        "e-minus-one": {
+          "one": "Убавляет единицу.",
+          "what": "Кнопка поменьше, слева. Каждое нажатие отнимает 1; на 0 она неактивна и ничего не делает, потому что счёт не бывает отрицательным.",
+          "why": "Нужна, чтобы исправить ошибку или убрать лишнее нажатие.",
+          "next": "Число обновляется и сохраняется сразу.",
+          "undo": "Вернуть единицу можно кнопкой **+1**."
+        },
+        "e-extra-steps": {
+          "one": "Показывает кнопки для крупных шагов.",
+          "what": "Переключатель показывает или прячет ещё шесть кнопок - **+3**, **+5**, **+10**, **+50**, **+100** и **+1000**; каждая сразу прибавляет столько. Они только прибавляют: крупных кнопок вычитания нет.",
+          "why": "Удобно, когда считаете группами или число большое.",
+          "next": "Положение флажка запоминается, поэтому кнопки на месте и при следующем открытии счётчика.",
+          "undo": "Выключение прячет кнопки и не меняет ни одно число."
+        },
+        "e-start": {
+          "one": "Задаёт число, с которого идёт счёт.",
+          "what": "Открывает небольшое окно с одним полем для целого числа от 0, не длиннее девяти цифр; {ui:ok} принимает его, {ui:cancel} закрывает окно без изменений. Число становится начальным **и текущим счётом сразу же**, а прежний счёт в историю не сохраняется.",
+          "why": "Нужно, когда счёт должен начинаться не с 0, например чтобы продолжить с числа, которое вы записали раньше.",
+          "next": "Крупное число перескакивает на него, и позже {ui:tourist_counter_reset} вернёт счёт к нему. Пустое поле оставляет окно открытым с сообщением {ui:tourist_counter_start_invalid}.",
+          "undo": "Отмены нет, а заменённый счёт в историю не попадает.",
+          "tip": "У окна есть своя кнопка справки, и [[F1]] в нём тоже открывает этот раздел."
+        },
+        "e-reset": {
+          "one": "Завершает этот счёт и начинает следующий.",
+          "what": "Просит подтверждения и называет начальное число; после подтверждения сохраняет текущий счёт в историю - с временем начала и конца - и возвращает число к начальному. {ui:cancel} оставляет всё как было.",
+          "why": "Нужно, когда один счёт закончен, начинается новый, а результат нужно сохранить.",
+          "next": "Крупное число снова равно начальному, а завершённый счёт стоит первым в истории.",
+          "undo": "Сброс отменить нельзя, но завершённый счёт остаётся в истории.",
+          "tip": "Сброс, когда после прошлого сброса или после задания начального числа ничего не считали, ничего не добавляет в историю."
+        },
+        "e-history": {
+          "one": "Завершённые отсчёты, новые сверху.",
+          "what": "Перечисляет каждый отсчёт, завершённый кнопкой {ui:tourist_counter_reset}: число и период, за который оно набрано; пока их нет, в списке написано {ui:tourist_counter_history_empty}.",
+          "why": "Нужна, чтобы посмотреть, чем закончились прежние отсчёты.",
+          "next": "{ui:tourist_counter_clear_history} спрашивает {ui:tourist_counter_clear_history_title} и после подтверждения убирает все строки; пока список пуст, кнопка неактивна.",
+          "undo": "Очистку отменить нельзя; текущий счёт она не меняет.",
+          "tip": "В истории хранятся последние 100 отсчётов; более старые выпадают из конца списка."
+        },
+        "e-help": {
+          "one": "Открывает эту страницу.",
+          "what": "Кнопка справки в правом верхнем углу верхней панели открывает эту страницу, не выходя из приложения.",
+          "why": "Она объясняет счётчик с картинкой и без сети.",
+          "undo": "Открытие ничего не меняет; «Назад» закрывает справку.",
+          "shortcut": "[[F1]] на подключённой клавиатуре делает то же самое."
+        }
+      },
+      "related": [
+        { "help": "dashboard", "note": "Его плитка {ui:tourist_tile_counter} показывает тот же счёт и ведёт сюда." },
+        { "help": "home", "note": "Стартовый экран." }
+      ]
+    },
+    "uk": {
+      "summary": "Лічильник: додавайте, віднімайте, задайте початкове число, дивіться історію.",
+      "lead": "Лічильник рахує все, що ви відзначаєте вручну в дорозі. Кожен відлік - одне натискання **+1**; число зберігається, коли ви полишаєте екран або закриваєте застосунок. Відкривається з дашборду: натисніть плитку {ui:tourist_tile_counter}, а потім велику плитку.",
+      "alt": "Екран {ui:tourist_tile_counter}: лік великими цифрами і початкове число під ним, кнопки **-1** та **+1**, прапорець {ui:tourist_counter_extra_steps}, кнопки {ui:tourist_counter_set_start} і {ui:tourist_counter_reset}, список {ui:tourist_counter_history}; у правому верхньому куті - кнопка довідки.",
+      "order": [
+        "Подивіться на лік {e-value}: велике число - поточний лік, під ним початкове число.",
+        "Якщо лік має починатися не з 0, спершу натисніть {ui:tourist_counter_set_start} {e-start}: введене число одразу стає ліком.",
+        "Натискайте кнопку **+1** {e-plus-one} за кожним відліком, а кнопкою **-1** {e-minus-one} виправляйте помилку.",
+        "Для більших кроків увімкніть прапорець {ui:tourist_counter_extra_steps} {e-extra-steps} і користуйтеся додатковими кнопками.",
+        "Коли лік завершено, натисніть {ui:tourist_counter_reset} {e-reset} і підтвердьте: підсумок потрапить в історію, а лік повернеться до початкового числа.",
+        "Попередні підсумки дивіться в розділі {ui:tourist_counter_history} {e-history}; кнопка {ui:tourist_counter_clear_history} там очищає список після підтвердження.",
+        "Натисніть {e-help}, щоб знову прочитати цю сторінку."
+      ],
+      "elements": {
+        "e-value": {
+          "name": "Лік",
+          "one": "Поточний лік великими цифрами.",
+          "what": "Показує нараховане число, під ним - початкове число і, якщо після останнього скидання ви вже рахували, час, з якого триває цей лік.",
+          "why": "Це число, яке треба читати: такий самий лік показує плитка {ui:tourist_tile_counter} на дашборді.",
+          "next": "Змінюється одразу після кожного натискання, і кожна зміна зберігається.",
+          "undo": "Нижче 0 не опускається і зупиняється на 999999999; **-1** повертає на одиницю, {ui:tourist_counter_reset} - до початкового числа."
+        },
+        "e-plus-one": {
+          "one": "Додає до ліку одиницю.",
+          "what": "Велика кнопка праворуч. Кожне натискання одразу додає 1 до ліку.",
+          "why": "Натискайте на кожен відлік.",
+          "next": "Число оновлюється й зберігається; перше натискання після скидання ще й фіксує, коли почався цей лік.",
+          "undo": "Одне натискання скасовує **-1**.",
+          "tip": "З клавіатурою чи D-pad екран відкривається з фокусом на цій кнопці, тож [[Enter]] додає одиницю."
+        },
+        "e-minus-one": {
+          "one": "Забирає одиницю.",
+          "what": "Менша кнопка ліворуч. Кожне натискання віднімає 1; на 0 вона неактивна й нічого не робить, бо лік не буває від’ємним.",
+          "why": "Потрібна, щоб виправити помилку або прибрати зайве натискання.",
+          "next": "Число оновлюється й зберігається одразу.",
+          "undo": "Повернути одиницю можна кнопкою **+1**."
+        },
+        "e-extra-steps": {
+          "one": "Показує кнопки для більших кроків.",
+          "what": "Перемикач показує або ховає ще шість кнопок - **+3**, **+5**, **+10**, **+50**, **+100** і **+1000**; кожна одразу додає стільки. Вони лише додають: великих кнопок віднімання немає.",
+          "why": "Зручно, коли рахуєте групами або число велике.",
+          "next": "Положення прапорця запам’ятовується, тож кнопки на місці й під час наступного відкриття лічильника.",
+          "undo": "Вимкнення ховає кнопки й не змінює жодне число."
+        },
+        "e-start": {
+          "one": "Задає число, з якого починається лік.",
+          "what": "Відкриває невелике вікно з одним полем для цілого числа від 0, не довшого за дев’ять цифр; {ui:ok} приймає його, {ui:cancel} закриває вікно без змін. Число стає початковим **і поточним ліком одразу**, а попередній лік в історію не зберігається.",
+          "why": "Потрібно, коли лік має починатися не з 0, наприклад щоб продовжити з числа, яке ви записали раніше.",
+          "next": "Велике число перестрибує на нього, і пізніше {ui:tourist_counter_reset} поверне лік до нього. Порожнє поле залишає вікно відкритим із повідомленням {ui:tourist_counter_start_invalid}.",
+          "undo": "Скасування немає, а замінений лік в історію не потрапляє.",
+          "tip": "Вікно має власну кнопку довідки, і [[F1]] у ньому теж відкриває цей розділ."
+        },
+        "e-reset": {
+          "one": "Завершує цей лік і починає наступний.",
+          "what": "Просить підтвердження й називає початкове число; після підтвердження зберігає поточний лік в історію - з часом початку й кінця - і повертає число до початкового. {ui:cancel} залишає все як було.",
+          "why": "Потрібно, коли один лік завершено, починається новий, а результат треба зберегти.",
+          "next": "Велике число знову дорівнює початковому, а завершений лік стоїть першим в історії.",
+          "undo": "Скидання скасувати не можна, але завершений лік лишається в історії.",
+          "tip": "Скидання, коли після попереднього скидання або після задання початкового числа нічого не рахували, нічого не додає в історію."
+        },
+        "e-history": {
+          "one": "Завершені відліки, нові згори.",
+          "what": "Перелічує кожен відлік, завершений кнопкою {ui:tourist_counter_reset}: число й період, за який воно набране; поки їх немає, у списку написано {ui:tourist_counter_history_empty}.",
+          "why": "Потрібна, щоб подивитися, чим закінчилися попередні відліки.",
+          "next": "{ui:tourist_counter_clear_history} запитує {ui:tourist_counter_clear_history_title} і після підтвердження прибирає всі рядки; поки список порожній, кнопка неактивна.",
+          "undo": "Очищення скасувати не можна; поточний лік воно не змінює.",
+          "tip": "В історії зберігаються останні 100 відліків; старіші випадають з кінця списку."
+        },
+        "e-help": {
+          "one": "Відкриває цю сторінку.",
+          "what": "Кнопка довідки у правому верхньому куті верхньої панелі відкриває цю сторінку, не виходячи із застосунку.",
+          "why": "Вона пояснює лічильник із малюнком і без мережі.",
+          "undo": "Відкриття нічого не змінює; «Назад» закриває довідку.",
+          "shortcut": "[[F1]] на підключеній клавіатурі робить те саме."
+        }
+      },
+      "related": [
+        { "help": "dashboard", "note": "Його плитка {ui:tourist_tile_counter} показує такий самий лік і веде сюди." },
+        { "help": "home", "note": "Стартовий екран." }
+      ]
+    }
+  }
+}

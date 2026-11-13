@@ -1,0 +1,45 @@
+{
+  "help": "lights",
+  "locale": "ru",
+  "version": "2.61.0271.444",
+  "capturedOn": "2026-10-27",
+  "layoutsSha256": "f0e3faa96239e2849fa6475607239c58e98db2723d04b3810452e0cfc85c5f29",
+  "stringsSha256": "21f6576615b21f46e98def51ee1059fcd72207d7471de4377a766c626bd4d4a4",
+  "width": 1080,
+  "height": 1200,
+  "imageWidth": 540,
+  "imageHeight": 600,
+  "elements": {
+    "e-water": {
+      "l": 21,
+      "t": 307,
+      "r": 1059,
+      "b": 455
+    },
+    "e-front": {
+      "l": 21,
+      "t": 466,
+      "r": 1059,
+      "b": 614
+    },
+    "e-torch": {
+      "l": 21,
+      "t": 625,
+      "r": 1059,
+      "b": 773
+    },
+    "e-shade": {
+      "l": 21,
+      "t": 794,
+      "r": 1059,
+      "b": 1027
+    },
+    "e-help": {
+      "l": 953,
+      "t": 148,
+      "r": 1080,
+      "b": 274
+    }
+  },
+  "missing": []
+}

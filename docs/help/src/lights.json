@@ -1,0 +1,176 @@
+{
+  "help": "lights",
+  "locales": {
+    "en": {
+      "summary": "Water, front and camera flashlights, and how to leave each.",
+      "lead": "Pick the light that fits the moment. Two of the lights fill the whole screen and have no help button of their own, so this page tells you how to leave each one before you open it.",
+      "alt": "The {ui:program_lights} screen: three rows - {ui:water_flashlight_title}, {ui:front_flashlight_title} and {ui:physical_flashlight_title} - the checkbox {ui:flashlight_shortcut_settings_toggle_title} below them, and the Help button in the top bar.",
+      "order": [
+        "Choose the light: {e-water} for rain, a river or wet hands, {e-front} to read a map or look for something in a bag, {e-torch} for the plain beam of the camera flash.",
+        "Before you open {e-water}, remember its exit: the screen ignores every touch, and a volume key leaves it.",
+        "Before you open {e-front}, remember that a tap on the screen outside its controls closes it; drag up or down to change the brightness.",
+        "Tap {e-torch} to switch the camera flash on and tap it again to switch it off; no screen opens.",
+        "Switch on {e-shade} to keep the camera flash one tap away in the notification shade."
+      ],
+      "elements": {
+        "e-water": {
+          "one": "A white lamp whose screen ignores every touch.",
+          "what": "Android first asks you to pin the app. Confirm before using the light with wet hands; if you dismiss the system request, choose {ui:water_flashlight_start} to try again or {ui:cancel} to return. Once pinned, the camera flash and the white screen light together, and the time and hint {ui:water_flashlight_locked_hint} appear. Touches and BACK do not close the lamp.",
+          "why": "Use it in rain, at a river or with wet hands, where drops on the glass would otherwise press buttons; the home-screen widget {ui:widget_water_flashlight_label} opens it in one tap.",
+          "next": "The light stays on and the screen stays awake until you leave it.",
+          "undo": "Press a volume key: the light goes out and you are back where you came from.",
+          "shortcut": "[[Volume up]], [[Volume down]], or the mute, camera, headset or play/pause key if the phone has one.",
+          "tip": "This is a touch lock, not waterproofing: it does not protect the phone from water. Pinning blocks repeated Home and edge-back swipes. Android keeps its own emergency unpin escape: with gesture navigation, swipe up and hold; with buttons, follow Android's pinning instructions. If you leave the lamp through the system, the flash goes out. The power button turns the screen and flash off; a volume key unpins and closes the lamp. No help button or [[F1]] action interrupts this screen."
+        },
+        "e-front": {
+          "one": "The screen as a lamp, in a colour you choose.",
+          "what": "A tap on the screen outside its controls closes it. Until then the whole screen glows and shows the time: drag up or down, or tap one of the five brightness steps, to change the brightness, and the {ui:front_flashlight_color_button} button changes the colour.",
+          "why": "Use it to read a map or look for something in a bag; the home-screen widget {ui:widget_front_flashlight_label} opens it in one tap.",
+          "next": "The screen stays awake while it glows; the light starts at full brightness each time and remembers the colour.",
+          "undo": "Tap the screen outside the controls, or press Back: the light closes and you are back where you came from.",
+          "shortcut": "[[Enter]] on a keyboard, or the centre key of a D-pad, when no control has the focus.",
+          "tip": "This screen has no help button and [[F1]] does nothing here: a help control would be one more way to close the light. Only the window's brightness changes, never the phone's own brightness setting."
+        },
+        "e-torch": {
+          "one": "The camera flash as a plain torch.",
+          "what": "Switches the camera flash on or off at once and opens no screen of its own. If the flash cannot be switched, a short message says so.",
+          "why": "Use it when a plain beam is enough and you want to keep using the phone.",
+          "next": "The flash stays lit until you switch it off; the row shows no state of its own.",
+          "undo": "Tap the row again to switch the flash off."
+        },
+        "e-shade": {
+          "one": "The camera flash from the notification shade.",
+          "what": "A checkbox, shown only on a phone with a camera flash. When it is on, a permanent entry {ui:physical_flashlight_title} waits in the notification shade, and a tap on it lights or puts out the flash without opening the app.",
+          "why": "Use it to reach the torch from any screen.",
+          "next": "On Android 13 and later the app first asks for permission to show notifications, and the checkbox stays off until you allow it.",
+          "undo": "Switch it off and the entry leaves the shade.",
+          "tip": "If notifications are blocked for the app in the phone settings, the entry does not appear. After the phone restarts the entry comes back by itself."
+        },
+        "e-help": {
+          "one": "Opens this page.",
+          "what": "The question mark in the top bar opens the page for the list of lights. The two full-screen lights do not have this button.",
+          "why": "It explains the screen you are looking at, with a picture, without leaving the app and without a network.",
+          "shortcut": "[[F1]] on a connected keyboard does the same."
+        }
+      },
+      "related": [
+        { "help": "home", "note": "The start screen, where the lights are one row." },
+        { "help": "sos", "note": "The emergency signal is a program of its own, separate from the lights." }
+      ]
+    },
+    "ru": {
+      "summary": "Три фонаря - водный, фронтальный и фонарик камеры - и выход из каждого.",
+      "lead": "Выберите фонарь по случаю. Два из них занимают весь экран и не имеют собственной кнопки справки, поэтому эта страница заранее объясняет, как выйти из каждого.",
+      "alt": "Экран {ui:program_lights}: три строки - {ui:water_flashlight_title}, {ui:front_flashlight_title} и {ui:physical_flashlight_title} - под ними флажок {ui:flashlight_shortcut_settings_toggle_title} и кнопка справки в верхней панели.",
+      "order": [
+        "Выберите фонарь: {e-water} - для дождя, переправы и мокрых рук, {e-front} - чтобы прочитать карту или найти что-то в рюкзаке, {e-torch} - для обычного луча вспышки камеры.",
+        "Прежде чем открыть {e-water}, запомните выход: экран не реагирует ни на какие касания, а выйти из него можно клавишей громкости.",
+        "Прежде чем открыть {e-front}, запомните: касание экрана вне его кнопок закрывает фонарь; яркость меняется движением пальца вверх или вниз.",
+        "Нажмите {e-torch}, чтобы включить вспышку камеры, и ещё раз, чтобы выключить; отдельный экран не открывается.",
+        "Включите {e-shade}, чтобы вспышка камеры была под рукой в шторке уведомлений."
+      ],
+      "elements": {
+        "e-water": {
+          "one": "Белая лампа, экран которой не реагирует на касания.",
+          "what": "Android сначала предлагает закрепить приложение. Подтвердите закрепление, прежде чем пользоваться фонарём с мокрыми руками; если вы отклонили системный запрос, нажмите {ui:water_flashlight_start} для повтора или {ui:cancel} для возврата. После закрепления вспышка камеры и белый экран загораются вместе, появляются время и подсказка {ui:water_flashlight_locked_hint}. Касания и «Назад» не закрывают фонарь.",
+          "why": "Нужен в дождь, у реки или с мокрыми руками, когда капли на стекле нажимали бы кнопки; виджет {ui:widget_water_flashlight_label} на домашнем экране открывает его одним касанием.",
+          "next": "Свет горит, а экран не гаснет, пока вы не выйдете.",
+          "undo": "Нажмите клавишу громкости: свет погаснет, и вы вернётесь туда, откуда пришли.",
+          "shortcut": "[[Громкость +]], [[Громкость -]] или клавиша отключения звука, камеры, гарнитуры либо паузы/воспроизведения, если она есть на телефоне.",
+          "tip": "Это блокировка касаний, а не водонепроницаемость: она не защищает телефон от воды. Закрепление блокирует повторные жесты «Домой» и «Назад» от края экрана. Android сохраняет аварийный способ открепления: при навигации жестами проведите вверх и удерживайте палец; при навигации кнопками следуйте системной инструкции закрепления. Если выйти из фонаря через систему, вспышка погаснет. Кнопка питания гасит экран и вспышку; клавиша громкости открепляет приложение и закрывает фонарь. Кнопки справки здесь нет, а [[F1]] ничего не открывает."
+        },
+        "e-front": {
+          "one": "Экран как лампа нужного цвета.",
+          "what": "Касание экрана вне кнопок закрывает фонарь. Пока он открыт, весь экран светится и показывает время: яркость меняется движением пальца вверх или вниз либо касанием одной из пяти ступеней яркости, а кнопка {ui:front_flashlight_color_button} меняет цвет.",
+          "why": "Подходит, чтобы прочитать карту или найти что-то в рюкзаке; виджет {ui:widget_front_flashlight_label} на домашнем экране открывает его одним касанием.",
+          "next": "Экран не гаснет, пока светится; каждый раз фонарь начинает с полной яркости и помнит выбранный цвет.",
+          "undo": "Коснитесь экрана вне кнопок или нажмите «Назад»: фонарь закроется, и вы вернётесь туда, откуда пришли.",
+          "shortcut": "[[Enter]] на клавиатуре или центральная клавиша D-pad, если ни одна кнопка не в фокусе.",
+          "tip": "У этого экрана нет кнопки справки, а [[F1]] здесь ничего не открывает: кнопка справки стала бы ещё одним способом закрыть свет. Меняется только яркость окна, а не настройка яркости самого телефона."
+        },
+        "e-torch": {
+          "one": "Вспышка камеры как обычный фонарик.",
+          "what": "Сразу включает или выключает вспышку камеры и не открывает своего экрана. Если вспышку не удалось переключить, появится короткое сообщение.",
+          "why": "Подходит, когда достаточно обычного луча и нужно продолжать пользоваться телефоном.",
+          "next": "Вспышка горит, пока вы её не выключите; сама строка своего состояния не показывает.",
+          "undo": "Нажмите строку ещё раз, чтобы выключить вспышку."
+        },
+        "e-shade": {
+          "one": "Вспышка камеры из шторки уведомлений.",
+          "what": "Переключатель; он виден только на телефоне со вспышкой. Когда он включён, в шторке уведомлений постоянно висит запись {ui:physical_flashlight_title}, и касание записи включает или гасит вспышку, не открывая приложение.",
+          "why": "Нужен, чтобы добраться до фонарика с любого экрана.",
+          "next": "На Android 13 и новее приложение сначала просит разрешение показывать уведомления, и пока вы его не дадите, флажок остаётся выключенным.",
+          "undo": "Выключите флажок - запись исчезнет из шторки.",
+          "tip": "Если в настройках телефона уведомления для приложения запрещены, запись не появится. После перезапуска телефона запись возвращается сама."
+        },
+        "e-help": {
+          "one": "Открывает эту страницу.",
+          "what": "Знак вопроса в верхней панели открывает страницу об этом списке фонарей. На двух полноэкранных фонарях такой кнопки нет.",
+          "why": "Она объясняет экран, на который вы смотрите, с картинкой, не выходя из приложения и без сети.",
+          "shortcut": "[[F1]] на подключённой клавиатуре делает то же самое."
+        }
+      },
+      "related": [
+        { "help": "home", "note": "Стартовый экран, где фонари - одна строка." },
+        { "help": "sos", "note": "Аварийный сигнал - отдельная программа, не связанная с фонарями." }
+      ]
+    },
+    "uk": {
+      "summary": "Три ліхтарі - водний, фронтальний і ліхтарик камери - та вихід із кожного.",
+      "lead": "Оберіть ліхтар за нагодою. Два з них займають увесь екран і не мають власної кнопки довідки, тому ця сторінка заздалегідь пояснює, як вийти з кожного.",
+      "alt": "Екран {ui:program_lights}: три рядки - {ui:water_flashlight_title}, {ui:front_flashlight_title} і {ui:physical_flashlight_title} - під ними прапорець {ui:flashlight_shortcut_settings_toggle_title} та кнопка довідки у верхній панелі.",
+      "order": [
+        "Оберіть ліхтар: {e-water} - для дощу, переправи й мокрих рук, {e-front} - щоб прочитати мапу або знайти щось у рюкзаку, {e-torch} - для звичайного променя спалаху камери.",
+        "Перш ніж відкрити {e-water}, запам’ятайте вихід: екран не реагує на жодні дотики, а вийти з нього можна клавішею гучності.",
+        "Перш ніж відкрити {e-front}, запам’ятайте: дотик до екрана поза його кнопками закриває ліхтар; яскравість змінюється рухом пальця вгору або вниз.",
+        "Натисніть {e-torch}, щоб увімкнути спалах камери, і ще раз, щоб вимкнути; окремий екран не відкривається.",
+        "Увімкніть {e-shade}, щоб спалах камери був під рукою у шторці сповіщень."
+      ],
+      "elements": {
+        "e-water": {
+          "one": "Біла лампа, екран якої не реагує на дотики.",
+          "what": "Android спочатку пропонує закріпити застосунок. Підтвердьте закріплення, перш ніж користуватися ліхтарем із мокрими руками; якщо ви відхилили системний запит, натисніть {ui:water_flashlight_start} для повтору або {ui:cancel} для повернення. Після закріплення спалах камери й білий екран засвічуються разом, з’являються час і підказка {ui:water_flashlight_locked_hint}. Дотики й «Назад» не закривають ліхтар.",
+          "why": "Потрібен під дощ, біля річки чи з мокрими руками, коли краплі на склі натискали б кнопки; віджет {ui:widget_water_flashlight_label} на домашньому екрані відкриває його одним дотиком.",
+          "next": "Світло горить, а екран не гасне, доки ви не вийдете.",
+          "undo": "Натисніть клавішу гучності: світло згасне, і ви повернетеся туди, звідки прийшли.",
+          "shortcut": "[[Гучність +]], [[Гучність -]] або клавіша вимкнення звуку, камери, гарнітури чи паузи/відтворення, якщо вона є на телефоні.",
+          "tip": "Це блокування дотиків, а не водонепроникність: воно не захищає телефон від води. Закріплення блокує повторні жести «Додому» й «Назад» від краю екрана. Android зберігає аварійний спосіб відкріплення: за навігації жестами проведіть угору й утримуйте палець; за навігації кнопками дотримуйтеся системної інструкції закріплення. Якщо вийти з ліхтаря через систему, спалах згасне. Кнопка живлення гасить екран і спалах; клавіша гучності відкріплює застосунок і закриває ліхтар. Кнопки довідки тут немає, а [[F1]] нічого не відкриває."
+        },
+        "e-front": {
+          "one": "Екран як лампа потрібного кольору.",
+          "what": "Дотик до екрана поза кнопками закриває ліхтар. Поки він відкритий, увесь екран світиться й показує час: яскравість змінюється рухом пальця вгору або вниз чи дотиком до одного з п’яти ступенів яскравості, а кнопка {ui:front_flashlight_color_button} змінює колір.",
+          "why": "Підходить, щоб прочитати мапу або знайти щось у рюкзаку; віджет {ui:widget_front_flashlight_label} на домашньому екрані відкриває його одним дотиком.",
+          "next": "Екран не гасне, поки світиться; щоразу ліхтар починає з повної яскравості й пам’ятає обраний колір.",
+          "undo": "Торкніться екрана поза кнопками або натисніть «Назад»: ліхтар закриється, і ви повернетеся туди, звідки прийшли.",
+          "shortcut": "[[Enter]] на клавіатурі або центральна клавіша D-pad, якщо жодна кнопка не в фокусі.",
+          "tip": "У цього екрана немає кнопки довідки, а [[F1]] тут нічого не відкриває: кнопка довідки стала б ще одним способом закрити світло. Змінюється лише яскравість вікна, а не налаштування яскравості самого телефона."
+        },
+        "e-torch": {
+          "one": "Спалах камери як звичайний ліхтарик.",
+          "what": "Одразу вмикає або вимикає спалах камери й не відкриває власного екрана. Якщо спалах не вдалося перемкнути, з’являється коротке повідомлення.",
+          "why": "Підходить, коли досить звичайного променя й треба далі користуватися телефоном.",
+          "next": "Спалах горить, доки ви його не вимкнете; сам рядок свого стану не показує.",
+          "undo": "Натисніть рядок ще раз, щоб вимкнути спалах."
+        },
+        "e-shade": {
+          "one": "Спалах камери зі шторки сповіщень.",
+          "what": "Перемикач; він видимий лише на телефоні зі спалахом. Коли він увімкнений, у шторці сповіщень постійно висить запис {ui:physical_flashlight_title}, і дотик до нього вмикає або гасить спалах, не відкриваючи застосунок.",
+          "why": "Потрібен, щоб дістатися до ліхтарика з будь-якого екрана.",
+          "next": "На Android 13 і новіших версіях застосунок спершу просить дозвіл показувати сповіщення, і доки ви його не дасте, прапорець лишається вимкненим.",
+          "undo": "Вимкніть прапорець - запис зникне зі шторки.",
+          "tip": "Якщо в налаштуваннях телефона сповіщення для застосунку заборонені, запис не з’явиться. Після перезапуску телефона запис повертається сам."
+        },
+        "e-help": {
+          "one": "Відкриває цю сторінку.",
+          "what": "Знак питання у верхній панелі відкриває сторінку про цей перелік ліхтарів. На двох повноекранних ліхтарях такої кнопки немає.",
+          "why": "Вона пояснює екран, на який ви дивитеся, з малюнком, не виходячи із застосунку й без мережі.",
+          "shortcut": "[[F1]] на підключеній клавіатурі робить те саме."
+        }
+      },
+      "related": [
+        { "help": "home", "note": "Стартовий екран, де ліхтарі - один рядок." },
+        { "help": "sos", "note": "Аварійний сигнал - окрема програма, не пов’язана з ліхтарями." }
+      ]
+    }
+  }
+}

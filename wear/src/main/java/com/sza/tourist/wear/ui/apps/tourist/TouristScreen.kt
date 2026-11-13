@@ -1,0 +1,294 @@
+package com.sza.tourist.wear.ui.apps.tourist
+
+import android.Manifest
+import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.layout.ExperimentalLayoutApi
+import androidx.compose.foundation.layout.FlowRow
+import androidx.compose.foundation.layout.PaddingValues
+import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.padding
+import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.saveable.rememberSaveable
+import androidx.compose.runtime.setValue
+import androidx.compose.runtime.remember
+import androidx.compose.runtime.rememberCoroutineScope
+import androidx.compose.ui.Alignment
+import androidx.compose.ui.Modifier
+import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.text.style.TextAlign
+import androidx.compose.ui.unit.dp
+import androidx.hilt.navigation.compose.hiltViewModel
+import androidx.lifecycle.compose.collectAsStateWithLifecycle
+import androidx.wear.compose.foundation.lazy.ScalingLazyListState
+import androidx.wear.compose.material.ChipDefaults
+import com.sza.tourist.wear.ui.common.WearCommandChip as CompactChip
+import androidx.wear.compose.material.MaterialTheme
+import androidx.wear.compose.material.PositionIndicator
+import androidx.wear.compose.material.Text
+import com.google.accompanist.permissions.ExperimentalPermissionsApi
+import com.google.accompanist.permissions.rememberMultiplePermissionsState
+import com.sza.tourist.wear.R
+import com.sza.tourist.wear.domain.bodysensor.heartRatePermission
+import com.sza.tourist.wear.domain.tourist.TouristMetricType
+import com.sza.tourist.wear.domain.tourist.WearTouristState
+import com.sza.tourist.wear.domain.tourist.isOffered
+import com.sza.tourist.wear.ui.common.WearListColumn
+import com.sza.tourist.wear.ui.common.WearScreenScaffold
+import com.sza.tourist.wear.ui.common.rememberWearListState
+import com.sza.tourist.wear.ui.navigation.WearRoutes
+import kotlinx.coroutines.launch
+
+private val TILE_SPACING = 4.dp
+
+/**
+ * S3007 / S3015: Tourist telemetry and athlete navigation dashboard for Wear OS.
+ */
+@OptIn(ExperimentalPermissionsApi::class)
+@Composable
+fun TouristScreen(
+    onLaunchSos: () -> Unit,
+    onLaunchStopwatch: () -> Unit,
+    onLaunchCounter: () -> Unit,
+    viewModel: TouristViewModel = hiltViewModel(),
+    listState: ScalingLazyListState = rememberWearListState(positionKey = WearRoutes.TOURIST),
+) {
+    val state by viewModel.uiState.collectAsStateWithLifecycle()
+    val telemetry = state.telemetry
+    val coroutineScope = rememberCoroutineScope()
+
+    // Location is what the dashboard cannot work without. The heart rate and the step sensor are asked with it,
+    // in the context of the screen that shows them: FastMediaSorter asks for those two in its first-run
+    // onboarding walk, which this product does not carry (S0008). Declined sensors leave only their own tiles
+    // empty - the dashboard keys nothing but the location banner on the location grant.
+    val permissionsState = rememberMultiplePermissionsState(
+        permissions = listOf(
+            Manifest.permission.ACCESS_FINE_LOCATION,
+            Manifest.permission.ACCESS_COARSE_LOCATION,
+            heartRatePermission(),
+            Manifest.permission.ACTIVITY_RECOGNITION,
+        ),
+        onPermissionsResult = {
+            viewModel.refreshPermissionState()
+        },
+    )
+
+    // Asked once when the screen opens, not on every recomposition and not again after a refusal.
+    var askedOnOpen by rememberSaveable { mutableStateOf(false) }
+    LaunchedEffect(Unit) {
+        if (!askedOnOpen && !permissionsState.allPermissionsGranted) {
+            askedOnOpen = true
+            permissionsState.launchMultiplePermissionRequest()
+        }
+    }
+
+    // The telemetry source binds its location listeners when it is subscribed, so a permission granted
+    // afterwards only takes effect once the source is re-subscribed.
+    LaunchedEffect(permissionsState.allPermissionsGranted) {
+        if (permissionsState.allPermissionsGranted) {
+            viewModel.refreshPermissionState()
+        }
+    }
+
+    // A watch without the sensor drops the metric entirely rather than showing a dash or a zero.
+    val secondaryMetrics = remember(
+        telemetry.focusedMetric,
+        telemetry.hasBodyTemperatureSensor,
+        telemetry.hasPressureSensor,
+        telemetry.hasStepSensor,
+        telemetry.hasLevelSensor,
+        telemetry.hasLightSensor,
+        telemetry.hasMagneticSensor,
+    ) {
+        TouristMetricType.entries.filter { it != telemetry.focusedMetric && it.isOffered(telemetry) }
+    }
+
+    val promoteMetric: (TouristMetricType) -> Unit = { metricType ->
+        viewModel.selectMetric(metricType)
+        // Without the jump the list stays where it was and nothing shows that the main panel changed.
+        // The snap after the animation is not a duplicate: promoting a metric moves a tile out of the
+        // wrapping cloud and re-measures every row under it, so the animation that started against the
+        // old layout ends short of the title (measured on Galaxy Watch 7, 2026-09-17 - the title and the
+        // permission button stayed above the viewport). The snap re-reads the settled layout.
+        coroutineScope.launch {
+            listState.animateScrollToItem(0)
+            listState.scrollToItem(0)
+        }
+    }
+
+    Box(modifier = Modifier.fillMaxSize()) {
+        if (state.isAthleteMode) {
+            TouristAthleteCard(
+                state = telemetry,
+                isMetric = state.isMetricSystem,
+                isScreenLocked = state.isScreenLocked,
+                onSelectMetric = { viewModel.selectMetric(it) },
+                onLockScreen = { viewModel.setScreenLocked(true) },
+            )
+        } else {
+            TouristDashboardContent(
+                telemetry = telemetry,
+                isMetricSystem = state.isMetricSystem,
+                isScreenLocked = state.isScreenLocked,
+                secondaryMetrics = secondaryMetrics,
+                listState = listState,
+                onRequestLocationPermission = { permissionsState.launchMultiplePermissionRequest() },
+                onSelectMetric = promoteMetric,
+                onResetTrip = { viewModel.resetTrip() },
+                onResetSteps = { viewModel.resetSteps() },
+                onToggleAthleteMode = { viewModel.toggleAthleteMode() },
+                onLockScreen = { viewModel.setScreenLocked(true) },
+                onLaunchSos = onLaunchSos,
+                onLaunchStopwatch = onLaunchStopwatch,
+                onLaunchCounter = onLaunchCounter,
+                counterValue = state.counterValue,
+            )
+        }
+
+        if (state.isScreenLocked) {
+            TouristLockOverlay(
+                onUnlock = { viewModel.setScreenLocked(false) },
+            )
+        }
+    }
+}
+
+@Suppress("LongParameterList")
+@OptIn(ExperimentalLayoutApi::class)
+@Composable
+private fun TouristDashboardContent(
+    telemetry: WearTouristState,
+    isMetricSystem: Boolean,
+    isScreenLocked: Boolean,
+    secondaryMetrics: List<TouristMetricType>,
+    listState: ScalingLazyListState,
+    onRequestLocationPermission: () -> Unit,
+    onSelectMetric: (TouristMetricType) -> Unit,
+    onResetTrip: () -> Unit,
+    onResetSteps: () -> Unit,
+    onToggleAthleteMode: () -> Unit,
+    onLockScreen: () -> Unit,
+    onLaunchSos: () -> Unit,
+    onLaunchStopwatch: () -> Unit,
+    onLaunchCounter: () -> Unit,
+    counterValue: Long,
+) {
+    WearScreenScaffold(
+        contentPadding = PaddingValues(0.dp),
+        scrollState = listState,
+        positionIndicator = { PositionIndicator(listState) },
+    ) {
+        WearListColumn(
+            modifier = Modifier.fillMaxSize(),
+            state = listState,
+            verticalArrangement = Arrangement.spacedBy(TILE_SPACING),
+        ) {
+            item {
+                Text(
+                    text = stringResource(R.string.wear_tourist_app),
+                    style = MaterialTheme.typography.title2,
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .padding(bottom = 8.dp),
+                    textAlign = TextAlign.Center,
+                )
+            }
+
+            if (!telemetry.hasLocationPermission) {
+                item {
+                    Box(modifier = Modifier.fillMaxWidth(), contentAlignment = Alignment.Center) {
+                        CompactChip(
+                            onClick = onRequestLocationPermission,
+                            label = { Text(stringResource(R.string.wear_tourist_permission_grant)) },
+                            colors = ChipDefaults.primaryChipColors(),
+                        )
+                    }
+                }
+            }
+
+            item {
+                TouristHeroCard(
+                    state = telemetry,
+                    isMetric = isMetricSystem,
+                    isScreenLocked = isScreenLocked,
+                    onLockScreen = onLockScreen,
+                    modifier = Modifier.padding(horizontal = TILE_SPACING),
+                )
+            }
+
+            item {
+                if (isScreenLocked) {
+                    TouristUnlockHint(modifier = Modifier.padding(vertical = TILE_SPACING))
+                } else {
+                    TouristActionsRow(
+                        onResetTrip = onResetTrip,
+                        onResetSteps = onResetSteps,
+                        onToggleAthleteMode = onToggleAthleteMode,
+                        onLaunchSos = {
+                            onLaunchSos()
+                        },
+                        modifier = Modifier.padding(vertical = TILE_SPACING),
+                    )
+                }
+            }
+
+            item {
+                TouristTileCloud(
+                    telemetry = telemetry,
+                    isMetricSystem = isMetricSystem,
+                    secondaryMetrics = secondaryMetrics,
+                    onSelectMetric = onSelectMetric,
+                    onLaunchStopwatch = onLaunchStopwatch,
+                    onLaunchCounter = onLaunchCounter,
+                    counterValue = counterValue,
+                )
+            }
+        }
+    }
+}
+
+/** S4186: the wrapping cloud of secondary metric tiles, closed by the program-launch tiles. */
+@Suppress("LongParameterList")
+@OptIn(ExperimentalLayoutApi::class)
+@Composable
+private fun TouristTileCloud(
+    telemetry: WearTouristState,
+    isMetricSystem: Boolean,
+    secondaryMetrics: List<TouristMetricType>,
+    onSelectMetric: (TouristMetricType) -> Unit,
+    onLaunchStopwatch: () -> Unit,
+    onLaunchCounter: () -> Unit,
+    counterValue: Long,
+) {
+    FlowRow(
+        modifier = Modifier
+            .fillMaxWidth()
+            .padding(horizontal = TILE_SPACING),
+        horizontalArrangement = Arrangement.spacedBy(TILE_SPACING, Alignment.CenterHorizontally),
+        verticalArrangement = Arrangement.spacedBy(TILE_SPACING),
+    ) {
+        secondaryMetrics.forEach { metricType ->
+            TouristSecondaryCard(
+                metricType = metricType,
+                state = telemetry,
+                isMetric = isMetricSystem,
+                onClick = { onSelectMetric(metricType) },
+            )
+        }
+        TouristLaunchCard(
+            label = stringResource(R.string.wear_app_stopwatch),
+            iconRes = R.drawable.ic_stopwatch,
+            onClick = onLaunchStopwatch,
+        )
+        TouristLaunchCard(
+            label = stringResource(R.string.wear_tourist_counter),
+            iconRes = R.drawable.ic_tourist_counter,
+            onClick = onLaunchCounter,
+            value = counterValue.toString(),
+        )
+    }
+}

@@ -1,0 +1,125 @@
+{
+  "phone": {
+    "role": "phone",
+    "avd": "S0013_phone",
+    "device": "pixel_6",
+    "image": "system-images;android-33;google_apis;x86_64",
+    "port": 5590,
+    "config": {
+      "hw.ramSize": "4096",
+      "hw.gps": "yes",
+      "hw.sensors.pressure": "yes",
+      "hw.sensors.magnetic_field": "yes",
+      "hw.sensors.orientation": "yes",
+      "hw.sensors.light": "yes",
+      "hw.sensors.proximity": "yes",
+      "hw.camera.back": "virtualscene",
+      "hw.camera.front": "emulated",
+      "hw.keyboard": "yes",
+      "hw.audioOutput": "yes",
+      "disk.dataPartition.size": "6G",
+      "showDeviceFrame": "no"
+    },
+    "settings": {
+      "system screen_off_timeout": "1800000",
+      "secure show_ime_with_hard_keyboard": "0"
+    },
+    "apk": {
+      "noLegal": "phone/build/outputs/apk/noLegal/debug/phone-noLegal-debug.apk",
+      "store": "phone/build/outputs/apk/store/debug/phone-store-debug.apk"
+    }
+  },
+  "phone-nobaro": {
+    "role": "phone",
+    "avd": "S0013_phone_nobaro",
+    "device": "pixel_6",
+    "image": "system-images;android-33;google_apis;x86_64",
+    "port": 5594,
+    "config": {
+      "hw.ramSize": "4096",
+      "hw.gps": "yes",
+      "hw.sensors.pressure": "no",
+      "hw.sensors.magnetic_field": "no",
+      "hw.sensors.orientation": "no",
+      "hw.sensors.light": "yes",
+      "hw.sensors.proximity": "yes",
+      "hw.camera.back": "virtualscene",
+      "hw.camera.front": "emulated",
+      "hw.keyboard": "yes",
+      "hw.audioOutput": "yes",
+      "disk.dataPartition.size": "6G",
+      "showDeviceFrame": "no"
+    },
+    "settings": {
+      "system screen_off_timeout": "1800000"
+    },
+    "apk": {
+      "noLegal": "phone/build/outputs/apk/noLegal/debug/phone-noLegal-debug.apk",
+      "store": "phone/build/outputs/apk/store/debug/phone-store-debug.apk"
+    }
+  },
+  "wear": {
+    "role": "watch",
+    "avd": "S0013_wear",
+    "device": "wearos_small_round",
+    "image": "system-images;android-37.0;android-wear-signed;x86_64",
+    "port": 5592,
+    "config": {
+      "hw.ramSize": "2048",
+      "hw.gps": "yes",
+      "hw.sensors.pressure": "yes",
+      "hw.sensors.magnetic_field": "yes",
+      "hw.sensors.orientation": "yes",
+      "hw.sensors.heart_rate": "yes",
+      "hw.keyboard": "yes",
+      "hw.audioOutput": "yes",
+      "showDeviceFrame": "no"
+    },
+    "settings": {
+      "system screen_off_timeout": "1800000"
+    },
+    "apk": {
+      "noLegal": "wear/build/outputs/apk/noLegal/debug/wear-noLegal-debug.apk",
+      "store": "wear/build/outputs/apk/store/debug/wear-store-debug.apk"
+    },
+    "extraPackages": {
+      "watchface": "watchface/build/outputs/apk/debug/watchface-debug.apk"
+    }
+  },
+  "wear-nobaro": {
+    "role": "watch",
+    "avd": "S0013_wear_nobaro",
+    "device": "wearos_small_round",
+    "image": "system-images;android-37.0;android-wear-signed;x86_64",
+    "port": 5598,
+    "config": {
+      "hw.ramSize": "2048",
+      "hw.gps": "yes",
+      "hw.sensors.pressure": "no",
+      "hw.sensors.magnetic_field": "no",
+      "hw.sensors.orientation": "no",
+      "hw.sensors.heart_rate": "no",
+      "hw.keyboard": "yes",
+      "hw.audioOutput": "yes",
+      "showDeviceFrame": "no"
+    },
+    "settings": {
+      "system screen_off_timeout": "1800000"
+    },
+    "apk": {
+      "noLegal": "wear/build/outputs/apk/noLegal/debug/wear-noLegal-debug.apk",
+      "store": "wear/build/outputs/apk/store/debug/wear-store-debug.apk"
+    }
+  },
+  "emulatorFlags": ["-no-window", "-no-audio", "-no-snapshot", "-no-boot-anim", "-gpu", "swiftshader_indirect", "-wipe-data", "-no-metrics"],
+  "settingsKeysCaptured": [
+    "system font_scale",
+    "system screen_off_timeout",
+    "system screen_brightness",
+    "system screen_brightness_mode",
+    "secure location_mode",
+    "global zen_mode",
+    "global airplane_mode_on",
+    "secure enabled_notification_listeners"
+  ]
+}

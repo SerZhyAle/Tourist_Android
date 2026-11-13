@@ -12,8 +12,34 @@
     <dimen name="stroke_width_normal">2dp</dimen>
     <dimen name="button_height">48dp</dimen>
     <dimen name="control_button_size_compact">32dp</dimen>
+    <!-- Shared UI-SIZING 1.1 token families (S0015). Names mirror the extraction source's set so the
+         kit reads the same vocabulary; values are the contract's baselines, not ceilings. -->
+    <dimen name="dimension_zero">0dp</dimen>
+    <dimen name="token_spacing_4">4dp</dimen>
+    <dimen name="token_spacing_8">8dp</dimen>
+    <dimen name="token_spacing_12">12dp</dimen>
+    <dimen name="token_spacing_16">16dp</dimen>
+    <dimen name="token_spacing_24">24dp</dimen>
+    <dimen name="token_spacing_32">32dp</dimen>
+    <dimen name="token_radius_4">4dp</dimen>
+    <dimen name="token_radius_8">8dp</dimen>
     <dimen name="token_radius_12">12dp</dimen>
+    <dimen name="token_radius_16">16dp</dimen>
+    <dimen name="token_icon_16">16dp</dimen>
+    <dimen name="token_pointer_target_min">32dp</dimen>
     <dimen name="token_touch_target_min">48dp</dimen>
+    <!-- BOOLEAN-OPTION 2.0 ordinary touch tokens (S0015): visible square, gaps, heading sizes. -->
+    <dimen name="boolean_checkbox_size">24dp</dimen>
+    <dimen name="boolean_checkbox_gap">8dp</dimen>
+    <dimen name="boolean_heading_explanation_gap">4dp</dimen>
+    <dimen name="boolean_glyph_gap">8dp</dimen>
+    <dimen name="boolean_glyph_size">20dp</dimen>
+    <dimen name="boolean_explanation_text_size">12sp</dimen>
+    <!-- COLLAPSIBLE-GROUP 1.1 ordinary tokens (S0015). -->
+    <dimen name="group_marker_size">16dp</dimen>
+    <dimen name="group_marker_gap">8dp</dimen>
+    <dimen name="group_body_inset">12dp</dimen>
+    <dimen name="group_sibling_gap">8dp</dimen>
     <dimen name="icon_tier_20">20dp</dimen>
     <dimen name="icon_tier_24">24dp</dimen>
     <dimen name="icon_tier_32">32dp</dimen>
@@ -45,4 +71,44 @@
     <dimen name="tourist_coords_text_size_land">32sp</dimen>
     <dimen name="tourist_counter_plus_height">120dp</dimen>
     <dimen name="tourist_counter_minus_width">96dp</dimen>
+    <!-- Geometry of the lights and the color picker (FastMediaSorter pins, S0005). -->
+    <dimen name="water_flashlight_clock_text_size">36sp</dimen>
+    <dimen name="water_flashlight_hint_text_size">28sp</dimen>
+    <dimen name="front_flashlight_clock_text_size">28sp</dimen>
+    <dimen name="front_flashlight_control_size">96dp</dimen>
+    <dimen name="front_flashlight_control_padding">24dp</dimen>
+    <dimen name="front_flashlight_level_bar_width">12dp</dimen>
+    <dimen name="front_flashlight_level_bar_height_1">16dp</dimen>
+    <dimen name="front_flashlight_level_bar_height_2">28dp</dimen>
+    <dimen name="front_flashlight_level_bar_height_3">40dp</dimen>
+    <dimen name="front_flashlight_level_bar_height_4">52dp</dimen>
+    <dimen name="front_flashlight_level_bar_height_5">64dp</dimen>
+    <dimen name="dialog_field_spacing">2dp</dimen>
+    <dimen name="dialog_action_button_gap">16dp</dimen>
+    <dimen name="dialog_color_item_size">32dp</dimen>
+    <dimen name="dialog_landscape_list_max_height">240dp</dimen>
+    <dimen name="item_icon_size_medium">@dimen/icon_tier_32</dimen>
+    <dimen name="item_status_badge_size">24dp</dimen>
+    <dimen name="resource_card_desc_text_size">14sp</dimen>
+    <dimen name="text_size_large">18sp</dimen>
+    <dimen name="text_size_11sp">11sp</dimen>
+    <dimen name="padding_large">16dp</dimen>
+
+    <!-- Geometry of the SOS distress signal (FastMediaSorter pins, S0006). -->
+    <dimen name="sos_glyph_size">96dp</dimen>
+    <dimen name="sos_stop_button_height">88dp</dimen>
+    <dimen name="dialog_action_button_min_height">48dp</dimen>
+    <dimen name="dialog_confirm_button_min_width">48dp</dimen>
+
+    <!-- Geometry of the stopwatch and its widget (FastMediaSorter pins, S0007). -->
+    <dimen name="text_size_normal">16sp</dimen>
+    <dimen name="text_size_small">14sp</dimen>
+    <dimen name="settings_row_value_text_size">16sp</dimen>
+    <dimen name="touch_target_min_height">48dp</dimen>
+    <dimen name="dialog_cancel_button_min_height">48dp</dimen>
+    <dimen name="widget_stopwatch_toggle_size">48dp</dimen>
+    <dimen name="widget_stopwatch_reading_text_size">22sp</dimen>
+    <dimen name="stopwatch_reading_text_size_min">20sp</dimen>
+    <dimen name="stopwatch_reading_text_size_max">96sp</dimen>
+    <dimen name="stopwatch_reading_text_size_step">2sp</dimen>
 </resources>

@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="tourist_green">#FF81C784</color>
+    <color name="tourist_primary_ink">#FF0A2E0A</color>
+    <!-- Night half of the stopwatch and dialog tokens (FastMediaSorter values, S0007). -->
+    <color name="item_selected">#FF1565C0</color>
+    <color name="item_normal">#00000000</color>
+    <color name="item_focused">#FF1E3A5F</color>
+    <color name="item_hovered">#FF2A2A2A</color>
+    <color name="item_pressed">#FF0D47A1</color>
+    <color name="focus_indicator">#FF64B5F6</color>
+</resources>

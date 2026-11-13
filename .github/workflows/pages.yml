@@ -1,0 +1,55 @@
+name: Privacy pages
+run-name: Publish site/ to GitHub Pages
+
+# Owner's order of 2026-11-13 (the public presence of DeviceInfo and StreamsPlayer, canon store-publish Google Play
+# reference): site/ holds the hand-written privacy pages and is published as it is. The check runs on Windows, where
+# the gates are measured, and refuses the deploy unless the pages and the documents pass; the deploy runs on Linux.
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'site/**'
+      - 'tools/site/**'
+      - '.github/workflows/pages.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: pages
+  cancel-in-progress: false
+
+jobs:
+  check:
+    runs-on: windows-latest
+    steps:
+      # The pages are LF in the repository; the Windows runner's default core.autocrlf=true would turn them into CRLF on
+      # checkout, and the kit's hash is taken over its committed bytes.
+      - name: Keep line endings as committed
+        run: git config --global core.autocrlf false
+      - uses: actions/checkout@v4
+      - name: Check the site and the documents
+        shell: pwsh
+        run: |
+          pwsh -NoProfile -File tools/site/check-site.ps1
+          if ($LASTEXITCODE -ne 0) { exit $LASTEXITCODE }
+          pwsh -NoProfile -File tools/docs/check-docs.ps1 -Check all -NoHarness
+          if ($LASTEXITCODE -ne 0) { exit $LASTEXITCODE }
+
+  deploy:
+    needs: check
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/configure-pages@v5
+      - uses: actions/upload-pages-artifact@v3
+        with:
+          path: site
+      - id: deployment
+        uses: actions/deploy-pages@v4

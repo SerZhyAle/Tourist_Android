@@ -5,6 +5,7 @@ import com.sza.tourist.domain.model.tourist.TouristCounterState
 import com.sza.tourist.domain.model.tourist.TouristDashboardState
 import com.sza.tourist.domain.model.tourist.TouristTileType
 import com.sza.tourist.domain.model.tourist.WatchHealthStats
+import com.sza.tourist.domain.usecase.sensors.ObserveDeviceAttitudeUseCase
 import com.sza.tourist.domain.usecase.tourist.ObserveTouristCounterUseCase
 import com.sza.tourist.domain.usecase.tourist.ObserveTouristDashboardUseCase
 import com.sza.tourist.domain.usecase.tourist.ObserveWatchTouristHealthUseCase
@@ -45,7 +46,13 @@ class TouristInfoViewModelTest {
     }
 
     private fun newViewModel() =
-        TouristInfoViewModel(observeTouristDashboardUseCase, SavedStateHandle(), observeWatchHealth, observeCounter)
+        TouristInfoViewModel(
+            observeTouristDashboardUseCase,
+            SavedStateHandle(),
+            observeWatchHealth,
+            observeCounter,
+            mockk<ObserveDeviceAttitudeUseCase>(relaxed = true),
+        )
 
     @Test
     fun `selectTile WATCH_HEART_RATE ignored when the build does not offer watch health`() = runTest {

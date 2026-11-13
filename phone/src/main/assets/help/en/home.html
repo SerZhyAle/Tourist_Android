@@ -1,0 +1,120 @@
+<!doctype html>
+<html lang="en" dir="ltr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="referrer" content="no-referrer">
+<title>Help - Tourist</title>
+<script>(function(){try{var q=new URLSearchParams(location.search).get("theme");var t=(q==="light"||q==="dark")?q:(matchMedia("(prefers-color-scheme: light)").matches?"light":"dark");document.documentElement.setAttribute("data-theme",t);}catch(e){}})();</script>
+<link rel="stylesheet" href="../sza-kit.css">
+<link rel="stylesheet" href="../help.css">
+</head>
+<body class="help">
+<main class="container">
+<nav class="help-crumbs" aria-label="Help index">
+  <a href="index.html">Help index</a><span class="sep" aria-hidden="true">/</span><span>Tourist</span>
+</nav>
+<header class="hero">
+  <p class="kicker">Screen help</p>
+  <h1>Tourist</h1>
+  <p class="lead">The start screen lists the programs of the kit. Tap the one you need; each opens on its own screen and Back returns here.</p>
+</header>
+<figure class="shot">
+  <div class="frame">
+    <img class="on-dark" src="img/home-dark.jpg" width="540" height="624" alt="The start screen with the four programs, Settings and Help.">
+    <img class="on-light" src="img/home-light.jpg" width="540" height="624" alt="">
+      <a class="pin" style="--x:91.06%;--y:28.93%" href="#e-dashboard" aria-label="1, Tourist dashboard">1</a>
+      <a class="pin" style="--x:91.06%;--y:41.67%" href="#e-lights" aria-label="2, Lights">2</a>
+      <a class="pin" style="--x:91.06%;--y:54.41%" href="#e-sos" aria-label="3, SOS emergency signal">3</a>
+      <a class="pin" style="--x:91.06%;--y:67.15%" href="#e-stopwatch" aria-label="4, Stopwatch">4</a>
+      <a class="pin" style="--x:89.11%;--y:81.49%" href="#e-settings" aria-label="5, Settings">5</a>
+      <a class="pin" style="--x:93.15%;--y:16.19%" href="#e-help" aria-label="6, Help (F1)">6</a>
+  </div>
+  <figcaption>Demo content. Select a number to read about that part of the screen.</figcaption>
+</figure>
+<h2>In this order</h2>
+<ol class="order">
+  <li>Pick the program you need from the four rows <a class="ref" href="#e-dashboard">1</a> <a class="ref" href="#e-lights">2</a> <a class="ref" href="#e-sos">3</a> <a class="ref" href="#e-stopwatch">4</a>.</li>
+  <li>Use Back on any program to return to this screen.</li>
+  <li>Press the question mark <a class="ref" href="#e-help">6</a> on any screen to read how that screen works.</li>
+</ol>
+<h2>The elements</h2>
+<div class="elements">
+  <details class="el" id="e-dashboard">
+    <summary><span class="mk">1</span><span><span class="name">Tourist dashboard</span><span class="one">Speed, altitude, compass, coordinates and the trip.</span></span></summary>
+    <div class="full">
+      <p>Opens the dashboard: one large tile and a grid of smaller ones with the readings of your phone and, when it is paired, of your watch.</p>
+      <dl class="facts">
+        <dt>Why</dt><dd>It is the screen to keep open on the trail: where you are, which way you face and how far you have come.</dd>
+        <dt>Next</dt><dd>The dashboard asks for location access the first time and shows what it can read without it.</dd>
+        <dt>Undo</dt><dd>Opening it changes nothing; Back returns here.</dd>
+      </dl>
+    </div>
+  </details>
+  <details class="el" id="e-lights">
+    <summary><span class="mk">2</span><span><span class="name">Lights</span><span class="one">Water, front and camera flashlights.</span></span></summary>
+    <div class="full">
+      <p>Opens the lights: the water flashlight that wet touches cannot switch off, the front flashlight that turns the screen into a lamp, and the camera flashlight.</p>
+      <dl class="facts">
+        <dt>Why</dt><dd>Pick the light that fits the moment: the water flashlight for rain and rivers, the front one for reading a map, the camera one for the brightest beam.</dd>
+        <dt>Next</dt><dd>Each light opens on its own screen; the <b>Lights</b> page explains how to leave every one of them.</dd>
+        <dt>Undo</dt><dd>Opening the list switches no light on.</dd>
+      </dl>
+    </div>
+  </details>
+  <details class="el" id="e-sos">
+    <summary><span class="mk">3</span><span><span class="name">SOS emergency signal</span><span class="one">The emergency signal.</span></span></summary>
+    <div class="full">
+      <p>Opens the SOS screen. The signal <b>starts as soon as the screen opens</b>: the siren and the strobe repeat the Morse SOS pattern, and a paired watch signals too.</p>
+      <dl class="facts">
+        <dt>Why</dt><dd>Use it when you need to be noticed. The signal sounds and blinks; it does not call anyone and sends no message.</dd>
+        <dt>Next</dt><dd>The signal keeps going until you press <b>Stop signal</b> or leave the screen with Back.</dd>
+        <dt>Undo</dt><dd><b>Stop signal</b> ends it at once.</dd>
+      </dl>
+    </div>
+  </details>
+  <details class="el" id="e-stopwatch">
+    <summary><span class="mk">4</span><span><span class="name">Stopwatch</span><span class="one">A stopwatch for up to several people at once.</span></span></summary>
+    <div class="full">
+      <p>Opens the stopwatch, which times several participants side by side, with laps, results and optional music.</p>
+      <dl class="facts">
+        <dt>Why</dt><dd>It suits a race, a relay or any case where more than one person needs a time.</dd>
+        <dt>Next</dt><dd>The count starts for everyone as soon as the screen opens; each participant has their own lap and stop buttons, and the group can be stopped or reset together.</dd>
+        <dt>Undo</dt><dd>Leaving the screen with Back clears the times; <b>Reset all</b> starts over at once.</dd>
+      </dl>
+    </div>
+  </details>
+  <details class="el" id="e-settings">
+    <summary><span class="mk">5</span><span><span class="name">Settings</span><span class="one">Application settings.</span></span></summary>
+    <div class="full">
+      <p>Opens theme, language, units, screen-awake settings and About. Changes apply immediately.</p>
+      <dl class="facts">
+      </dl>
+    </div>
+  </details>
+  <details class="el" id="e-help">
+    <summary><span class="mk">6</span><span><span class="name">Help (F1)</span><span class="one">Opens this page.</span></span></summary>
+    <div class="full">
+      <p>Every screen of the app has this button in its top-right corner, beside what is already there.</p>
+      <dl class="facts">
+        <dt>Why</dt><dd>It explains the screen you are looking at, with a picture, without leaving the app and without a network.</dd>
+        <dt>Shortcut</dt><dd><kbd>F1</kbd> on a connected keyboard does the same.</dd>
+      </dl>
+    </div>
+  </details>
+</div>
+<h2>Related</h2>
+<ul class="related">
+  <li><a href="dashboard.html"><b>Tourist dashboard</b><span class="pill">Screen</span><small>The readings and the trip.</small></a></li>
+  <li><a href="lights.html"><b>Lights</b><span class="pill">Screen</span><small>The three lights and how to leave each.</small></a></li>
+  <li><a href="sos.html"><b>SOS emergency signal</b><span class="pill">Screen</span><small>What the signal does and how to stop it.</small></a></li>
+  <li><a href="stopwatch.html"><b>Stopwatch</b><span class="pill">Screen</span><small>Timing several people at once.</small></a></li>
+  <li><a href="index.html"><b>Help index</b><small>Back returns to the screen you came from.</small></a></li>
+</ul>
+<footer class="help-foot">
+  <span>Captured against Tourist 2.61.0271.444, 2026-10-27.</span>
+  <a href="index.html">Help index</a>
+</footer>
+</main>
+</body>
+</html>

@@ -1,0 +1,63 @@
+{
+  "help": "counter",
+  "locale": "uk",
+  "version": "2.61.0271.444",
+  "capturedOn": "2026-10-27",
+  "layoutsSha256": "f0e3faa96239e2849fa6475607239c58e98db2723d04b3810452e0cfc85c5f29",
+  "stringsSha256": "049a475f97ff50094df2cc3ac02fa0bc86df46895b37ed9ceb83500cdd63d858",
+  "width": 1080,
+  "height": 1536,
+  "imageWidth": 540,
+  "imageHeight": 768,
+  "elements": {
+    "e-value": {
+      "l": 32,
+      "t": 328,
+      "r": 1048,
+      "b": 528
+    },
+    "e-plus-one": {
+      "l": 284,
+      "t": 674,
+      "r": 515,
+      "b": 838
+    },
+    "e-minus-one": {
+      "l": 32,
+      "t": 674,
+      "r": 263,
+      "b": 838
+    },
+    "e-extra-steps": {
+      "l": 32,
+      "t": 859,
+      "r": 1048,
+      "b": 985
+    },
+    "e-start": {
+      "l": 32,
+      "t": 1006,
+      "r": 414,
+      "b": 1132
+    },
+    "e-reset": {
+      "l": 435,
+      "t": 1006,
+      "r": 662,
+      "b": 1132
+    },
+    "e-history": {
+      "l": 32,
+      "t": 1174,
+      "r": 1048,
+      "b": 1362
+    },
+    "e-help": {
+      "l": 953,
+      "t": 148,
+      "r": 1080,
+      "b": 274
+    }
+  },
+  "missing": []
+}

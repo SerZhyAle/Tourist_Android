@@ -1,5 +1,6 @@
 package com.sza.tourist.buildlogic
 
+import com.android.build.api.dsl.ApkSigningConfig
 import com.android.build.api.dsl.ApplicationExtension
 import org.gradle.api.GradleException
 import org.gradle.api.JavaVersion
@@ -42,15 +43,16 @@ class AndroidApplicationConventionPlugin : Plugin<Project> {
                     targetCompatibility = JavaVersion.VERSION_17
                 }
 
+                // The release build type names no signing config, so the merged flavor's applies: the
+                // upload key for what goes to Play (the store variant, and the watch face, which has no
+                // variants), the app signing key for the sideload variant. Debug keeps the debug key.
                 if (signing != null) {
-                    signingConfigs.create("release") {
-                        storeFile = signing.storeFile
-                        storePassword = signing.storePassword
-                        keyAlias = signing.keyAlias
-                        keyPassword = signing.keyPassword
+                    val appSigning = signingConfigs.create("release") { from(signing.appSigning) }
+                    signing.upload?.let { key ->
+                        defaultConfig.signingConfig = signingConfigs.create("upload") { from(key) }
                     }
-                    buildTypes.getByName("release") {
-                        signingConfig = signingConfigs.getByName("release")
+                    productFlavors.configureEach {
+                        if (name == DistributionVariantsConventionPlugin.NO_LEGAL) signingConfig = appSigning
                     }
                 }
             }
@@ -102,7 +104,7 @@ class AndroidApplicationConventionPlugin : Plugin<Project> {
      * are built unsigned (which no device and no store accepts) and a signed release is never faked with
      * the debug key.
      */
-    private fun Project.resolveReleaseSigning(): KeystoreProperties? {
+    private fun Project.resolveReleaseSigning(): ReleaseKeys? {
         val file = try {
             ReleaseSigning.locate(rootDir, System.getenv(ReleaseSigning.ENV_VAR))
         } catch (e: IllegalArgumentException) {
@@ -117,11 +119,25 @@ class AndroidApplicationConventionPlugin : Plugin<Project> {
             }
             return null
         }
-        return try {
+        val keys = try {
             ReleaseSigning.load(file)
         } catch (e: IllegalArgumentException) {
             throw GradleException("[tourist] ${e.message}", e)
         }
+        if (keys.upload == null && StampPolicy.releasePackagingRequested(gradle.startParameter.taskNames)) {
+            logger.warn(
+                "[tourist] :$name - ${file.path} names no upload key (${ReleaseSigning.UPLOAD_PREFIX}*); " +
+                    "the Play-bound release packages (store variant, watch face) will be UNSIGNED.",
+            )
+        }
+        return keys
+    }
+
+    private fun ApkSigningConfig.from(key: KeystoreProperties) {
+        storeFile = key.storeFile
+        storePassword = key.storePassword
+        keyAlias = key.keyAlias
+        keyPassword = key.keyPassword
     }
 
     private companion object {

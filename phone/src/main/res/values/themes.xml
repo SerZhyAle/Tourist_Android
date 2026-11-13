@@ -2,36 +2,114 @@
 <resources>
     <style name="Theme.Tourist" parent="Theme.Material3.DayNight.NoActionBar">
         <item name="colorPrimary">@color/tourist_green</item>
+        <item name="colorOnPrimary">@color/tourist_primary_ink</item>
+        <item name="materialButtonStyle">@style/Widget.Tourist.Button.Command</item>
+        <item name="materialButtonOutlinedStyle">@style/Widget.Tourist.Button.Command</item>
+        <item name="buttonBarPositiveButtonStyle">@style/Widget.Tourist.Button.Command</item>
+        <item name="buttonBarNegativeButtonStyle">@style/Widget.Tourist.Button.Command</item>
         <item name="android:statusBarColor">@color/tourist_night</item>
+    </style>
+
+    <!-- The torch trampoline: toggles and vanishes, so its window never shows (S0005). -->
+    <style name="Theme.Tourist.Transparent" parent="Theme.Tourist">
+        <item name="android:windowIsTranslucent">true</item>
+        <item name="android:windowBackground">@android:color/transparent</item>
+        <item name="android:windowNoTitle">true</item>
+        <item name="windowActionBar">false</item>
+    </style>
+
+    <!-- The help window (S0014): a full-screen dialog over the live screen, so the screen below stays resumed. -->
+    <style name="Theme.Tourist.HelpDialog" parent="Theme.Tourist">
+        <item name="android:windowIsFloating">false</item>
+        <item name="android:windowBackground">?attr/colorSurface</item>
+        <item name="android:windowAnimationStyle">@android:style/Animation.Activity</item>
     </style>
 
     <!-- The ported dashboard's controls, renamed from FastMediaSorter's namespace (S0004). -->
     <style name="Widget.Tourist.Button.Filled" parent="Widget.Material3.Button">
         <item name="android:letterSpacing">0</item>
         <item name="textAllCaps">false</item>
-        <item name="cornerRadius">@dimen/token_radius_12</item>
+        <item name="cornerRadius">@dimen/token_radius_4</item>
         <item name="android:minHeight">@dimen/token_touch_target_min</item>
+            <item name="android:singleLine">false</item>
+        <item name="android:maxLines">2147483647</item>
+        <item name="android:ellipsize">none</item>
+        <item name="android:paddingStart">@dimen/token_spacing_16</item>
+        <item name="android:paddingEnd">@dimen/token_spacing_16</item>
+        <item name="iconSize">@dimen/icon_tier_20</item>
+        <item name="iconPadding">@dimen/token_spacing_8</item>
     </style>
 
     <style name="Widget.Tourist.Button.Tonal" parent="Widget.Material3.Button.TonalButton">
         <item name="android:letterSpacing">0</item>
         <item name="textAllCaps">false</item>
-        <item name="cornerRadius">@dimen/token_radius_12</item>
+        <item name="cornerRadius">@dimen/token_radius_4</item>
         <item name="android:minHeight">@dimen/token_touch_target_min</item>
+            <item name="android:singleLine">false</item>
+        <item name="android:maxLines">2147483647</item>
+        <item name="android:ellipsize">none</item>
+        <item name="android:paddingStart">@dimen/token_spacing_16</item>
+        <item name="android:paddingEnd">@dimen/token_spacing_16</item>
+        <item name="iconSize">@dimen/icon_tier_20</item>
+        <item name="iconPadding">@dimen/token_spacing_8</item>
     </style>
 
     <style name="Widget.Tourist.Button.Outlined" parent="Widget.Material3.Button.OutlinedButton">
         <item name="android:letterSpacing">0</item>
         <item name="textAllCaps">false</item>
-        <item name="cornerRadius">@dimen/token_radius_12</item>
+        <item name="cornerRadius">@dimen/token_radius_4</item>
         <item name="android:minHeight">@dimen/token_touch_target_min</item>
+            <item name="android:singleLine">false</item>
+        <item name="android:maxLines">2147483647</item>
+        <item name="android:ellipsize">none</item>
+        <item name="android:paddingStart">@dimen/token_spacing_16</item>
+        <item name="android:paddingEnd">@dimen/token_spacing_16</item>
+        <item name="iconSize">@dimen/icon_tier_20</item>
+        <item name="iconPadding">@dimen/token_spacing_8</item>
     </style>
 
     <style name="Widget.Tourist.Button.Text" parent="Widget.Material3.Button.TextButton">
         <item name="android:letterSpacing">0</item>
         <item name="textAllCaps">false</item>
-        <item name="cornerRadius">@dimen/token_radius_12</item>
+        <item name="cornerRadius">@dimen/token_radius_4</item>
         <item name="android:minHeight">@dimen/token_touch_target_min</item>
+            <item name="android:singleLine">false</item>
+        <item name="android:maxLines">2147483647</item>
+        <item name="android:ellipsize">none</item>
+        <item name="android:paddingStart">@dimen/token_spacing_16</item>
+        <item name="android:paddingEnd">@dimen/token_spacing_16</item>
+        <item name="iconSize">@dimen/icon_tier_20</item>
+        <item name="iconPadding">@dimen/token_spacing_8</item>
+    </style>
+
+    <!-- BUTTONS 2.0 s.3 ordinary command geometry (S0015): content-fit width, 16-unit side padding,
+         glyph at reading start with the 8-unit gap, caption wraps and the row grows - never clipped.
+         Mirrors the extraction source's Button.Command so the kit keeps one shape. -->
+    <style name="Widget.Tourist.Button.Command" parent="Widget.Tourist.Button.Outlined">
+        <item name="android:textColor">@color/command_ink</item>
+        <item name="iconTint">@color/command_ink</item>
+        <item name="backgroundTint">?attr/colorSurface</item>
+        <item name="strokeColor">?attr/colorOutline</item>
+        <item name="android:foreground">@drawable/focus_button_background</item>
+        <item name="cornerRadius">@dimen/token_radius_4</item>
+        <item name="android:minWidth">@dimen/token_touch_target_min</item>
+        <item name="android:minHeight">@dimen/token_touch_target_min</item>
+        <item name="android:paddingStart">@dimen/token_spacing_16</item>
+        <item name="android:paddingEnd">@dimen/token_spacing_16</item>
+        <item name="android:singleLine">false</item>
+        <item name="android:ellipsize">none</item>
+        <item name="iconSize">@dimen/icon_tier_20</item>
+        <item name="iconPadding">@dimen/token_spacing_8</item>
+        <item name="iconGravity">textStart</item>
+        <item name="android:insetTop">@dimen/dimension_zero</item>
+        <item name="android:insetBottom">@dimen/dimension_zero</item>
+    </style>
+
+    <style name="Widget.Tourist.Button.Choice" parent="Widget.Material3.Button.OutlinedButton">
+        <item name="cornerRadius">@dimen/token_radius_4</item>
+        <item name="android:minHeight">@dimen/token_touch_target_min</item>
+        <item name="android:singleLine">false</item>
+        <item name="android:ellipsize">none</item>
     </style>
 
     <!-- Content-sized ordinary commands: the geometry of the base style at 12sp. -->
@@ -40,8 +118,8 @@
         <item name="android:paddingStart">@dimen/padding_normal</item>
         <item name="android:paddingEnd">@dimen/padding_normal</item>
         <item name="android:textSize">12sp</item>
-        <item name="android:maxLines">1</item>
-        <item name="android:ellipsize">end</item>
+        <item name="android:maxLines">2147483647</item>
+        <item name="android:ellipsize">none</item>
         <item name="iconPadding">@dimen/margin_small</item>
     </style>
 
@@ -50,8 +128,8 @@
         <item name="android:paddingStart">@dimen/padding_normal</item>
         <item name="android:paddingEnd">@dimen/padding_normal</item>
         <item name="android:textSize">12sp</item>
-        <item name="android:maxLines">1</item>
-        <item name="android:ellipsize">end</item>
+        <item name="android:maxLines">2147483647</item>
+        <item name="android:ellipsize">none</item>
         <item name="iconPadding">@dimen/margin_small</item>
     </style>
 
@@ -60,9 +138,40 @@
         <item name="android:paddingStart">@dimen/padding_normal</item>
         <item name="android:paddingEnd">@dimen/padding_normal</item>
         <item name="android:textSize">12sp</item>
-        <item name="android:maxLines">1</item>
-        <item name="android:ellipsize">end</item>
+        <item name="android:maxLines">2147483647</item>
+        <item name="android:ellipsize">none</item>
         <item name="iconPadding">@dimen/margin_small</item>
+    </style>
+
+    <!-- High-visibility destructive control for the SOS stop button (S0006). -->
+    <style name="Widget.Tourist.Button.DialogDestructive" parent="Widget.Tourist.Button.Filled">
+        <item name="android:foreground">@drawable/focus_button_background</item>
+        <item name="backgroundTint">@color/delete_button</item>
+        <item name="android:textColor">@color/white</item>
+        <item name="android:minHeight">@dimen/dialog_action_button_min_height</item>
+        <item name="android:minWidth">@dimen/dialog_confirm_button_min_width</item>
+    </style>
+
+    <!-- Dialog action pair and icon-only button (FastMediaSorter styles, S0007). -->
+    <style name="Widget.Tourist.Button.DialogConfirm" parent="Widget.Tourist.Button.Filled">
+        <item name="android:foreground">@drawable/focus_button_background</item>
+        <item name="backgroundTint">?attr/colorSurfaceContainerHighest</item>
+        <item name="android:textColor">?attr/colorOnSurface</item>
+        <item name="android:minHeight">@dimen/dialog_action_button_min_height</item>
+        <item name="android:minWidth">@dimen/dialog_confirm_button_min_width</item>
+    </style>
+
+    <style name="Widget.Tourist.Button.DialogCancel" parent="Widget.Tourist.Button.Tonal">
+        <item name="android:foreground">@drawable/focus_button_background</item>
+        <item name="backgroundTint">?attr/colorSurfaceContainerHighest</item>
+        <item name="android:textColor">?attr/colorOnSurface</item>
+        <item name="android:minHeight">@dimen/dialog_cancel_button_min_height</item>
+    </style>
+
+    <style name="Widget.Tourist.Button.Icon" parent="Widget.Tourist.Button.Command">
+        <item name="android:minWidth">@dimen/touch_target_min_height</item>
+        <item name="android:minHeight">@dimen/touch_target_min_height</item>
+        <item name="android:focusable">true</item>
     </style>
 
     <style name="Widget.Tourist.Toolbar" parent="Widget.Material3.Toolbar">

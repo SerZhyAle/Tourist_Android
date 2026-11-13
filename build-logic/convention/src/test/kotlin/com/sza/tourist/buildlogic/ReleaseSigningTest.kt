@@ -46,7 +46,7 @@ class ReleaseSigningTest {
             keyPassword=secret
             """.trimIndent(),
         )
-        val loaded = ReleaseSigning.load(file)
+        val loaded = ReleaseSigning.load(file).appSigning
         assertEquals(File(file.parentFile, "keys/tourist-upload.jks"), loaded.storeFile)
         assertEquals("tourist-upload", loaded.keyAlias)
     }
@@ -61,7 +61,7 @@ class ReleaseSigningTest {
             keyPassword=secret
             """.trimIndent(),
         )
-        assertEquals(File("P:/ANDROID/Tourist_credentials/tourist-upload.jks"), ReleaseSigning.load(file).storeFile)
+        assertEquals(File("P:/ANDROID/Tourist_credentials/tourist-upload.jks"), ReleaseSigning.load(file).appSigning.storeFile)
     }
 
     @Test
@@ -69,5 +69,42 @@ class ReleaseSigningTest {
         val file = propertiesFile("storeFile=tourist.jks\nstorePassword=secret\nkeyAlias=tourist\n")
         val error = assertThrows(IllegalArgumentException::class.java) { ReleaseSigning.load(file) }
         assertEquals("${file.path} lacks: keyPassword.", error.message)
+    }
+
+    @Test
+    fun `a file without upload keys has no upload key`() {
+        val file = propertiesFile("storeFile=tourist.jks\nstorePassword=secret\nkeyAlias=tourist\nkeyPassword=secret\n")
+        assertNull(ReleaseSigning.load(file).upload)
+    }
+
+    @Test
+    fun `the upload key is read from the prefixed keys beside the app signing key`() {
+        val file = propertiesFile(
+            """
+            storeFile=tourist-app-signing.jks
+            storePassword=secret
+            keyAlias=tourist
+            keyPassword=secret
+            upload.storeFile=tourist-upload.jks
+            upload.storePassword=other
+            upload.keyAlias=tourist-upload
+            upload.keyPassword=other
+            """.trimIndent(),
+        )
+        val keys = ReleaseSigning.load(file)
+        assertEquals(File(file.parentFile, "tourist-app-signing.jks"), keys.appSigning.storeFile)
+        assertEquals("tourist", keys.appSigning.keyAlias)
+        assertEquals(File(file.parentFile, "tourist-upload.jks"), keys.upload?.storeFile)
+        assertEquals("tourist-upload", keys.upload?.keyAlias)
+    }
+
+    @Test
+    fun `a partial upload key is refused by name`() {
+        val file = propertiesFile(
+            "storeFile=tourist.jks\nstorePassword=secret\nkeyAlias=tourist\nkeyPassword=secret\n" +
+                "upload.storeFile=tourist-upload.jks\nupload.keyAlias=tourist-upload\n",
+        )
+        val error = assertThrows(IllegalArgumentException::class.java) { ReleaseSigning.load(file) }
+        assertEquals("${file.path} lacks: upload.storePassword, upload.keyPassword.", error.message)
     }
 }

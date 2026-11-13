@@ -1,0 +1,106 @@
+[
+  {
+    "case": "dismiss-consent-unarmed",
+    "passed": true,
+    "top": "com.sza.tourist/.ui.flashlight.WaterFlashlightActivity}",
+    "torchLit": false,
+    "pinned": false,
+    "screenshot": "P:\\ANDROID\\Tourist_mob\\temp\\S0013\\runs\\20261027-S0018-lifecycle\\scenes\\C4pin-phone-r1\\shot-dismiss-consent-unarmed.png"
+  },
+  {
+    "case": "cancel-consent",
+    "passed": true,
+    "top": "com.sza.tourist/.ui.flashlight.LightsActivity}",
+    "torchLit": false,
+    "pinned": false,
+    "screenshot": "P:\\ANDROID\\Tourist_mob\\temp\\S0013\\runs\\20261027-S0018-lifecycle\\scenes\\C4pin-phone-r1\\shot-cancel-consent.png"
+  },
+  {
+    "case": "rotate-pinned",
+    "passed": true,
+    "top": "com.sza.tourist/.ui.flashlight.WaterFlashlightActivity}",
+    "torchLit": true,
+    "pinned": true,
+    "screenshot": "P:\\ANDROID\\Tourist_mob\\temp\\S0013\\runs\\20261027-S0018-lifecycle\\scenes\\C4pin-phone-r1\\shot-rotate-pinned.png"
+  },
+  {
+    "case": "exit-after-rotation",
+    "passed": true,
+    "top": "com.sza.tourist/.ui.flashlight.LightsActivity}",
+    "torchLit": false,
+    "pinned": false,
+    "screenshot": "P:\\ANDROID\\Tourist_mob\\temp\\S0013\\runs\\20261027-S0018-lifecycle\\scenes\\C4pin-phone-r1\\shot-exit-after-rotation.png"
+  },
+  {
+    "case": "screen-off-torch-off",
+    "passed": true,
+    "top": "com.sza.tourist/.ui.flashlight.WaterFlashlightActivity}",
+    "torchLit": false,
+    "pinned": true,
+    "screenshot": "P:\\ANDROID\\Tourist_mob\\temp\\S0013\\runs\\20261027-S0018-lifecycle\\scenes\\C4pin-phone-r1\\shot-screen-off-torch-off.png"
+  },
+  {
+    "case": "wake-pinned",
+    "passed": true,
+    "top": "com.sza.tourist/.ui.flashlight.WaterFlashlightActivity}",
+    "torchLit": true,
+    "pinned": true,
+    "screenshot": "P:\\ANDROID\\Tourist_mob\\temp\\S0013\\runs\\20261027-S0018-lifecycle\\scenes\\C4pin-phone-r1\\shot-wake-pinned.png"
+  },
+  {
+    "case": "os-unpin-escape",
+    "passed": true,
+    "top": "com.sza.tourist/.ui.flashlight.WaterFlashlightActivity}",
+    "torchLit": true,
+    "pinned": false,
+    "screenshot": "P:\\ANDROID\\Tourist_mob\\temp\\S0013\\runs\\20261027-S0018-lifecycle\\scenes\\C4pin-phone-r1\\shot-os-unpin-escape.png"
+  },
+  {
+    "case": "exit-VOLUME_UP",
+    "passed": true,
+    "top": "com.sza.tourist/.ui.flashlight.LightsActivity}",
+    "torchLit": false,
+    "pinned": false,
+    "screenshot": "P:\\ANDROID\\Tourist_mob\\temp\\S0013\\runs\\20261027-S0018-lifecycle\\scenes\\C4pin-phone-r1\\shot-exit-VOLUME_UP.png"
+  },
+  {
+    "case": "exit-VOLUME_DOWN",
+    "passed": true,
+    "top": "com.sza.tourist/.ui.flashlight.LightsActivity}",
+    "torchLit": false,
+    "pinned": false,
+    "screenshot": "P:\\ANDROID\\Tourist_mob\\temp\\S0013\\runs\\20261027-S0018-lifecycle\\scenes\\C4pin-phone-r1\\shot-exit-VOLUME_DOWN.png"
+  },
+  {
+    "case": "exit-VOLUME_MUTE",
+    "passed": true,
+    "top": "com.sza.tourist/.ui.flashlight.LightsActivity}",
+    "torchLit": false,
+    "pinned": false,
+    "screenshot": "P:\\ANDROID\\Tourist_mob\\temp\\S0013\\runs\\20261027-S0018-lifecycle\\scenes\\C4pin-phone-r1\\shot-exit-VOLUME_MUTE.png"
+  },
+  {
+    "case": "exit-CAMERA",
+    "passed": true,
+    "top": "com.sza.tourist/.ui.flashlight.LightsActivity}",
+    "torchLit": false,
+    "pinned": false,
+    "screenshot": "P:\\ANDROID\\Tourist_mob\\temp\\S0013\\runs\\20261027-S0018-lifecycle\\scenes\\C4pin-phone-r1\\shot-exit-CAMERA.png"
+  },
+  {
+    "case": "exit-HEADSETHOOK",
+    "passed": true,
+    "top": "com.sza.tourist/.ui.flashlight.LightsActivity}",
+    "torchLit": false,
+    "pinned": false,
+    "screenshot": "P:\\ANDROID\\Tourist_mob\\temp\\S0013\\runs\\20261027-S0018-lifecycle\\scenes\\C4pin-phone-r1\\shot-exit-HEADSETHOOK.png"
+  },
+  {
+    "case": "exit-MEDIA_PLAY_PAUSE",
+    "passed": true,
+    "top": "com.sza.tourist/.ui.flashlight.LightsActivity}",
+    "torchLit": false,
+    "pinned": false,
+    "screenshot": "P:\\ANDROID\\Tourist_mob\\temp\\S0013\\runs\\20261027-S0018-lifecycle\\scenes\\C4pin-phone-r1\\shot-exit-MEDIA_PLAY_PAUSE.png"
+  }
+]

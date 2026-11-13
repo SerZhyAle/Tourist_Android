@@ -1,0 +1,21 @@
+/* Page layer of the privacy pages (S0026 W3). Linked after the byte-identical family kit (sza-kit.css), which is never
+   edited; everything here only styles the policy card the kit has no component for. The page spans the viewport less
+   the kit's gutter; only running prose inside the card is capped for reading (PAGE-STYLE section 5, "Width"). */
+.policy-card{background:var(--card);border:1px solid var(--border);border-radius:var(--radius);padding:clamp(1rem,2.5vw,2rem);margin:1.25rem 0}
+.policy-card h1{font-size:clamp(1.7rem,4.2vw,2.5rem);font-weight:800;margin-bottom:.5rem}
+.policy-card h2{font-size:1.25rem;margin:2rem 0 .6rem;padding-top:1rem;border-top:1px solid var(--border)}
+.policy-card p,.policy-card li{max-width:78ch;color:var(--text-2)}
+.policy-card p{margin:.5rem 0}
+.policy-card ul{padding-inline-start:1.3rem;margin:.5rem 0 1rem}
+.policy-card li{margin:.4rem 0}
+.policy-card strong{color:var(--text)}
+.policy-card code{font-size:.88em;overflow-wrap:anywhere}
+.policy-card a{overflow-wrap:anywhere}
+.table-wrap{overflow-x:auto;margin:1rem 0;border:1px solid var(--border);border-radius:10px}
+.policy-card table{border-collapse:collapse;width:100%;min-width:34rem;font-size:.9rem}
+.policy-card th,.policy-card td{padding:.55rem .75rem;text-align:start;vertical-align:top;border-bottom:1px solid var(--border)}
+.policy-card tr:last-child td{border-bottom:0}
+.policy-card th{font-family:var(--font-heading);font-size:.74rem;text-transform:uppercase;letter-spacing:.06em;color:var(--muted)}
+.policy-card td{color:var(--text-2)}
+.policy-card td:first-child{overflow-wrap:anywhere}
+.lang-links{margin:.5rem 0;color:var(--muted)}

@@ -1,0 +1,6 @@
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="@dimen/boolean_checkbox_size" android:height="@dimen/boolean_checkbox_size"
+    android:viewportWidth="24" android:viewportHeight="24">
+    <path android:pathData="M1,1 H23 V23 H1 Z" android:strokeWidth="2"
+        android:strokeColor="?attr/colorOnSurface" android:fillColor="@android:color/transparent" />
+</vector>

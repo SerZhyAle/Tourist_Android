@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  Layout for CollapsibleGroup (COLLAPSIBLE-GROUP 1.1, S0015).
+  The header is visually distinct from the body in both states (own surface fill plus a bold
+  heading treatment), carries the current-state triangle at the extreme reading-start side, and
+  the whole header toggles the group. The body expands immediately below its own header in normal
+  flow across the full content width; collapsed, it occupies no space and holds no focus targets.
+-->
+<merge xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <LinearLayout
+        android:id="@+id/cg_header"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="?attr/colorSurfaceContainerHighest"
+        android:foreground="@drawable/focus_button_background"
+        android:gravity="center_vertical"
+        android:minHeight="@dimen/token_touch_target_min"
+        android:orientation="horizontal"
+        android:paddingStart="@dimen/token_spacing_12"
+        android:paddingEnd="@dimen/token_spacing_12">
+
+        <!-- Current-state marker: points toward reading end while collapsed, down while expanded
+             (rotation applied by the component; the base vector auto-mirrors in RTL). -->
+        <ImageView
+            android:id="@+id/cg_marker"
+            android:layout_width="@dimen/group_marker_size"
+            android:layout_height="@dimen/group_marker_size"
+            android:contentDescription="@null"
+            android:importantForAccessibility="no"
+            android:src="@drawable/ic_group_state_triangle" />
+
+        <TextView
+            android:id="@+id/cg_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/group_marker_gap"
+            android:textAppearance="?attr/textAppearanceTitleMedium"
+            android:textStyle="bold" />
+    </LinearLayout>
+
+    <!-- Body host: children are added here; the component hides it (GONE) while collapsed. -->
+    <FrameLayout
+        android:id="@+id/cg_body"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingStart="@dimen/group_body_inset"
+        android:paddingEnd="@dimen/group_body_inset"
+        android:paddingTop="@dimen/token_spacing_8"
+        android:paddingBottom="@dimen/token_spacing_8" />
+
+</merge>

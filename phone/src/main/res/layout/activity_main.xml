@@ -6,19 +6,33 @@
     android:layout_height="match_parent"
     android:orientation="vertical">
 
-    <TextView
-        android:id="@+id/home_title"
+    <!-- The help button stands in the trailing corner of the title row and adds to it (S0014). -->
+    <FrameLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:gravity="center"
-        android:paddingTop="@dimen/margin_large"
-        android:paddingBottom="@dimen/margin_normal"
-        android:text="@string/app_name"
-        android:textAppearance="?attr/textAppearanceHeadlineSmall"
-        android:textStyle="bold" />
+        android:layout_height="wrap_content">
 
-    <!-- Program rows: the dashboard ships with S0004; lights, SOS and the stopwatch join with
-         S0005-S0007. The row is one control: icon, label, no colour-only state. -->
+        <TextView
+            android:id="@+id/home_title"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:paddingTop="@dimen/margin_large"
+            android:paddingBottom="@dimen/margin_normal"
+            android:text="@string/app_name"
+            android:textAppearance="?attr/textAppearanceHeadlineSmall"
+            android:textStyle="bold" />
+
+        <com.sza.tourist.help.HelpButton
+            android:id="@+id/helpButton"
+            android:layout_width="@dimen/touch_target_min_height"
+            android:layout_height="@dimen/touch_target_min_height"
+            android:layout_gravity="top|end"
+            android:layout_marginTop="@dimen/margin_small"
+            android:layout_marginEnd="@dimen/margin_small" />
+    </FrameLayout>
+
+    <!-- Program rows: the dashboard ships with S0004, the lights with S0005; SOS and the stopwatch
+         join with S0006-S0007. The row is one control: icon, label, no colour-only state. -->
     <com.google.android.material.card.MaterialCardView
         android:id="@+id/row_dashboard"
         android:layout_width="match_parent"
@@ -59,4 +73,138 @@
         </LinearLayout>
     </com.google.android.material.card.MaterialCardView>
 
+    <com.google.android.material.card.MaterialCardView
+        android:id="@+id/row_lights"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/margin_normal"
+        android:layout_marginEnd="@dimen/margin_normal"
+        android:layout_marginTop="@dimen/margin_small"
+        android:clickable="true"
+        android:focusable="true"
+        app:cardCornerRadius="@dimen/tourist_secondary_card_corner_radius"
+        app:cardElevation="@dimen/tourist_secondary_card_elevation"
+        app:strokeWidth="@dimen/tourist_secondary_card_stroke_width"
+        app:strokeColor="?attr/colorPrimary">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_vertical"
+            android:orientation="horizontal"
+            android:padding="@dimen/padding_normal">
+
+            <ImageView
+                android:id="@+id/row_lights_icon"
+                android:layout_width="@dimen/icon_tier_32"
+                android:layout_height="@dimen/icon_tier_32"
+                android:contentDescription="@null"
+                android:src="@drawable/ic_camera_flash_on"
+                app:tint="?attr/colorPrimary" />
+
+            <TextView
+                android:id="@+id/row_lights_label"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/margin_normal"
+                android:layout_weight="1"
+                android:text="@string/program_lights"
+                android:textAppearance="?attr/textAppearanceTitleMedium" />
+        </LinearLayout>
+    </com.google.android.material.card.MaterialCardView>
+
+    <com.google.android.material.card.MaterialCardView
+        android:id="@+id/row_sos"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/margin_normal"
+        android:layout_marginEnd="@dimen/margin_normal"
+        android:layout_marginTop="@dimen/margin_small"
+        android:clickable="true"
+        android:focusable="true"
+        app:cardCornerRadius="@dimen/tourist_secondary_card_corner_radius"
+        app:cardElevation="@dimen/tourist_secondary_card_elevation"
+        app:strokeWidth="@dimen/tourist_secondary_card_stroke_width"
+        app:strokeColor="@color/color_program_accent_red">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_vertical"
+            android:orientation="horizontal"
+            android:padding="@dimen/padding_normal">
+
+            <ImageView
+                android:id="@+id/row_sos_icon"
+                android:layout_width="@dimen/icon_tier_32"
+                android:layout_height="@dimen/icon_tier_32"
+                android:contentDescription="@null"
+                android:src="@drawable/ic_sos"
+                app:tint="@color/color_program_accent_red" />
+
+            <TextView
+                android:id="@+id/row_sos_label"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/margin_normal"
+                android:layout_weight="1"
+                android:text="@string/program_sos"
+                android:textAppearance="?attr/textAppearanceTitleMedium" />
+        </LinearLayout>
+    </com.google.android.material.card.MaterialCardView>
+
+    <com.google.android.material.card.MaterialCardView
+        android:id="@+id/row_stopwatch"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/margin_normal"
+        android:layout_marginEnd="@dimen/margin_normal"
+        android:layout_marginTop="@dimen/margin_small"
+        android:clickable="true"
+        android:focusable="true"
+        app:cardCornerRadius="@dimen/tourist_secondary_card_corner_radius"
+        app:cardElevation="@dimen/tourist_secondary_card_elevation"
+        app:strokeWidth="@dimen/tourist_secondary_card_stroke_width"
+        app:strokeColor="?attr/colorPrimary">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_vertical"
+            android:orientation="horizontal"
+            android:padding="@dimen/padding_normal">
+
+            <ImageView
+                android:id="@+id/row_stopwatch_icon"
+                android:layout_width="@dimen/icon_tier_32"
+                android:layout_height="@dimen/icon_tier_32"
+                android:contentDescription="@null"
+                android:src="@drawable/ic_stopwatch"
+                app:tint="?attr/colorPrimary" />
+
+            <TextView
+                android:id="@+id/row_stopwatch_label"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/margin_normal"
+                android:layout_weight="1"
+                android:text="@string/program_stopwatch"
+                android:textAppearance="?attr/textAppearanceTitleMedium" />
+        </LinearLayout>
+    </com.google.android.material.card.MaterialCardView>
+
+    <com.google.android.material.textview.MaterialTextView
+        android:id="@+id/row_settings"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/token_spacing_16"
+        android:minHeight="@dimen/token_touch_target_min"
+        android:gravity="center_vertical"
+        android:background="?attr/selectableItemBackground"
+        android:clickable="true"
+        android:focusable="true"
+        android:drawableStart="@drawable/ic_settings"
+        android:drawablePadding="@dimen/token_spacing_8"
+        android:text="@string/settings_title"
+        android:textAppearance="?attr/textAppearanceTitleMedium" />
 </LinearLayout>

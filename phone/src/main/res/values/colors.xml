@@ -2,6 +2,7 @@
 <resources>
     <color name="tourist_night">#FF0B1210</color>
     <color name="tourist_green">#FF2E7D32</color>
+    <color name="tourist_primary_ink">#FFFFFFFF</color>
     <color name="launcher_background">#FF0B3D2E</color>
 
     <!-- The ported dashboard and its widget (FastMediaSorter values, S0004). -->
@@ -24,4 +25,24 @@
     <color name="tourist_tile_bg_group_navigation">#E0F7F4</color>
     <color name="tourist_tile_bg_group_environment">#FFFDE0</color>
     <color name="tourist_tile_bg_group_weather">#E3F2FD</color>
+
+    <!-- The lights (FastMediaSorter values, S0005). -->
+    <!-- The shade shortcut's large icon keeps the flashlight's amber accent that the camera-flash
+         glyph leaves to the call site. -->
+    <color name="flashlight_accent_amber">#FFF9A825</color>
+    <!-- Layout placeholders of the color picker, overwritten at runtime on first bind. -->
+    <color name="success_color">#FF2E7D32</color>
+    <color name="info_color">#FF0288D1</color>
+
+    <!-- The SOS distress signal (FastMediaSorter values, S0006). -->
+    <color name="color_program_accent_red">#FFC62828</color>
+    <color name="delete_button">#FFD32F2F</color>
+
+    <!-- The stopwatch and its dialogs (FastMediaSorter values, S0007). -->
+    <color name="item_selected">#FFE3F2FD</color>
+    <color name="item_normal">#00000000</color>
+    <color name="item_focused">#FFBBDEFB</color>
+    <color name="item_hovered">#FFF5F5F5</color>
+    <color name="item_pressed">#FFE1F5FE</color>
+    <color name="focus_indicator">#FF1976D2</color>
 </resources>

@@ -1,0 +1,167 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- The lights program: three launch rows and the shade-shortcut switch. The row shape mirrors the
+     start screen's program rows - one control: icon, label, no colour-only state. -->
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/lightsRoot"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <com.sza.tourist.ui.common.widget.StandardToolbar
+        android:id="@+id/toolbar"
+        style="@style/Widget.Tourist.Toolbar.Flat"
+        android:layout_width="match_parent"
+        android:layout_height="?actionBarSize"
+        app:navigationIcon="@drawable/ic_arrow_back"
+        app:navigationContentDescription="@string/back"
+        app:title="@string/program_lights" />
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:fillViewport="true">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:paddingBottom="@dimen/margin_normal">
+
+            <com.sza.tourist.ui.common.widget.FocusMaterialCardView
+                android:id="@+id/row_water_flashlight"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/margin_normal"
+                android:layout_marginEnd="@dimen/margin_normal"
+                android:layout_marginTop="@dimen/margin_small"
+                android:clickable="true"
+                android:focusable="true"
+                app:cardCornerRadius="@dimen/tourist_secondary_card_corner_radius"
+                app:cardElevation="@dimen/tourist_secondary_card_elevation"
+                app:strokeWidth="@dimen/tourist_secondary_card_stroke_width"
+                app:strokeColor="?attr/colorPrimary">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal"
+                    android:padding="@dimen/padding_normal">
+
+                    <ImageView
+                        android:id="@+id/row_water_flashlight_icon"
+                        android:layout_width="@dimen/icon_tier_32"
+                        android:layout_height="@dimen/icon_tier_32"
+                        android:contentDescription="@null"
+                        android:src="@drawable/ic_widget_water_flashlight_accent"
+                        app:tint="?attr/colorPrimary" />
+
+                    <TextView
+                        android:id="@+id/row_water_flashlight_label"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="@dimen/margin_normal"
+                        android:layout_weight="1"
+                        android:text="@string/water_flashlight_title"
+                        android:textAppearance="?attr/textAppearanceTitleMedium" />
+                </LinearLayout>
+            </com.sza.tourist.ui.common.widget.FocusMaterialCardView>
+
+            <com.sza.tourist.ui.common.widget.FocusMaterialCardView
+                android:id="@+id/row_front_flashlight"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/margin_normal"
+                android:layout_marginEnd="@dimen/margin_normal"
+                android:layout_marginTop="@dimen/margin_small"
+                android:clickable="true"
+                android:focusable="true"
+                app:cardCornerRadius="@dimen/tourist_secondary_card_corner_radius"
+                app:cardElevation="@dimen/tourist_secondary_card_elevation"
+                app:strokeWidth="@dimen/tourist_secondary_card_stroke_width"
+                app:strokeColor="?attr/colorPrimary">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal"
+                    android:padding="@dimen/padding_normal">
+
+                    <ImageView
+                        android:id="@+id/row_front_flashlight_icon"
+                        android:layout_width="@dimen/icon_tier_32"
+                        android:layout_height="@dimen/icon_tier_32"
+                        android:contentDescription="@null"
+                        android:src="@drawable/ic_widget_front_flashlight_accent"
+                        app:tint="?attr/colorPrimary" />
+
+                    <TextView
+                        android:id="@+id/row_front_flashlight_label"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="@dimen/margin_normal"
+                        android:layout_weight="1"
+                        android:text="@string/front_flashlight_title"
+                        android:textAppearance="?attr/textAppearanceTitleMedium" />
+                </LinearLayout>
+            </com.sza.tourist.ui.common.widget.FocusMaterialCardView>
+
+            <com.sza.tourist.ui.common.widget.FocusMaterialCardView
+                android:id="@+id/row_camera_torch"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/margin_normal"
+                android:layout_marginEnd="@dimen/margin_normal"
+                android:layout_marginTop="@dimen/margin_small"
+                android:clickable="true"
+                android:focusable="true"
+                app:cardCornerRadius="@dimen/tourist_secondary_card_corner_radius"
+                app:cardElevation="@dimen/tourist_secondary_card_elevation"
+                app:strokeWidth="@dimen/tourist_secondary_card_stroke_width"
+                app:strokeColor="?attr/colorPrimary">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal"
+                    android:padding="@dimen/padding_normal">
+
+                    <ImageView
+                        android:id="@+id/row_camera_torch_icon"
+                        android:layout_width="@dimen/icon_tier_32"
+                        android:layout_height="@dimen/icon_tier_32"
+                        android:contentDescription="@null"
+                        android:src="@drawable/ic_camera_flash_on"
+                        app:tint="?attr/colorPrimary" />
+
+                    <TextView
+                        android:id="@+id/row_camera_torch_label"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="@dimen/margin_normal"
+                        android:layout_weight="1"
+                        android:text="@string/physical_flashlight_title"
+                        android:textAppearance="?attr/textAppearanceTitleMedium" />
+                </LinearLayout>
+            </com.sza.tourist.ui.common.widget.FocusMaterialCardView>
+
+            <!-- Hidden by the activity where the device has no flash unit. -->
+            <com.sza.tourist.ui.common.widget.SettingsCheckboxRow
+                android:id="@+id/row_shade_shortcut"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/margin_normal"
+                android:layout_marginEnd="@dimen/margin_normal"
+                android:layout_marginTop="@dimen/margin_normal"
+                android:focusable="true"
+                app:scr_icon="@drawable/ic_camera_flash_off"
+                app:scr_subtitle="@string/flashlight_shortcut_settings_toggle_subtitle"
+                app:scr_title="@string/flashlight_shortcut_settings_toggle_title" />
+
+        </LinearLayout>
+    </ScrollView>
+
+</LinearLayout>

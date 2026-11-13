@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- The help window (CONTEXT-HELP rule 7): a bundled page over the live screen. A plain MaterialToolbar, not the
+     StandardToolbar, so the help window does not offer help about itself. -->
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/helpRoot"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="?attr/colorSurface"
+    android:orientation="vertical">
+
+    <com.google.android.material.appbar.MaterialToolbar
+        android:id="@+id/helpToolbar"
+        style="@style/Widget.Tourist.Toolbar.Flat"
+        android:layout_width="match_parent"
+        android:layout_height="?actionBarSize"
+        app:navigationContentDescription="@string/help_close"
+        app:navigationIcon="@drawable/ic_arrow_back"
+        app:title="@string/help_title" />
+
+    <WebView
+        android:id="@+id/helpWebView"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1" />
+</LinearLayout>

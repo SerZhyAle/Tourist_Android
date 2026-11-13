@@ -2,4 +2,43 @@
 <resources>
     <!-- Tag key of the remembered pre-inset padding (utils/ViewExtensions.kt). -->
     <item name="systemBarInsetBasePadding" type="id" />
+    <item name="settings_title" type="id" />
+    <item name="settings_main" type="id" />
+    <item name="settings_about" type="id" />
+    <item name="settings_back" type="id" />
+    <item name="settings_pages" type="id" />
+    <item name="settings_selected" type="id" />
+    <item name="settings_loading" type="id" />
+    <item name="settings_theme" type="id" />
+    <item name="settings_system" type="id" />
+    <item name="settings_light" type="id" />
+    <item name="settings_dark" type="id" />
+    <item name="settings_language" type="id" />
+    <item name="settings_units" type="id" />
+    <item name="settings_metric" type="id" />
+    <item name="settings_imperial" type="id" />
+    <item name="settings_awake" type="id" />
+    <item name="settings_awake_description" type="id" />
+    <item name="settings_description" type="id" />
+    <item name="settings_version" type="id" />
+    <item name="settings_resources" type="id" />
+    <item name="settings_license_text" type="id" />
+    <item name="settings_privacy_text" type="id" />
+    <item name="settings_help" type="id" />
+    <item name="settings_export" type="id" />
+    <item name="settings_diagnostics_description" type="id" />
+    <item name="settings_export_saved" type="id" />
+    <item name="settings_export_failed" type="id" />
+    <item name="settings_resource_index" type="id" />
+    <item name="settings_related" type="id" />
+    <item name="settings_related_description" type="id" />
+    <item name="settings_content" type="id" />
+    <item name="settings_menu" type="id" />
+    <item name="settings_nav_main" type="id" />
+    <item name="settings_nav_about" type="id" />
+    <item name="settings_main_page" type="id" />
+    <item name="settings_about_page" type="id" />
+    <item name="row_settings" type="id" />
+    <item name="settings_license" type="id" />
+    <item name="settings_privacy" type="id" />
 </resources>

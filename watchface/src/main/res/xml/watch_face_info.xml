@@ -1,10 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
-<!-- Watch Face Format metadata. Preview is the only required field. Category is deliberately absent: it
-     is optional, and an invented value would pass the build in silence and surface as a store rejection.
-     The preview is a placeholder of the skeleton face; the composition of the real face is owner
-     decision 4.4 (before S0009) and re-captures the preview with it. -->
+<!-- Watch Face Format metadata. Preview is the only required field. Category is deliberately absent. -->
 <WatchFaceInfo>
     <Preview value="@drawable/preview" />
-    <Editable value="false" />
+    <Editable value="true" />
     <MultipleInstancesAllowed value="false" />
 </WatchFaceInfo>

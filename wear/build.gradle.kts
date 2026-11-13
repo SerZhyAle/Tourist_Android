@@ -42,6 +42,10 @@ android {
 kotlin {
     compilerOptions {
         jvmTarget = JvmTarget.JVM_17
+        // The ported classes annotate constructor properties (`@ApplicationContext private val`) and are
+        // written for this target; FastMediaSorter builds with the same flag, so the annotations land on
+        // the same elements here.
+        freeCompilerArgs.add("-Xannotation-default-target=param-property")
     }
 }
 
@@ -49,12 +53,32 @@ dependencies {
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.activity.compose)
     implementation(libs.androidx.lifecycle.runtime.ktx)
+    implementation(libs.androidx.lifecycle.viewmodel.compose)
+    implementation(libs.androidx.lifecycle.runtime.compose)
 
     // Wear OS Compose, on the Compose BOM that wear-compose 1.4.x is built against.
     implementation(platform(libs.androidx.compose.bom))
     implementation(libs.androidx.compose.ui)
+    implementation(libs.androidx.compose.material.icons.core)
+    implementation(libs.androidx.compose.material.icons.extended)
     implementation(libs.androidx.wear.compose.material)
     implementation(libs.androidx.wear.compose.foundation)
+    implementation(libs.androidx.wear.compose.navigation)
+    implementation(libs.androidx.hilt.navigation.compose)
+
+    // Wear OS essentials: rotary input, the ongoing activity of the stopwatch, and the Data Layer.
+    implementation(libs.androidx.wear.wear)
+    implementation(libs.androidx.wear.input)
+    implementation(libs.androidx.wear.ongoing)
+    implementation(libs.google.gms.play.services.wearable)
+    implementation(libs.kotlinx.coroutines.play.services)
+
+    // The Tourist dashboard asks for its location grant while its screen is open (foreground only).
+    implementation(libs.accompanist.permissions)
+
+    implementation(libs.androidx.datastore.preferences)
+    implementation(libs.gson)
+    implementation(libs.timber)
 
     implementation(libs.kotlinx.coroutines.core)
     implementation(libs.kotlinx.coroutines.android)
@@ -64,4 +88,5 @@ dependencies {
 
     testImplementation(libs.junit)
     testImplementation(libs.kotlinx.coroutines.test)
+    testImplementation(libs.mockk)
 }

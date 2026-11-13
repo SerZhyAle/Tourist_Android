@@ -1,0 +1,11 @@
+Vendored family assets of the hosted pages (S0026 W3, owner's order of 2026-11-13).
+
+sza-kit.css sha256 d490abf3bf55455f2cffb92b9ba6305f58c2f1160f3f1ddf70c2d125dd22fa5d
+  The reference kit of PAGE-STYLE (product-web-pages family of the shared contracts catalog, reference/sza-kit.css,
+  kit revision 2026-10-21 as the header of the file says), copied byte for byte on 2026-11-13. It is never edited in
+  this repository: a page extends it through site/assets/policy.css, which is linked after it (PAGE-STYLE section 5,
+  "Extending the kit"). .gitattributes marks the file -text so no line-ending normalization changes the bytes the
+  site serves. A newer kit revision is copied whole and this line is updated with it.
+
+icon-512.png
+  A render target of tools/store/render-store-assets.ps1 (the listing icon), the Open Graph image of the pages.

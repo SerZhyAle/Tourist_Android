@@ -1,12 +1,7 @@
 # S0004 - Phone shell and the Tourist dashboard
 
-**Status:** Implemented
-**Status note:** Implemented 2026-10-25: 55 files ported with ledger rows (84 total, drift check clean, exit 0); 111 unit tests green on store and noLegal (17 classes), both release variants assemble through R8. Second emulator pass closed acceptance 2 and the key walk: map/share driven, widget placed and opens the dashboard, D-pad focus walk with ENTER activation; durable screenshots in PLAN/S0004_phone-shell-and-dashboard/. The owner's personal-phone pass remains.
-111 unit tests green on store and noLegal (17 classes), both release variants assemble through R8. Second
-emulator pass (2026-10-25) closed acceptance 2 and the key walk: map/share driven (Maps opened at the fix,
-share chooser rendered), widget placed through the picker and opens the dashboard, D-pad focus walk over the
-grid and the action row with ENTER activation. The owner's personal-phone pass remains, with physical
-gamepad/TV-remote hardware if the owner wants the literal walk.
+**Status:** BlockNeedUserTest
+**Status note:** Implemented 2026-10-25: 55 files ported with ledger rows (84 total, drift check clean), 111 unit tests green on store and noLegal, both release variants assemble through R8; emulator passes closed all four acceptance criteria. Waiting for the owner: the dashboard on a personal phone with a real satellite fix, and the key walk on a physical gamepad or TV remote (the emulator D-pad walk stands for it).
 **Phase:** 4 of 10 (handoff section 8)
 **Verification level:** device - the dashboard shows altitude, heading, coordinates and sunrise/sunset from a
 real fix on a phone with FastMediaSorter not installed; unit tests of the ported classes.
@@ -213,3 +208,29 @@ through the picker renders on the home screen and its tap opens the dashboard (t
 the D-pad walk runs the focus ring hero -> grid -> action row and ENTER activates the focused Share button.
 Re-run gates at close: `:phone:testStoreDebugUnitTest` and `:phone:testNoLegalDebugUnitTest` exit 0 (111
 tests, 17 classes each); `check-drift.ps1` "OK: nothing uncarried (84 in step, 0 decided)", exit 0.
+
+## Last Audit
+
+2026-10-27, mode pre-handoff: sections 1, 2, 3.3, 4 and 5 re-read from this file on disk. No code was changed and
+no build was run for this block; the evidence is the cited records of 2026-10-23 and 2026-10-25, not a fresh run.
+
+Coverage per goal of section 1:
+
+- **A start screen of its own** - covered: phone emulator walk of 2026-10-23 (screenshot `01`).
+- **The Tourist dashboard with the compass hero tile** - covered: after the location grant and a `geo fix` the
+  dashboard showed coordinates, altitude, heading, sunset, weather and pressure (screenshots `04`, `05`); the grant
+  flow (the S4069 carry) asked for the grants itself.
+- **The map and share actions** - covered: Maps opened at the fix, the share chooser rendered (`17`, `18`).
+- **The home-screen widget** - covered: placed through the picker, its tap opens the dashboard (`25`, `26`).
+- **INPUT-PARITY** - covered for touch and for the D-pad keycode path that gamepad and TV remote share
+  (`27`, `29`, `30`); physical gamepad and TV-remote hardware not observed.
+- **Port discipline and tests** - covered: 84 ledger rows, drift check clean, 111 unit tests green on both
+  variants, both release variants assemble through R8 (section 4, third criterion).
+
+Verdict: the work covers the task except for the observations the owner has to make on hardware this repository
+does not have. Unobserved, each as it stands:
+
+- [ ] The dashboard on a personal phone with a real satellite fix: altitude, heading, coordinates, sunrise and
+      sunset (the strict form of the first acceptance criterion).
+- [ ] The key walk on a physical gamepad or TV remote (the literal form of the fourth criterion; the emulator
+      D-pad walk stands for it).

@@ -1,0 +1,278 @@
+{
+  "help": "dashboard",
+  "locales": {
+    "en": {
+      "summary": "Speed, compass, coordinates and the trip: one big card and a grid of tiles.",
+      "lead": "The dashboard shows what your phone reads on the trail: one reading large on the big card, the others as tiles below it. These are readings of your phone's sensors, not an exact instrument. The buttons at the bottom open a map, share your position, reset the trip and open SOS.",
+      "alt": "The {ui:program_dashboard} screen: the big card with {ui:tourist_tile_speed} and its reset button, the grid of smaller tiles below it, the buttons {ui:tourist_action_open_map}, {ui:tourist_action_share_location}, {ui:tourist_action_reset_trip} and {ui:tourist_action_sos} along the bottom, and the Help button in the top-right corner.",
+      "order": [
+        "If the card {e-permission} is at the top, press {ui:tourist_permission_grant} (or {ui:tourist_permission_open_settings}) in it: without the access the dashboard cannot read your position or steps.",
+        "Read the big card {e-hero}: it shows one reading in large type, {ui:tourist_tile_speed} at first.",
+        "Look through the grid {e-tiles} and tap the tile you want to read large: it takes the place of the big card.",
+        "While the big card {e-hero} shows {ui:tourist_tile_coordinates}, tapping it copies the position; on {ui:tourist_tile_counter} it opens the counter.",
+        "The {ui:tourist_action_open_map} button {e-map} shows you in a maps app, the {ui:tourist_action_share_location} button {e-share} passes the position on as text; both leave the app.",
+        "At the start of a new leg press the {ui:tourist_action_reset_trip} button {e-reset-trip}, or the reset button {e-hero-reset} on the big card, so the trip counts from zero.",
+        "Press the {ui:tourist_action_sos} button {e-sos} when you need to be noticed; press {e-help} to read this page again."
+      ],
+      "elements": {
+        "e-hero": {
+          "name": "The big card",
+          "one": "The tile you picked, in large type.",
+          "what": "Shows one tile large, {ui:tourist_tile_speed} at first. On {ui:tourist_tile_compass} the card draws a compass rose that turns as you turn the phone, with the heading in degrees, the cardinal direction and a line with the sensor's accuracy and {ui:tourist_detail_magnetic_north}; once the phone has a position, the line adds the true heading. The {ui:tourist_tile_magnetic_field} tile also shows live ambient pressure in millibars beside its sensor status when the phone provides a barometer reading. The {ui:tourist_tile_gyroscope} tile draws a 3D phone that turns as you turn yours, with the turning speed in degrees per second; it reads the motion sensors only while it is on the big card.",
+          "why": "Put here the reading you check often, so one glance is enough.",
+          "next": "Tapping the card copies the coordinates to the clipboard when it shows {ui:tourist_tile_coordinates} and there is a position, and opens the counter when it shows {ui:tourist_tile_counter}; on every other tile a tap does nothing.",
+          "undo": "A tap changes no data in the app. The pick is not remembered: the dashboard opens with {ui:tourist_tile_speed} each time.",
+          "tip": "On {ui:tourist_tile_stopwatch} the card has its own buttons: {ui:tourist_stopwatch_action_start} (it becomes {ui:tourist_stopwatch_action_stop} while the time runs), {ui:tourist_stopwatch_action_reset} and {ui:tourist_stopwatch_action_open_full}. The first two time one person; the last opens the full stopwatch for several."
+        },
+        "e-hero-reset": {
+          "one": "Starts the trip, or the step count, over.",
+          "what": "Appears only when the big card shows a tile of the trip: {ui:tourist_tile_speed}, {ui:tourist_tile_trip_distance}, {ui:tourist_tile_elapsed_time}, {ui:tourist_tile_moving_time}, {ui:tourist_tile_elevation_gain_loss}, {ui:tourist_tile_average_pace} or {ui:tourist_tile_steps}. On {ui:tourist_tile_steps} it resets only the step count; on the others it resets the whole trip: distance, time on trip and moving time, ascent and descent, average and maximum speed.",
+          "why": "Use it at the start of a new leg, so the figures describe only that leg.",
+          "next": "The trip figures go back to zero and count again from the next reading; the step count starts from zero when the phone next reports a step.",
+          "undo": "No. It asks for no confirmation and the reset cannot be undone."
+        },
+        "e-tiles": {
+          "name": "The grid of tiles",
+          "one": "All the other readings, one tile each.",
+          "what": "A grid of smaller tiles, two to a row, one for each reading that is not on the big card: for example altitude, compass, coordinates, satellites, steps, the trip figures, sun times and weather. Tapping a tile moves it to the big card.",
+          "why": "Everything the dashboard can read sits on one scrolling page, so no menu is needed to find a reading.",
+          "next": "The tapped tile takes the place of the big card and the old one returns to the grid.",
+          "undo": "Nothing is changed or lost; tap the previous tile to bring it back.",
+          "tip": "Tiles whose sensor the phone does not have are left out of the grid. The weather tiles - for example {ui:tourist_tile_weather}, {ui:tourist_tile_wind} and {ui:tourist_tile_humidity} - need internet and a position: the app sends your coordinates to the Open-Meteo service for them."
+        },
+        "e-map": {
+          "one": "Shows you on a map.",
+          "what": "Hands your position to a maps app on the phone; if no app can open it, a web maps link opens in a browser. Both leave this app, and until a position is found the maps app opens without your point.",
+          "why": "Use it to see where you are on a map.",
+          "next": "The maps app (or the browser) opens in front of this app, which stays open behind it.",
+          "undo": "Opening a map changes nothing in this app."
+        },
+        "e-share": {
+          "one": "Passes your position on as text.",
+          "what": "Puts your coordinates and a web maps link into the system share sheet, where you choose where they go. Until a position is found the button only shows a short message and shares nothing.",
+          "why": "Use it to tell someone where you are.",
+          "next": "Choose a recipient in the share sheet: the app itself sends nothing.",
+          "undo": "Back closes the sheet and nothing leaves; what you already sent from another app cannot be taken back from here."
+        },
+        "e-reset-trip": {
+          "one": "Starts the trip over from zero.",
+          "what": "Resets the whole trip, not only its distance - time on trip and moving time, ascent and descent, average and maximum speed - whatever the big card shows. The one exception is {ui:tourist_tile_steps}: when the big card shows it, this button resets only the step count.",
+          "why": "Press it when you set off on a new leg, so the figures count only that leg.",
+          "next": "The trip figures go back to zero and count again from the next reading; the step count starts from zero when the phone next reports a step.",
+          "undo": "No. It asks for no confirmation and the reset cannot be undone.",
+          "tip": "The trip is kept between visits and after the app restarts, and it grows only while the dashboard is open. This button and the reset on the big card are the ways to start it over."
+        },
+        "e-sos": {
+          "one": "Opens the SOS screen.",
+          "what": "Opens the SOS screen. The signal **starts as soon as that screen opens**: a siren and a strobe repeat the Morse SOS pattern, and a paired watch signals too when it is in range. It sounds and blinks; it does not call anyone and sends no message.",
+          "why": "Use it when you need to be noticed. It is on the dashboard so the signal is one tap away, without going back to the start screen.",
+          "next": "The signal keeps going until you press {ui:sos_stop_action} or leave that screen with Back; the {ui:program_sos} page explains it.",
+          "undo": "{ui:sos_stop_action} ends the signal at once."
+        },
+        "e-help": {
+          "one": "Opens this page.",
+          "what": "The help button in the top-right corner of the top bar opens this page without leaving the app.",
+          "why": "It explains the dashboard with a picture, without a network.",
+          "undo": "Opening it changes nothing; Back closes it.",
+          "shortcut": "[[F1]] on a connected keyboard does the same."
+        },
+        "e-permission": {
+          "one": "Asks for access the dashboard is missing.",
+          "what": "A card at the top of the screen that appears only when an access is missing: location first, then physical activity for the step count (only on phones that count steps). It says what stays unavailable and offers {ui:tourist_permission_grant}; when the system no longer shows its request, the button reads {ui:tourist_permission_open_settings}.",
+          "why": "Without location the dashboard cannot show speed, altitude, coordinates and sun times, and without physical activity it cannot count steps; the card names which one is missing.",
+          "next": "{ui:tourist_permission_grant} opens the system permission dialog; {ui:tourist_permission_open_settings} opens the app's page in the system settings, which leaves this app. Once the access is granted and you are back on the dashboard, the card disappears.",
+          "undo": "You can withdraw the access later in the system settings; the card then returns.",
+          "tip": "The dashboard needs precise location: if you allow only approximate location, the card stays. Location is read only while this screen is open, never in the background."
+        }
+      },
+      "related": [
+        { "help": "home", "note": "The start screen." },
+        { "help": "counter", "note": "The counter that the {ui:tourist_tile_counter} tile opens." },
+        { "help": "stopwatch", "note": "The stopwatch for several people: the {ui:tourist_stopwatch_action_open_full} button on the {ui:tourist_tile_stopwatch} tile opens it." },
+        { "help": "sos", "note": "What the signal does and how to stop it." }
+      ]
+    },
+    "ru": {
+      "summary": "Скорость, компас, координаты и поездка: крупная плитка и сетка мелких.",
+      "lead": "Дашборд показывает то, что телефон считывает в пути: одно значение крупно, остальные - плитками ниже. Это показания датчиков телефона, а не точного прибора. Кнопки внизу открывают карту, передают ваше местоположение, сбрасывают поездку и включают SOS.",
+      "alt": "Экран {ui:program_dashboard}: крупная плитка {ui:tourist_tile_speed} с кнопкой сброса, ниже сетка мелких плиток, внизу кнопки {ui:tourist_action_open_map}, {ui:tourist_action_share_location}, {ui:tourist_action_reset_trip} и {ui:tourist_action_sos}, в правом верхнем углу - кнопка справки.",
+      "order": [
+        "Если вверху есть карточка {e-permission}, нажмите в ней {ui:tourist_permission_grant} (или {ui:tourist_permission_open_settings}): без доступа дашборд не прочитает местоположение и шаги.",
+        "Прочитайте крупную плитку {e-hero}: на ней одно значение крупно, сначала {ui:tourist_tile_speed}.",
+        "Просмотрите сетку {e-tiles} и нажмите на нужную плитку: она займёт место крупной.",
+        "Пока крупная плитка {e-hero} показывает {ui:tourist_tile_coordinates}, нажатие на неё копирует координаты, а на {ui:tourist_tile_counter} - открывает счётчик.",
+        "Кнопка {ui:tourist_action_open_map} {e-map} покажет вас в приложении карт, кнопка {ui:tourist_action_share_location} {e-share} передаст местоположение текстом; обе выводят за пределы приложения.",
+        "В начале нового отрезка нажмите кнопку {ui:tourist_action_reset_trip} {e-reset-trip} или кнопку сброса {e-hero-reset} на крупной плитке: поездка пойдёт с нуля.",
+        "Нажмите кнопку {ui:tourist_action_sos} {e-sos}, когда нужно привлечь внимание; {e-help} снова откроет эту страницу."
+      ],
+      "elements": {
+        "e-hero": {
+          "name": "Крупная плитка",
+          "one": "Выбранная плитка крупным шрифтом.",
+          "what": "Показывает одну плитку крупно, сначала {ui:tourist_tile_speed}. На плитке {ui:tourist_tile_compass} карточка рисует компасную розу, которая поворачивается вместе с телефоном, и показывает направление в градусах, сторону света и строку с точностью датчика и надписью {ui:tourist_detail_magnetic_north}; когда телефон знает своё положение, в строке появляется ещё и истинный курс. Плитка {ui:tourist_tile_magnetic_field} также показывает текущее атмосферное давление в миллибарах рядом с состоянием датчика, если телефон передаёт показания барометра. Плитка {ui:tourist_tile_gyroscope} рисует объёмный телефон, который поворачивается вместе с вашим, и показывает скорость поворота в градусах в секунду; датчики движения она читает, только пока стоит на крупной плитке.",
+          "why": "Поставьте сюда то, что смотрите часто, чтобы хватало одного взгляда.",
+          "next": "Нажатие на плитку копирует координаты в буфер обмена, если на ней {ui:tourist_tile_coordinates} и положение определено, и открывает счётчик, если на ней {ui:tourist_tile_counter}; на остальных плитках ничего не происходит.",
+          "undo": "Данные в приложении не меняются. Выбор плитки не запоминается: дашборд каждый раз открывается с плитки {ui:tourist_tile_speed}.",
+          "tip": "На плитке {ui:tourist_tile_stopwatch} у карточки свои кнопки: {ui:tourist_stopwatch_action_start} (пока идёт отсчёт, она превращается в {ui:tourist_stopwatch_action_stop}), {ui:tourist_stopwatch_action_reset} и {ui:tourist_stopwatch_action_open_full}. Первые две засекают время одного человека, последняя открывает секундомер для нескольких."
+        },
+        "e-hero-reset": {
+          "one": "Начинает поездку или счёт шагов заново.",
+          "what": "Появляется, только когда на крупной плитке показана плитка поездки: {ui:tourist_tile_speed}, {ui:tourist_tile_trip_distance}, {ui:tourist_tile_elapsed_time}, {ui:tourist_tile_moving_time}, {ui:tourist_tile_elevation_gain_loss}, {ui:tourist_tile_average_pace} или {ui:tourist_tile_steps}. На плитке {ui:tourist_tile_steps} сбрасывает только счёт шагов, на остальных - всю поездку: дистанцию, время в пути и в движении, набор и спуск высоты, среднюю и максимальную скорость.",
+          "why": "Нажимайте в начале нового отрезка, чтобы цифры описывали только его.",
+          "next": "Показатели поездки обнулятся и пойдут заново с ближайшего считывания; счёт шагов начнётся с нуля, когда телефон сообщит следующий шаг.",
+          "undo": "Нет: подтверждения она не спрашивает, отменить сброс нельзя."
+        },
+        "e-tiles": {
+          "name": "Сетка плиток",
+          "one": "Остальные показания, по плитке на каждое.",
+          "what": "Сетка мелких плиток по две в ряд, по одной на каждое показание, которого нет на крупной плитке: например высота, компас, координаты, спутники, шаги, данные поездки, время солнца и погода. Нажатие на плитку переносит её в крупную.",
+          "why": "Всё, что умеет читать дашборд, собрано на одной прокручиваемой странице, искать по меню не нужно.",
+          "next": "Нажатая плитка занимает место крупной, а прежняя возвращается в сетку.",
+          "undo": "Ничего не меняется и не теряется; нажмите на прежнюю плитку, чтобы вернуть её.",
+          "tip": "Плитки, для которых в телефоне нет датчика, в сетку не попадают. Погодным плиткам - например {ui:tourist_tile_weather}, {ui:tourist_tile_wind} и {ui:tourist_tile_humidity} - нужны интернет и местоположение: приложение отправляет ваши координаты в сервис Open-Meteo."
+        },
+        "e-map": {
+          "one": "Показывает вас на карте.",
+          "what": "Передаёт ваше местоположение приложению карт на телефоне, а если подходящего приложения нет, открывает ссылку на веб-карту в браузере. Оба варианта выводят за пределы приложения; пока положение не определено, карта открывается без вашей точки.",
+          "why": "Нужна, чтобы увидеть, где вы находитесь.",
+          "next": "Приложение карт (или браузер) открывается поверх этого приложения, которое остаётся открытым позади.",
+          "undo": "Открытие карты ничего не меняет в приложении."
+        },
+        "e-share": {
+          "one": "Передаёт местоположение текстом.",
+          "what": "Кладёт ваши координаты и ссылку на веб-карту в системное окно отправки, где вы сами выбираете, куда это уйдёт. Пока положение не определено, кнопка только показывает короткое сообщение и ничего не передаёт.",
+          "why": "Нужна, чтобы сообщить кому-то, где вы.",
+          "next": "Выберите получателя в окне отправки: само приложение ничего не отправляет.",
+          "undo": "«Назад» закрывает окно, и ничего не уходит; то, что уже отправлено из другого приложения, отсюда не вернуть."
+        },
+        "e-reset-trip": {
+          "one": "Обнуляет поездку.",
+          "what": "Сбрасывает всю поездку, а не только дистанцию: время в пути и в движении, набор и спуск высоты, среднюю и максимальную скорость - что бы ни было на крупной плитке. Единственное исключение - {ui:tourist_tile_steps}: если на крупной плитке они, кнопка сбрасывает только счёт шагов.",
+          "why": "Нажимайте, отправляясь на новый отрезок, чтобы цифры считали только его.",
+          "next": "Показатели поездки обнулятся и пойдут заново с ближайшего считывания; счёт шагов начнётся с нуля, когда телефон сообщит следующий шаг.",
+          "undo": "Нет: подтверждения она не спрашивает, отменить сброс нельзя.",
+          "tip": "Поездка сохраняется между заходами на экран и после перезапуска приложения, а растёт только пока дашборд открыт. Начать её заново можно этой кнопкой или сбросом на крупной плитке."
+        },
+        "e-sos": {
+          "one": "Открывает экран SOS.",
+          "what": "Открывает экран SOS. Сигнал **включается сразу, как только экран открылся**: сирена и вспышка повторяют сигнал SOS азбукой Морзе, а подключённые часы, если они на связи, сигналят тоже. Сигнал звучит и мигает; он никому не звонит и не отправляет сообщений.",
+          "why": "Используйте, когда нужно привлечь внимание. Кнопка есть на дашборде, чтобы до сигнала было одно нажатие и не пришлось возвращаться на стартовый экран.",
+          "next": "Сигнал продолжается, пока вы не нажмёте {ui:sos_stop_action} или не выйдете с экрана кнопкой «Назад»; подробнее на странице {ui:program_sos}.",
+          "undo": "{ui:sos_stop_action} прекращает сигнал сразу."
+        },
+        "e-help": {
+          "one": "Открывает эту страницу.",
+          "what": "Кнопка справки в правом верхнем углу верхней панели открывает эту страницу, не выходя из приложения.",
+          "why": "Она объясняет дашборд с картинкой и без сети.",
+          "undo": "Открытие ничего не меняет; «Назад» закрывает справку.",
+          "shortcut": "[[F1]] на подключённой клавиатуре делает то же самое."
+        },
+        "e-permission": {
+          "one": "Просит доступ, которого дашборду не хватает.",
+          "what": "Карточка вверху экрана, которая появляется, только если не хватает доступа: сначала к геолокации, затем к физической активности для счёта шагов (только в телефонах со счётчиком шагов). Она говорит, что без него недоступно, и предлагает {ui:tourist_permission_grant}; если система больше не покажет запрос, на кнопке написано {ui:tourist_permission_open_settings}.",
+          "why": "Без геолокации дашборд не может показать скорость, высоту, координаты и время восхода, а без физической активности - считать шаги; карточка называет, чего именно нет.",
+          "next": "{ui:tourist_permission_grant} открывает системное окно запроса, {ui:tourist_permission_open_settings} - страницу приложения в настройках системы, то есть выводит из приложения. Когда доступ выдан и вы вернулись на дашборд, карточка исчезает.",
+          "undo": "Доступ можно отозвать позже в настройках системы; тогда карточка вернётся.",
+          "tip": "Дашборду нужна точная геолокация: если разрешить только приблизительную, карточка останется. Местоположение читается, только пока экран открыт, и никогда в фоне."
+        }
+      },
+      "related": [
+        { "help": "home", "note": "Стартовый экран." },
+        { "help": "counter", "note": "Счётчик, который открывает плитка {ui:tourist_tile_counter}." },
+        { "help": "stopwatch", "note": "Секундомер для нескольких людей: его открывает кнопка {ui:tourist_stopwatch_action_open_full} на плитке {ui:tourist_tile_stopwatch}." },
+        { "help": "sos", "note": "Что делает сигнал и как его остановить." }
+      ]
+    },
+    "uk": {
+      "summary": "Швидкість, компас, координати та подорож: велика плитка й сітка менших.",
+      "lead": "Дашборд показує те, що телефон зчитує в дорозі: одне значення великим шрифтом, решту - плитками нижче. Це покази датчиків телефона, а не точного приладу. Кнопки внизу відкривають карту, передають ваше місцеположення, скидають подорож і вмикають SOS.",
+      "alt": "Екран {ui:program_dashboard}: велика плитка {ui:tourist_tile_speed} з кнопкою скидання, нижче сітка менших плиток, унизу кнопки {ui:tourist_action_open_map}, {ui:tourist_action_share_location}, {ui:tourist_action_reset_trip} і {ui:tourist_action_sos}, у правому верхньому куті - кнопка довідки.",
+      "order": [
+        "Якщо вгорі є картка {e-permission}, натисніть у ній {ui:tourist_permission_grant} (або {ui:tourist_permission_open_settings}): без доступу дашборд не прочитає місцеположення й кроки.",
+        "Прочитайте велику плитку {e-hero}: на ній одне значення великим шрифтом, спершу {ui:tourist_tile_speed}.",
+        "Перегляньте сітку {e-tiles} і натисніть на потрібну плитку: вона посяде місце великої.",
+        "Поки велика плитка {e-hero} показує {ui:tourist_tile_coordinates}, натискання на неї копіює координати, а на {ui:tourist_tile_counter} - відкриває лічильник.",
+        "Кнопка {ui:tourist_action_open_map} {e-map} покаже вас у застосунку карт, кнопка {ui:tourist_action_share_location} {e-share} передасть місцеположення текстом; обидві виводять за межі застосунку.",
+        "На початку нового відрізка натисніть кнопку {ui:tourist_action_reset_trip} {e-reset-trip} або кнопку скидання {e-hero-reset} на великій плитці: подорож піде з нуля.",
+        "Натисніть кнопку {ui:tourist_action_sos} {e-sos}, коли треба привернути увагу; {e-help} знову відкриє цю сторінку."
+      ],
+      "elements": {
+        "e-hero": {
+          "name": "Велика плитка",
+          "one": "Обрана плитка великим шрифтом.",
+          "what": "Показує одну плитку великою, спершу {ui:tourist_tile_speed}. На плитці {ui:tourist_tile_compass} картка малює компасну розу, що повертається разом із телефоном, і показує напрямок у градусах, сторону світу та рядок із точністю датчика й написом {ui:tourist_detail_magnetic_north}; коли телефон знає своє місцеположення, у рядку з’являється ще й істинний курс. Плитка {ui:tourist_tile_magnetic_field} також показує поточний атмосферний тиск у мілібарах поруч зі станом датчика, якщо телефон передає показання барометра. Плитка {ui:tourist_tile_gyroscope} малює об’ємний телефон, що повертається разом із вашим, і показує швидкість повороту в градусах за секунду; датчики руху вона читає, лише поки стоїть на великій плитці.",
+          "why": "Поставте сюди те, що дивитеся часто, щоб вистачало одного погляду.",
+          "next": "Натискання на плитку копіює координати в буфер обміну, якщо на ній {ui:tourist_tile_coordinates} і місцеположення визначено, та відкриває лічильник, якщо на ній {ui:tourist_tile_counter}; на інших плитках нічого не відбувається.",
+          "undo": "Дані в застосунку не змінюються. Вибір плитки не запам’ятовується: дашборд щоразу відкривається з плитки {ui:tourist_tile_speed}.",
+          "tip": "На плитці {ui:tourist_tile_stopwatch} картка має власні кнопки: {ui:tourist_stopwatch_action_start} (поки йде відлік, вона стає {ui:tourist_stopwatch_action_stop}), {ui:tourist_stopwatch_action_reset} і {ui:tourist_stopwatch_action_open_full}. Перші дві міряють час однієї людини, остання відкриває секундомір для кількох."
+        },
+        "e-hero-reset": {
+          "one": "Починає подорож або лік кроків заново.",
+          "what": "З’являється лише тоді, коли на великій плитці показано плитку подорожі: {ui:tourist_tile_speed}, {ui:tourist_tile_trip_distance}, {ui:tourist_tile_elapsed_time}, {ui:tourist_tile_moving_time}, {ui:tourist_tile_elevation_gain_loss}, {ui:tourist_tile_average_pace} або {ui:tourist_tile_steps}. На плитці {ui:tourist_tile_steps} скидає лише лічильник кроків, на решті - усю подорож: дистанцію, час у дорозі й у русі, набір і спуск висоти, середню та максимальну швидкість.",
+          "why": "Натискайте на початку нового відрізка, щоб цифри описували лише його.",
+          "next": "Показники подорожі обнуляться й підуть знову з найближчого зчитування; лічильник кроків почнеться з нуля, коли телефон повідомить наступний крок.",
+          "undo": "Ні: підтвердження вона не питає, скасувати скидання не можна."
+        },
+        "e-tiles": {
+          "name": "Сітка плиток",
+          "one": "Решта показань, по плитці на кожне.",
+          "what": "Сітка менших плиток по дві в ряд, по одній на кожне показання, якого немає на великій плитці: наприклад висота, компас, координати, супутники, кроки, дані подорожі, час сонця й погода. Натискання на плитку переносить її на велику.",
+          "why": "Усе, що вміє читати дашборд, зібрано на одній сторінці з прокруткою, шукати в меню не треба.",
+          "next": "Натиснута плитка посідає місце великої, а попередня повертається в сітку.",
+          "undo": "Нічого не змінюється й не губиться; натисніть на попередню плитку, щоб повернути її.",
+          "tip": "Плитки, для яких у телефоні немає датчика, до сітки не потрапляють. Погодним плиткам - наприклад {ui:tourist_tile_weather}, {ui:tourist_tile_wind} і {ui:tourist_tile_humidity} - потрібні інтернет і місцеположення: застосунок надсилає ваші координати до сервісу Open-Meteo."
+        },
+        "e-map": {
+          "one": "Показує вас на карті.",
+          "what": "Передає ваше місцеположення застосунку карт на телефоні, а якщо відповідного застосунку немає, відкриває посилання на вебкарту в браузері. Обидва варіанти виводять за межі застосунку; поки місцеположення не визначено, карта відкривається без вашої точки.",
+          "why": "Потрібна, щоб побачити, де ви перебуваєте.",
+          "next": "Застосунок карт (або браузер) відкривається поверх цього застосунку, який лишається відкритим позаду.",
+          "undo": "Відкриття карти нічого не змінює в застосунку."
+        },
+        "e-share": {
+          "one": "Передає місцеположення текстом.",
+          "what": "Кладе ваші координати й посилання на вебкарту в системне вікно надсилання, де ви самі обираєте, куди це піде. Поки місцеположення не визначено, кнопка лише показує коротке повідомлення і нічого не передає.",
+          "why": "Потрібна, щоб повідомити комусь, де ви.",
+          "next": "Оберіть отримувача у вікні надсилання: сам застосунок нічого не надсилає.",
+          "undo": "«Назад» закриває вікно, і нічого не йде; те, що вже надіслано з іншого застосунку, звідси не повернути."
+        },
+        "e-reset-trip": {
+          "one": "Обнуляє подорож.",
+          "what": "Скидає всю подорож, а не лише дистанцію: час у дорозі й у русі, набір і спуск висоти, середню та максимальну швидкість - що б не було на великій плитці. Єдиний виняток - {ui:tourist_tile_steps}: якщо на великій плитці вони, кнопка скидає лише лічильник кроків.",
+          "why": "Натискайте, вирушаючи на новий відрізок, щоб цифри рахували лише його.",
+          "next": "Показники подорожі обнуляться й підуть знову з найближчого зчитування; лічильник кроків почнеться з нуля, коли телефон повідомить наступний крок.",
+          "undo": "Ні: підтвердження вона не питає, скасувати скидання не можна.",
+          "tip": "Подорож зберігається між заходами на екран і після перезапуску застосунку, а росте лише поки дашборд відкритий. Почати її заново можна цією кнопкою або скиданням на великій плитці."
+        },
+        "e-sos": {
+          "one": "Відкриває екран SOS.",
+          "what": "Відкриває екран SOS. Сигнал **вмикається одразу, щойно екран відкрито**: сирена й спалах повторюють сигнал SOS азбукою Морзе, а підключений годинник, якщо він на зв’язку, сигналізує теж. Сигнал звучить і блимає; він нікому не телефонує й не надсилає повідомлень.",
+          "why": "Користуйтеся, коли треба привернути увагу. Кнопка є на дашборді, щоб до сигналу було одне натискання і не довелося повертатися на стартовий екран.",
+          "next": "Сигнал триває, доки ви не натиснете {ui:sos_stop_action} або не вийдете з екрана кнопкою «Назад»; докладніше на сторінці {ui:program_sos}.",
+          "undo": "{ui:sos_stop_action} припиняє сигнал одразу."
+        },
+        "e-help": {
+          "one": "Відкриває цю сторінку.",
+          "what": "Кнопка довідки у правому верхньому куті верхньої панелі відкриває цю сторінку, не виходячи із застосунку.",
+          "why": "Вона пояснює дашборд із малюнком і без мережі.",
+          "undo": "Відкриття нічого не змінює; «Назад» закриває довідку.",
+          "shortcut": "[[F1]] на підключеній клавіатурі робить те саме."
+        },
+        "e-permission": {
+          "one": "Просить доступ, якого дашборду бракує.",
+          "what": "Картка вгорі екрана, що з’являється лише тоді, коли бракує доступу: спершу до геолокації, потім до фізичної активності для лічби кроків (лише в телефонах із лічильником кроків). Вона каже, що без нього недоступне, і пропонує {ui:tourist_permission_grant}; якщо система більше не покаже запит, на кнопці написано {ui:tourist_permission_open_settings}.",
+          "why": "Без геолокації дашборд не може показати швидкість, висоту, координати й час сходу, а без фізичної активності - рахувати кроки; картка називає, чого саме бракує.",
+          "next": "{ui:tourist_permission_grant} відкриває системне вікно запиту, {ui:tourist_permission_open_settings} - сторінку застосунку в налаштуваннях системи, тобто виводить із застосунку. Коли доступ надано і ви повернулися на дашборд, картка зникає.",
+          "undo": "Доступ можна відкликати згодом у налаштуваннях системи; тоді картка повернеться.",
+          "tip": "Дашборду потрібна точна геолокація: якщо дозволити лише приблизну, картка залишиться. Місцеположення читається, лише поки екран відкритий, і ніколи у фоні."
+        }
+      },
+      "related": [
+        { "help": "home", "note": "Стартовий екран." },
+        { "help": "counter", "note": "Лічильник, який відкриває плитка {ui:tourist_tile_counter}." },
+        { "help": "stopwatch", "note": "Секундомір для кількох людей: його відкриває кнопка {ui:tourist_stopwatch_action_open_full} на плитці {ui:tourist_tile_stopwatch}." },
+        { "help": "sos", "note": "Що робить сигнал і як його зупинити." }
+      ]
+    }
+  }
+}

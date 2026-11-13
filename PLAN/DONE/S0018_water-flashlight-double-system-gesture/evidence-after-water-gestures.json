@@ -1,0 +1,332 @@
+{
+  "runId": "20261027-S0018-after",
+  "navigationMode": "2",
+  "repeat": 3,
+  "requirePinning": true,
+  "results": [
+    {
+      "input": "tap",
+      "rep": 1,
+      "litBefore": true,
+      "stillOn": true,
+      "torchLit": true,
+      "top": "com.sza.tourist/.ui.flashlight.WaterFlashlightActivity}",
+      "screenshot": "P:\\ANDROID\\Tourist_mob\\temp\\S0013\\runs\\20261027-S0018-after\\scenes\\C4x-phone-r1\\shot-tap-1.png"
+    },
+    {
+      "input": "tap",
+      "rep": 2,
+      "litBefore": true,
+      "stillOn": true,
+      "torchLit": true,
+      "top": "com.sza.tourist/.ui.flashlight.WaterFlashlightActivity}",
+      "screenshot": "P:\\ANDROID\\Tourist_mob\\temp\\S0013\\runs\\20261027-S0018-after\\scenes\\C4x-phone-r1\\shot-tap-2.png"
+    },
+    {
+      "input": "tap",
+      "rep": 3,
+      "litBefore": true,
+      "stillOn": true,
+      "torchLit": true,
+      "top": "com.sza.tourist/.ui.flashlight.WaterFlashlightActivity}",
+      "screenshot": "P:\\ANDROID\\Tourist_mob\\temp\\S0013\\runs\\20261027-S0018-after\\scenes\\C4x-phone-r1\\shot-tap-3.png"
+    },
+    {
+      "input": "long-press",
+      "rep": 1,
+      "litBefore": true,
+      "stillOn": true,
+      "torchLit": true,
+      "top": "com.sza.tourist/.ui.flashlight.WaterFlashlightActivity}",
+      "screenshot": "P:\\ANDROID\\Tourist_mob\\temp\\S0013\\runs\\20261027-S0018-after\\scenes\\C4x-phone-r1\\shot-long-press-1.png"
+    },
+    {
+      "input": "long-press",
+      "rep": 2,
+      "litBefore": true,
+      "stillOn": true,
+      "torchLit": true,
+      "top": "com.sza.tourist/.ui.flashlight.WaterFlashlightActivity}",
+      "screenshot": "P:\\ANDROID\\Tourist_mob\\temp\\S0013\\runs\\20261027-S0018-after\\scenes\\C4x-phone-r1\\shot-long-press-2.png"
+    },
+    {
+      "input": "long-press",
+      "rep": 3,
+      "litBefore": true,
+      "stillOn": true,
+      "torchLit": true,
+      "top": "com.sza.tourist/.ui.flashlight.WaterFlashlightActivity}",
+      "screenshot": "P:\\ANDROID\\Tourist_mob\\temp\\S0013\\runs\\20261027-S0018-after\\scenes\\C4x-phone-r1\\shot-long-press-3.png"
+    },
+    {
+      "input": "swipe-across",
+      "rep": 1,
+      "litBefore": true,
+      "stillOn": true,
+      "torchLit": true,
+      "top": "com.sza.tourist/.ui.flashlight.WaterFlashlightActivity}",
+      "screenshot": "P:\\ANDROID\\Tourist_mob\\temp\\S0013\\runs\\20261027-S0018-after\\scenes\\C4x-phone-r1\\shot-swipe-across-1.png"
+    },
+    {
+      "input": "swipe-across",
+      "rep": 2,
+      "litBefore": true,
+      "stillOn": true,
+      "torchLit": true,
+      "top": "com.sza.tourist/.ui.flashlight.WaterFlashlightActivity}",
+      "screenshot": "P:\\ANDROID\\Tourist_mob\\temp\\S0013\\runs\\20261027-S0018-after\\scenes\\C4x-phone-r1\\shot-swipe-across-2.png"
+    },
+    {
+      "input": "swipe-across",
+      "rep": 3,
+      "litBefore": true,
+      "stillOn": true,
+      "torchLit": true,
+      "top": "com.sza.tourist/.ui.flashlight.WaterFlashlightActivity}",
+      "screenshot": "P:\\ANDROID\\Tourist_mob\\temp\\S0013\\runs\\20261027-S0018-after\\scenes\\C4x-phone-r1\\shot-swipe-across-3.png"
+    },
+    {
+      "input": "edge-left-back",
+      "rep": 1,
+      "litBefore": true,
+      "stillOn": true,
+      "torchLit": true,
+      "top": "com.sza.tourist/.ui.flashlight.WaterFlashlightActivity}",
+      "screenshot": "P:\\ANDROID\\Tourist_mob\\temp\\S0013\\runs\\20261027-S0018-after\\scenes\\C4x-phone-r1\\shot-edge-left-back-1.png"
+    },
+    {
+      "input": "edge-left-back",
+      "rep": 2,
+      "litBefore": true,
+      "stillOn": true,
+      "torchLit": true,
+      "top": "com.sza.tourist/.ui.flashlight.WaterFlashlightActivity}",
+      "screenshot": "P:\\ANDROID\\Tourist_mob\\temp\\S0013\\runs\\20261027-S0018-after\\scenes\\C4x-phone-r1\\shot-edge-left-back-2.png"
+    },
+    {
+      "input": "edge-left-back",
+      "rep": 3,
+      "litBefore": true,
+      "stillOn": true,
+      "torchLit": true,
+      "top": "com.sza.tourist/.ui.flashlight.WaterFlashlightActivity}",
+      "screenshot": "P:\\ANDROID\\Tourist_mob\\temp\\S0013\\runs\\20261027-S0018-after\\scenes\\C4x-phone-r1\\shot-edge-left-back-3.png"
+    },
+    {
+      "input": "edge-right-back",
+      "rep": 1,
+      "litBefore": true,
+      "stillOn": true,
+      "torchLit": true,
+      "top": "com.sza.tourist/.ui.flashlight.WaterFlashlightActivity}",
+      "screenshot": "P:\\ANDROID\\Tourist_mob\\temp\\S0013\\runs\\20261027-S0018-after\\scenes\\C4x-phone-r1\\shot-edge-right-back-1.png"
+    },
+    {
+      "input": "edge-right-back",
+      "rep": 2,
+      "litBefore": true,
+      "stillOn": true,
+      "torchLit": true,
+      "top": "com.sza.tourist/.ui.flashlight.WaterFlashlightActivity}",
+      "screenshot": "P:\\ANDROID\\Tourist_mob\\temp\\S0013\\runs\\20261027-S0018-after\\scenes\\C4x-phone-r1\\shot-edge-right-back-2.png"
+    },
+    {
+      "input": "edge-right-back",
+      "rep": 3,
+      "litBefore": true,
+      "stillOn": true,
+      "torchLit": true,
+      "top": "com.sza.tourist/.ui.flashlight.WaterFlashlightActivity}",
+      "screenshot": "P:\\ANDROID\\Tourist_mob\\temp\\S0013\\runs\\20261027-S0018-after\\scenes\\C4x-phone-r1\\shot-edge-right-back-3.png"
+    },
+    {
+      "input": "bottom-home",
+      "rep": 1,
+      "litBefore": true,
+      "stillOn": true,
+      "torchLit": true,
+      "top": "com.sza.tourist/.ui.flashlight.WaterFlashlightActivity}",
+      "screenshot": "P:\\ANDROID\\Tourist_mob\\temp\\S0013\\runs\\20261027-S0018-after\\scenes\\C4x-phone-r1\\shot-bottom-home-1.png"
+    },
+    {
+      "input": "bottom-home",
+      "rep": 2,
+      "litBefore": true,
+      "stillOn": true,
+      "torchLit": true,
+      "top": "com.sza.tourist/.ui.flashlight.WaterFlashlightActivity}",
+      "screenshot": "P:\\ANDROID\\Tourist_mob\\temp\\S0013\\runs\\20261027-S0018-after\\scenes\\C4x-phone-r1\\shot-bottom-home-2.png"
+    },
+    {
+      "input": "bottom-home",
+      "rep": 3,
+      "litBefore": true,
+      "stillOn": true,
+      "torchLit": true,
+      "top": "com.sza.tourist/.ui.flashlight.WaterFlashlightActivity}",
+      "screenshot": "P:\\ANDROID\\Tourist_mob\\temp\\S0013\\runs\\20261027-S0018-after\\scenes\\C4x-phone-r1\\shot-bottom-home-3.png"
+    },
+    {
+      "input": "top-shade",
+      "rep": 1,
+      "litBefore": true,
+      "stillOn": true,
+      "torchLit": true,
+      "top": "com.sza.tourist/.ui.flashlight.WaterFlashlightActivity}",
+      "screenshot": "P:\\ANDROID\\Tourist_mob\\temp\\S0013\\runs\\20261027-S0018-after\\scenes\\C4x-phone-r1\\shot-top-shade-1.png"
+    },
+    {
+      "input": "top-shade",
+      "rep": 2,
+      "litBefore": true,
+      "stillOn": true,
+      "torchLit": true,
+      "top": "com.sza.tourist/.ui.flashlight.WaterFlashlightActivity}",
+      "screenshot": "P:\\ANDROID\\Tourist_mob\\temp\\S0013\\runs\\20261027-S0018-after\\scenes\\C4x-phone-r1\\shot-top-shade-2.png"
+    },
+    {
+      "input": "top-shade",
+      "rep": 3,
+      "litBefore": true,
+      "stillOn": true,
+      "torchLit": true,
+      "top": "com.sza.tourist/.ui.flashlight.WaterFlashlightActivity}",
+      "screenshot": "P:\\ANDROID\\Tourist_mob\\temp\\S0013\\runs\\20261027-S0018-after\\scenes\\C4x-phone-r1\\shot-top-shade-3.png"
+    },
+    {
+      "input": "edge-left-twice",
+      "rep": 1,
+      "litBefore": true,
+      "stillOn": true,
+      "torchLit": true,
+      "top": "com.sza.tourist/.ui.flashlight.WaterFlashlightActivity}",
+      "screenshot": "P:\\ANDROID\\Tourist_mob\\temp\\S0013\\runs\\20261027-S0018-after\\scenes\\C4x-phone-r1\\shot-edge-left-twice-1.png"
+    },
+    {
+      "input": "edge-left-twice",
+      "rep": 2,
+      "litBefore": true,
+      "stillOn": true,
+      "torchLit": true,
+      "top": "com.sza.tourist/.ui.flashlight.WaterFlashlightActivity}",
+      "screenshot": "P:\\ANDROID\\Tourist_mob\\temp\\S0013\\runs\\20261027-S0018-after\\scenes\\C4x-phone-r1\\shot-edge-left-twice-2.png"
+    },
+    {
+      "input": "edge-left-twice",
+      "rep": 3,
+      "litBefore": true,
+      "stillOn": true,
+      "torchLit": true,
+      "top": "com.sza.tourist/.ui.flashlight.WaterFlashlightActivity}",
+      "screenshot": "P:\\ANDROID\\Tourist_mob\\temp\\S0013\\runs\\20261027-S0018-after\\scenes\\C4x-phone-r1\\shot-edge-left-twice-3.png"
+    },
+    {
+      "input": "edge-both-sides",
+      "rep": 1,
+      "litBefore": true,
+      "stillOn": true,
+      "torchLit": true,
+      "top": "com.sza.tourist/.ui.flashlight.WaterFlashlightActivity}",
+      "screenshot": "P:\\ANDROID\\Tourist_mob\\temp\\S0013\\runs\\20261027-S0018-after\\scenes\\C4x-phone-r1\\shot-edge-both-sides-1.png"
+    },
+    {
+      "input": "edge-both-sides",
+      "rep": 2,
+      "litBefore": true,
+      "stillOn": true,
+      "torchLit": true,
+      "top": "com.sza.tourist/.ui.flashlight.WaterFlashlightActivity}",
+      "screenshot": "P:\\ANDROID\\Tourist_mob\\temp\\S0013\\runs\\20261027-S0018-after\\scenes\\C4x-phone-r1\\shot-edge-both-sides-2.png"
+    },
+    {
+      "input": "edge-both-sides",
+      "rep": 3,
+      "litBefore": true,
+      "stillOn": true,
+      "torchLit": true,
+      "top": "com.sza.tourist/.ui.flashlight.WaterFlashlightActivity}",
+      "screenshot": "P:\\ANDROID\\Tourist_mob\\temp\\S0013\\runs\\20261027-S0018-after\\scenes\\C4x-phone-r1\\shot-edge-both-sides-3.png"
+    },
+    {
+      "input": "bottom-home-twice",
+      "rep": 1,
+      "litBefore": true,
+      "stillOn": true,
+      "torchLit": true,
+      "top": "com.sza.tourist/.ui.flashlight.WaterFlashlightActivity}",
+      "screenshot": "P:\\ANDROID\\Tourist_mob\\temp\\S0013\\runs\\20261027-S0018-after\\scenes\\C4x-phone-r1\\shot-bottom-home-twice-1.png"
+    },
+    {
+      "input": "bottom-home-twice",
+      "rep": 2,
+      "litBefore": true,
+      "stillOn": true,
+      "torchLit": true,
+      "top": "com.sza.tourist/.ui.flashlight.WaterFlashlightActivity}",
+      "screenshot": "P:\\ANDROID\\Tourist_mob\\temp\\S0013\\runs\\20261027-S0018-after\\scenes\\C4x-phone-r1\\shot-bottom-home-twice-2.png"
+    },
+    {
+      "input": "bottom-home-twice",
+      "rep": 3,
+      "litBefore": true,
+      "stillOn": true,
+      "torchLit": true,
+      "top": "com.sza.tourist/.ui.flashlight.WaterFlashlightActivity}",
+      "screenshot": "P:\\ANDROID\\Tourist_mob\\temp\\S0013\\runs\\20261027-S0018-after\\scenes\\C4x-phone-r1\\shot-bottom-home-twice-3.png"
+    },
+    {
+      "input": "key-back",
+      "rep": 1,
+      "litBefore": true,
+      "stillOn": true,
+      "torchLit": true,
+      "top": "com.sza.tourist/.ui.flashlight.WaterFlashlightActivity}",
+      "screenshot": "P:\\ANDROID\\Tourist_mob\\temp\\S0013\\runs\\20261027-S0018-after\\scenes\\C4x-phone-r1\\shot-key-back-1.png"
+    },
+    {
+      "input": "key-back",
+      "rep": 2,
+      "litBefore": true,
+      "stillOn": true,
+      "torchLit": true,
+      "top": "com.sza.tourist/.ui.flashlight.WaterFlashlightActivity}",
+      "screenshot": "P:\\ANDROID\\Tourist_mob\\temp\\S0013\\runs\\20261027-S0018-after\\scenes\\C4x-phone-r1\\shot-key-back-2.png"
+    },
+    {
+      "input": "key-back",
+      "rep": 3,
+      "litBefore": true,
+      "stillOn": true,
+      "torchLit": true,
+      "top": "com.sza.tourist/.ui.flashlight.WaterFlashlightActivity}",
+      "screenshot": "P:\\ANDROID\\Tourist_mob\\temp\\S0013\\runs\\20261027-S0018-after\\scenes\\C4x-phone-r1\\shot-key-back-3.png"
+    },
+    {
+      "input": "key-volume-down",
+      "rep": 1,
+      "litBefore": true,
+      "stillOn": false,
+      "torchLit": false,
+      "top": "com.sza.tourist/.ui.flashlight.LightsActivity}",
+      "screenshot": "P:\\ANDROID\\Tourist_mob\\temp\\S0013\\runs\\20261027-S0018-after\\scenes\\C4x-phone-r1\\shot-key-volume-down-1.png"
+    },
+    {
+      "input": "key-volume-down",
+      "rep": 2,
+      "litBefore": true,
+      "stillOn": false,
+      "torchLit": false,
+      "top": "com.sza.tourist/.ui.flashlight.LightsActivity}",
+      "screenshot": "P:\\ANDROID\\Tourist_mob\\temp\\S0013\\runs\\20261027-S0018-after\\scenes\\C4x-phone-r1\\shot-key-volume-down-2.png"
+    },
+    {
+      "input": "key-volume-down",
+      "rep": 3,
+      "litBefore": true,
+      "stillOn": false,
+      "torchLit": false,
+      "top": "com.sza.tourist/.ui.flashlight.LightsActivity}",
+      "screenshot": "P:\\ANDROID\\Tourist_mob\\temp\\S0013\\runs\\20261027-S0018-after\\scenes\\C4x-phone-r1\\shot-key-volume-down-3.png"
+    }
+  ]
+}

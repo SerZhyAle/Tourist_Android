@@ -1,0 +1,5 @@
+# Tickets allowed to sit in BlockNeedUserTest with no Timber probe in source, each with the reason (S2324).
+# Format: "Sxxxx  <why a probe cannot help, and what the human reads instead>"; read through the profile key probeBaseline.
+S0004  The pass left is a person with a personal phone (a real satellite fix on the dashboard) and, if wanted, physical gamepad or TV-remote hardware; both are judged on what the screen shows, and the ported screens have no single new entry point a log line could mark. The human reads the screen.
+S0005  The pass left is a wet finger on real glass and a physical flash LED, judged by eye and by the lamp itself; the camera-service log already records the torch with this app's PID, so no line is added to the ported lamp classes. The human reads the lamp.
+S0014  The pass left is the owner reading the page wording and a person walking the help button and F1 on a physical phone; the viewer already logs the page and anchor it opens (the walk file checks that line), so no extra line is added. The human reads the pages.

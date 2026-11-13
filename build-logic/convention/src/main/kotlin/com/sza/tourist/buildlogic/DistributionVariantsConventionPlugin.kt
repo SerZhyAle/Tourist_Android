@@ -36,9 +36,9 @@ class DistributionVariantsConventionPlugin : Plugin<Project> {
         }
     }
 
-    private companion object {
-        const val DIMENSION = "distribution"
-        const val STORE = "store"
+    internal companion object {
+        private const val DIMENSION = "distribution"
+        private const val STORE = "store"
         const val NO_LEGAL = "noLegal"
     }
 }

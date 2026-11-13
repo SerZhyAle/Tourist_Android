@@ -1,0 +1,113 @@
+<!doctype html>
+<html lang="en" dir="ltr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="referrer" content="no-referrer">
+<title>Help - Stopwatch settings</title>
+<script>(function(){try{var q=new URLSearchParams(location.search).get("theme");var t=(q==="light"||q==="dark")?q:(matchMedia("(prefers-color-scheme: light)").matches?"light":"dark");document.documentElement.setAttribute("data-theme",t);}catch(e){}})();</script>
+<link rel="stylesheet" href="../sza-kit.css">
+<link rel="stylesheet" href="../help.css">
+</head>
+<body class="help">
+<main class="container">
+<nav class="help-crumbs" aria-label="Help index">
+  <a href="index.html">Help index</a><span class="sep" aria-hidden="true">/</span><span>Stopwatch settings</span>
+</nav>
+<header class="hero">
+  <p class="kicker">Window help</p>
+  <h1>Stopwatch settings</h1>
+  <p class="lead">This window opens from the stopwatch screen with the gear button (<b>Stopwatch settings</b>). Choose how many people you time, whether music plays and what the volume keys do; <b>Apply</b> keeps the choices, and <b>Cancel</b> or Back returns to the stopwatch without changes.</p>
+</header>
+<figure class="shot">
+  <div class="frame">
+    <img class="on-dark" src="img/stopwatch-settings-dark.jpg" width="540" height="1200" alt="The Stopwatch settings window over the stopwatch: the rows Participants, Play music while it runs, Track and Volume keys start and stop, the buttons Cancel and Apply, and the help button in the title.">
+    <img class="on-light" src="img/stopwatch-settings-light.jpg" width="540" height="1200" alt="">
+      <a class="pin" style="--x:81.61%;--y:37.23%" href="#e-participants" aria-label="1, Participants">1</a>
+      <a class="pin" style="--x:81.61%;--y:45.77%" href="#e-music" aria-label="2, Play music while it runs">2</a>
+      <a class="pin" style="--x:81.61%;--y:53.71%" href="#e-track" aria-label="3, Track">3</a>
+      <a class="pin" style="--x:81.61%;--y:62.52%" href="#e-volume-keys" aria-label="4, Volume keys start and stop">4</a>
+      <a class="pin" style="--x:84.72%;--y:30.04%" href="#e-help" aria-label="5, Help (F1)">5</a>
+  </div>
+  <figcaption>Demo content. Select a number to read about that part of the window.</figcaption>
+</figure>
+<h2>In this order</h2>
+<ol class="order">
+  <li>Pick the number of participants <a class="ref" href="#e-participants">1</a>: 1, 2 or 4. Do it first, because it decides how the stopwatch screen is divided.</li>
+  <li>Turn on <a class="ref" href="#e-music">2</a> if you want a track during the run, then open <a class="ref" href="#e-track">3</a> and tap a track; choosing a track turns the music on by itself.</li>
+  <li>Decide what the volume keys do <a class="ref" href="#e-volume-keys">4</a>: leave it on to start, lap and stop with the volume buttons, or turn it off to keep them for the volume.</li>
+  <li>Press <b>Apply</b> to keep the choices. <b>Cancel</b>, Back or <kbd>Esc</kbd> closes the window and leaves everything as it was.</li>
+</ol>
+<h2>The elements</h2>
+<div class="elements">
+  <details class="el" id="e-participants">
+    <summary><span class="mk">1</span><span><span class="name">Participants</span><span class="one">How many people are timed: 1, 2 or 4.</span></span></summary>
+    <div class="full">
+      <p>A drop-down list with three choices: 1, 2 or 4. The stopwatch screen is divided between that many participants, each with their own time and laps.</p>
+      <dl class="facts">
+        <dt>Why</dt><dd>Pick as many participants as you have people to time; with one, the whole screen shows a single time.</dd>
+        <dt>Next</dt><dd>After <b>Apply</b> the stopwatch screen shows that many areas, and with two or four a button for all participants at once appears.</dd>
+        <dt>Undo</dt><dd>Yes, choose another number. Lowering it only hides participants, and their times come back when you raise it again.</dd>
+      </dl>
+      <div class="note"><span class="tag">Tip</span><p>A hidden participant is not stopped: one that was counting keeps counting out of sight, and only the participants on screen go into the result.</p></div>
+    </div>
+  </details>
+  <details class="el" id="e-music">
+    <summary><span class="mk">2</span><span><span class="name">Play music while it runs</span><span class="one">Plays a track while a measurement runs.</span></span></summary>
+    <div class="full">
+      <p>When on, the chosen track plays on a loop for as long as at least one participant is counting, and falls silent when all are stopped.</p>
+      <dl class="facts">
+        <dt>Why</dt><dd>Turn it on for a run you want to do to music, off for a silent one.</dd>
+        <dt>Next</dt><dd>Pick the track in the <b>Track</b> row; without one the stopwatch stays silent.</dd>
+        <dt>Undo</dt><dd>Yes, turn it off again.</dd>
+      </dl>
+      <div class="note"><span class="tag">Tip</span><p>The music plays only while the stopwatch screen is in front: it stops when you switch to another app or lock the phone, and starts again when you come back while a measurement is running. A change made during a run is heard from the next start.</p></div>
+    </div>
+  </details>
+  <details class="el" id="e-track">
+    <summary><span class="mk">3</span><span><span class="name">Track</span><span class="one">Chooses the music from the phone.</span></span></summary>
+    <div class="full">
+      <p>Opens the <b>Choose music</b> list of the audio files on the phone: the title, with the artist and the length under it when known; tap a track to choose it. The row shows the chosen track, or <b>Not chosen</b>.</p>
+      <dl class="facts">
+        <dt>Why</dt><dd>Choose the music you want to hear during a run.</dd>
+        <dt>Next</dt><dd>Tapping a track returns here, shows its name in the row and turns <b>Play music while it runs</b> on; the choice is kept when you press <b>Apply</b>.</dd>
+        <dt>Undo</dt><dd>Yes, choose another track or turn the music off; Back closes the list without choosing.</dd>
+      </dl>
+      <div class="note"><span class="tag">Tip</span><p>The list asks for access to your audio files, and it can show tracks only once you allow it. If it says that no music was found, copy audio files to the phone and open the list again.</p></div>
+    </div>
+  </details>
+  <details class="el" id="e-volume-keys">
+    <summary><span class="mk">4</span><span><span class="name">Volume keys start and stop</span><span class="one">Lets the volume buttons run the stopwatch.</span></span></summary>
+    <div class="full">
+      <p>On by default. While the stopwatch is open, volume up starts or laps and volume down stops; turned off, the buttons go back to the system and change the volume as usual.</p>
+      <dl class="facts">
+        <dt>Why</dt><dd>Use it when pressing a button is easier than touching the screen; turn it off if you would rather keep the buttons for the volume.</dd>
+        <dt>Next</dt><dd>With several participants the buttons act on the first one, or on the one you selected with a keyboard. While this is on, the music volume is set with the slider on the stopwatch screen.</dd>
+        <dt>Undo</dt><dd>Yes, turn it off and press <b>Apply</b>; the buttons return to the system.</dd>
+      </dl>
+    </div>
+  </details>
+  <details class="el" id="e-help">
+    <summary><span class="mk">5</span><span><span class="name">Help (F1)</span><span class="one">Opens this page.</span></span></summary>
+    <div class="full">
+      <p>The question mark in the title of the window opens this page.</p>
+      <dl class="facts">
+        <dt>Why</dt><dd>It explains the window with a picture, without leaving the app and without a network.</dd>
+        <dt>Next</dt><dd>Back closes help and returns to this window.</dd>
+        <dt>Shortcut</dt><dd><kbd>F1</kbd> on a connected keyboard does the same.</dd>
+      </dl>
+    </div>
+  </details>
+</div>
+<h2>Related</h2>
+<ul class="related">
+  <li><a href="stopwatch.html#e-settings"><b>Stopwatch</b><span class="pill">Screen</span><small>The stopwatch screen and the gear button that opens this window.</small></a></li>
+  <li><a href="index.html"><b>Help index</b><small>Back returns to the screen you came from.</small></a></li>
+</ul>
+<footer class="help-foot">
+  <span>Captured against Tourist 2.61.0271.444, 2026-10-27.</span>
+  <a href="index.html">Help index</a>
+</footer>
+</main>
+</body>
+</html>

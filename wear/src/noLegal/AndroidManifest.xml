@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  S0008, owner decision 4.3: the sideload edition's own declarations. Everything here is read by the Tourist
+  dashboard and nothing else, and the store edition carries no dashboard - so none of it is declared there
+  (wear/src/store/AndroidManifest.xml removes it explicitly, so a dependency cannot put it back).
+
+  Foreground only: every reading exists while the dashboard is open. No background location, no
+  BODY_SENSORS_BACKGROUND, no READ_HEALTH_DATA_IN_BACKGROUND.
+-->
+<manifest xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <!-- The dashboard is a GPS instrument: speed, altitude, coordinates, satellites, trip distance and sunrise/sunset come from a location fix. -->
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+
+    <!--
+      S2457: heart rate. Two permissions for one capability, split at API 36. The granular health permission
+      replaces the legacy sensor one there, so the legacy declaration is capped below it rather than removed -
+      a watch on API 28..35 has no other way to ask.
+    -->
+    <uses-permission
+        android:name="android.permission.BODY_SENSORS"
+        android:maxSdkVersion="35" />
+    <uses-permission android:name="android.permission.health.READ_HEART_RATE" />
+
+    <!-- S2458: the step counter and step detector behind the steps and cadence tiles. -->
+    <uses-permission android:name="android.permission.ACTIVITY_RECOGNITION" />
+
+</manifest>

@@ -1,0 +1,10 @@
+{
+  "scenarios": [
+    { "id": "en-light-baseline", "locale": "en", "night": "no", "size": "1080x2400", "density": 420, "fontScale": "1.0", "timings": "true" },
+    { "id": "ru-dark-small-text", "locale": "ru", "night": "yes", "size": "1080x2400", "density": 420, "fontScale": "0.85", "timings": "false" },
+    { "id": "uk-light-large-text", "locale": "uk", "night": "no", "size": "1080x2400", "density": 420, "fontScale": "2.0", "timings": "false" },
+    { "id": "ru-dark-narrow-large", "locale": "ru", "night": "yes", "size": "720x1600", "density": 360, "fontScale": "2.0", "timings": "false" },
+    { "id": "uk-dark-wide", "locale": "uk", "night": "yes", "size": "1600x1200", "density": 240, "fontScale": "1.3", "timings": "false" },
+    { "id": "en-dark-repeat", "locale": "en", "night": "yes", "size": "1080x2400", "density": 420, "fontScale": "1.0", "timings": "true" }
+  ]
+}

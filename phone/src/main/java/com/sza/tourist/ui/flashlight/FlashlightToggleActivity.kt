@@ -1,0 +1,25 @@
+package com.sza.tourist.ui.flashlight
+
+import android.os.Bundle
+import android.widget.Toast
+import androidx.appcompat.app.AppCompatActivity
+import com.sza.tourist.R
+import com.sza.tourist.ui.flashlight.helpers.FlashlightToggleManager
+import dagger.hilt.android.AndroidEntryPoint
+import javax.inject.Inject
+
+/** Internal trampoline for surfaces that toggle the physical camera flash. */
+@AndroidEntryPoint
+class FlashlightToggleActivity : AppCompatActivity() {
+
+    @Inject lateinit var toggleManager: FlashlightToggleManager
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        val accepted = toggleManager.toggle()
+        if (!accepted) {
+            Toast.makeText(this, R.string.physical_flashlight_unavailable, Toast.LENGTH_SHORT).show()
+        }
+        finish()
+    }
+}

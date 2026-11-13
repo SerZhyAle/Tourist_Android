@@ -1,0 +1,64 @@
+{
+  "$comment": "Extra rows of walk-help.ps1 beyond the page surfaces of the help map: an inheriting dialog (the key and the button must open its parent's page at its own entry) and the screens the map keeps silent (no button, F1 opens nothing). start/steps/dump work as in capture.json.",
+  "extra": [
+    {
+      "surface": "counter.start",
+      "start": ".ui.tourist.counter.TouristCounterActivity",
+      "steps": [
+        {
+          "tapId": "btnStartValue"
+        },
+        {
+          "wait": 1.5
+        }
+      ],
+      "dump": "accessibility"
+    },
+    {
+      "surface": "stopwatch.music",
+      "start": ".ui.stopwatch.StopwatchActivity",
+      "seed": {
+        "settings": {
+          "stopwatch_participant_count": 4
+        }
+      },
+      "steps": [
+        {
+          "wait": 2
+        },
+        {
+          "tapId": "btnStopwatchStartAll"
+        },
+        {
+          "tapId": "btnStopwatchSettings"
+        },
+        {
+          "wait": 1.5
+        },
+        {
+          "wait": 1.5
+        },
+        {
+          "dump": "accessibility"
+        },
+        {
+          "tapId": "rowStopwatchTrack"
+        },
+        {
+          "wait": 2
+        }
+      ],
+      "dump": "accessibility"
+    },
+    {
+      "surface": "water-flashlight",
+      "start": ".ui.flashlight.WaterFlashlightActivity",
+      "silent": true
+    },
+    {
+      "surface": "front-flashlight",
+      "start": ".ui.flashlight.FrontFlashlightActivity",
+      "silent": true
+    }
+  ]
+}

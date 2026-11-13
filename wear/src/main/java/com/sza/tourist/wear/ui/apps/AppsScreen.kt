@@ -1,0 +1,191 @@
+package com.sza.tourist.wear.ui.apps
+
+import androidx.annotation.DrawableRes
+import androidx.compose.foundation.layout.BoxWithConstraints
+import androidx.compose.foundation.layout.PaddingValues
+import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.size
+import androidx.compose.runtime.Composable
+import androidx.compose.runtime.getValue
+import androidx.compose.ui.Modifier
+import androidx.compose.ui.res.colorResource
+import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.semantics.contentDescription
+import androidx.compose.ui.text.style.TextAlign
+import androidx.compose.ui.unit.dp
+import androidx.hilt.navigation.compose.hiltViewModel
+import androidx.lifecycle.compose.collectAsStateWithLifecycle
+import androidx.navigation.NavController
+import androidx.wear.compose.foundation.lazy.ScalingLazyListScope
+import androidx.wear.compose.foundation.lazy.items
+import androidx.wear.compose.material.Icon
+import androidx.wear.compose.material.MaterialTheme
+import androidx.wear.compose.material.PositionIndicator
+import androidx.wear.compose.material.Text
+import com.sza.tourist.wear.R
+import com.sza.tourist.wear.domain.model.WearApp
+import com.sza.tourist.wear.domain.model.WearAppId
+import com.sza.tourist.wear.domain.model.WearThumbnail
+import com.sza.tourist.wear.domain.model.destinationFor
+import com.sza.tourist.wear.ui.common.CellCaption
+import com.sza.tourist.wear.ui.common.SingleColumnTileCell
+import com.sza.tourist.wear.ui.common.ThumbnailCell
+import com.sza.tourist.wear.ui.common.WearListColumn
+import com.sza.tourist.wear.ui.common.WearScreenScaffold
+import com.sza.tourist.wear.ui.common.rememberWearListState
+import com.sza.tourist.wear.ui.navigation.WearLaunchRoutes
+import com.sza.tourist.wear.ui.navigation.WearRoutes
+import com.sza.tourist.wear.util.GridColumnFit
+
+private const val SINGLE_COLUMN = 1
+private const val APP_LABEL_MAX_LINES = 2
+private val GRID_GAP = GridColumnFit.DEFAULT_GAP_DP.dp
+private val TITLE_VERTICAL_PADDING = 16.dp
+
+@Composable
+fun AppsScreen(
+    navController: NavController,
+    viewModel: AppsViewModel = hiltViewModel()
+) {
+    val uiState by viewModel.uiState.collectAsStateWithLifecycle()
+    val listState = rememberWearListState(positionKey = WearRoutes.HOME)
+
+    WearScreenScaffold(
+        contentPadding = PaddingValues(0.dp),
+        scrollState = listState,
+        positionIndicator = { PositionIndicator(listState) }
+    ) {
+        // The column count comes from the width this composable actually gets, so the Apps list and
+        // the home screen never disagree about how many columns fit the same display.
+        BoxWithConstraints(modifier = Modifier.fillMaxSize()) {
+            val columns = GridColumnFit.columnsFor(uiState.viewMode, maxWidth.value.toInt())
+            WearListColumn(
+                modifier = Modifier.fillMaxSize(),
+                state = listState
+            ) {
+                item {
+                    Text(
+                        text = stringResource(R.string.wear_section_apps),
+                        style = MaterialTheme.typography.title2,
+                        modifier = Modifier
+                            .fillMaxWidth()
+                            .padding(vertical = TITLE_VERTICAL_PADDING),
+                        textAlign = TextAlign.Center
+                    )
+                }
+
+                appItems(
+                    apps = uiState.apps,
+                    columns = columns,
+                    onAppClick = { app ->
+                        navController.navigate(
+                            WearLaunchRoutes.routeFor(destinationFor(app.id))
+                        )
+                    }
+                )
+            }
+        }
+    }
+}
+
+private fun ScalingLazyListScope.appItems(
+    apps: List<WearApp>,
+    columns: Int,
+    onAppClick: (WearApp) -> Unit
+) {
+    if (columns == SINGLE_COLUMN) {
+        items(apps) { app ->
+            AppChip(app = app, onClick = { onAppClick(app) })
+        }
+    } else {
+        items(apps.chunked(columns)) { rowApps ->
+            AppRow(apps = rowApps, columns = columns, onAppClick = onAppClick)
+        }
+    }
+}
+
+@Composable
+private fun AppChip(
+    app: WearApp,
+    onClick: () -> Unit
+) {
+    val label = stringResource(app.labelRes)
+    SingleColumnTileCell(
+        thumbnail = WearThumbnail.Unavailable,
+        caption = label,
+        onClick = onClick,
+        fallback = { glyphModifier ->
+            Icon(
+                painter = painterResource(iconFor(app.id)),
+                contentDescription = null,
+                modifier = glyphModifier,
+                tint = colorResource(WearAppAccentCatalog.accentFor(app.id))
+            )
+        }
+    )
+}
+
+/** A short row is padded with empty weights so its cells keep the width of a full row's cells. */
+@Composable
+private fun AppRow(
+    apps: List<WearApp>,
+    columns: Int,
+    onAppClick: (WearApp) -> Unit
+) {
+    com.sza.tourist.wear.ui.common.CenteredGridRow(
+        columns = columns,
+        itemCount = apps.size,
+        gap = GRID_GAP
+    ) {
+        apps.forEach { app ->
+            AppCell(
+                app = app,
+                modifier = Modifier.weight(1f),
+                onClick = { onAppClick(app) }
+            )
+        }
+    }
+}
+
+@Composable
+private fun AppCell(
+    app: WearApp,
+    modifier: Modifier,
+    onClick: () -> Unit
+) {
+    val label = stringResource(app.labelRes)
+    ThumbnailCell(
+        thumbnail = WearThumbnail.Unavailable,
+        caption = label,
+        onClick = onClick,
+        modifier = modifier,
+        // Wrap, never ellipsize: strategic S2082, the rule S2042 set for the settings menu. A program
+        // name is a fixed label the user has to read, unlike the arbitrary-length file name the cell
+        // defaults to, so this screen asks for the second line the default deliberately withholds.
+        // Stays under the icon: each program has its own glyph, so covering it would lose the very
+        // distinction S2177 exists to preserve.
+        captionLayout = CellCaption(maxLines = APP_LABEL_MAX_LINES)
+    ) { glyphModifier ->
+        Icon(
+            painter = painterResource(iconFor(app.id)),
+            contentDescription = null,
+            modifier = glyphModifier,
+            tint = colorResource(WearAppAccentCatalog.accentFor(app.id))
+        )
+    }
+}
+
+/**
+ * Icons stay here rather than on the program record, matching the home screen's own reason: the
+ * domain layer carries no drawing concern.
+ *
+ * S2474: every sub-app on the watch reuses the exact same icon as its counterpart in the phone app
+ * (InternalRouteCatalog in app_v2), ensuring visual recognition across both form factors.
+ */
+@DrawableRes
+private fun iconFor(id: WearAppId): Int {
+    return WearAppIconCatalog.iconFor(id)
+}

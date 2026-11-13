@@ -1,15 +1,47 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <!-- Consumed by SettingsToggleRow.kt. All public attrs use the str_ prefix. The help attrs of the
-         source stay behind with the in-app help (S0014). -->
-    <declare-styleable name="SettingsToggleRow">
-        <attr name="str_title" format="string|reference" />
-        <attr name="str_subtitle" format="string|reference" />
-        <attr name="str_checked" format="boolean" />
-        <!-- Optional leading feature icon (decorative). Hidden when unset. -->
-        <attr name="str_icon" format="reference" />
-        <!-- Optional title/subtitle sizes; unset keeps toggler_*_text_size. -->
-        <attr name="str_titleTextSize" format="dimension" />
-        <attr name="str_subtitleTextSize" format="dimension" />
+    <!-- Consumed by SettingsCheckboxRow.kt (BOOLEAN-OPTION 2.0, S0015). Public attrs use the scr_
+         prefix. -->
+    <declare-styleable name="SettingsCheckboxRow">
+        <attr name="scr_title" format="string|reference" />
+        <attr name="scr_subtitle" format="string|reference" />
+        <attr name="scr_checked" format="boolean" />
+        <!-- Optional leading semantic glyph (decorative, hidden when unset). -->
+        <attr name="scr_icon" format="reference" />
+    </declare-styleable>
+
+    <!-- Consumed by CollapsibleGroup.kt (COLLAPSIBLE-GROUP 1.1, S0015). Public attrs use the cg_
+         prefix. -->
+    <declare-styleable name="CollapsibleGroup">
+        <attr name="cg_title" format="string|reference" />
+        <attr name="cg_expanded" format="boolean" />
+    </declare-styleable>
+
+<!-- Consumed by SettingsSelectionRow.kt. All public attrs use the ssr_ prefix. -->
+    <declare-styleable name="SettingsSelectionRow">
+        <attr name="ssr_title" format="string|reference" />
+        <attr name="ssr_value" format="string|reference" />
+        <attr name="ssr_subtitle" format="string|reference" />
+        <attr name="ssr_icon" format="reference" />
+        <attr name="ssr_showChevron" format="boolean" />
+        <!-- Packs the chevron right after the value (text group hugs content) and drops the tall touch-target band, for dense landscape rows. Default false. -->
+        <attr name="ssr_inline" format="boolean" />
+        <!-- Navigation mode: trailing glyph becomes a real forward arrow instead of the value chevron and the content collapses to hug the left (arrow right after the text). For rows that open another screen/activity/dialog. Default false. -->
+        <attr name="ssr_navMode" format="boolean" />
+    </declare-styleable>
+
+    <!-- Consumed by SettingsDropdownRow.kt. All public attrs use the sdr_ prefix. -->
+    <declare-styleable name="SettingsDropdownRow">
+        <attr name="sdr_title" format="string|reference" />
+        <attr name="sdr_subtitle" format="string|reference" />
+        <attr name="sdr_entries" format="reference" />
+        <!-- Renders the label inline to the left of the field on one line (dense landscape). Default false = stacked. -->
+        <attr name="sdr_inline" format="boolean" />
+        <!-- Caps the dropdown field to a fixed width instead of filling the row, for short-value selectors. Default unset = match_parent (stacked) / weight (inline). -->
+        <attr name="sdr_fieldWidth" format="dimension|reference" />
+        <!-- Caps the dropdown field max width while it still shrinks with the row (weighted columns). Default unset = uncapped. -->
+        <attr name="sdr_fieldMaxWidth" format="dimension|reference" />
+        <!-- Drops the outlined field and shows the value as text on the title line, like SettingsSelectionRow. Default false. -->
+        <attr name="sdr_valueAsText" format="boolean" />
     </declare-styleable>
 </resources>

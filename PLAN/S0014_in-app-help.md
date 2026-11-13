@@ -1,9 +1,9 @@
 # S0014 - In-app help: F1 and a `?` button on every window, and a help page or layer for each
 
-**Status:** Draft
-**Status note:** Design only. Nothing builds yet (S0002 onward), so the surface list in section 5.2 is provisional and is recomputed from the real tree in step P1. Not scheduled: where this ticket stands against S0004 to S0007 is owner decision D1 (section 3.3).
+**Status:** BlockNeedUserTest
+**Status note:** Implemented 2026-10-25 (phone app): F1 and the ? button through one resolver, 21-surface help map, bundled pages in EN RU UK, gate PASS WITH ADVISORIES, 550 tests green, walk of 66 rows passed. Waiting for the owner: review of the page wording, a walk by a person on a physical phone, and criterion 9 repeated on a device (water flashlight and stopwatch with help present). Carried elsewhere: support link (S0010 4.6 and 4.9), forbidden-terms test (S0012).
 **Phase:** outside the handoff phase plan (handoff section 8) - a cross-cutting user-experience feature; its slices follow the ports of S0004 to S0007
-**Verification level:** design until the first slice exists; then device - F1 (hardware keyboard) and the `?` action pressed on each surface of the slice, in every shipped locale, results recorded in the walk matrix (section 4, criterion 12)
+**Verification level:** device (emulator, API 33) - the button and F1 on every surface of the phone app in every shipped locale and both themes, results in the walk file (section 4, criterion 12); not yet by a person on a physical phone.
 
 ## 0. Source
 
@@ -155,63 +155,62 @@ to be finished; P3 onward works slice by slice as S0004 to S0007 land.
   site; what the first release contains); S0011 (contract-sync round, Draft; P0 here is one contract only); S0012
   (forbidden-terms test and over-claim lines apply to the pages); S0013 (its M7 measures the labels and targets this
   feature adds). S0008 and S0009 are out of scope (section 2.1).
-- **D1 Sequencing (open):** either (a) the framework (P0 to P2: resolver, map, button, gate) lands with or right after
-  S0004, so each of S0005 to S0007 ships its screens with help, as `CONTEXT-HELP` rule 18 asks; or (b) this ticket runs
-  after S0007 as a sweep over finished screens. Leaning for the owner to confirm or reject: (a), because a retrofit
-  touches every ported screen a second time and each touch widens drift against FastMediaSorter's copies.
-  Not decided here; the queue is untouched.
-- **D2 Does help ship in the first release (open):** yes puts the walk matrix (criterion 12) and the page set on
-  S0010's critical path; no leaves S0014 for a later package.
-- **D3 Viewer (open, the project decides per the owner's request):** (a) pages open in an in-app viewer over the
-  bundled assets - Back returns to the screen, no network permission, works offline; or (b) the system browser -
-  needs the pages exposed to another app, which a bundled asset does not give for free. Proposed default for P1: (a),
-  with script disabled, network loads blocked, and external links handed to the system browser on a tap. Final choice
-  recorded in the map.
-- **D4 Locale set of the pages (open):** at least EN, RU, UK (handoff section 3). Whether the other locales the
-  source ships (section 5.4) are also shipped by Tourist is decided in S0002 and S0004; the pages follow that set,
-  with the right-to-left mirroring of the corner if Arabic or Urdu ship.
-- **D5 Screenshot tooling (open):** candidates in section 5.4; the project chooses and records why.
-- **D6 Watch boundary (open, confirm):** that S0008 and S0009 stay without help from this ticket (section 2.1), with a
-  later ticket if the owner wants a watch layer.
-- **D7 Cross-links to FastMediaSorter (blocked by S0010 decision 4.6):** until 4.6 settles whether the product names
-  FastMediaSorter at all, no page links to its help or names it.
-- **D8 Publication (blocked by S0010 decision 4.9):** the pages ship in the package regardless; publishing the same
-  files on a product site, the link from the site's guides, the portal and the hub card exist only if 4.9 opens a site.
-- **D9 Name (blocked by S0010 decision 4.6):** page titles and footers carry the product name from one place, so a
-  rename is one edit; "Tourist" is the working name.
+- **D1 Sequencing (decided by the facts, 2026-10-25):** S0004 to S0007 had landed before this ticket ran, so option (a) was gone and the work is the sweep (b): the framework and the pages were added over the finished screens, each touch on a ported file kept to one call and recorded as a decision next to its ledger row.
+- **D2 Does help ship in the first release (owner, 2026-10-25): yes.** The walk matrix (criterion 12) and the page set are on S0010's critical path; the walk file is `docs/help/walk-<date>.md`, produced by `tools/help/walk-help.ps1`.
+- **D3 Viewer (owner, 2026-10-25): in-app.** A full-screen dialog fragment over the live screen holding a WebView: script off, network loads blocked, anything outside `assets/help` answered empty, external links to the system browser on a tap. The screen below keeps its lifecycle, so a running siren, torch or stopwatch is never stopped by asking, and Back returns to it.
+- **D4 Locale set of the pages (decided by the tree):** EN, RU and UK - the three value sets the UI ships (`values`, `values-ru`, `values-uk`). The generator and the gate take the set from the resource folders, so a locale added later fails the gate until its pages exist.
+- **D5 Screenshot tooling (project, 2026-10-25): the host-side stand over adb**, as section 5.4 proposed: `tools/help/capture-help.ps1` on a debuggable emulator (root, so the screens that are not exported can be started), the inflated view tree of `dumpsys activity top` for marker bounds (it needs no idle screen, so a ticking stopwatch and a strobing SOS screen work) and the accessibility dump for dialog windows, `screencap` scaled to JPEG, the System UI demo mode for a pinned status bar, a clean `pm clear` state with seeded preferences per capture. No cooperation from the app, and no screenshot is edited by hand.
+- **D6 Watch boundary (assumed, to confirm):** S0008 and S0009 stay without help, as section 2.1 and the canon session's platform note say. Not asked in the 2026-10-25 round; nothing here adds help to the watch.
+- **D7 Cross-links to FastMediaSorter (still blocked by S0010 decision 4.6):** no page links to it or names it.
+- **D8 Publication (still blocked by S0010 decision 4.9):** the pages ship in the package; the footer's support link stays out until an address exists (`docs/help/help.config.json`, `support.url` is null).
+- **D10 Lock-bearing screens (owner, 2026-10-25): no element on the water and the front flashlight.** Neither shows a help button and F1 opens nothing there (`ask: off` in the map, with the reason); their help is the Lights page (`e-water`, `e-front`), read before the light is opened.
+- **D9 Name (blocked by S0010 decision 4.6):** every page takes the product name from the `app_name` string, one place.
 
 ## 4. Acceptance
 
 Static predicates, per slice. A criterion voided by the shape is kept and marked.
 
-- [ ] 1. Every surface in the slice has a map row; no map row without a surface; every `none` and `inherit` row has a
+- [x] 1. Every surface in the slice has a map row; no map row without a surface; every `none` and `inherit` row has a
       reason. The surface list is enumerated from the manifest, the dialog and sheet classes and the layouts.
-- [ ] 2. F1 on each help-bearing surface (hardware keyboard) and the `?` action open the same target; the `?` action
+      *Evidence:* the gate enumerates the manifest's activities and widget receivers, the `DialogFragment` classes and the dialog call sites and diffs them against `help-map.json`; 21 rows, every `none` and `inherit` row has a reason (`check-help.ps1`).
+- [x] 2. F1 on each help-bearing surface (hardware keyboard) and the `?` action open the same target; the `?` action
       is the only control added to its corner (diff of the control set); F1 is not a global hotkey; both go through the
       one resolver and no screen carries help code of its own.
-- [ ] 3. Each page has the eight parts of rule 8 in order, an `alt` text, `lang` and `dir`, no request to any origin
+      *Evidence:* walk file, 66 rows: the button and F1 open the same page (same help id, anchor and theme); one resolver (`HelpResolver`), one F1 installer (`HelpInstaller`), no screen carries help code; F1 is read only at the product's own windows. The control-set diff is by construction (one `HelpButton` added in two layouts, one menu action appended by `StandardToolbar`, one dialog title), not a recorded before-and-after dump.
+- [x] 3. Each page has the eight parts of rule 8 in order, an `alt` text, `lang` and `dir`, no request to any origin
       (no `http` outside an `<a href>`), no script needed to read it; every link resolves.
-- [ ] 4. Each page opens at the help id of its surface, or at an element anchor; opening help leaves the surface alive
+      *Evidence:* gate: anatomy, `lang`/`dir`, referrer meta, alt text, no http outside an `<a href>`, no script file, 550 links and fragments resolved.
+- [x] 4. Each page opens at the help id of its surface, or at an element anchor; opening help leaves the surface alive
       and Back returns to it.
-- [ ] 5. Pages and screenshots exist in every shipped locale; the screenshot's language equals the page's; the page is
+      *Evidence:* walk file: each row checks the viewer's log line (page and anchor), that the screen below is still the one in front and that Back closes the help; on the SOS screen the signal kept running while the help was open and after.
+- [x] 5. Pages and screenshots exist in every shipped locale; the screenshot's language equals the page's; the page is
       chosen by the app's language and falls back to the source language, never to a missing page.
-- [ ] 6. Screenshots come from the generator; none is hand-edited; demo content only - no real position, path, name
+      *Evidence:* gate: pages, screenshots and capture records in en, ru and uk; the capture sets the per-app language after every `pm clear`, so a screenshot is in the page's language (checked on the images); `HelpResolver.chooseLocale` falls back to the source language (unit tests).
+- [x] 6. Screenshots come from the generator; none is hand-edited; demo content only - no real position, path, name
       or account on any image or page.
+      *Evidence:* every image is written by `capture-help.ps1` from the build on an emulator; the dashboard fix is the synthetic null point of the coordinate grid; each capture starts from cleared app data with seeded demo preferences.
 - [ ] 7. The `?` hit target meets `ICON-RENDER` rule 5, the accessible name is the vocabulary name from the termbase
       in each locale, and the control is reachable by keyboard, gamepad and the TV-remote menu route.
-- [ ] 8. The gate runs in the repository's normal check; its verdict line follows `CHECK-VERDICT`; accepted debt lives
+      *Evidence:* Partly: the button is 48 dp wide (toolbar action and corner button), named "Help (F1)" in every locale from the strings and reachable by D-pad and keyboard focus. The "TV-remote menu route" has no counterpart: the product has no menu, so only focus reaches the button.
+- [x] 8. The gate runs in the repository's normal check; its verdict line follows `CHECK-VERDICT`; accepted debt lives
       in a baseline that only falls.
+      *Evidence:* the gate prints one `CHECK-VERDICT` line and exits 0, 1 or 2; it runs inside the repository's normal check, `./gradlew :phone:test` (`HelpGateTest`, without the freshness check so another ticket's layout edit cannot turn the build red; the release pre-flight runs it with the check); accepted debt in `docs/help/baseline.json`, which fails when an entry is stale. No `CHECK-PLACEMENT` record: no runner registry exists yet.
 - [ ] 9. Signature rules intact on a device with help present: the water flashlight survives wet touches and leaves
       only by its exit rule (S0005 acceptance repeated); a running SOS keeps sounding and blinking while help is open;
       a running stopwatch keeps running.
-- [ ] 10. No network permission, no analytics, tracker or redirector added (source search finds none new); the
+      *Evidence:* Partly: SOS verified on the emulator (the signal kept running while help was open, walk file). The water flashlight is untouched by construction (no control, F1 opens nothing: checked in the walk) and the stopwatch keeps counting because the help is a dialog over a resumed activity; neither was re-run through the S0005/S0007 acceptance on a device.
+- [x] 10. No network permission, no analytics, tracker or redirector added (source search finds none new); the
       permission list of handoff section 5 is unchanged by this ticket.
+      *Evidence:* no manifest change by this ticket; the viewer sets `javaScriptEnabled = false` and `blockNetworkLoads = true`, answers every URL outside `assets/help` empty, and the gate fails if help code opens a connection or exposes a script bridge.
 - [ ] 11. Page and layer text passes the forbidden-terms test of S0012 and states nothing beyond the over-claim lines
       of section 2.2.
-- [ ] 12. Before the release that first ships the feature: the walk matrix (every surface by shipped locale by theme,
+      *Evidence:* Partly: the S0012 forbidden-terms test does not exist yet, so the gate carries a short list of over-claim words as advisories for the owner's wording review (3 advisories, the water-flashlight line "not waterproofing" among them) and fails on promises of unbuilt features. The prose was written against the section 2.2 lines and its claims checked against the code.
+- [x] 12. Before the release that first ships the feature: the walk matrix (every surface by shipped locale by theme,
       F1 and the button, one row each) exists as a dated file. Void while D2 keeps help out of the first release.
-- [ ] 13. The registry row for `CONTEXT-HELP` is verified and dated, the pointer file exists, and the journal row was
+      *Evidence:* `docs/help/walk-2026-10-25.md`, written by `tools/help/walk-help.ps1`: 66 rows (10 surfaces x 3 locales x 2 themes, plus the two silent flashlights once per locale), all passed. Automated through adb key and tap injection on an emulator, not a person's hands.
+- [x] 13. The registry row for `CONTEXT-HELP` is verified and dated, the pointer file exists, and the journal row was
       inserted through the harness, never by hand.
+      *Evidence:* `docs/contracts/CONTEXT-HELP.md` and its index row, the registry row `CONTEXT-HELP` / Tourist Android (partial 0.1), the findings filed as `PROPOSAL-2026-10-25-tourist-android-findings.md`; the journal row was updated through the harness.
 
 ## 5. Facts specific to this repository
 
@@ -324,4 +323,71 @@ The watch side (about 8 Compose surfaces) is out of scope.
 
 ## 8. Progress
 
-None. Created 2026-10-16 as a Draft by the canon session's request; nothing implemented, nothing scheduled.
+Created 2026-10-16 as a Draft by the canon session's request. Implemented 2026-10-25 in one run, all steps P0 to P6 for the
+phone app, after the owner's answers of the same day (D2, D3, D10, scope).
+
+**Delivered**
+
+- **P0:** `docs/contracts/CONTEXT-HELP.md` and its index row, `ICONOGRAPHY.md` made active, the registry row (partial 0.1),
+  the findings filed as a catalog proposal. **P1:** `phone/src/main/assets/help/help-map.json`, 21 surfaces from the
+  manifest, the dialog classes and the dialog call sites; named in `CLAUDE.md` section 6.
+- **P2:** package `com.sza.tourist.help` - `HelpMap`, `HelpResolver` (one resolver), `HelpInstaller` (F1 for screens and
+  dialog fragments through a window-callback wrapper, installed once in `TouristApplication`), `HelpButton` (self-wiring `?`
+  for the start and SOS screens and for dialog titles), the toolbar action added by `StandardToolbar`, `HelpDialogFragment`
+  (the viewer). Touches on ported files, each recorded as a decision beside its ledger row: `StandardToolbar` and the four
+  dialog classes. `LightsActivity` also gained one line, the system-bar inset padding the other toolbar screens already
+  had: its bar sat under the status bar, where the back arrow and the help button could not be tapped.
+- **P3:** prose in `docs/help/src` (EN, RU, UK in one file per page, UI names as `{ui:string}` tokens), the generated pages
+  and screenshots under `assets/help/<locale>/`, the kit CSS copied from the catalog. **P4:** `tools/help/check-help.ps1`
+  (the gate), `HelpGateTest` (it inside `:phone:test`), `HelpResolverTest`, `baseline.json`, and the walk
+  (`walk-help.ps1`, `docs/help/walk-2026-10-25.md`). **P5:** README and the tools README. **P6:** this record, the registry
+  row, the proposal.
+
+**For the owner**
+
+1. The wording of every page is a draft in the product's voice, written against the code and the over-claim lines; it needs
+   the owner's review (rule 16). Every claim was checked against the source, and the writers listed what looked wrong:
+2. **Found in the app, not fixed here** (out of this ticket; read from the code unless a measurement is named): on the
+   emulator the Back key does not close the water flashlight (measured), which matches the signature rule; a gesture-navigation
+   swipe was not tried. The power button turns the screen and the flash off without closing the light, and the flash comes
+   back when the screen wakes. The stopwatch starts counting by itself when its screen opens, and its bottom row
+   overflows a 411 dp phone in Russian and Ukrainian so the settings gear has zero width (measured; the two accepted
+   baseline lines). A repeated key (Space, Enter, volume up) writes laps in a row and R clears a running participant's
+   time without a confirmation. The Russian and Ukrainian text of the empty-result message says "unload" (a leftover of
+   the sorter). Saving a result on Android 8 and 9 needs a permission the manifest does not declare. The counter's starting
+   number replaces the count without saving it to history. The Lights toolbar sat under the status bar (fixed here, one line).
+3. The capture needs a debuggable emulator and `adb root`; the pages are regenerated after any layout or string change (the
+   gate fails a stale capture, and the unit-test run skips only that one check).
+4. Open and unchanged: the footer's support link (no address), cross-links and publication (S0010 4.6 and 4.9), the watch (D6,
+   assumed out), `CHECK-PLACEMENT` (no runner registry yet), and a person's walk on a physical phone.
+
+## Last Audit
+
+2026-10-27, mode pre-handoff: sections 2, 4, 7 and 8 re-read from this file on disk. No code was changed and no
+build was run for this block; the evidence is the cited records of 2026-10-25 (gate, unit tests, walk file), not a
+fresh run.
+
+Coverage per goal of section 1 (phone app; the watch is out of scope, D6):
+
+- **F1 and the `?` button through one resolver, on every surface of the help map** - covered: 21 surfaces, the walk
+  file `docs/help/walk-2026-10-25.md` (66 rows, all passed, driven by adb key and tap injection on an emulator).
+- **A page or layer per surface, in EN, RU and UK** - covered: pages, screenshots and capture records in every
+  shipped locale; the gate reports `PASS WITH ADVISORIES` (3 advisories, 550 links, 2 baselined) and runs inside
+  `./gradlew :phone:test` (550 tests, 0 failures).
+- **Help leaves the surface alive** - covered for a running SOS signal (it kept sounding and blinking while the
+  help was open); covered by construction for the water flashlight and the stopwatch.
+
+Verdict: the work covers the task except for the observations the owner has to make. Unobserved, each as it
+stands:
+
+- [ ] The wording of every page, read by the owner (rule 16): the pages are a draft in the product's voice, written
+      against the code and the over-claim lines of section 2.2; the gate lists 3 over-claim advisories for that
+      review, among them the water-flashlight line "not waterproofing".
+- [ ] The `?` button and F1 walked by a person on a physical phone, in the three locales (the strict form of
+      criterion 12).
+- [ ] Criterion 9 on a device: the water flashlight with help present survives wet touches and leaves only by its
+      exit rule (the S0005 acceptance repeated), and a running stopwatch keeps running while the help is open.
+
+Carried elsewhere, not left for development here: the footer's support link waits for S0010 4.6 and 4.9; the S0012
+forbidden-terms test (criterion 11) is S0012's to build; `CHECK-PLACEMENT` waits for a runner registry; the app
+defects found during the walk (section 8, "For the owner", item 2) are findings for their own tickets, not help work.

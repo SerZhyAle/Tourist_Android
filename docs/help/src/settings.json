@@ -1,0 +1,146 @@
+{
+  "help": "settings",
+  "locales": {
+    "en": {
+      "summary": "Choose theme, language and units.",
+      "lead": "Changes apply immediately and remain after you leave. Use {ui:settings_pages} to switch between {ui:settings_main} and {ui:settings_about}.",
+      "alt": "Settings with the page menu, theme, language, units and screen-awake option.",
+      "order": [
+        "Open {ui:settings_pages} {e-pages} to select a page.",
+        "Choose theme {e-theme}, language {e-language} and units {e-units}.",
+        "Set {ui:settings_awake} {e-awake} for instrument screens.",
+        "Open {ui:settings_about} {e-about} for resources and diagnostic export."
+      ],
+      "elements": {
+        "e-pages": {
+          "one": "Page menu",
+          "what": "Selects Main or About in the same window. On wide screens the menu stays visible."
+        },
+        "e-theme": {
+          "one": "Theme",
+          "what": "System default follows the device; Light and Dark select a fixed appearance."
+        },
+        "e-language": {
+          "one": "Language",
+          "what": "Choose an endonym or follow the system. The application updates its language immediately."
+        },
+        "e-units": {
+          "one": "Measurement system",
+          "what": "Metric or imperial units apply to readings on the phone and paired watch."
+        },
+        "e-awake": {
+          "one": "Keep screen awake",
+          "what": "Enabled keeps instrument screens awake. Disabled uses the system timeout. Touch-lock behavior of the water flashlight is unchanged."
+        },
+        "e-about": {
+          "one": "About",
+          "what": "Shows the running build, license, privacy, offline help and related products. Export diagnostics opens the system file destination picker and saves a ZIP containing build and platform values. It excludes coordinates, history, music paths and user text. Nothing is uploaded."
+        },
+        "e-help": {
+          "one": "Help",
+          "what": "Opens this page. F1 on a connected keyboard does the same."
+        }
+      },
+      "related": [
+        {
+          "help": "home",
+          "note": "Choose theme, language and units."
+        }
+      ]
+    },
+    "ru": {
+      "summary": "Выберите тему, язык и единицы.",
+      "lead": "Изменения применяются сразу и сохраняются после выхода. Кнопка {ui:settings_pages} переключает {ui:settings_main} и {ui:settings_about}.",
+      "alt": "Настройки с меню разделов, темой, языком, единицами и параметром экрана.",
+      "order": [
+        "Откройте {ui:settings_pages} {e-pages} и выберите раздел.",
+        "Выберите тему {e-theme}, язык {e-language} и единицы {e-units}.",
+        "Настройте {ui:settings_awake} {e-awake} для экранов приборов.",
+        "Откройте {ui:settings_about} {e-about} для ресурсов и экспорта диагностики."
+      ],
+      "elements": {
+        "e-pages": {
+          "one": "Меню разделов",
+          "what": "Переключает основные настройки и сведения о программе в том же окне. На широком экране меню видно постоянно."
+        },
+        "e-theme": {
+          "one": "Тема",
+          "what": "Системная тема следует настройкам устройства; светлая и тёмная задают постоянный вид."
+        },
+        "e-language": {
+          "one": "Язык",
+          "what": "Выберите название языка или системный вариант. Язык приложения меняется сразу."
+        },
+        "e-units": {
+          "one": "Система измерения",
+          "what": "Метрические или британские единицы применяются на телефоне и сопряжённых часах."
+        },
+        "e-awake": {
+          "one": "Не выключать экран",
+          "what": "Если включено, экраны приборов не гаснут. Если отключено, действует системное время ожидания. Блокировка касаний водного фонаря сохраняется."
+        },
+        "e-about": {
+          "one": "О программе",
+          "what": "Показывает сборку, лицензию, сведения о конфиденциальности, автономную справку и другие продукты. Экспорт диагностики открывает системный выбор файла и сохраняет ZIP со сведениями о сборке и платформе. Координаты, история, пути к музыке и пользовательский текст исключены. Данные никуда не отправляются."
+        },
+        "e-help": {
+          "one": "Справка",
+          "what": "Открывает эту страницу. F1 на подключённой клавиатуре делает то же самое."
+        }
+      },
+      "related": [
+        {
+          "help": "home",
+          "note": "Выберите тему, язык и единицы."
+        }
+      ]
+    },
+    "uk": {
+      "summary": "Виберіть тему, мову й одиниці.",
+      "lead": "Зміни застосовуються одразу й зберігаються після виходу. Кнопка {ui:settings_pages} перемикає {ui:settings_main} і {ui:settings_about}.",
+      "alt": "Налаштування з меню розділів, темою, мовою, одиницями й параметром екрана.",
+      "order": [
+        "Відкрийте {ui:settings_pages} {e-pages} і виберіть розділ.",
+        "Виберіть тему {e-theme}, мову {e-language} й одиниці {e-units}.",
+        "Налаштуйте {ui:settings_awake} {e-awake} для екранів приладів.",
+        "Відкрийте {ui:settings_about} {e-about} для ресурсів та експорту діагностики."
+      ],
+      "elements": {
+        "e-pages": {
+          "one": "Меню розділів",
+          "what": "Перемикає основні налаштування й відомості про програму в тому самому вікні. На широкому екрані меню видно постійно."
+        },
+        "e-theme": {
+          "one": "Тема",
+          "what": "Системна тема відповідає налаштуванням пристрою; світла й темна задають постійний вигляд."
+        },
+        "e-language": {
+          "one": "Мова",
+          "what": "Виберіть назву мови або системний варіант. Мова застосунку змінюється одразу."
+        },
+        "e-units": {
+          "one": "Система вимірювання",
+          "what": "Метричні або британські одиниці застосовуються на телефоні й сполученому годиннику."
+        },
+        "e-awake": {
+          "one": "Не вимикати екран",
+          "what": "Якщо ввімкнено, екрани приладів не гаснуть. Якщо вимкнено, діє системний час очікування. Блокування дотиків водного ліхтаря зберігається."
+        },
+        "e-about": {
+          "one": "Про програму",
+          "what": "Показує збірку, ліцензію, відомості про конфіденційність, автономну довідку й інші продукти. Експорт діагностики відкриває системний вибір файла й зберігає ZIP із даними збірки та платформи. Координати, історія, шляхи до музики й користувацький текст виключено. Дані нікуди не надсилаються."
+        },
+        "e-help": {
+          "one": "Довідка",
+          "what": "Відкриває цю сторінку. F1 на підключеній клавіатурі робить те саме."
+        }
+      },
+      "related": [
+        {
+          "help": "home",
+          "note": "Виберіть тему, мову й одиниці."
+        }
+      ]
+    }
+  }
+}

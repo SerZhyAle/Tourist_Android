@@ -5,17 +5,15 @@ import javax.inject.Singleton
 
 /**
  * The product's own capability registry, shaped after FastMediaSorter's class of the same name but
- * carrying only what this kit compiles: no OCR, no translation, no cloud - and, until S0008 wires the
- * Data Layer, no watch health either. The store/noLegal composition of watch health is decision 4.3's
- * record in S0008.
+ * carrying only what this kit compiles: no OCR, no translation, no cloud.
+ *
+ * What a distribution withholds is not answered here: a capability that differs between `store` and
+ * `noLegal` is an interface in this package with one real implementation per variant source set (owner
+ * decision 4.3, S0008) - see [WatchHealthCapability].
  */
 @Singleton
 class CapabilityAvailability @Inject constructor() {
 
-    /** Whether the Tourist dashboard may show the watch's heart rate and body temperature. */
-    fun isWatchHealthAvailable(): Boolean = WATCH_HEALTH_COMPILED_IN
-
-    private companion object {
-        const val WATCH_HEALTH_COMPILED_IN = false
-    }
+    /** Whether this build supports audio playback (both `store` and `noLegal` editions do). */
+    val supportsAudio: Boolean = true
 }

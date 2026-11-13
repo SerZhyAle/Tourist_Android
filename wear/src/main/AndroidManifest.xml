@@ -3,9 +3,27 @@
 
     <uses-feature android:name="android.hardware.type.watch" />
 
-    <!-- Skeleton: no permission is declared until the phase that uses it arrives (canon: only
-         actually-used permissions). The watch kit's permissions are listed in handoff section 5 and
-         land with S0008. -->
+    <!--
+        S0008: this file is the permission surface both editions share. Only what a shipped surface
+        uses is declared, each with its reason. The sideload-only declarations (heart rate, activity
+        recognition, location - all read by the Tourist dashboard alone, owner decision 4.3) live in
+        wear/src/noLegal/AndroidManifest.xml, and the store edition removes them explicitly in
+        wear/src/store/AndroidManifest.xml.
+
+        VIBRATE and WAKE_LOCK, which the handoff lists for the watch, are deliberately not declared: no code of
+        this product calls a Vibrator or takes a wake lock (haptics go through the view, and the screen is held
+        by a window flag, neither of which needs a permission). Declaring them would break the rule that a
+        manifest names only what the runtime uses.
+    -->
+    <!--
+        S3555: the running stopwatch is an ongoing activity (WO-V4), and on Wear OS 4+ its notification -
+        the only thing the watch face indicator and the Recents chip hang off - is silently dropped
+        without this grant. Both editions take it from here.
+    -->
+    <uses-permission
+        android:name="android.permission.POST_NOTIFICATIONS"
+        android:minSdkVersion="33" />
+
     <application
         android:name=".TouristWearApplication"
         android:allowBackup="false"
@@ -13,22 +31,49 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:label="@string/app_name"
         android:supportsRtl="true"
-        android:theme="@android:style/Theme.DeviceDefault">
+        android:theme="@style/Theme.TouristWear">
 
         <!-- The watch app works without the phone; the phone is a companion, not a prerequisite. -->
         <meta-data
             android:name="com.google.android.wearable.standalone"
             android:value="true" />
 
+        <!-- S1721: the watch absorbs a rotation instead of being recreated by it. On a round screen a
+             rotation changes no proportions, so a recreate reads as the screen resetting itself - the
+             Compose tree and the navigation stack are rebuilt for nothing. Safe here: this module has
+             no res/layout*, and Compose receives the new configuration through LocalConfiguration. -->
         <activity
             android:name=".MainActivity"
             android:exported="true"
-            android:launchMode="singleTop">
+            android:launchMode="singleTop"
+            android:configChanges="orientation|screenSize|screenLayout|smallestScreenSize|keyboardHidden"
+            android:theme="@style/Theme.TouristWear">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
+        <!-- Wearable Data Layer: the phone's SOS start and stop (messages), its unit-system push and the
+             Tourist weather answer (data items). The prefixes are this product's own (S0006); the paths
+             are the mirrored constants of WearDataLayerPaths. Both editions declare it: an edition that
+             withholds a capability refuses the command where it arrives (WatchWearListenerService). -->
+        <service
+            android:name=".data.wear.WatchWearListenerService"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="com.google.android.gms.wearable.DATA_CHANGED" />
+                <action android:name="com.google.android.gms.wearable.MESSAGE_RECEIVED" />
+                <data
+                    android:host="*"
+                    android:pathPrefix="/tourist/phone"
+                    android:scheme="wear" />
+                <data
+                    android:host="*"
+                    android:pathPrefix="/tourist/wear"
+                    android:scheme="wear" />
+            </intent-filter>
+        </service>
     </application>
 
 </manifest>

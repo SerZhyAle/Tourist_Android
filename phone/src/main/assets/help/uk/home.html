@@ -1,0 +1,120 @@
+<!doctype html>
+<html lang="uk" dir="ltr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="referrer" content="no-referrer">
+<title>Довідка - Турист</title>
+<script>(function(){try{var q=new URLSearchParams(location.search).get("theme");var t=(q==="light"||q==="dark")?q:(matchMedia("(prefers-color-scheme: light)").matches?"light":"dark");document.documentElement.setAttribute("data-theme",t);}catch(e){}})();</script>
+<link rel="stylesheet" href="../sza-kit.css">
+<link rel="stylesheet" href="../help.css">
+</head>
+<body class="help">
+<main class="container">
+<nav class="help-crumbs" aria-label="Зміст довідки">
+  <a href="index.html">Зміст довідки</a><span class="sep" aria-hidden="true">/</span><span>Турист</span>
+</nav>
+<header class="hero">
+  <p class="kicker">Довідка про екран</p>
+  <h1>Турист</h1>
+  <p class="lead">Стартовий екран перелічує програми набору. Натисніть на потрібну: кожна відкривається на своєму екрані, а кнопка &#171;Назад&#187; повертає сюди.</p>
+</header>
+<figure class="shot">
+  <div class="frame">
+    <img class="on-dark" src="img/home-dark.jpg" width="540" height="624" alt="Стартовий екран із чотирма програмами, рядком Налаштування й довідкою.">
+    <img class="on-light" src="img/home-light.jpg" width="540" height="624" alt="">
+      <a class="pin" style="--x:91.06%;--y:28.93%" href="#e-dashboard" aria-label="1, Туристичний дашборд">1</a>
+      <a class="pin" style="--x:91.06%;--y:41.67%" href="#e-lights" aria-label="2, Ліхтарики">2</a>
+      <a class="pin" style="--x:91.06%;--y:54.41%" href="#e-sos" aria-label="3, Аварійний сигнал SOS">3</a>
+      <a class="pin" style="--x:91.06%;--y:67.15%" href="#e-stopwatch" aria-label="4, Секундомір">4</a>
+      <a class="pin" style="--x:89.11%;--y:81.49%" href="#e-settings" aria-label="5, Налаштування">5</a>
+      <a class="pin" style="--x:93.15%;--y:16.19%" href="#e-help" aria-label="6, Довідка (F1)">6</a>
+  </div>
+  <figcaption>Демонстраційні дані. Натисніть на номер, щоб прочитати про цю частину екрана.</figcaption>
+</figure>
+<h2>У такому порядку</h2>
+<ol class="order">
+  <li>Оберіть потрібну програму з чотирьох рядків <a class="ref" href="#e-dashboard">1</a> <a class="ref" href="#e-lights">2</a> <a class="ref" href="#e-sos">3</a> <a class="ref" href="#e-stopwatch">4</a>.</li>
+  <li>Кнопка &#171;Назад&#187; у будь-якій програмі повертає на цей екран.</li>
+  <li>Натисніть знак питання <a class="ref" href="#e-help">6</a> на будь-якому екрані, щоб прочитати, як він працює.</li>
+</ol>
+<h2>Елементи</h2>
+<div class="elements">
+  <details class="el" id="e-dashboard">
+    <summary><span class="mk">1</span><span><span class="name">Туристичний дашборд</span><span class="one">Швидкість, висота, компас, координати та подорож.</span></span></summary>
+    <div class="full">
+      <p>Відкриває панель: одну велику плитку й сітку менших із показами телефона та, якщо годинник підключено, годинника.</p>
+      <dl class="facts">
+        <dt>Навіщо</dt><dd>Це екран, який зручно тримати відкритим у дорозі: де ви, куди повернуті й скільки вже пройшли.</dd>
+        <dt>Що далі</dt><dd>Першого разу панель попросить доступ до місцеположення, а без нього покаже те, що можна прочитати.</dd>
+        <dt>Чи можна скасувати</dt><dd>Відкриття нічого не змінює; &#171;Назад&#187; повертає сюди.</dd>
+      </dl>
+    </div>
+  </details>
+  <details class="el" id="e-lights">
+    <summary><span class="mk">2</span><span><span class="name">Ліхтарики</span><span class="one">Водний, фронтальний і камерний ліхтарі.</span></span></summary>
+    <div class="full">
+      <p>Відкриває ліхтарі: водний, який не вимкнути мокрим дотиком, фронтальний, що перетворює екран на лампу, та ліхтар камери.</p>
+      <dl class="facts">
+        <dt>Навіщо</dt><dd>Оберіть ліхтар за нагодою: водний - для дощу й переправ, фронтальний - щоб прочитати мапу, камерний - для найяскравішого променя.</dd>
+        <dt>Що далі</dt><dd>Кожен ліхтар відкривається на своєму екрані; сторінка <b>Ліхтарики</b> пояснює, як вийти з кожного.</dd>
+        <dt>Чи можна скасувати</dt><dd>Відкриття списку не вмикає жодного ліхтаря.</dd>
+      </dl>
+    </div>
+  </details>
+  <details class="el" id="e-sos">
+    <summary><span class="mk">3</span><span><span class="name">Аварійний сигнал SOS</span><span class="one">Сигнал лиха.</span></span></summary>
+    <div class="full">
+      <p>Відкриває екран SOS. Сигнал <b>вмикається одразу, щойно екран відкрито</b>: сирена й спалах повторюють сигнал SOS азбукою Морзе, а підключений годинник сигналізує теж.</p>
+      <dl class="facts">
+        <dt>Навіщо</dt><dd>Користуйтеся, коли треба привернути увагу. Сигнал звучить і блимає; він нікому не телефонує й не надсилає повідомлень.</dd>
+        <dt>Що далі</dt><dd>Сигнал триває, доки ви не натиснете <b>Зупинити сигнал</b> або не вийдете з екрана кнопкою &#171;Назад&#187;.</dd>
+        <dt>Чи можна скасувати</dt><dd><b>Зупинити сигнал</b> припиняє його одразу.</dd>
+      </dl>
+    </div>
+  </details>
+  <details class="el" id="e-stopwatch">
+    <summary><span class="mk">4</span><span><span class="name">Секундомір</span><span class="one">Секундомір одразу для кількох людей.</span></span></summary>
+    <div class="full">
+      <p>Відкриває секундомір, який вимірює час кількох учасників поруч, з колами, результатом і музикою за бажанням.</p>
+      <dl class="facts">
+        <dt>Навіщо</dt><dd>Підходить для забігу, естафети й будь-якого випадку, коли час потрібен кільком людям.</dd>
+        <dt>Що далі</dt><dd>Відлік іде в усіх одразу, щойно екран відкрито; у кожного учасника свої кнопки кола й зупинки, а всю групу можна зупинити або скинути разом.</dd>
+        <dt>Чи можна скасувати</dt><dd>Вихід з екрана кнопкою &#171;Назад&#187; стирає час; <b>Скинути все</b> починає заново одразу.</dd>
+      </dl>
+    </div>
+  </details>
+  <details class="el" id="e-settings">
+    <summary><span class="mk">5</span><span><span class="name">Налаштування</span><span class="one">Налаштування застосунку.</span></span></summary>
+    <div class="full">
+      <p>Відкриває тему, мову, одиниці, параметр екрана й відомості про програму. Зміни застосовуються одразу.</p>
+      <dl class="facts">
+      </dl>
+    </div>
+  </details>
+  <details class="el" id="e-help">
+    <summary><span class="mk">6</span><span><span class="name">Довідка (F1)</span><span class="one">Відкриває цю сторінку.</span></span></summary>
+    <div class="full">
+      <p>Ця кнопка є на кожному екрані застосунку, у правому верхньому куті, поряд з наявним.</p>
+      <dl class="facts">
+        <dt>Навіщо</dt><dd>Вона пояснює екран, на який ви дивитеся, з малюнком, не виходячи із застосунку й без мережі.</dd>
+        <dt>Клавіша</dt><dd><kbd>F1</kbd> на підключеній клавіатурі робить те саме.</dd>
+      </dl>
+    </div>
+  </details>
+</div>
+<h2>Пов’язане</h2>
+<ul class="related">
+  <li><a href="dashboard.html"><b>Туристичний дашборд</b><span class="pill">Екран</span><small>Покази та подорож.</small></a></li>
+  <li><a href="lights.html"><b>Ліхтарики</b><span class="pill">Екран</span><small>Три ліхтарі та вихід із кожного.</small></a></li>
+  <li><a href="sos.html"><b>Аварійний сигнал SOS</b><span class="pill">Екран</span><small>Що робить сигнал і як його зупинити.</small></a></li>
+  <li><a href="stopwatch.html"><b>Секундомір</b><span class="pill">Екран</span><small>Час кількох людей одразу.</small></a></li>
+  <li><a href="index.html"><b>Зміст довідки</b><small>Кнопка &#171;Назад&#187; повертає на екран, з якого ви прийшли.</small></a></li>
+</ul>
+<footer class="help-foot">
+  <span>Знято з Турист 2.61.0271.444, 2026-10-27.</span>
+  <a href="index.html">Зміст довідки</a>
+</footer>
+</main>
+</body>
+</html>

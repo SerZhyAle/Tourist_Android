@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- S0013 stand instrument only. Never shipped, never part of the product's Gradle build. -->
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.sza.s0013probe"
+    android:versionCode="1"
+    android:versionName="1">
+
+    <uses-sdk android:minSdkVersion="26" android:targetSdkVersion="34" />
+
+    <application android:label="S0013 probe" android:debuggable="true" android:hasCode="true">
+        <service
+            android:name=".ProbeService"
+            android:exported="true"
+            android:permission="android.permission.BIND_ACCESSIBILITY_SERVICE">
+            <intent-filter>
+                <action android:name="android.accessibilityservice.AccessibilityService" />
+            </intent-filter>
+            <meta-data
+                android:name="android.accessibilityservice"
+                android:resource="@xml/probe_service" />
+        </service>
+
+        <receiver android:name=".DumpReceiver" android:exported="true" />
+    </application>
+</manifest>

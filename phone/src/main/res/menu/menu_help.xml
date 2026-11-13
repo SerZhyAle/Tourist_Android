@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- The top app bar's help action (CONTEXT-HELP rule 2): added by StandardToolbar when the help map gives the
+     host screen a help, shown always so it never falls into an overflow. -->
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <item
+        android:id="@+id/action_help"
+        android:icon="@drawable/ic_help_outline"
+        android:title="@string/help_action"
+        app:showAsAction="always"
+        app:tooltipText="@string/help_action" />
+</menu>

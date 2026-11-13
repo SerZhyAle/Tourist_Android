@@ -1,0 +1,7 @@
+# CHECK-BASELINE set baseline of tools/docs/check-docs.ps1 (DOC-INTERNAL-QUALITY, S0029): one finding identifier
+# per line, sorted. It may only fall - a finding not listed fails, a listed identifier no finding raises fails until
+# it is removed. Rewritten only by check-docs.ps1 -UpdateBaseline, which prints every identifier it accepts.
+docs-style PLAN/S0025_github-publication.md ellipsis - **Owner's order, 2026-10-26** (Russian source, quoted): "create specifications
+docs-style PLAN/S0026_sza-site-documentation.md ellipsis - **Owner's order, 2026-10-26** (Russian source, quoted): "create specifications
+docs-style PLAN/S0027_google-play-publication.md ellipsis - **Owner's order, 2026-10-26** (Russian source, quoted): "create specifications
+docs-style PLAN/S0028_family-cross-links.md ellipsis - **Owner's order, 2026-10-26** (Russian source, quoted): "create specifications

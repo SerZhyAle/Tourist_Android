@@ -1,0 +1,45 @@
+{
+  "help": "stopwatch-settings",
+  "locale": "ru",
+  "version": "2.61.0271.444",
+  "capturedOn": "2026-10-27",
+  "layoutsSha256": "f0e3faa96239e2849fa6475607239c58e98db2723d04b3810452e0cfc85c5f29",
+  "stringsSha256": "21f6576615b21f46e98def51ee1059fcd72207d7471de4377a766c626bd4d4a4",
+  "width": 1080,
+  "height": 2400,
+  "imageWidth": 540,
+  "imageHeight": 1200,
+  "elements": {
+    "e-participants": {
+      "l": 123,
+      "t": 816,
+      "r": 957,
+      "b": 971
+    },
+    "e-music": {
+      "l": 123,
+      "t": 982,
+      "r": 957,
+      "b": 1215
+    },
+    "e-track": {
+      "l": 123,
+      "t": 1226,
+      "r": 957,
+      "b": 1352
+    },
+    "e-volume-keys": {
+      "l": 123,
+      "t": 1363,
+      "r": 957,
+      "b": 1680
+    },
+    "e-help": {
+      "l": 852,
+      "t": 636,
+      "r": 978,
+      "b": 762
+    }
+  },
+  "missing": []
+}

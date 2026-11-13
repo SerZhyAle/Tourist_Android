@@ -14,6 +14,7 @@
         android:layout_width="match_parent"
         android:layout_height="?actionBarSize"
         app:navigationIcon="@drawable/ic_arrow_back"
+        app:navigationContentDescription="@string/back"
         app:title="@string/tourist_tile_counter" />
 
     <androidx.core.widget.NestedScrollView
@@ -50,17 +51,15 @@
                 android:textColor="?attr/colorOnSurfaceVariant"
                 tools:text="@string/tourist_counter_start_label" />
 
-            <LinearLayout
+            <com.sza.tourist.ui.common.widget.CommandFlowLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/margin_large"
-                android:gravity="center_vertical"
-                android:orientation="horizontal">
+                android:layout_marginTop="@dimen/margin_large">
 
                 <com.google.android.material.button.MaterialButton
                     android:id="@+id/btnMinusOne"
                     style="@style/Widget.Tourist.Button.Tonal"
-                    android:layout_width="@dimen/tourist_counter_minus_width"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:contentDescription="@string/tourist_counter_minus_one_description"
                     android:focusable="true"
@@ -70,10 +69,9 @@
                 <com.google.android.material.button.MaterialButton
                     android:id="@+id/btnPlusOne"
                     style="@style/Widget.Tourist.Button.Filled"
-                    android:layout_width="0dp"
-                    android:layout_height="@dimen/tourist_counter_plus_height"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
                     android:layout_marginStart="@dimen/margin_normal"
-                    android:layout_weight="1"
                     android:contentDescription="@string/tourist_counter_plus_one_description"
                     android:focusable="true"
                     android:nextFocusLeft="@id/btnMinusOne"
@@ -82,16 +80,16 @@
 
                     <requestFocus />
                 </com.google.android.material.button.MaterialButton>
-            </LinearLayout>
+            </com.sza.tourist.ui.common.widget.CommandFlowLayout>
 
-            <com.sza.tourist.ui.common.widget.SettingsToggleRow
+            <com.sza.tourist.ui.common.widget.SettingsCheckboxRow
                 android:id="@+id/switchExtraSteps"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/margin_normal"
                 android:focusable="true"
-                app:str_icon="@drawable/ic_add"
-                app:str_title="@string/tourist_counter_extra_steps" />
+                app:scr_icon="@drawable/ic_add"
+                app:scr_title="@string/tourist_counter_extra_steps" />
 
             <include
                 android:id="@+id/extraSteps"
@@ -101,31 +99,28 @@
                 android:visibility="gone"
                 tools:visibility="visible" />
 
-            <LinearLayout
+            <com.sza.tourist.ui.common.widget.CommandFlowLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/margin_normal"
-                android:orientation="horizontal">
+                android:layout_marginTop="@dimen/margin_normal">
 
                 <com.google.android.material.button.MaterialButton
                     android:id="@+id/btnStartValue"
-                    style="@style/Widget.Tourist.Button.Outlined"
-                    android:layout_width="0dp"
+                    style="@style/Widget.Tourist.Button.Command"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_weight="1"
                     android:focusable="true"
                     android:text="@string/tourist_counter_set_start" />
 
                 <com.google.android.material.button.MaterialButton
                     android:id="@+id/btnReset"
-                    style="@style/Widget.Tourist.Button.Outlined"
-                    android:layout_width="0dp"
+                    style="@style/Widget.Tourist.Button.Command"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="@dimen/margin_normal"
-                    android:layout_weight="1"
                     android:focusable="true"
                     android:text="@string/tourist_counter_reset" />
-            </LinearLayout>
+            </com.sza.tourist.ui.common.widget.CommandFlowLayout>
 
             <include
                 android:id="@+id/history"

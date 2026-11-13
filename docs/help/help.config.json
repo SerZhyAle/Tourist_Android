@@ -1,0 +1,4 @@
+{
+  "$comment": "Product-level settings of the help pages. support.url is the one support path of SUPPORT_AND_FEEDBACK that every page footer links; it stays null until the owner opens one (S0010 decision 4.9 and the issue tracker), because a page never links an address that does not exist.",
+  "support": { "url": null }
+}

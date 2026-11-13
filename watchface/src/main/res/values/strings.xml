@@ -1,5 +1,28 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <!-- "Tourist" is the working name; the store name is an open owner decision (S0010). -->
+
     <string name="watch_face_name">Tourist</string>
+
+    <!-- Complication slot labels. These are what the system watch face editor shows against each
+         slot, so they name the position on the dial, not the provider a slot happens to hold: the
+         user is free to reassign any slot, and a label naming the default provider would then lie. -->
+    <string name="slot_outer_left_label">Outer left</string>
+    <string name="slot_inner_left_label">Inner left</string>
+    <string name="slot_inner_right_label">Inner right</string>
+    <string name="slot_outer_right_label">Outer right</string>
+
+    <!-- The two top slots. Same naming rule as the four above - the label names the
+         position on the dial, never the provider the slot happens to hold. -->
+    <string name="slot_top_left_label">Top left</string>
+    <string name="slot_top_right_label">Top right</string>
+
+    <!-- The hidden, non-customizable slot that carries the phone's clock style. The editor
+         never offers it; the label exists because the format requires one on every slot. -->
+    <string name="slot_clock_style_label">Clock style</string>
+
+    <!-- The hidden, non-customizable full-screen slot that carries the watch app's backdrop photo. -->
+    <string name="slot_face_photo_label">Backdrop photo</string>
+
+    <string name="watch_battery_bar_reader">Watch battery charge: %s percent</string>
+    <string name="phone_battery_bar_reader">Paired phone battery: %s percent</string>
 </resources>
