@@ -29,3 +29,4 @@ S0050_family-parity-umbrella                                   26-11-13 16:41  D
 S0051_fms-kit-functional-parity-inventory                      26-11-13 16:45  Draft
 S0052_new-fms-kit-source-detection                             26-11-13 16:45  Draft
 S0053_family-parity-release-gate                               26-11-13 16:45  Draft
+S0054_play-publication-remaining-steps                         26-11-13 17:15  Draft

@@ -58,6 +58,20 @@ mechanisms carry that guarantee, and each binds every ticket:
   wake.
 - **The water flashlight's rule** - no wet touch can switch it off - is the product's signature and is ported
   exactly.
+- **Public presence** (owner's order of 2026-11-13, "Выполни всё это теперь для Tourist_mob", the DeviceInfo procedure
+  of canon S0058; the owner's answers of the same day are recorded in `docs/play/PLAY_DATA_SAFETY.md` and S0054):
+  - public remote `https://github.com/SerZhyAle/Tourist_Android`, branch `main`, everything public (`PLAN/` included);
+    issues on, wiki and projects off; the five foundation commits were rewritten before the push to drop a private
+    address (backup bundle outside the repository), and the product tree arrived in commit `5db4d6e`;
+  - GitHub Pages from `site/` by `.github/workflows/pages.yml` (check on Windows, deploy on Linux): the three privacy
+    pages, `sitemap.xml` and `robots.txt` answer 200; the site root answers 404 until the landing (S0026) exists, so the
+    repository has no homepage and the listings no website yet;
+  - Play Console, personal account `8446656778368889827`: `com.sza.tourist` ("Tourist: Hiking Kit", app
+    `4975092571968022444`) and `com.sza.tourist.watchface` ("Tourist Watch Face", app `4973503680609248842`), both App,
+    Free, both package names now bound to the account; App content of both "all caught up", store settings, the
+    en-US/ru-RU/uk listing of the main app with icon and feature graphic, and the Wear OS form factor of both are recorded
+    in `docs/play/PLAY_DATA_SAFETY.md` ("Console record") and `docs/play/PLAY_LISTING.md`. Nothing is uploaded or
+    published; what remains is S0054.
 - Open owner decisions are owner-input items inside the ticket of the phase that needs them (section 3.3 of each
   ticket); each is asked once, in question-with-options form, right before that phase.
 

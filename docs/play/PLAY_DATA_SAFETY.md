@@ -86,3 +86,33 @@ invariant 15).
 | Online content | content outside the package: No - the app fetches weather numbers, not media or third-party content |
 | Age-restricted products | No |
 | Miscellaneous | location sharing with other users: No (Share hands text to an app the user picks; the app shares nothing with other users itself); digital purchases: No; cash rewards or NFTs: No; web browser or search engine: No (the place search finds weather places only); news or educational: No |
+
+## Console record (2026-11-13)
+
+Filled in the owner's personal developer account (8446656778368889827) on the owner's order, with the owner's yes of the
+same day for each one-way step (the package names, Free, the Developer Program Policies, the US export laws, the IARC
+terms of use). Nothing is uploaded, nothing is sent for review.
+
+### `com.sza.tourist` (app 4975092571968022444, "Tourist: Hiking Kit")
+
+| Item | State | Answer |
+| --- | --- | --- |
+| Privacy policy | saved | `https://serzhyale.github.io/Tourist_Android/privacy.html` (answered 200 the same day) |
+| Sign in details | saved | No - no part restricted |
+| Ads | saved | No |
+| Advertising ID | saved | No |
+| Government apps | saved | No |
+| Financial features | saved | My app doesn't provide any financial features |
+| Health apps | saved | Activity and fitness; no regional requirement asked |
+| Target audience | saved | 18 and over |
+| Data safety | saved | collects or shares: Yes; encrypted in transit: Yes; account creation: "My app does not allow users to create an account", login with outside accounts: No; deletion request: No. Location - Precise location and App activity - In-app search history: collected, not shared, processed ephemerally, users can choose, App functionality. The store preview reads "No data collection declared / No data shared with third parties": Play does not show ephemerally processed data on the listing |
+| Content rating | saved, fresh IARC questionnaire | category All Other App Types, contact `sza@ukr.net`, every answer No (the table above). Ratings: ESRB Everyone, PEGI 3, USK all ages, ClassInd all ages, IARC generic 3+, Google Play Russia and South Korea 3+ |
+
+Overview after these: "You're all caught up".
+
+### `com.sza.tourist.watchface` (app 4973503680609248842, "Tourist Watch Face")
+
+Every App content item saved ("You're all caught up"): privacy policy as above; Sign in details No; ads No; advertising
+ID No; government No; financial none; health none; target audience 13-15, 16-17, 18 and over; Data safety "no data
+collected, no data shared"; IARC All Other App Types, every answer No: ESRB Everyone, ClassInd all ages (the same
+authority set as the main app).
