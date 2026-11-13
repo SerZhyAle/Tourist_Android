@@ -49,8 +49,9 @@ Entered in the Play Console for `com.sza.tourist` from this file and its two tra
 description in en-US (default), ru-RU and uk. Store settings: category Travel & Local, contact email `sza@ukr.net`,
 website empty until the landing `https://serzhyale.github.io/Tourist_Android/` answers (S0026), then the landing, never
 the repository. Graphics: `icon-512.png` and `feature-graphic-1024x500.png` beside this file, render targets of
-`tools/store/render-store-assets.ps1`; the other languages fall back to them. Screenshots are not uploaded. Form factors:
-Wear OS added (its three steps - Wear screenshots, a Wear bundle on a testing track, the review-policy opt-in - wait for
-the release); Android XR stays Active by Google's default. The watch face app `com.sza.tourist.watchface` has category
+`tools/store/render-store-assets.ps1`; the other languages fall back to them. Screenshots (uploaded the same day): phone 6 and Wear OS 4 per language, en-US,
+ru-RU and uk each with its own set from `docs/play/screenshots/` in the order of the file numbers. Form factors:
+Wear OS added (of its three steps the Wear screenshots are done; a Wear bundle on a testing track and the
+review-policy opt-in wait for the release); Android XR stays Active by Google's default. The watch face app `com.sza.tourist.watchface` has category
 Personalization, the same contact and the Wear OS form factor; its listing has no source yet. The App content answers
 are in [PLAY_DATA_SAFETY.md](PLAY_DATA_SAFETY.md), "Console record".

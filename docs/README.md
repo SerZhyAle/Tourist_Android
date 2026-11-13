@@ -11,6 +11,9 @@
   [ru](play/PLAY_LISTING-ru.md), [uk](play/PLAY_LISTING-uk.md)), the App content, Data safety and IARC answers with the
   console record ([PLAY_DATA_SAFETY.md](play/PLAY_DATA_SAFETY.md)), and the graphics `play/icon-512.png` and
   `play/feature-graphic-1024x500.png`, render targets of `tools/store/render-store-assets.ps1`.
+- `play/screenshots/` - the Play screenshots: `phone/<locale>/` (1080x1920) and `wear/<locale>/` (454x454) for en, ru
+  and uk, and `watchface/` (454x454, locale-free). Emulator captures of the store variant of 2026-11-13 with a London
+  geo fix and no account; not render targets, so a changed screen is captured again.
 - `github/social-preview-1280x640.png` - the repository's social preview, a render target of the same script, uploaded
   in the repository settings by the owner.
 - The hosted privacy pages are hand-written HTML in `site/` (`privacy.html`, `privacy-ru.html`, `privacy-uk.html`),
