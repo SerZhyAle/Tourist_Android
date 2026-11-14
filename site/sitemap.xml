@@ -1,6 +1,69 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
+    <loc>https://serzhyale.github.io/Tourist_Android/</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://serzhyale.github.io/Tourist_Android/"/>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://serzhyale.github.io/Tourist_Android/ru/"/>
+    <xhtml:link rel="alternate" hreflang="uk" href="https://serzhyale.github.io/Tourist_Android/uk/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://serzhyale.github.io/Tourist_Android/"/>
+  </url>
+  <url>
+    <loc>https://serzhyale.github.io/Tourist_Android/ru/</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://serzhyale.github.io/Tourist_Android/"/>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://serzhyale.github.io/Tourist_Android/ru/"/>
+    <xhtml:link rel="alternate" hreflang="uk" href="https://serzhyale.github.io/Tourist_Android/uk/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://serzhyale.github.io/Tourist_Android/"/>
+  </url>
+  <url>
+    <loc>https://serzhyale.github.io/Tourist_Android/uk/</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://serzhyale.github.io/Tourist_Android/"/>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://serzhyale.github.io/Tourist_Android/ru/"/>
+    <xhtml:link rel="alternate" hreflang="uk" href="https://serzhyale.github.io/Tourist_Android/uk/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://serzhyale.github.io/Tourist_Android/"/>
+  </url>
+  <url>
+    <loc>https://serzhyale.github.io/Tourist_Android/guide.html</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://serzhyale.github.io/Tourist_Android/guide.html"/>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://serzhyale.github.io/Tourist_Android/ru/guide.html"/>
+    <xhtml:link rel="alternate" hreflang="uk" href="https://serzhyale.github.io/Tourist_Android/uk/guide.html"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://serzhyale.github.io/Tourist_Android/guide.html"/>
+  </url>
+  <url>
+    <loc>https://serzhyale.github.io/Tourist_Android/ru/guide.html</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://serzhyale.github.io/Tourist_Android/guide.html"/>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://serzhyale.github.io/Tourist_Android/ru/guide.html"/>
+    <xhtml:link rel="alternate" hreflang="uk" href="https://serzhyale.github.io/Tourist_Android/uk/guide.html"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://serzhyale.github.io/Tourist_Android/guide.html"/>
+  </url>
+  <url>
+    <loc>https://serzhyale.github.io/Tourist_Android/uk/guide.html</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://serzhyale.github.io/Tourist_Android/guide.html"/>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://serzhyale.github.io/Tourist_Android/ru/guide.html"/>
+    <xhtml:link rel="alternate" hreflang="uk" href="https://serzhyale.github.io/Tourist_Android/uk/guide.html"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://serzhyale.github.io/Tourist_Android/guide.html"/>
+  </url>
+  <url>
+    <loc>https://serzhyale.github.io/Tourist_Android/support.html</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://serzhyale.github.io/Tourist_Android/support.html"/>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://serzhyale.github.io/Tourist_Android/ru/support.html"/>
+    <xhtml:link rel="alternate" hreflang="uk" href="https://serzhyale.github.io/Tourist_Android/uk/support.html"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://serzhyale.github.io/Tourist_Android/support.html"/>
+  </url>
+  <url>
+    <loc>https://serzhyale.github.io/Tourist_Android/ru/support.html</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://serzhyale.github.io/Tourist_Android/support.html"/>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://serzhyale.github.io/Tourist_Android/ru/support.html"/>
+    <xhtml:link rel="alternate" hreflang="uk" href="https://serzhyale.github.io/Tourist_Android/uk/support.html"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://serzhyale.github.io/Tourist_Android/support.html"/>
+  </url>
+  <url>
+    <loc>https://serzhyale.github.io/Tourist_Android/uk/support.html</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://serzhyale.github.io/Tourist_Android/support.html"/>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://serzhyale.github.io/Tourist_Android/ru/support.html"/>
+    <xhtml:link rel="alternate" hreflang="uk" href="https://serzhyale.github.io/Tourist_Android/uk/support.html"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://serzhyale.github.io/Tourist_Android/support.html"/>
+  </url>
+  <url>
     <loc>https://serzhyale.github.io/Tourist_Android/privacy.html</loc>
     <xhtml:link rel="alternate" hreflang="en" href="https://serzhyale.github.io/Tourist_Android/privacy.html"/>
     <xhtml:link rel="alternate" hreflang="ru" href="https://serzhyale.github.io/Tourist_Android/privacy-ru.html"/>

@@ -1,0 +1,532 @@
+{
+  "$comment": "Copy deck of the product site (S0026 W1). The only source of the landing, guide and support pages in en, ru and uk; tools/site/build-site.ps1 renders them and tools/site/check-site.ps1 holds the result. Values are HTML fragments except where a key says text. Placeholders: {{home}} {{guide}} {{support}} {{privacy}} (relative to the page, in its locale), {{repo}} {{issues}} {{hub}} {{github}} {{mail}} (absolute), {{minPhone}} {{minWear}} {{minFace}} (read from gradle/libs.versions.toml). Every text is a present-tense shipped fact (canon invariant 17); the over-claim lines of S0012 section 2.1 bind it.",
+  "site": {
+    "base": "https://serzhyale.github.io/Tourist_Android/",
+    "repo": "https://github.com/SerZhyAle/Tourist_Android",
+    "issues": "https://github.com/SerZhyAle/Tourist_Android/issues",
+    "hub": "https://sza.od.ua",
+    "github": "https://github.com/SerZhyAle",
+    "mail": "sza@ukr.net",
+    "author": "Serhii Zhyhunenko",
+    "year": "2026",
+    "brand": "Tourist",
+    "storeName": "Tourist: Hiking Kit"
+  },
+  "pages": [
+    { "id": "landing", "generated": true, "en": "index.html", "ru": "ru/index.html", "uk": "uk/index.html" },
+    { "id": "guide", "generated": true, "en": "guide.html", "ru": "ru/guide.html", "uk": "uk/guide.html" },
+    { "id": "support", "generated": true, "en": "support.html", "ru": "ru/support.html", "uk": "uk/support.html" },
+    { "id": "privacy", "generated": false, "en": "privacy.html", "ru": "privacy-ru.html", "uk": "privacy-uk.html" }
+  ],
+  "family": [
+    { "tool": "Fast Media Sorter & Organizer", "url": "https://serzhyale.github.io/FastMediaSorter_mob_v2/", "type": { "en": "Android media sorter", "ru": "Сортировщик медиа для Android", "uk": "Сортувальник медіа для Android" } },
+    { "tool": "Fast Media Sorter & Sharing for Windows", "url": "https://serzhyale.github.io/FastMediaSorter_Lite/", "type": { "en": "Windows media and file manager", "ru": "Менеджер медиа и файлов для Windows", "uk": "Менеджер медіа та файлів для Windows" } },
+    { "tool": "CyrFlip", "url": "https://serzhyale.github.io/CyrFlip/", "type": { "en": "Windows layout fixer", "ru": "Исправление раскладки для Windows", "uk": "Виправлення розкладки для Windows" } },
+    { "tool": "doc-html-translate", "url": "https://serzhyale.github.io/doc-html-translate/", "type": { "en": "Windows ebook converter", "ru": "Конвертер электронных книг для Windows", "uk": "Конвертер електронних книг для Windows" } },
+    { "tool": "FileDO", "url": "https://serzhyale.github.io/FileDO/", "type": { "en": "Windows storage CLI", "ru": "Консольная утилита для накопителей Windows", "uk": "Консольна утиліта для накопичувачів Windows" } },
+    { "tool": "STREAMS Player", "url": "https://serzhyale.github.io/StreamsPlayer/", "type": { "en": "Windows stream player", "ru": "Проигрыватель потоков для Windows", "uk": "Програвач потоків для Windows" } },
+    { "tool": "OneClickRunner", "url": "https://serzhyale.github.io/OneClickRunner/", "type": { "en": "Windows tray launcher", "ru": "Запуск из трея Windows", "uk": "Запуск із трея Windows" } },
+    { "tool": "Universal Agent Kit", "url": "https://serzhyale.github.io/universal-agent-kit/", "type": { "en": "AI-dev methodology", "ru": "Методология разработки с ИИ", "uk": "Методологія розробки з ШІ" } },
+    { "tool": "SZA (hub)", "url": "https://sza.od.ua", "type": { "en": "Portfolio", "ru": "Портфолио", "uk": "Портфоліо" } }
+  ],
+  "locales": {
+    "en": {
+      "lang": "en",
+      "ogLocale": "en_US",
+      "ui": {
+        "skip": "Skip to content",
+        "nav": "Site",
+        "home": "Home",
+        "guide": "Guide",
+        "support": "Support",
+        "privacy": "Privacy",
+        "theme": "Theme",
+        "toLight": "Switch to light theme",
+        "toDark": "Switch to dark theme",
+        "language": "Language",
+        "getIt": "Get it",
+        "toTop": "Back to top",
+        "expandAll": "Expand all",
+        "collapseAll": "Collapse all",
+        "contents": "On this page",
+        "apiFmt": "Android {0} (API level {1})",
+        "moreTools": "More tools by SZA",
+        "shotsLabel": "Captures of the phone and the watch"
+      },
+      "landing": {
+        "title": "Tourist: Hiking Kit for Android and Wear OS",
+        "description": "Compass dashboard, SOS signal, a flashlight no wet touch can switch off and a group stopwatch for your hike, on an Android phone and a Wear OS watch.",
+        "kicker": "Hiking kit for Android and Wear OS",
+        "h1": "Compass, SOS, light and a stopwatch for your hike.",
+        "lead": "One app on your phone and your watch: a dashboard of what your sensors read, a siren and a strobe that reach your paired watch, and a flashlight that no wet touch can switch off.",
+        "whatfor": "Tourist is a hike kit for an Android phone and a Wear OS watch. It is for you when you walk a trail alone or with a group and want your heading, a light and an SOS signal in one place.",
+        "proofTitle": "What you can do on the trail",
+        "scenarios": [
+          { "t": "Check where you are heading", "x": "Open the dashboard: a compass tile with your heading, then speed, altitude, coordinates, satellites, sunrise and sunset, steps, trip distance and the weather at your position." },
+          { "t": "Make yourself noticed", "x": "One button starts a siren and a Morse SOS strobe on the phone and on the paired watch. It sends no SMS and makes no call." },
+          { "t": "Keep a light on in the rain", "x": "The water flashlight is a full-screen light that no wet touch can switch off. A volume key puts it out. It is a touch lock, not waterproofing." },
+          { "t": "Time the whole group", "x": "A stopwatch for one, two or four participants, each with their own laps, and a result you can share." }
+        ],
+        "shots": [
+          { "key": "dashboard", "src": "01_dashboard.png", "dir": "phone", "w": 1080, "h": 1920, "alt": "The Tourist dashboard on a phone: Speed on the big card and tiles for altitude, compass, coordinates, satellites, trip distance, sunrise, weather and dew point." },
+          { "key": "sos", "src": "05_sos.png", "dir": "phone", "w": 1080, "h": 1920, "alt": "The SOS screen on a phone: three signal modes and the Stop signal button." },
+          { "key": "stopwatch", "src": "06_stopwatch.png", "dir": "phone", "w": 1080, "h": 1920, "alt": "The stopwatch on a phone timing four participants, each with laps." },
+          { "key": "watch", "src": "01_programs.png", "dir": "wear", "w": 454, "h": 454, "alt": "The Tourist program list on a watch: Water flashlight, SOS and Stopwatch." }
+        ],
+        "getTitle": "Get it",
+        "getText": "Tourist is open source under the MIT licence. The source of the phone app, the Wear OS app and the watch face is public.",
+        "sourceLabel": "Source code",
+        "guidesLabel": "Guides",
+        "stepsTitle": "Your first minute",
+        "steps": [
+          "Open Tourist and choose <strong>Tourist dashboard</strong>.",
+          "Press <strong>Allow</strong> when the dashboard asks for location. It is read only while a Tourist screen is open.",
+          "Read the big card, then tap a tile to read it large. Press <strong>Reset Trip</strong> at the start of each leg."
+        ],
+        "featuresTitle": "What is in the kit",
+        "features": [
+          { "id": "dashboard", "t": "A dashboard for the trail", "x": "<p>A compass hero tile with your heading, then speed, altitude, coordinates, satellites, sunrise and sunset, steps and cadence, the trip distance with the climb and descent, and the weather at your position. With a barometer, the magnetic-field tile shows the air pressure in millibars, and the gyroscope tile draws a 3D phone that turns with yours.</p><p>The buttons below open a map, share your position as text, reset the trip and open SOS.</p>" },
+          { "id": "sos", "t": "An SOS signal people can find", "x": "<p>One button starts a loud siren and a bright Morse strobe. Started on the phone, the signal also starts on your paired watch, and the other way round, so the people near you can find you. Choose sound and light, sound only or light only.</p><p>SOS sounds, blinks and reaches your paired device. It sends no SMS and makes no call.</p>" },
+          { "id": "water", "t": "A flashlight that stays on in the rain", "x": "<p>The water flashlight is a full-screen light that no wet touch can switch off: rain, snow or a wet glove leave it on. You switch it off with a deliberate key press.</p><p>It is a touch lock, not waterproofing. Android asks you to pin the app before the light starts.</p>" },
+          { "id": "lights", "t": "Screen and camera lights", "x": "<p>A screen light in any colour, the camera flash as a torch, home screen widgets and a shortcut in the notification shade.</p>" },
+          { "id": "stopwatch", "t": "A stopwatch for the group", "x": "<p>A stopwatch for one, two or four participants with laps and results, music of your choice while it runs, and a home screen widget. On the watch it keeps running as an ongoing activity.</p>" },
+          { "id": "watch", "t": "Phone and watch together", "x": "<p>The Wear OS app brings SOS, the water flashlight and the stopwatch to your wrist, with or without the phone nearby. The Tourist watch face is a separate package for the watch.</p>" }
+        ],
+        "guidesTitle": "Guides",
+        "guidesText": "<p>The <a href=\"{{guide}}\">guide</a> takes the tools one task at a time. <a href=\"{{support}}\">Support</a> says where to ask and what to include. The <a href=\"{{privacy}}\">privacy policy</a> lists what the apps read, store and send. Help is also built into every screen of the phone app and works offline.</p>",
+        "detailsTitle": "Details and honest caveats",
+        "details": [
+          { "id": "compat", "t": "Compatibility", "x": "<ul><li>Phone app: {{minPhone}} or later.</li><li>Wear OS app: a watch with {{minWear}} or later.</li><li>Watch face: a watch with {{minFace}} or later.</li><li>Interface languages: English, Russian and Ukrainian.</li></ul>" },
+          { "id": "permissions", "t": "What Tourist asks the phone for", "x": "<ul><li>Location, only while a Tourist screen is open, for the dashboard. Tourist never reads it in the background.</li><li>Camera, only to switch the camera flash on and off as a flashlight. Tourist takes no pictures.</li><li>Notifications, only for the shortcuts you switch on and the Stop button of the signal.</li></ul><p>The developer receives none of your data. The <a href=\"{{privacy}}\">privacy policy</a> lists every permission and the one request that leaves the phone: the weather request to Open-Meteo.</p>" },
+          { "id": "caveats", "t": "Caveats", "x": "<ul><li>Speed, altitude, heading and coordinates are readings of the phone and watch sensors and of satellite positioning. They are not a certified instrument.</li><li>SOS sounds, blinks and reaches your paired device. It sends no SMS, makes no call and does not replace calling the emergency services.</li><li>The water flashlight keeps wet touches from switching the light off. It does not make the phone water-resistant.</li><li>The stopwatch is for everyday timing, not an official timing device.</li></ul>" },
+          { "id": "source", "t": "Source and licence", "x": "<p>Tourist is open source under the MIT licence. Read the code, follow the changes or open an issue in the <a rel=\"noopener\" href=\"{{repo}}\">repository</a>.</p>" }
+        ]
+      },
+      "guide": {
+        "title": "Guide - Tourist",
+        "description": "How to use Tourist on a hike, task by task: the dashboard, the SOS signal, the water flashlight, the screen and camera lights and the stopwatch.",
+        "h1": "Tourist guide",
+        "lead": "Task by task: what to press and what happens. Button names are the ones on the screen.",
+        "blocks": [
+          { "t": "h2", "id": "first-walk", "x": "Your first walk" },
+          { "t": "ol", "x": [
+            "Open Tourist. The start screen shows four programs: <strong>Tourist dashboard</strong>, <strong>Lights</strong>, <strong>SOS emergency signal</strong> and <strong>Stopwatch</strong>. Back on any program returns to it.",
+            "Open <strong>Tourist dashboard</strong>. The first time it asks for location access: press <strong>Allow</strong>. Without it the dashboard cannot read your position or steps. Tourist reads the location only while a Tourist screen is open.",
+            "Read the big card, which shows Speed at first, and tap a tile in the grid to read it large.",
+            "At the start of every new leg press <strong>Reset Trip</strong>, so the trip counts from zero."
+          ] },
+          { "t": "p", "x": "Help is built into every screen of the phone app: the question mark in the top bar explains the screen you are on, offline." },
+          { "t": "h2", "id": "dashboard", "x": "Read the dashboard" },
+          { "t": "p", "x": "The dashboard shows what your phone reads on the trail: one reading large on the big card, the others as tiles below it." },
+          { "t": "ul", "x": [
+            "<strong>Compass</strong>: the big card draws a compass rose that turns as you turn the phone, with the heading in degrees, the cardinal direction and the accuracy of the sensor.",
+            "<strong>Coordinates</strong>: tap the big card while it shows Coordinates to copy the position.",
+            "Altitude, satellites, sunrise and sunset, steps, trip distance and the weather at your position are tiles of their own. For the weather the coordinates of your position go to the weather service Open-Meteo, the one request that leaves the phone on its own.",
+            "<strong>Map</strong> shows you in a maps app and <strong>Share</strong> passes the position on as text. Both leave Tourist."
+          ] },
+          { "t": "note", "tag": "The point", "x": "Speed, altitude, heading and coordinates are readings of the phone sensors and of satellite positioning. They are not a certified instrument." },
+          { "t": "h2", "id": "sos", "x": "Send the SOS signal" },
+          { "t": "ol", "x": [
+            "Open <strong>SOS emergency signal</strong> only when you want the signal: it starts as soon as the screen opens, a siren and a flashing light repeating the Morse SOS pattern.",
+            "Choose what it uses: <strong>Sound and light</strong>, <strong>Sound only</strong> or <strong>Light only</strong>. The running signal changes at once and the choice is kept.",
+            "A paired watch signals too. You can lock the phone or open another app: the signal goes on.",
+            "Press <strong>Stop signal</strong> or leave the screen with Back. The phone and the paired watch stop. If you do nothing, the phone ends its own signal after 30 minutes."
+          ] },
+          { "t": "note", "tag": "The point", "x": "SOS sounds, blinks and reaches your paired watch. It sends no SMS, makes no call and contacts no one, and it does not replace calling the emergency services." },
+          { "t": "h2", "id": "water-flashlight", "x": "Use the water flashlight" },
+          { "t": "ol", "x": [
+            "Open <strong>Lights</strong> and choose <strong>Water flashlight</strong>. Android asks you to pin the app: confirm it before you use the light with wet hands.",
+            "The camera flash and the white screen come on together, and the screen shows the time and a hint that it is locked. Touches and Back do not close the lamp.",
+            "To put it out press a volume key. The light goes out and you are back where you came from."
+          ] },
+          { "t": "p", "x": "The home screen widget <strong>Water flashlight</strong> opens it in one tap." },
+          { "t": "note", "tag": "The point", "x": "A touch lock, not waterproofing: it keeps raindrops and wet gloves from pressing buttons. It does not protect the phone from water." },
+          { "t": "h2", "id": "lights", "x": "Use the screen and camera lights" },
+          { "t": "ul", "x": [
+            "<strong>Front flashlight</strong>: the screen as a lamp, in a colour you choose with <strong>Light color</strong>. Drag up or down to change the brightness. A tap outside the controls closes it.",
+            "<strong>Camera flashlight</strong>: tap the row to switch the camera flash on and tap it again to switch it off. No screen opens.",
+            "A checkbox on the Lights screen keeps the camera flashlight one tap away in the notification shade. On Android 13 and later the app first asks for permission to show notifications."
+          ] },
+          { "t": "h2", "id": "stopwatch", "x": "Time a group with the stopwatch" },
+          { "t": "ol", "x": [
+            "Open <strong>Stopwatch</strong>. If you time more than one person, open the settings first and choose two or four <strong>Participants</strong>.",
+            "The count starts for everyone as soon as the screen opens. To start from zero press <strong>Reset all</strong>, then <strong>Start</strong> each participant in their own area, or everyone at once with <strong>Start all</strong>.",
+            "Press <strong>Lap</strong> in a participant's area to mark a lap without stopping, and <strong>Stop</strong> when they finish. <strong>Stop all</strong> stops everyone together.",
+            "Press <strong>Result</strong> to turn the times into text you can save or share."
+          ] },
+          { "t": "note", "tag": "The point", "x": "The times are not kept: leaving the screen with Back clears them. The stopwatch is for everyday timing, not an official timing device." },
+          { "t": "h2", "id": "watch", "x": "On the watch" },
+          { "t": "p", "x": "The Tourist watch app for Wear OS brings the <strong>Water flashlight</strong>, <strong>SOS</strong> and the <strong>Stopwatch</strong> to your wrist, with or without the phone nearby. SOS started on the phone starts on the paired watch, and the other way round. The Tourist watch face is a separate package." },
+          { "t": "h2", "id": "settings", "x": "Settings and languages" },
+          { "t": "p", "x": "<strong>Settings</strong> holds the theme, the language, the units, the screen-awake setting and About. Changes apply at once. The interface is available in English, Russian and Ukrainian." },
+          { "t": "h2", "id": "permissions", "x": "What Tourist asks for" },
+          { "t": "ul", "x": [
+            "Location, only while a Tourist screen is open, for the dashboard.",
+            "Camera, only to switch the camera flash on and off. Tourist takes no pictures.",
+            "Notifications, only for the shortcuts you switch on and the Stop button of the signal."
+          ] },
+          { "t": "p", "x": "The complete list, and what stays on your devices, is in the <a href=\"{{privacy}}\">privacy policy</a>." }
+        ]
+      },
+      "support": {
+        "title": "Support - Tourist",
+        "description": "Where to report a problem or ask a question about Tourist, what to include in a report, and how to reach the developer privately.",
+        "h1": "Support",
+        "lead": "A question, a defect or an idea: here is where each one goes.",
+        "blocks": [
+          { "t": "h2", "id": "report", "x": "Report a problem or ask a question" },
+          { "t": "p", "x": "The public place is the issue tracker of the repository: <a rel=\"noopener\" href=\"{{issues}}\">{{issues}}</a>. Anyone with a GitHub account can open an issue and follow the answer." },
+          { "t": "h2", "id": "contents", "x": "What a report should contain" },
+          { "t": "ul", "x": [
+            "What you pressed and what you expected to happen.",
+            "What happened instead, and whether it happens every time.",
+            "The model of your phone or watch and its Android or Wear OS version.",
+            "The Tourist version, shown in Settings.",
+            "Optionally the diagnostic ZIP described below."
+          ] },
+          { "t": "note", "tag": "The point", "x": "An issue is public. Leave out your coordinates and anything else private; use the address below for that." },
+          { "t": "h2", "id": "private", "x": "Privately, or for a security problem" },
+          { "t": "p", "x": "Write to <a href=\"mailto:{{mail}}\">{{mail}}</a>. It is the one contact for everything that should not be public, a security problem included." },
+          { "t": "h2", "id": "expect", "x": "What to expect" },
+          { "t": "p", "x": "Tourist is made and supported by one person. Reports are read and answered as time allows; there is no fixed response time." },
+          { "t": "h2", "id": "diagnostics", "x": "Export diagnostics" },
+          { "t": "p", "x": "<strong>Settings</strong>, <strong>Export diagnostics</strong> saves a ZIP with the app version, the Android API level and the memory limit. It holds no coordinates, history, music path or text you typed. Nothing is uploaded: you choose where the file is saved and whether to attach it to a report." },
+          { "t": "h2", "id": "more", "x": "Privacy and source" },
+          { "t": "p", "x": "What the apps read, store and send is in the <a href=\"{{privacy}}\">privacy policy</a>. The code is in the <a rel=\"noopener\" href=\"{{repo}}\">repository</a>." }
+        ]
+      }
+    },
+    "ru": {
+      "lang": "ru",
+      "ogLocale": "ru_RU",
+      "ui": {
+        "skip": "К содержимому",
+        "nav": "Сайт",
+        "home": "Главная",
+        "guide": "Руководство",
+        "support": "Поддержка",
+        "privacy": "Конфиденциальность",
+        "theme": "Тема",
+        "toLight": "Включить светлую тему",
+        "toDark": "Включить тёмную тему",
+        "language": "Язык",
+        "getIt": "Получить",
+        "toTop": "Наверх",
+        "expandAll": "Развернуть все",
+        "collapseAll": "Свернуть все",
+        "contents": "На этой странице",
+        "apiFmt": "Android {0} (уровень API {1})",
+        "moreTools": "Другие инструменты SZA",
+        "shotsLabel": "Снимки экрана телефона и часов"
+      },
+      "landing": {
+        "title": "Tourist: набор для похода на Android и Wear OS",
+        "description": "Панель с компасом, сигнал SOS, фонарик, который не выключить мокрым касанием, и секундомер на группу - на телефоне Android и часах Wear OS.",
+        "kicker": "Набор для похода на Android и Wear OS",
+        "h1": "Компас, SOS, свет и секундомер для вашего похода.",
+        "lead": "Одно приложение на телефоне и часах: панель с показаниями датчиков, сирена и стробоскоп, которые доходят до сопряжённых часов, и фонарик, который не выключить мокрым касанием.",
+        "whatfor": "Tourist - набор для похода на телефоне Android и часах Wear OS. Он для вас, когда вы идёте по тропе один или с группой и хотите держать направление, свет и сигнал SOS в одном месте.",
+        "proofTitle": "Что можно делать в походе",
+        "scenarios": [
+          { "t": "Проверьте, куда вы идёте", "x": "Откройте панель: плитка с компасом и вашим направлением, затем скорость, высота, координаты, спутники, восход и закат, шаги, пройденное расстояние и погода в вашем месте." },
+          { "t": "Дайте о себе знать", "x": "Одна кнопка включает сирену и стробоскоп азбукой Морзе на телефоне и на сопряжённых часах. Она не отправляет SMS и не звонит." },
+          { "t": "Держите свет под дождём", "x": "Водный фонарь - полноэкранный свет, который не выключить мокрым касанием. Выключается клавишей громкости. Это блокировка касаний, а не водонепроницаемость." },
+          { "t": "Засеките время всей группы", "x": "Секундомер на одного, двух или четырёх участников с кругами у каждого и итогом, которым можно поделиться." }
+        ],
+        "shots": [
+          { "key": "dashboard", "src": "01_dashboard.png", "dir": "phone", "w": 1080, "h": 1920, "alt": "Туристический дашборд на телефоне: скорость на большой карточке и плитки высоты, компаса, координат, спутников, пройденного расстояния, восхода, погоды и точки росы." },
+          { "key": "sos", "src": "05_sos.png", "dir": "phone", "w": 1080, "h": 1920, "alt": "Экран SOS на телефоне: три режима сигнала и кнопка остановки сигнала." },
+          { "key": "stopwatch", "src": "06_stopwatch.png", "dir": "phone", "w": 1080, "h": 1920, "alt": "Секундомер на телефоне: время четырёх участников, у каждого свои круги." },
+          { "key": "watch", "src": "01_programs.png", "dir": "wear", "w": 454, "h": 454, "alt": "Список программ Tourist на часах: водный фонарь, SOS и секундомер." }
+        ],
+        "getTitle": "Получить",
+        "getText": "Tourist - программа с открытым исходным кодом под лицензией MIT. Исходный код приложения для телефона, приложения для Wear OS и циферблата открыт.",
+        "sourceLabel": "Исходный код",
+        "guidesLabel": "Руководства",
+        "stepsTitle": "Ваша первая минута",
+        "steps": [
+          "Откройте Tourist и выберите <strong>Туристический дашборд</strong>.",
+          "Нажмите <strong>Разрешить</strong>, когда дашборд запросит местоположение. Оно читается, только пока открыт экран Tourist.",
+          "Прочитайте большую карточку, затем коснитесь плитки, чтобы увидеть её крупно. В начале каждого участка нажмите <strong>Сбросить дистанцию</strong>."
+        ],
+        "featuresTitle": "Что в наборе",
+        "features": [
+          { "id": "dashboard", "t": "Панель для тропы", "x": "<p>Главная плитка - компас с вашим направлением, дальше скорость, высота, координаты, спутники, восход и закат, шаги и темп, пройденное расстояние с набором и сбросом высоты и погода в вашем месте. Если в телефоне есть барометр, плитка магнитного поля показывает давление воздуха в миллибарах, а плитка гироскопа рисует трёхмерный телефон, который поворачивается вместе с вашим.</p><p>Кнопки внизу открывают карту, отправляют вашу позицию текстом, сбрасывают дистанцию и открывают SOS.</p>" },
+          { "id": "sos", "t": "Сигнал SOS, по которому вас найдут", "x": "<p>Одна кнопка включает громкую сирену и яркий стробоскоп азбукой Морзе. Сигнал, запущенный на телефоне, запускается и на сопряжённых часах, и наоборот, чтобы люди рядом могли вас найти. Выберите звук и свет, только звук или только свет.</p><p>SOS звучит, мигает и доходит до сопряжённого устройства. Он не отправляет SMS и не звонит.</p>" },
+          { "id": "water", "t": "Фонарик, который не гаснет под дождём", "x": "<p>Водный фонарь - полноэкранный свет, который не выключить мокрым касанием: дождь, снег или мокрая перчатка оставляют его включённым. Выключается он осознанным нажатием клавиши.</p><p>Это блокировка касаний, а не водонепроницаемость. Перед включением света Android просит закрепить приложение.</p>" },
+          { "id": "lights", "t": "Экранный фонарик и фонарик камеры", "x": "<p>Экранный свет любого цвета, вспышка камеры как фонарик, виджеты на главном экране и ярлык в шторке уведомлений.</p>" },
+          { "id": "stopwatch", "t": "Секундомер на группу", "x": "<p>Секундомер на одного, двух или четырёх участников с кругами и итогами, музыка по вашему выбору, пока он идёт, и виджет на главном экране. На часах он продолжает идти как текущее действие.</p>" },
+          { "id": "watch", "t": "Телефон и часы вместе", "x": "<p>Приложение для Wear OS приносит на запястье SOS, водный фонарь и секундомер - с телефоном рядом или без него. Циферблат Tourist - отдельный пакет для часов.</p>" }
+        ],
+        "guidesTitle": "Руководства",
+        "guidesText": "<p><a href=\"{{guide}}\">Руководство</a> разбирает инструменты по одной задаче. <a href=\"{{support}}\">Поддержка</a> говорит, куда обратиться и что указать. <a href=\"{{privacy}}\">Политика конфиденциальности</a> перечисляет, что приложения читают, хранят и отправляют. Справка также встроена в каждый экран приложения для телефона и работает без сети.</p>",
+        "detailsTitle": "Подробности и честные оговорки",
+        "details": [
+          { "id": "compat", "t": "Совместимость", "x": "<ul><li>Приложение для телефона: {{minPhone}} или новее.</li><li>Приложение для Wear OS: часы с {{minWear}} или новее.</li><li>Циферблат: часы с {{minFace}} или новее.</li><li>Языки интерфейса: английский, русский и украинский.</li></ul>" },
+          { "id": "permissions", "t": "Что Tourist просит у телефона", "x": "<ul><li>Местоположение - только пока открыт экран Tourist, для панели. В фоне Tourist его не читает.</li><li>Камера - только чтобы включать и выключать вспышку камеры как фонарик. Tourist не делает снимков.</li><li>Уведомления - только для ярлыков, которые вы включили, и кнопки остановки сигнала.</li></ul><p>Разработчик не получает никаких ваших данных. <a href=\"{{privacy}}\">Политика конфиденциальности</a> перечисляет каждое разрешение и единственный запрос, который покидает телефон: запрос погоды к Open-Meteo.</p>" },
+          { "id": "caveats", "t": "Оговорки", "x": "<ul><li>Скорость, высота, направление и координаты - показания датчиков телефона и часов и спутникового позиционирования. Это не сертифицированный прибор.</li><li>SOS звучит, мигает и доходит до сопряжённого устройства. Он не отправляет SMS, не звонит и не заменяет вызов экстренных служб.</li><li>Водный фонарь не даёт мокрым касаниям выключить свет. Он не делает телефон водозащищённым.</li><li>Секундомер рассчитан на обычный хронометраж, а не на официальный.</li></ul>" },
+          { "id": "source", "t": "Исходный код и лицензия", "x": "<p>Tourist - программа с открытым исходным кодом под лицензией MIT. Читайте код, следите за изменениями или создайте обращение в <a rel=\"noopener\" href=\"{{repo}}\">репозитории</a>.</p>" }
+        ]
+      },
+      "guide": {
+        "title": "Руководство - Tourist",
+        "description": "Как пользоваться Tourist в походе, задача за задачей: панель, сигнал SOS, водный фонарь, экранный фонарик и фонарик камеры, секундомер.",
+        "h1": "Руководство по Tourist",
+        "lead": "Задача за задачей: что нажать и что произойдёт. Названия кнопок - такие, как на экране.",
+        "blocks": [
+          { "t": "h2", "id": "first-walk", "x": "Ваша первая прогулка" },
+          { "t": "ol", "x": [
+            "Откройте Tourist. На стартовом экране четыре программы: <strong>Туристический дашборд</strong>, <strong>Фонари</strong>, <strong>Аварийный сигнал SOS</strong> и <strong>Секундомер</strong>. Назад из любой программы возвращает на него.",
+            "Откройте <strong>Туристический дашборд</strong>. В первый раз он запрашивает доступ к местоположению: нажмите <strong>Разрешить</strong>. Без него дашборд не может прочитать вашу позицию и шаги. Tourist читает местоположение, только пока открыт экран Tourist.",
+            "Прочитайте большую карточку, сначала на ней скорость, и коснитесь плитки в сетке, чтобы увидеть её крупно.",
+            "В начале каждого нового участка нажмите <strong>Сбросить дистанцию</strong>, чтобы дистанция считалась с нуля."
+          ] },
+          { "t": "p", "x": "Справка встроена в каждый экран приложения для телефона: вопросительный знак в верхней панели объясняет экран, на котором вы находитесь, без сети." },
+          { "t": "h2", "id": "dashboard", "x": "Читайте дашборд" },
+          { "t": "p", "x": "Дашборд показывает то, что читает ваш телефон на тропе: одно значение крупно на большой карточке, остальные - плитками под ней." },
+          { "t": "ul", "x": [
+            "<strong>Компас</strong>: на большой карточке рисуется роза ветров, которая поворачивается вместе с телефоном, с направлением в градусах, стороной света и точностью датчика.",
+            "<strong>Координаты</strong>: коснитесь большой карточки, пока на ней координаты, чтобы скопировать позицию.",
+            "Высота, спутники, восход и закат, шаги, пройденное расстояние и погода в вашем месте - отдельные плитки. Для погоды координаты вашей позиции уходят к сервису погоды Open-Meteo - это единственный запрос, который телефон отправляет сам.",
+            "<strong>Карта</strong> показывает вас в приложении карт, а <strong>Отправить</strong> передаёт позицию текстом. Оба действия выходят из Tourist."
+          ] },
+          { "t": "note", "tag": "Главное", "x": "Скорость, высота, направление и координаты - показания датчиков телефона и спутникового позиционирования. Это не сертифицированный прибор." },
+          { "t": "h2", "id": "sos", "x": "Подайте сигнал SOS" },
+          { "t": "ol", "x": [
+            "Откройте <strong>Аварийный сигнал SOS</strong>, только когда нужен сигнал: он включается, как только открывается экран, - сирена и мигающий свет повторяют сигнал SOS азбукой Морзе.",
+            "Выберите, что он использует: <strong>Звук и свет</strong>, <strong>Только звук</strong> или <strong>Только свет</strong>. Идущий сигнал меняется сразу, выбор запоминается.",
+            "Сопряжённые часы тоже подают сигнал. Можно заблокировать телефон или открыть другое приложение: сигнал продолжается.",
+            "Нажмите <strong>Остановить сигнал</strong> или выйдите с экрана кнопкой Назад. Телефон и сопряжённые часы замолкают. Если ничего не делать, телефон сам завершит сигнал через 30 минут."
+          ] },
+          { "t": "note", "tag": "Главное", "x": "SOS звучит, мигает и доходит до сопряжённых часов. Он не отправляет SMS, не звонит и никого не уведомляет и не заменяет вызов экстренных служб." },
+          { "t": "h2", "id": "water-flashlight", "x": "Включите водный фонарь" },
+          { "t": "ol", "x": [
+            "Откройте <strong>Фонари</strong> и выберите <strong>Водный фонарь</strong>. Android просит закрепить приложение: подтвердите это, прежде чем пользоваться светом мокрыми руками.",
+            "Вспышка камеры и белый экран включаются вместе, на экране видны время и подсказка, что он заблокирован. Касания и кнопка Назад лампу не закрывают.",
+            "Чтобы погасить свет, нажмите клавишу громкости. Свет гаснет, и вы возвращаетесь туда, откуда пришли."
+          ] },
+          { "t": "p", "x": "Виджет главного экрана <strong>Водный фонарь</strong> открывает его одним касанием." },
+          { "t": "note", "tag": "Главное", "x": "Это блокировка касаний, а не водонепроницаемость: капли дождя и мокрые перчатки не нажимают кнопки. Телефон от воды она не защищает." },
+          { "t": "h2", "id": "lights", "x": "Экранный фонарик и фонарик камеры" },
+          { "t": "ul", "x": [
+            "<strong>Фронтальный фонарик</strong>: экран как лампа, цвет выбирается кнопкой <strong>Цвет свечения</strong>. Проведите вверх или вниз, чтобы изменить яркость. Касание вне элементов управления закрывает его.",
+            "<strong>Фонарик камеры</strong>: коснитесь строки, чтобы включить вспышку камеры, и коснитесь ещё раз, чтобы выключить. Никакой экран не открывается.",
+            "Флажок на экране фонарей оставляет фонарик камеры на расстоянии одного касания в шторке уведомлений. На Android 13 и новее приложение сначала запрашивает разрешение показывать уведомления."
+          ] },
+          { "t": "h2", "id": "stopwatch", "x": "Засеките время группы секундомером" },
+          { "t": "ol", "x": [
+            "Откройте <strong>Секундомер</strong>. Если вы засекаете больше одного человека, сначала откройте настройки и в пункте <strong>Участники</strong> выберите двух или четырёх.",
+            "Счёт начинается для всех, как только открывается экран. Чтобы начать с нуля, нажмите <strong>Сбросить все</strong>, затем <strong>Старт</strong> у каждого участника в его области или у всех сразу кнопкой <strong>Стартовать всех</strong>.",
+            "Нажмите <strong>Круг</strong> в области участника, чтобы отметить круг без остановки, и <strong>Стоп</strong>, когда он финишировал. <strong>Остановить всех</strong> останавливает всех вместе.",
+            "Нажмите <strong>Результат</strong>, чтобы превратить время в текст, который можно сохранить или отправить."
+          ] },
+          { "t": "note", "tag": "Главное", "x": "Время не сохраняется: выход с экрана кнопкой Назад стирает его. Секундомер рассчитан на обычный хронометраж, а не на официальный." },
+          { "t": "h2", "id": "watch", "x": "На часах" },
+          { "t": "p", "x": "Приложение Tourist для Wear OS приносит на запястье <strong>водный фонарь</strong>, <strong>SOS</strong> и <strong>секундомер</strong> - с телефоном рядом или без него. SOS, запущенный на телефоне, запускается на сопряжённых часах, и наоборот. Циферблат Tourist - отдельный пакет." },
+          { "t": "h2", "id": "settings", "x": "Настройки и языки" },
+          { "t": "p", "x": "<strong>Настройки</strong> содержат тему, язык, единицы измерения, режим «Не выключать экран» и раздел «О программе». Изменения применяются сразу. Интерфейс доступен на английском, русском и украинском." },
+          { "t": "h2", "id": "permissions", "x": "Что просит Tourist" },
+          { "t": "ul", "x": [
+            "Местоположение - только пока открыт экран Tourist, для дашборда.",
+            "Камера - только чтобы включать и выключать вспышку камеры. Tourist не делает снимков.",
+            "Уведомления - только для ярлыков, которые вы включили, и кнопки остановки сигнала."
+          ] },
+          { "t": "p", "x": "Полный список и то, что остаётся на ваших устройствах, - в <a href=\"{{privacy}}\">политике конфиденциальности</a>." }
+        ]
+      },
+      "support": {
+        "title": "Поддержка - Tourist",
+        "description": "Куда сообщить о проблеме или задать вопрос о Tourist, что указать в сообщении и как связаться с разработчиком лично.",
+        "h1": "Поддержка",
+        "lead": "Вопрос, ошибка или идея: вот куда что направлять.",
+        "blocks": [
+          { "t": "h2", "id": "report", "x": "Сообщите о проблеме или задайте вопрос" },
+          { "t": "p", "x": "Публичное место - трекер обращений репозитория: <a rel=\"noopener\" href=\"{{issues}}\">{{issues}}</a>. Любой, у кого есть аккаунт GitHub, может создать обращение и следить за ответом." },
+          { "t": "h2", "id": "contents", "x": "Что должно быть в сообщении" },
+          { "t": "ul", "x": [
+            "Что вы нажали и что ожидали увидеть.",
+            "Что произошло вместо этого и происходит ли это каждый раз.",
+            "Модель телефона или часов и версия Android или Wear OS.",
+            "Версия Tourist - показана в настройках.",
+            "По желанию - ZIP с диагностикой, описанный ниже."
+          ] },
+          { "t": "note", "tag": "Главное", "x": "Обращение публично. Не указывайте координаты и ничего личного; для этого есть адрес ниже." },
+          { "t": "h2", "id": "private", "x": "Лично или при проблеме безопасности" },
+          { "t": "p", "x": "Напишите на <a href=\"mailto:{{mail}}\">{{mail}}</a>. Это единственный контакт для всего, что не должно быть публичным, включая проблему безопасности." },
+          { "t": "h2", "id": "expect", "x": "Чего ожидать" },
+          { "t": "p", "x": "Tourist делает и поддерживает один человек. Сообщения читаются и получают ответ по мере возможности; фиксированного срока ответа нет." },
+          { "t": "h2", "id": "diagnostics", "x": "Экспорт диагностики" },
+          { "t": "p", "x": "<strong>Настройки</strong>, <strong>Экспорт диагностики</strong> сохраняет ZIP с версией приложения, уровнем API Android и пределом памяти. В нём нет координат, истории, пути к музыке и введённого вами текста. Ничего не отправляется: вы сами выбираете, куда сохранить файл и прикладывать ли его к сообщению." },
+          { "t": "h2", "id": "more", "x": "Конфиденциальность и исходный код" },
+          { "t": "p", "x": "Что приложения читают, хранят и отправляют, описано в <a href=\"{{privacy}}\">политике конфиденциальности</a>. Код - в <a rel=\"noopener\" href=\"{{repo}}\">репозитории</a>." }
+        ]
+      }
+    },
+    "uk": {
+      "lang": "uk",
+      "ogLocale": "uk_UA",
+      "ui": {
+        "skip": "До вмісту",
+        "nav": "Сайт",
+        "home": "Головна",
+        "guide": "Посібник",
+        "support": "Підтримка",
+        "privacy": "Конфіденційність",
+        "theme": "Тема",
+        "toLight": "Увімкнути світлу тему",
+        "toDark": "Увімкнути темну тему",
+        "language": "Мова",
+        "getIt": "Отримати",
+        "toTop": "Нагору",
+        "expandAll": "Розгорнути все",
+        "collapseAll": "Згорнути все",
+        "contents": "На цій сторінці",
+        "apiFmt": "Android {0} (рівень API {1})",
+        "moreTools": "Інші інструменти SZA",
+        "shotsLabel": "Знімки екрана телефона й годинника"
+      },
+      "landing": {
+        "title": "Tourist: набір для походу на Android і Wear OS",
+        "description": "Панель із компасом, сигнал SOS, ліхтарик, який не вимкнути мокрим дотиком, і секундомір на групу - на телефоні Android і годиннику Wear OS.",
+        "kicker": "Набір для походу на Android і Wear OS",
+        "h1": "Компас, SOS, світло й секундомір для вашого походу.",
+        "lead": "Один застосунок на телефоні й годиннику: панель із показаннями датчиків, сирена та стробоскоп, які доходять до спареного годинника, і ліхтарик, який не вимкнути мокрим дотиком.",
+        "whatfor": "Tourist - набір для походу на телефоні Android і годиннику Wear OS. Він для вас, коли ви йдете стежкою сам чи з групою й хочете тримати напрямок, світло та сигнал SOS в одному місці.",
+        "proofTitle": "Що можна робити в поході",
+        "scenarios": [
+          { "t": "Перевірте, куди ви йдете", "x": "Відкрийте панель: плитка з компасом і вашим напрямком, далі швидкість, висота, координати, супутники, схід і захід сонця, кроки, пройдена відстань і погода у вашому місці." },
+          { "t": "Дайте про себе знати", "x": "Одна кнопка вмикає сирену та стробоскоп абеткою Морзе на телефоні й на спареному годиннику. Вона не надсилає SMS і не телефонує." },
+          { "t": "Тримайте світло під дощем", "x": "Водний ліхтар - повноекранне світло, яке не вимкнути мокрим дотиком. Вимикається клавішею гучності. Це блокування дотиків, а не водонепроникність." },
+          { "t": "Засічіть час усієї групи", "x": "Секундомір на одного, двох чи чотирьох учасників із колами в кожного й підсумком, яким можна поділитися." }
+        ],
+        "shots": [
+          { "key": "dashboard", "src": "01_dashboard.png", "dir": "phone", "w": 1080, "h": 1920, "alt": "Туристичний дашборд на телефоні: швидкість на великій картці та плитки висоти, компаса, координат, супутників, пройденої відстані, сходу сонця, погоди й точки роси." },
+          { "key": "sos", "src": "05_sos.png", "dir": "phone", "w": 1080, "h": 1920, "alt": "Екран SOS на телефоні: три режими сигналу та кнопка зупинки сигналу." },
+          { "key": "stopwatch", "src": "06_stopwatch.png", "dir": "phone", "w": 1080, "h": 1920, "alt": "Секундомір на телефоні: час чотирьох учасників, у кожного свої кола." },
+          { "key": "watch", "src": "01_programs.png", "dir": "wear", "w": 454, "h": 454, "alt": "Список програм Tourist на годиннику: водний ліхтар, SOS і секундомір." }
+        ],
+        "getTitle": "Отримати",
+        "getText": "Tourist - програма з відкритим вихідним кодом за ліцензією MIT. Вихідний код застосунку для телефона, застосунку для Wear OS і циферблата відкритий.",
+        "sourceLabel": "Вихідний код",
+        "guidesLabel": "Посібники",
+        "stepsTitle": "Ваша перша хвилина",
+        "steps": [
+          "Відкрийте Tourist і виберіть <strong>Туристичний дашборд</strong>.",
+          "Натисніть <strong>Дозволити</strong>, коли дашборд запитає місцезнаходження. Воно читається, лише поки відкритий екран Tourist.",
+          "Прочитайте велику картку, потім торкніться плитки, щоб побачити її великою. На початку кожної ділянки натисніть <strong>Скинути дистанцію</strong>."
+        ],
+        "featuresTitle": "Що в наборі",
+        "features": [
+          { "id": "dashboard", "t": "Панель для стежки", "x": "<p>Головна плитка - компас із вашим напрямком, далі швидкість, висота, координати, супутники, схід і захід сонця, кроки й темп, пройдена відстань із набором і скиданням висоти та погода у вашому місці. Якщо в телефоні є барометр, плитка магнітного поля показує тиск повітря в мілібарах, а плитка гіроскопа малює тривимірний телефон, який повертається разом із вашим.</p><p>Кнопки внизу відкривають карту, надсилають вашу позицію текстом, скидають дистанцію та відкривають SOS.</p>" },
+          { "id": "sos", "t": "Сигнал SOS, за яким вас знайдуть", "x": "<p>Одна кнопка вмикає гучну сирену та яскравий стробоскоп абеткою Морзе. Сигнал, запущений на телефоні, запускається й на спареному годиннику, і навпаки, щоб люди поруч могли вас знайти. Виберіть звук і світло, лише звук або лише світло.</p><p>SOS звучить, блимає й доходить до спареного пристрою. Він не надсилає SMS і не телефонує.</p>" },
+          { "id": "water", "t": "Ліхтарик, який не гасне під дощем", "x": "<p>Водний ліхтар - повноекранне світло, яке не вимкнути мокрим дотиком: дощ, сніг чи мокра рукавиця лишають його ввімкненим. Вимикається він свідомим натисканням клавіші.</p><p>Це блокування дотиків, а не водонепроникність. Перед увімкненням світла Android просить закріпити застосунок.</p>" },
+          { "id": "lights", "t": "Екранний ліхтарик і ліхтарик камери", "x": "<p>Екранне світло будь-якого кольору, спалах камери як ліхтарик, віджети на головному екрані та ярлик у шторці сповіщень.</p>" },
+          { "id": "stopwatch", "t": "Секундомір на групу", "x": "<p>Секундомір на одного, двох чи чотирьох учасників із колами й підсумками, музика на ваш вибір, поки він іде, і віджет на головному екрані. На годиннику він продовжує йти як поточна дія.</p>" },
+          { "id": "watch", "t": "Телефон і годинник разом", "x": "<p>Застосунок для Wear OS приносить на зап'ясток SOS, водний ліхтар і секундомір - із телефоном поруч чи без нього. Циферблат Tourist - окремий пакет для годинника.</p>" }
+        ],
+        "guidesTitle": "Посібники",
+        "guidesText": "<p><a href=\"{{guide}}\">Посібник</a> розбирає інструменти по одному завданню. <a href=\"{{support}}\">Підтримка</a> каже, куди звернутися й що вказати. <a href=\"{{privacy}}\">Політика конфіденційності</a> перелічує, що застосунки читають, зберігають і надсилають. Довідка також вбудована в кожен екран застосунку для телефона й працює без мережі.</p>",
+        "detailsTitle": "Подробиці та чесні застереження",
+        "details": [
+          { "id": "compat", "t": "Сумісність", "x": "<ul><li>Застосунок для телефона: {{minPhone}} або новіший.</li><li>Застосунок для Wear OS: годинник із {{minWear}} або новішим.</li><li>Циферблат: годинник із {{minFace}} або новішим.</li><li>Мови інтерфейсу: англійська, російська та українська.</li></ul>" },
+          { "id": "permissions", "t": "Що Tourist просить у телефона", "x": "<ul><li>Місцезнаходження - лише поки відкритий екран Tourist, для панелі. У фоні Tourist його не читає.</li><li>Камера - лише щоб вмикати й вимикати спалах камери як ліхтарик. Tourist не робить знімків.</li><li>Сповіщення - лише для ярликів, які ви ввімкнули, і кнопки зупинки сигналу.</li></ul><p>Розробник не отримує жодних ваших даних. <a href=\"{{privacy}}\">Політика конфіденційності</a> перелічує кожен дозвіл і єдиний запит, який залишає телефон: запит погоди до Open-Meteo.</p>" },
+          { "id": "caveats", "t": "Застереження", "x": "<ul><li>Швидкість, висота, напрямок і координати - показання датчиків телефона й годинника та супутникового позиціонування. Це не сертифікований прилад.</li><li>SOS звучить, блимає й доходить до спареного пристрою. Він не надсилає SMS, не телефонує й не замінює виклик екстрених служб.</li><li>Водний ліхтар не дає мокрим дотикам вимкнути світло. Він не робить телефон водозахищеним.</li><li>Секундомір розрахований на звичайний хронометраж, а не на офіційний.</li></ul>" },
+          { "id": "source", "t": "Вихідний код і ліцензія", "x": "<p>Tourist - програма з відкритим вихідним кодом за ліцензією MIT. Читайте код, стежте за змінами або створіть звернення в <a rel=\"noopener\" href=\"{{repo}}\">репозиторії</a>.</p>" }
+        ]
+      },
+      "guide": {
+        "title": "Посібник - Tourist",
+        "description": "Як користуватися Tourist у поході, завдання за завданням: панель, сигнал SOS, водний ліхтар, екранний ліхтарик і ліхтарик камери, секундомір.",
+        "h1": "Посібник із Tourist",
+        "lead": "Завдання за завданням: що натиснути й що станеться. Назви кнопок - такі, як на екрані.",
+        "blocks": [
+          { "t": "h2", "id": "first-walk", "x": "Ваша перша прогулянка" },
+          { "t": "ol", "x": [
+            "Відкрийте Tourist. На стартовому екрані чотири програми: <strong>Туристичний дашборд</strong>, <strong>Ліхтарики</strong>, <strong>Аварійний сигнал SOS</strong> і <strong>Секундомір</strong>. Назад із будь-якої програми повертає на нього.",
+            "Відкрийте <strong>Туристичний дашборд</strong>. Уперше він запитує доступ до місцезнаходження: натисніть <strong>Дозволити</strong>. Без нього дашборд не може прочитати вашу позицію та кроки. Tourist читає місцезнаходження, лише поки відкритий екран Tourist.",
+            "Прочитайте велику картку, спершу на ній швидкість, і торкніться плитки в сітці, щоб побачити її великою.",
+            "На початку кожної нової ділянки натисніть <strong>Скинути дистанцію</strong>, щоб дистанція рахувалася з нуля."
+          ] },
+          { "t": "p", "x": "Довідка вбудована в кожен екран застосунку для телефона: знак питання у верхній панелі пояснює екран, на якому ви перебуваєте, без мережі." },
+          { "t": "h2", "id": "dashboard", "x": "Читайте дашборд" },
+          { "t": "p", "x": "Дашборд показує те, що читає ваш телефон на стежці: одне значення великим на великій картці, решту - плитками під нею." },
+          { "t": "ul", "x": [
+            "<strong>Компас</strong>: на великій картці малюється роза вітрів, яка повертається разом із телефоном, з напрямком у градусах, стороною світу й точністю датчика.",
+            "<strong>Координати</strong>: торкніться великої картки, поки на ній координати, щоб скопіювати позицію.",
+            "Висота, супутники, схід і захід сонця, кроки, пройдена відстань і погода у вашому місці - окремі плитки. Для погоди координати вашої позиції йдуть до сервісу погоди Open-Meteo - це єдиний запит, який телефон надсилає сам.",
+            "<strong>Карта</strong> показує вас у застосунку карт, а <strong>Поділитися</strong> передає позицію текстом. Обидві дії виходять із Tourist."
+          ] },
+          { "t": "note", "tag": "Головне", "x": "Швидкість, висота, напрямок і координати - показання датчиків телефона та супутникового позиціонування. Це не сертифікований прилад." },
+          { "t": "h2", "id": "sos", "x": "Подайте сигнал SOS" },
+          { "t": "ol", "x": [
+            "Відкрийте <strong>Аварійний сигнал SOS</strong>, лише коли потрібен сигнал: він вмикається, щойно відкривається екран, - сирена й миготливе світло повторюють сигнал SOS абеткою Морзе.",
+            "Виберіть, що він використовує: <strong>Звук і світло</strong>, <strong>Тільки звук</strong> або <strong>Тільки світло</strong>. Сигнал, що йде, змінюється одразу, вибір запам'ятовується.",
+            "Спарений годинник теж подає сигнал. Можна заблокувати телефон або відкрити інший застосунок: сигнал триває.",
+            "Натисніть <strong>Зупинити сигнал</strong> або вийдіть з екрана кнопкою Назад. Телефон і спарений годинник замовкають. Якщо нічого не робити, телефон сам завершить сигнал за 30 хвилин."
+          ] },
+          { "t": "note", "tag": "Головне", "x": "SOS звучить, блимає й доходить до спареного годинника. Він не надсилає SMS, не телефонує, нікого не сповіщає й не замінює виклик екстрених служб." },
+          { "t": "h2", "id": "water-flashlight", "x": "Увімкніть водний ліхтар" },
+          { "t": "ol", "x": [
+            "Відкрийте <strong>Ліхтарики</strong> і виберіть <strong>Водний ліхтар</strong>. Android просить закріпити застосунок: підтвердьте це, перш ніж користуватися світлом мокрими руками.",
+            "Спалах камери та білий екран вмикаються разом, на екрані видно час і підказку, що він заблокований. Дотики й кнопка Назад лампу не закривають.",
+            "Щоб погасити світло, натисніть клавішу гучності. Світло гасне, і ви повертаєтеся туди, звідки прийшли."
+          ] },
+          { "t": "p", "x": "Віджет головного екрана <strong>Водний ліхтар</strong> відкриває його одним дотиком." },
+          { "t": "note", "tag": "Головне", "x": "Це блокування дотиків, а не водонепроникність: краплі дощу й мокрі рукавиці не натискають кнопки. Телефон від води вона не захищає." },
+          { "t": "h2", "id": "lights", "x": "Екранний ліхтарик і ліхтарик камери" },
+          { "t": "ul", "x": [
+            "<strong>Фронтальний ліхтарик</strong>: екран як лампа, колір вибирається кнопкою <strong>Колір свічення</strong>. Проведіть угору або вниз, щоб змінити яскравість. Дотик поза елементами керування закриває його.",
+            "<strong>Ліхтарик камери</strong>: торкніться рядка, щоб увімкнути спалах камери, і торкніться ще раз, щоб вимкнути. Жоден екран не відкривається.",
+            "Прапорець на екрані ліхтариків лишає ліхтарик камери на відстані одного дотику в шторці сповіщень. На Android 13 і новіших застосунок спершу запитує дозвіл показувати сповіщення."
+          ] },
+          { "t": "h2", "id": "stopwatch", "x": "Засічіть час групи секундоміром" },
+          { "t": "ol", "x": [
+            "Відкрийте <strong>Секундомір</strong>. Якщо ви засікаєте більше однієї людини, спершу відкрийте налаштування й у пункті <strong>Учасники</strong> виберіть двох чи чотирьох.",
+            "Відлік починається для всіх, щойно відкривається екран. Щоб почати з нуля, натисніть <strong>Скинути все</strong>, потім <strong>Старт</strong> у кожного учасника в його ділянці або в усіх одразу кнопкою <strong>Стартувати всіх</strong>.",
+            "Натисніть <strong>Коло</strong> в ділянці учасника, щоб позначити коло без зупинки, і <strong>Стоп</strong>, коли він фінішував. <strong>Зупинити всіх</strong> зупиняє всіх разом.",
+            "Натисніть <strong>Результат</strong>, щоб перетворити час на текст, який можна зберегти чи надіслати."
+          ] },
+          { "t": "note", "tag": "Головне", "x": "Час не зберігається: вихід з екрана кнопкою Назад стирає його. Секундомір розрахований на звичайний хронометраж, а не на офіційний." },
+          { "t": "h2", "id": "watch", "x": "На годиннику" },
+          { "t": "p", "x": "Застосунок Tourist для Wear OS приносить на зап'ясток <strong>водний ліхтар</strong>, <strong>SOS</strong> і <strong>секундомір</strong> - із телефоном поруч чи без нього. SOS, запущений на телефоні, запускається на спареному годиннику, і навпаки. Циферблат Tourist - окремий пакет." },
+          { "t": "h2", "id": "settings", "x": "Налаштування та мови" },
+          { "t": "p", "x": "<strong>Налаштування</strong> містять тему, мову, одиниці виміру, режим «Не вимикати екран» та розділ «Про програму». Зміни застосовуються одразу. Інтерфейс доступний англійською, російською та українською." },
+          { "t": "h2", "id": "permissions", "x": "Що просить Tourist" },
+          { "t": "ul", "x": [
+            "Місцезнаходження - лише поки відкритий екран Tourist, для дашборда.",
+            "Камера - лише щоб вмикати й вимикати спалах камери. Tourist не робить знімків.",
+            "Сповіщення - лише для ярликів, які ви ввімкнули, і кнопки зупинки сигналу."
+          ] },
+          { "t": "p", "x": "Повний список і те, що лишається на ваших пристроях, - у <a href=\"{{privacy}}\">політиці конфіденційності</a>." }
+        ]
+      },
+      "support": {
+        "title": "Підтримка - Tourist",
+        "description": "Куди повідомити про проблему або поставити питання про Tourist, що вказати в повідомленні та як зв'язатися з розробником особисто.",
+        "h1": "Підтримка",
+        "lead": "Питання, помилка чи ідея: ось куди що спрямовувати.",
+        "blocks": [
+          { "t": "h2", "id": "report", "x": "Повідомте про проблему або поставте питання" },
+          { "t": "p", "x": "Публічне місце - трекер звернень репозиторію: <a rel=\"noopener\" href=\"{{issues}}\">{{issues}}</a>. Будь-хто, хто має обліковий запис GitHub, може створити звернення й стежити за відповіддю." },
+          { "t": "h2", "id": "contents", "x": "Що має бути в повідомленні" },
+          { "t": "ul", "x": [
+            "Що ви натиснули й що очікували побачити.",
+            "Що сталося натомість і чи це буває щоразу.",
+            "Модель телефона чи годинника та версія Android або Wear OS.",
+            "Версія Tourist - показана в налаштуваннях.",
+            "За бажання - ZIP із діагностикою, описаний нижче."
+          ] },
+          { "t": "note", "tag": "Головне", "x": "Звернення публічне. Не вказуйте координати й нічого особистого; для цього є адреса нижче." },
+          { "t": "h2", "id": "private", "x": "Особисто або за проблеми безпеки" },
+          { "t": "p", "x": "Напишіть на <a href=\"mailto:{{mail}}\">{{mail}}</a>. Це єдиний контакт для всього, що не має бути публічним, зокрема для проблеми безпеки." },
+          { "t": "h2", "id": "expect", "x": "Чого очікувати" },
+          { "t": "p", "x": "Tourist робить і підтримує одна людина. Повідомлення читаються й отримують відповідь, наскільки дозволяє час; фіксованого строку відповіді немає." },
+          { "t": "h2", "id": "diagnostics", "x": "Експорт діагностики" },
+          { "t": "p", "x": "<strong>Налаштування</strong>, <strong>Експорт діагностики</strong> зберігає ZIP із версією застосунку, рівнем API Android і межею пам'яті. У ньому немає координат, історії, шляху до музики та введеного вами тексту. Нічого не надсилається: ви самі вибираєте, куди зберегти файл і чи додавати його до повідомлення." },
+          { "t": "h2", "id": "more", "x": "Конфіденційність і вихідний код" },
+          { "t": "p", "x": "Що застосунки читають, зберігають і надсилають, описано в <a href=\"{{privacy}}\">політиці конфіденційності</a>. Код - у <a rel=\"noopener\" href=\"{{repo}}\">репозиторії</a>." }
+        ]
+      }
+    }
+  }
+}

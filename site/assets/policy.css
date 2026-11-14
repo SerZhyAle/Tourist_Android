@@ -1,4 +1,4 @@
-/* Page layer of the privacy pages (S0026 W3). Linked after the byte-identical family kit (sza-kit.css), which is never
+/* Page layer of the product site (S0026 W2-W5): the privacy pages and the generated landing, guide and support pages. Linked after the byte-identical family kit (sza-kit.css), which is never
    edited; everything here only styles the policy card the kit has no component for. The page spans the viewport less
    the kit's gutter; only running prose inside the card is capped for reading (PAGE-STYLE section 5, "Width"). */
 .policy-card{background:var(--card);border:1px solid var(--border);border-radius:var(--radius);padding:clamp(1rem,2.5vw,2rem);margin:1.25rem 0}
@@ -19,3 +19,38 @@
 .policy-card td{color:var(--text-2)}
 .policy-card td:first-child{overflow-wrap:anywhere}
 .lang-links{margin:.5rem 0;color:var(--muted)}
+
+/* ---- Generated pages: landing, guide, support (tools/site/build-site.ps1). Same rule as above: no max-width on a
+   wrapper, so every block spans the viewport less the kit gutter; only running prose is capped for reading. ---- */
+.skip{position:absolute;inset-inline-start:var(--gutter);top:-5rem;z-index:50;padding:.6rem 1rem;background:var(--bg-2);color:var(--text);border:1px solid var(--border);border-radius:var(--radius-sm)}
+.skip:focus{top:.5rem}
+a.brand{text-decoration:none}
+a.brand:hover{color:var(--text)}
+.site-nav{display:flex;flex-wrap:wrap;align-items:center;gap:.1rem .9rem}
+.site-nav a{display:inline-flex;align-items:center;min-height:28px;color:var(--text-2);font-size:.9rem}
+.site-nav a:hover,.site-nav a[aria-current=page]{color:var(--text)}
+.site-nav a[aria-current=page]{font-weight:700}
+html[data-ui-profile=touch] .site-nav a{min-height:44px}
+.whatfor{margin:0;color:var(--text-2);font-size:1.02rem}
+.section h2{font-size:1.4rem;margin:0 0 1rem}
+.card h3{font-size:1.05rem;margin:0 0 .45rem}
+.card p{margin:0;color:var(--text-2);font-size:.92rem}
+.shots{display:flex;flex-wrap:wrap;gap:1rem;list-style:none;padding:0;margin:1.5rem 0 0}
+.shots li{flex:none}
+.shots img{display:block;height:clamp(12rem,34vw,27rem);width:auto;border:1px solid var(--border);border-radius:var(--radius-sm);background:var(--card)}
+.get h2{margin:0;font-size:1.4rem}
+.get h3{margin:.4rem 0 0;font-size:1rem}
+.get .quickstart{padding:0;margin:.4rem 0 0}
+section .btn-row{margin:0 0 1rem}
+details.sec p,details.sec li{color:var(--text-2)}
+details.sec ul{padding-inline-start:1.3rem}
+.doc .lead{max-width:78ch;margin:.25rem 0 1rem;color:var(--text-2);font-size:1.05rem}
+.doc ol{padding-inline-start:1.4rem;margin:.5rem 0 1rem}
+.doc ol li{max-width:78ch;margin:.4rem 0;color:var(--text-2)}
+.doc .note{margin:1rem 0;max-width:78ch}
+.toc ul{display:flex;flex-wrap:wrap;gap:.2rem 1.1rem;list-style:none;padding:0;margin:1rem 0}
+.toc a{display:inline-flex;align-items:center;min-height:28px}
+html[data-ui-profile=touch] .toc a,html[data-ui-profile=touch] .footer-nav a{min-height:44px}
+.footer-h{margin:0 0 .8rem;font-size:1rem}
+.footer-nav{display:flex;flex-wrap:wrap;align-items:center;gap:.2rem .5rem;margin:0 0 1rem;color:var(--muted);font-size:.85rem}
+.footer-nav a{display:inline-flex;align-items:center;min-height:28px}

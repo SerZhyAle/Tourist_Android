@@ -1,0 +1,180 @@
+<!doctype html>
+<html lang="uk" dir="ltr" data-theme="dark">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Посібник - Tourist</title>
+  <meta name="description" content="Як користуватися Tourist у поході, завдання за завданням: панель, сигнал SOS, водний ліхтар, екранний ліхтарик і ліхтарик камери, секундомір.">
+  <meta name="theme-color" content="#0a0f0a">
+  <link rel="canonical" href="https://serzhyale.github.io/Tourist_Android/uk/guide.html">
+  <link rel="alternate" hreflang="en" href="https://serzhyale.github.io/Tourist_Android/guide.html">
+  <link rel="alternate" hreflang="ru" href="https://serzhyale.github.io/Tourist_Android/ru/guide.html">
+  <link rel="alternate" hreflang="uk" href="https://serzhyale.github.io/Tourist_Android/uk/guide.html">
+  <link rel="alternate" hreflang="x-default" href="https://serzhyale.github.io/Tourist_Android/guide.html">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="Tourist">
+  <meta property="og:title" content="Посібник - Tourist">
+  <meta property="og:description" content="Як користуватися Tourist у поході, завдання за завданням: панель, сигнал SOS, водний ліхтар, екранний ліхтарик і ліхтарик камери, секундомір.">
+  <meta property="og:url" content="https://serzhyale.github.io/Tourist_Android/uk/guide.html">
+  <meta property="og:image" content="https://serzhyale.github.io/Tourist_Android/assets/social-1280x640.png">
+  <meta property="og:image:width" content="1280">
+  <meta property="og:image:height" content="640">
+  <meta property="og:image:alt" content="Tourist - Набір для походу на Android і Wear OS">
+  <meta property="og:locale" content="uk_UA">
+  <meta property="og:locale:alternate" content="en_US">
+  <meta property="og:locale:alternate" content="ru_RU">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:image" content="https://serzhyale.github.io/Tourist_Android/assets/social-1280x640.png">
+  <meta name="twitter:title" content="Посібник - Tourist">
+  <meta name="twitter:description" content="Як користуватися Tourist у поході, завдання за завданням: панель, сигнал SOS, водний ліхтар, екранний ліхтарик і ліхтарик камери, секундомір.">
+  <script type="application/ld+json">{"@context":"https://schema.org","@type":"WebPage","name":"Посібник - Tourist","description":"Як користуватися Tourist у поході, завдання за завданням: панель, сигнал SOS, водний ліхтар, екранний ліхтарик і ліхтарик камери, секундомір.","url":"https://serzhyale.github.io/Tourist_Android/uk/guide.html","inLanguage":"uk","isPartOf":{"@type":"WebSite","name":"Tourist","url":"https://serzhyale.github.io/Tourist_Android/"}}</script>
+  <!-- PAGE-STYLE section 7: theme and the touch profile are resolved before the first stylesheet, so nothing flashes.
+       sza-theme holds exactly dark or light and is shared with every page of this origin. -->
+  <script>
+(function(){try{
+  var h=document.documentElement,t=localStorage.getItem('sza-theme');
+  if(t!=='dark'&&t!=='light')t=matchMedia('(prefers-color-scheme: light)').matches?'light':'dark';
+  h.setAttribute('data-theme',t);
+  h.setAttribute('data-ui-profile',matchMedia('(pointer: coarse)').matches?'touch':'pointer');
+}catch(e){}})();
+  </script>
+  <link rel="stylesheet" href="../assets/sza-kit.css">
+  <link rel="stylesheet" href="../assets/policy.css">
+</head>
+<body>
+<a class="skip" href="#main">До вмісту</a>
+<div class="bg-blobs"><div class="blob blob-1"></div><div class="blob blob-2"></div><div class="blob blob-3"></div></div>
+<header class="site-header">
+  <a class="brand" href="./">Tourist<span class="dot">.</span></a>
+  <nav class="site-nav" aria-label="Сайт"><a href="guide.html" aria-current="page">Посібник</a><a href="support.html">Підтримка</a><a href="../privacy-uk.html">Конфіденційність</a></nav>
+  <div class="seg" role="group" aria-label="Мова">
+    <button type="button" data-lang="ru" aria-pressed="false">RU</button>
+    <button type="button" data-lang="en" aria-pressed="false">EN</button>
+    <button type="button" data-lang="ua" aria-pressed="true">UA</button>
+  </div>
+  <button type="button" class="theme-btn" id="themeBtn" aria-label="Увімкнути світлу тему"><span class="gi gi-theme" aria-hidden="true"></span><span>Тема</span></button>
+</header>
+<main class="container" id="main">
+  <noscript><p class="lang-links"><a href="../guide.html" hreflang="en">English</a> &middot; <a href="../ru/guide.html" hreflang="ru">Русский</a> &middot; <a href="guide.html" hreflang="uk">Українська</a></p></noscript>
+  <article class="policy-card doc">
+<h1>Посібник із Tourist</h1>
+<p class="lead">Завдання за завданням: що натиснути й що станеться. Назви кнопок - такі, як на екрані.</p>
+<nav class="toc" aria-label="На цій сторінці">
+<ul>
+<li><a href="#first-walk">Ваша перша прогулянка</a></li>
+<li><a href="#dashboard">Читайте дашборд</a></li>
+<li><a href="#sos">Подайте сигнал SOS</a></li>
+<li><a href="#water-flashlight">Увімкніть водний ліхтар</a></li>
+<li><a href="#lights">Екранний ліхтарик і ліхтарик камери</a></li>
+<li><a href="#stopwatch">Засічіть час групи секундоміром</a></li>
+<li><a href="#watch">На годиннику</a></li>
+<li><a href="#settings">Налаштування та мови</a></li>
+<li><a href="#permissions">Що просить Tourist</a></li>
+</ul>
+</nav>
+<h2 id="first-walk">Ваша перша прогулянка</h2>
+<ol>
+<li>Відкрийте Tourist. На стартовому екрані чотири програми: <strong>Туристичний дашборд</strong>, <strong>Ліхтарики</strong>, <strong>Аварійний сигнал SOS</strong> і <strong>Секундомір</strong>. Назад із будь-якої програми повертає на нього.</li>
+<li>Відкрийте <strong>Туристичний дашборд</strong>. Уперше він запитує доступ до місцезнаходження: натисніть <strong>Дозволити</strong>. Без нього дашборд не може прочитати вашу позицію та кроки. Tourist читає місцезнаходження, лише поки відкритий екран Tourist.</li>
+<li>Прочитайте велику картку, спершу на ній швидкість, і торкніться плитки в сітці, щоб побачити її великою.</li>
+<li>На початку кожної нової ділянки натисніть <strong>Скинути дистанцію</strong>, щоб дистанція рахувалася з нуля.</li>
+</ol>
+<p>Довідка вбудована в кожен екран застосунку для телефона: знак питання у верхній панелі пояснює екран, на якому ви перебуваєте, без мережі.</p>
+<h2 id="dashboard">Читайте дашборд</h2>
+<p>Дашборд показує те, що читає ваш телефон на стежці: одне значення великим на великій картці, решту - плитками під нею.</p>
+<ul>
+<li><strong>Компас</strong>: на великій картці малюється роза вітрів, яка повертається разом із телефоном, з напрямком у градусах, стороною світу й точністю датчика.</li>
+<li><strong>Координати</strong>: торкніться великої картки, поки на ній координати, щоб скопіювати позицію.</li>
+<li>Висота, супутники, схід і захід сонця, кроки, пройдена відстань і погода у вашому місці - окремі плитки. Для погоди координати вашої позиції йдуть до сервісу погоди Open-Meteo - це єдиний запит, який телефон надсилає сам.</li>
+<li><strong>Карта</strong> показує вас у застосунку карт, а <strong>Поділитися</strong> передає позицію текстом. Обидві дії виходять із Tourist.</li>
+</ul>
+<div class="note"><span class="tag">Головне</span><p>Швидкість, висота, напрямок і координати - показання датчиків телефона та супутникового позиціонування. Це не сертифікований прилад.</p></div>
+<h2 id="sos">Подайте сигнал SOS</h2>
+<ol>
+<li>Відкрийте <strong>Аварійний сигнал SOS</strong>, лише коли потрібен сигнал: він вмикається, щойно відкривається екран, - сирена й миготливе світло повторюють сигнал SOS абеткою Морзе.</li>
+<li>Виберіть, що він використовує: <strong>Звук і світло</strong>, <strong>Тільки звук</strong> або <strong>Тільки світло</strong>. Сигнал, що йде, змінюється одразу, вибір запам'ятовується.</li>
+<li>Спарений годинник теж подає сигнал. Можна заблокувати телефон або відкрити інший застосунок: сигнал триває.</li>
+<li>Натисніть <strong>Зупинити сигнал</strong> або вийдіть з екрана кнопкою Назад. Телефон і спарений годинник замовкають. Якщо нічого не робити, телефон сам завершить сигнал за 30 хвилин.</li>
+</ol>
+<div class="note"><span class="tag">Головне</span><p>SOS звучить, блимає й доходить до спареного годинника. Він не надсилає SMS, не телефонує, нікого не сповіщає й не замінює виклик екстрених служб.</p></div>
+<h2 id="water-flashlight">Увімкніть водний ліхтар</h2>
+<ol>
+<li>Відкрийте <strong>Ліхтарики</strong> і виберіть <strong>Водний ліхтар</strong>. Android просить закріпити застосунок: підтвердьте це, перш ніж користуватися світлом мокрими руками.</li>
+<li>Спалах камери та білий екран вмикаються разом, на екрані видно час і підказку, що він заблокований. Дотики й кнопка Назад лампу не закривають.</li>
+<li>Щоб погасити світло, натисніть клавішу гучності. Світло гасне, і ви повертаєтеся туди, звідки прийшли.</li>
+</ol>
+<p>Віджет головного екрана <strong>Водний ліхтар</strong> відкриває його одним дотиком.</p>
+<div class="note"><span class="tag">Головне</span><p>Це блокування дотиків, а не водонепроникність: краплі дощу й мокрі рукавиці не натискають кнопки. Телефон від води вона не захищає.</p></div>
+<h2 id="lights">Екранний ліхтарик і ліхтарик камери</h2>
+<ul>
+<li><strong>Фронтальний ліхтарик</strong>: екран як лампа, колір вибирається кнопкою <strong>Колір свічення</strong>. Проведіть угору або вниз, щоб змінити яскравість. Дотик поза елементами керування закриває його.</li>
+<li><strong>Ліхтарик камери</strong>: торкніться рядка, щоб увімкнути спалах камери, і торкніться ще раз, щоб вимкнути. Жоден екран не відкривається.</li>
+<li>Прапорець на екрані ліхтариків лишає ліхтарик камери на відстані одного дотику в шторці сповіщень. На Android 13 і новіших застосунок спершу запитує дозвіл показувати сповіщення.</li>
+</ul>
+<h2 id="stopwatch">Засічіть час групи секундоміром</h2>
+<ol>
+<li>Відкрийте <strong>Секундомір</strong>. Якщо ви засікаєте більше однієї людини, спершу відкрийте налаштування й у пункті <strong>Учасники</strong> виберіть двох чи чотирьох.</li>
+<li>Відлік починається для всіх, щойно відкривається екран. Щоб почати з нуля, натисніть <strong>Скинути все</strong>, потім <strong>Старт</strong> у кожного учасника в його ділянці або в усіх одразу кнопкою <strong>Стартувати всіх</strong>.</li>
+<li>Натисніть <strong>Коло</strong> в ділянці учасника, щоб позначити коло без зупинки, і <strong>Стоп</strong>, коли він фінішував. <strong>Зупинити всіх</strong> зупиняє всіх разом.</li>
+<li>Натисніть <strong>Результат</strong>, щоб перетворити час на текст, який можна зберегти чи надіслати.</li>
+</ol>
+<div class="note"><span class="tag">Головне</span><p>Час не зберігається: вихід з екрана кнопкою Назад стирає його. Секундомір розрахований на звичайний хронометраж, а не на офіційний.</p></div>
+<h2 id="watch">На годиннику</h2>
+<p>Застосунок Tourist для Wear OS приносить на зап'ясток <strong>водний ліхтар</strong>, <strong>SOS</strong> і <strong>секундомір</strong> - із телефоном поруч чи без нього. SOS, запущений на телефоні, запускається на спареному годиннику, і навпаки. Циферблат Tourist - окремий пакет.</p>
+<h2 id="settings">Налаштування та мови</h2>
+<p><strong>Налаштування</strong> містять тему, мову, одиниці виміру, режим «Не вимикати екран» та розділ «Про програму». Зміни застосовуються одразу. Інтерфейс доступний англійською, російською та українською.</p>
+<h2 id="permissions">Що просить Tourist</h2>
+<ul>
+<li>Місцезнаходження - лише поки відкритий екран Tourist, для дашборда.</li>
+<li>Камера - лише щоб вмикати й вимикати спалах камери. Tourist не робить знімків.</li>
+<li>Сповіщення - лише для ярликів, які ви ввімкнули, і кнопки зупинки сигналу.</li>
+</ul>
+<p>Повний список і те, що лишається на ваших пристроях, - у <a href="../privacy-uk.html">політиці конфіденційності</a>.</p>
+  </article>
+</main>
+<footer class="site-footer"><div class="container">
+  <nav class="footer-nav" aria-label="Сайт"><a href="./">Головна</a> &middot; <a href="guide.html">Посібник</a> &middot; <a href="support.html">Підтримка</a> &middot; <a href="../privacy-uk.html">Конфіденційність</a></nav>
+  <div class="footer-bottom">
+    <span>&copy; 2026 <a href="https://sza.od.ua" rel="noopener">Serhii Zhyhunenko</a></span>
+    <span><a href="https://sza.od.ua" rel="noopener">sza.od.ua</a> &middot; <a href="https://github.com/SerZhyAle" rel="noopener">GitHub</a> &middot; <a href="mailto:sza@ukr.net">sza@ukr.net</a></span>
+  </div>
+</div></footer>
+<button type="button" class="to-top" id="toTop" aria-label="Нагору"><span class="gi gi-top" aria-hidden="true"></span></button>
+<script>
+(function(){
+  var h=document.documentElement,urls={"ru":"../ru/guide.html","en":"../guide.html","ua":"guide.html"},labels={"light":"Увімкнути світлу тему","dark":"Увімкнути темну тему"};
+  var tb=document.getElementById('themeBtn'),meta=document.querySelector('meta[name="theme-color"]');
+  function sync(){var l=h.getAttribute('data-theme')==='light';tb.setAttribute('aria-label',labels[l?'light':'dark']);if(meta)meta.setAttribute('content',l?'#eef3ea':'#0a0f0a')}
+  sync();
+  tb.addEventListener('click',function(){
+    var n=h.getAttribute('data-theme')==='light'?'dark':'light';
+    h.setAttribute('data-theme',n);
+    try{localStorage.setItem('sza-theme',n)}catch(e){}
+    sync();
+  });
+  Array.prototype.forEach.call(document.querySelectorAll('.seg button[data-lang]'),function(b){
+    b.addEventListener('click',function(){
+      var k=b.getAttribute('data-lang');
+      try{localStorage.setItem('sza-lang',k)}catch(e){}
+      location.href=urls[k];
+    });
+  });
+  Array.prototype.forEach.call(document.querySelectorAll('[data-expand]'),function(b){
+    b.addEventListener('click',function(){
+      var open=b.getAttribute('data-expand')==='all';
+      Array.prototype.forEach.call(document.querySelectorAll('details.sec'),function(d){d.open=open});
+    });
+  });
+  function openFromHash(){
+    var id=location.hash.slice(1);if(!id)return;
+    var el=document.getElementById(id);
+    if(el&&el.tagName==='DETAILS'){el.open=true;el.scrollIntoView()}
+  }
+  openFromHash();addEventListener('hashchange',openFromHash);
+  var top=document.getElementById('toTop');
+  addEventListener('scroll',function(){top.classList.toggle('show',scrollY>600)},{passive:true});
+  top.addEventListener('click',function(){scrollTo({top:0})});
+})();
+</script>
+</body>
+</html>

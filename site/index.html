@@ -1,0 +1,213 @@
+<!doctype html>
+<html lang="en" dir="ltr" data-theme="dark">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Tourist: Hiking Kit for Android and Wear OS</title>
+  <meta name="description" content="Compass dashboard, SOS signal, a flashlight no wet touch can switch off and a group stopwatch for your hike, on an Android phone and a Wear OS watch.">
+  <meta name="theme-color" content="#0a0f0a">
+  <link rel="canonical" href="https://serzhyale.github.io/Tourist_Android/">
+  <link rel="alternate" hreflang="en" href="https://serzhyale.github.io/Tourist_Android/">
+  <link rel="alternate" hreflang="ru" href="https://serzhyale.github.io/Tourist_Android/ru/">
+  <link rel="alternate" hreflang="uk" href="https://serzhyale.github.io/Tourist_Android/uk/">
+  <link rel="alternate" hreflang="x-default" href="https://serzhyale.github.io/Tourist_Android/">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="Tourist">
+  <meta property="og:title" content="Tourist: Hiking Kit for Android and Wear OS">
+  <meta property="og:description" content="Compass dashboard, SOS signal, a flashlight no wet touch can switch off and a group stopwatch for your hike, on an Android phone and a Wear OS watch.">
+  <meta property="og:url" content="https://serzhyale.github.io/Tourist_Android/">
+  <meta property="og:image" content="https://serzhyale.github.io/Tourist_Android/assets/social-1280x640.png">
+  <meta property="og:image:width" content="1280">
+  <meta property="og:image:height" content="640">
+  <meta property="og:image:alt" content="Tourist - Hiking kit for Android and Wear OS">
+  <meta property="og:locale" content="en_US">
+  <meta property="og:locale:alternate" content="ru_RU">
+  <meta property="og:locale:alternate" content="uk_UA">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:image" content="https://serzhyale.github.io/Tourist_Android/assets/social-1280x640.png">
+  <meta name="twitter:title" content="Tourist: Hiking Kit for Android and Wear OS">
+  <meta name="twitter:description" content="Compass dashboard, SOS signal, a flashlight no wet touch can switch off and a group stopwatch for your hike, on an Android phone and a Wear OS watch.">
+  <script type="application/ld+json">{"@context":"https://schema.org","@type":"MobileApplication","name":"Tourist","alternateName":"Tourist: Hiking Kit","description":"Compass dashboard, SOS signal, a flashlight no wet touch can switch off and a group stopwatch for your hike, on an Android phone and a Wear OS watch.","url":"https://serzhyale.github.io/Tourist_Android/","applicationCategory":"TravelApplication","operatingSystem":"Android, Wear OS","inLanguage":["en","ru","uk"],"image":"https://serzhyale.github.io/Tourist_Android/assets/icon-512.png","author":{"@type":"Person","name":"Serhii Zhyhunenko","url":"https://sza.od.ua"},"license":"https://github.com/SerZhyAle/Tourist_Android/blob/main/LICENSE"}</script>
+  <!-- PAGE-STYLE section 7: theme and the touch profile are resolved before the first stylesheet, so nothing flashes.
+       sza-theme holds exactly dark or light and is shared with every page of this origin. -->
+  <script>
+(function(){try{
+  var h=document.documentElement,t=localStorage.getItem('sza-theme');
+  if(t!=='dark'&&t!=='light')t=matchMedia('(prefers-color-scheme: light)').matches?'light':'dark';
+  h.setAttribute('data-theme',t);
+  h.setAttribute('data-ui-profile',matchMedia('(pointer: coarse)').matches?'touch':'pointer');
+}catch(e){}})();
+  </script>
+  <script>
+(function(){try{
+  var q=(location.search.match(/[?&]lang=(ru|en|uk|ua)\b/i)||location.search.match(/[?&]l=(ru|en|uk|ua)\b/i)||[])[1];
+  var l=q?q.toLowerCase():localStorage.getItem('sza-lang');
+  if(l==='uk')l='ua';
+  if(l==='ru'||l==='ua')location.replace(l==='ru'?'ru/':'uk/');
+}catch(e){}})();
+  </script>
+  <link rel="stylesheet" href="assets/sza-kit.css">
+  <link rel="stylesheet" href="assets/policy.css">
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+<div class="bg-blobs"><div class="blob blob-1"></div><div class="blob blob-2"></div><div class="blob blob-3"></div></div>
+<header class="site-header">
+  <a class="brand" href="./" aria-current="page">Tourist<span class="dot">.</span></a>
+  <nav class="site-nav" aria-label="Site"><a href="guide.html">Guide</a><a href="support.html">Support</a><a href="privacy.html">Privacy</a></nav>
+  <div class="seg" role="group" aria-label="Language">
+    <button type="button" data-lang="ru" aria-pressed="false">RU</button>
+    <button type="button" data-lang="en" aria-pressed="true">EN</button>
+    <button type="button" data-lang="ua" aria-pressed="false">UA</button>
+  </div>
+  <button type="button" class="theme-btn" id="themeBtn" aria-label="Switch to light theme"><span class="gi gi-theme" aria-hidden="true"></span><span>Theme</span></button>
+  <a class="btn btn-primary" href="#get">Get it</a>
+</header>
+<main class="container" id="main">
+  <noscript><p class="lang-links"><a href="./" hreflang="en">English</a> &middot; <a href="ru/" hreflang="ru">Русский</a> &middot; <a href="uk/" hreflang="uk">Українська</a></p></noscript>
+  <section class="hero" aria-labelledby="top">
+    <div class="identity">
+      <img class="product-icon" src="assets/icon-512.png" width="104" height="104" alt="">
+      <div>
+        <p class="product-name">Tourist</p>
+        <p class="kicker">Hiking kit for Android and Wear OS</p>
+      </div>
+    </div>
+    <h1 id="top">Compass, SOS, light and a stopwatch for your hike.</h1>
+    <p class="lead">One app on your phone and your watch: a dashboard of what your sensors read, a siren and a strobe that reach your paired watch, and a flashlight that no wet touch can switch off.</p>
+  </section>
+  <section class="section" aria-label="Hiking kit for Android and Wear OS">
+    <p class="whatfor">Tourist is a hike kit for an Android phone and a Wear OS watch. It is for you when you walk a trail alone or with a group and want your heading, a light and an SOS signal in one place.</p>
+  </section>
+  <section class="section" aria-labelledby="proof">
+    <h2 id="proof">What you can do on the trail</h2>
+    <div class="grid">
+      <article class="card"><h3>Check where you are heading</h3><p>Open the dashboard: a compass tile with your heading, then speed, altitude, coordinates, satellites, sunrise and sunset, steps, trip distance and the weather at your position.</p></article>
+      <article class="card"><h3>Make yourself noticed</h3><p>One button starts a siren and a Morse SOS strobe on the phone and on the paired watch. It sends no SMS and makes no call.</p></article>
+      <article class="card"><h3>Keep a light on in the rain</h3><p>The water flashlight is a full-screen light that no wet touch can switch off. A volume key puts it out. It is a touch lock, not waterproofing.</p></article>
+      <article class="card"><h3>Time the whole group</h3><p>A stopwatch for one, two or four participants, each with their own laps, and a result you can share.</p></article>
+    </div>
+    <ul class="shots" aria-label="Captures of the phone and the watch">
+      <li><img src="assets/shots/en/dashboard.png" width="1080" height="1920" alt="The Tourist dashboard on a phone: Speed on the big card and tiles for altitude, compass, coordinates, satellites, trip distance, sunrise, weather and dew point." loading="lazy"></li>
+      <li><img src="assets/shots/en/sos.png" width="1080" height="1920" alt="The SOS screen on a phone: three signal modes and the Stop signal button." loading="lazy"></li>
+      <li><img src="assets/shots/en/stopwatch.png" width="1080" height="1920" alt="The stopwatch on a phone timing four participants, each with laps." loading="lazy"></li>
+      <li><img src="assets/shots/en/watch.png" width="454" height="454" alt="The Tourist program list on a watch: Water flashlight, SOS and Stopwatch." loading="lazy"></li>
+    </ul>
+  </section>
+  <section class="get" id="get" aria-labelledby="get-h">
+    <h2 id="get-h">Get it</h2>
+    <p class="whatfor">Tourist is open source under the MIT licence. The source of the phone app, the Wear OS app and the watch face is public.</p>
+    <div class="btn-row channels">
+      <a class="btn btn-primary" rel="noopener" href="https://github.com/SerZhyAle/Tourist_Android">Source code</a>
+      <a class="btn btn-ghost" href="guide.html">Guides</a>
+    </div>
+    <h3>Your first minute</h3>
+    <ol class="quickstart">
+      <li>Open Tourist and choose <strong>Tourist dashboard</strong>.</li>
+      <li>Press <strong>Allow</strong> when the dashboard asks for location. It is read only while a Tourist screen is open.</li>
+      <li>Read the big card, then tap a tile to read it large. Press <strong>Reset Trip</strong> at the start of each leg.</li>
+    </ol>
+  </section>
+  <section class="section" aria-labelledby="features">
+    <h2 id="features">What is in the kit</h2>
+    <div class="btn-row">
+      <button type="button" class="btn btn-ghost" data-expand="all">Expand all</button>
+      <button type="button" class="btn btn-ghost" data-expand="none">Collapse all</button>
+    </div>
+    <details class="sec" id="dashboard"><summary><span class="secnum">01</span> A dashboard for the trail</summary>
+<p>A compass hero tile with your heading, then speed, altitude, coordinates, satellites, sunrise and sunset, steps and cadence, the trip distance with the climb and descent, and the weather at your position. With a barometer, the magnetic-field tile shows the air pressure in millibars, and the gyroscope tile draws a 3D phone that turns with yours.</p><p>The buttons below open a map, share your position as text, reset the trip and open SOS.</p>
+    </details>
+    <details class="sec" id="sos"><summary><span class="secnum">02</span> An SOS signal people can find</summary>
+<p>One button starts a loud siren and a bright Morse strobe. Started on the phone, the signal also starts on your paired watch, and the other way round, so the people near you can find you. Choose sound and light, sound only or light only.</p><p>SOS sounds, blinks and reaches your paired device. It sends no SMS and makes no call.</p>
+    </details>
+    <details class="sec" id="water"><summary><span class="secnum">03</span> A flashlight that stays on in the rain</summary>
+<p>The water flashlight is a full-screen light that no wet touch can switch off: rain, snow or a wet glove leave it on. You switch it off with a deliberate key press.</p><p>It is a touch lock, not waterproofing. Android asks you to pin the app before the light starts.</p>
+    </details>
+    <details class="sec" id="lights"><summary><span class="secnum">04</span> Screen and camera lights</summary>
+<p>A screen light in any colour, the camera flash as a torch, home screen widgets and a shortcut in the notification shade.</p>
+    </details>
+    <details class="sec" id="stopwatch"><summary><span class="secnum">05</span> A stopwatch for the group</summary>
+<p>A stopwatch for one, two or four participants with laps and results, music of your choice while it runs, and a home screen widget. On the watch it keeps running as an ongoing activity.</p>
+    </details>
+    <details class="sec" id="watch"><summary><span class="secnum">06</span> Phone and watch together</summary>
+<p>The Wear OS app brings SOS, the water flashlight and the stopwatch to your wrist, with or without the phone nearby. The Tourist watch face is a separate package for the watch.</p>
+    </details>
+  </section>
+  <section class="section" aria-labelledby="guides">
+    <h2 id="guides">Guides</h2>
+<p>The <a href="guide.html">guide</a> takes the tools one task at a time. <a href="support.html">Support</a> says where to ask and what to include. The <a href="privacy.html">privacy policy</a> lists what the apps read, store and send. Help is also built into every screen of the phone app and works offline.</p>
+  </section>
+  <section class="section" aria-labelledby="details">
+    <h2 id="details">Details and honest caveats</h2>
+    <details class="sec" id="compat"><summary><span class="secnum">07</span> Compatibility</summary>
+<ul><li>Phone app: Android 8.0 (API level 26) or later.</li><li>Wear OS app: a watch with Android 9 (API level 28) or later.</li><li>Watch face: a watch with Android 16 (API level 36) or later.</li><li>Interface languages: English, Russian and Ukrainian.</li></ul>
+    </details>
+    <details class="sec" id="permissions"><summary><span class="secnum">08</span> What Tourist asks the phone for</summary>
+<ul><li>Location, only while a Tourist screen is open, for the dashboard. Tourist never reads it in the background.</li><li>Camera, only to switch the camera flash on and off as a flashlight. Tourist takes no pictures.</li><li>Notifications, only for the shortcuts you switch on and the Stop button of the signal.</li></ul><p>The developer receives none of your data. The <a href="privacy.html">privacy policy</a> lists every permission and the one request that leaves the phone: the weather request to Open-Meteo.</p>
+    </details>
+    <details class="sec" id="caveats"><summary><span class="secnum">09</span> Caveats</summary>
+<ul><li>Speed, altitude, heading and coordinates are readings of the phone and watch sensors and of satellite positioning. They are not a certified instrument.</li><li>SOS sounds, blinks and reaches your paired device. It sends no SMS, makes no call and does not replace calling the emergency services.</li><li>The water flashlight keeps wet touches from switching the light off. It does not make the phone water-resistant.</li><li>The stopwatch is for everyday timing, not an official timing device.</li></ul>
+    </details>
+    <details class="sec" id="source"><summary><span class="secnum">10</span> Source and licence</summary>
+<p>Tourist is open source under the MIT licence. Read the code, follow the changes or open an issue in the <a rel="noopener" href="https://github.com/SerZhyAle/Tourist_Android">repository</a>.</p>
+    </details>
+  </section>
+</main>
+<footer class="site-footer"><div class="container">
+  <h2 class="footer-h">More tools by SZA</h2>
+  <div class="tools-grid">
+    <a href="https://serzhyale.github.io/FastMediaSorter_mob_v2/" rel="noopener"><b>Fast Media Sorter &amp; Organizer</b><span>Android media sorter</span></a>
+    <a href="https://serzhyale.github.io/FastMediaSorter_Lite/" rel="noopener"><b>Fast Media Sorter &amp; Sharing for Windows</b><span>Windows media and file manager</span></a>
+    <a href="https://serzhyale.github.io/CyrFlip/" rel="noopener"><b>CyrFlip</b><span>Windows layout fixer</span></a>
+    <a href="https://serzhyale.github.io/doc-html-translate/" rel="noopener"><b>doc-html-translate</b><span>Windows ebook converter</span></a>
+    <a href="https://serzhyale.github.io/FileDO/" rel="noopener"><b>FileDO</b><span>Windows storage CLI</span></a>
+    <a href="https://serzhyale.github.io/StreamsPlayer/" rel="noopener"><b>STREAMS Player</b><span>Windows stream player</span></a>
+    <a href="https://serzhyale.github.io/OneClickRunner/" rel="noopener"><b>OneClickRunner</b><span>Windows tray launcher</span></a>
+    <a href="https://serzhyale.github.io/universal-agent-kit/" rel="noopener"><b>Universal Agent Kit</b><span>AI-dev methodology</span></a>
+    <a href="https://sza.od.ua" rel="noopener"><b>SZA (hub)</b><span>Portfolio</span></a>
+  </div>
+  <nav class="footer-nav" aria-label="Site"><a href="./">Home</a> &middot; <a href="guide.html">Guide</a> &middot; <a href="support.html">Support</a> &middot; <a href="privacy.html">Privacy</a></nav>
+  <div class="footer-bottom">
+    <span>&copy; 2026 <a href="https://sza.od.ua" rel="noopener">Serhii Zhyhunenko</a></span>
+    <span><a href="https://sza.od.ua" rel="noopener">sza.od.ua</a> &middot; <a href="https://github.com/SerZhyAle" rel="noopener">GitHub</a> &middot; <a href="mailto:sza@ukr.net">sza@ukr.net</a></span>
+  </div>
+</div></footer>
+<button type="button" class="to-top" id="toTop" aria-label="Back to top"><span class="gi gi-top" aria-hidden="true"></span></button>
+<script>
+(function(){
+  var h=document.documentElement,urls={"ru":"ru/","en":"./","ua":"uk/"},labels={"light":"Switch to light theme","dark":"Switch to dark theme"};
+  var tb=document.getElementById('themeBtn'),meta=document.querySelector('meta[name="theme-color"]');
+  function sync(){var l=h.getAttribute('data-theme')==='light';tb.setAttribute('aria-label',labels[l?'light':'dark']);if(meta)meta.setAttribute('content',l?'#eef3ea':'#0a0f0a')}
+  sync();
+  tb.addEventListener('click',function(){
+    var n=h.getAttribute('data-theme')==='light'?'dark':'light';
+    h.setAttribute('data-theme',n);
+    try{localStorage.setItem('sza-theme',n)}catch(e){}
+    sync();
+  });
+  Array.prototype.forEach.call(document.querySelectorAll('.seg button[data-lang]'),function(b){
+    b.addEventListener('click',function(){
+      var k=b.getAttribute('data-lang');
+      try{localStorage.setItem('sza-lang',k)}catch(e){}
+      location.href=urls[k];
+    });
+  });
+  Array.prototype.forEach.call(document.querySelectorAll('[data-expand]'),function(b){
+    b.addEventListener('click',function(){
+      var open=b.getAttribute('data-expand')==='all';
+      Array.prototype.forEach.call(document.querySelectorAll('details.sec'),function(d){d.open=open});
+    });
+  });
+  function openFromHash(){
+    var id=location.hash.slice(1);if(!id)return;
+    var el=document.getElementById(id);
+    if(el&&el.tagName==='DETAILS'){el.open=true;el.scrollIntoView()}
+  }
+  openFromHash();addEventListener('hashchange',openFromHash);
+  var top=document.getElementById('toTop');
+  addEventListener('scroll',function(){top.classList.toggle('show',scrollY>600)},{passive:true});
+  top.addEventListener('click',function(){scrollTo({top:0})});
+})();
+</script>
+</body>
+</html>

@@ -1,9 +1,11 @@
-name: Privacy pages
+name: Site pages
 run-name: Publish site/ to GitHub Pages
 
 # Owner's order of 2026-11-13 (the public presence of DeviceInfo and StreamsPlayer, canon store-publish Google Play
-# reference): site/ holds the hand-written privacy pages and is published as it is. The check runs on Windows, where
-# the gates are measured, and refuses the deploy unless the pages and the documents pass; the deploy runs on Linux.
+# reference): site/ holds the hand-written privacy pages and the landing, guide and support pages that
+# tools/site/build-site.ps1 renders from tools/site/deck.json (S0026), and is published as it is. The check runs on
+# Windows, where the gates are measured, and refuses the deploy unless the pages, the generator's staleness check and the
+# documents pass; the deploy runs on Linux.
 on:
   push:
     branches: [main]
