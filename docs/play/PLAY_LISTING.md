@@ -27,7 +27,7 @@ SOS
 One button starts a loud siren and a bright Morse strobe. Started on the phone, the signal also starts on your paired watch, and the other way round, so the people near you can find you. It sends no SMS and makes no call.
 
 Water flashlight
-A full-screen light that no wet touch can switch off: rain, snow or a wet glove leave it on. You switch it off with a deliberate key press.
+A full-screen light that is a touch lock, not waterproofing: no wet touch can switch it off, so rain, snow or a wet glove leave it on. You switch it off with a deliberate key press.
 
 Screen and camera flashlights
 A screen light in any colour, the camera flash as a torch, home screen widgets and a shortcut in the notification shade.
@@ -53,5 +53,6 @@ the repository. Graphics: `icon-512.png` and `feature-graphic-1024x500.png` besi
 ru-RU and uk each with its own set from `docs/play/screenshots/` in the order of the file numbers. Form factors:
 Wear OS added (of its three steps the Wear screenshots are done; a Wear bundle on a testing track and the
 review-policy opt-in wait for the release); Android XR stays Active by Google's default. The watch face app `com.sza.tourist.watchface` has category
-Personalization, the same contact and the Wear OS form factor; its listing has no source yet. The App content answers
-are in [PLAY_DATA_SAFETY.md](PLAY_DATA_SAFETY.md), "Console record".
+Personalization, the same contact and the Wear OS form factor; the source of its listing is
+[PLAY_LISTING_WATCHFACE.md](PLAY_LISTING_WATCHFACE.md) and its translations (written 2026-11-14, not yet entered in the
+console). The App content answers are in [PLAY_DATA_SAFETY.md](PLAY_DATA_SAFETY.md), "Console record".

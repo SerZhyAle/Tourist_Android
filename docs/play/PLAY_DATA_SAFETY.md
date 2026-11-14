@@ -87,6 +87,18 @@ invariant 15).
 | Age-restricted products | No |
 | Miscellaneous | location sharing with other users: No (Share hands text to an app the user picks; the app shares nothing with other users itself); digital purchases: No; cash rewards or NFTs: No; web browser or search engine: No (the place search finds weather places only); news or educational: No |
 
+## Fine location declaration - `com.sza.tourist` (S0036 A1, deadline 2027-01-27)
+
+For the phone `store` package only: it declares `ACCESS_FINE_LOCATION` and `ACCESS_COARSE_LOCATION` and no background
+location (S0036 section 2.2); the `store` watch package removes both permissions and the watch face has none. The text
+below is what the console's fine location declaration says, written 2026-11-14 from the S0036 A1 draft with the sentence
+S0054 item 6 requires: the fix's latitude and longitude go to Open-Meteo. It agrees with the "Weather at the current fix"
+row above, the Data safety answer (precise location, collected, not shared, ephemeral, App functionality) and section 5
+of the privacy pages. Entered by the owner or on the owner's order in the console; the console holds a copy, never the
+master.
+
+> Tourist shows a hiker's live position, speed, altitude and the satellites the phone receives while a Tourist screen is open. These need a continuous precise fix: approximate location and the one-time location button cannot provide them. Location is read only while a Tourist screen is open and never in the background. The precise latitude and longitude of the fix are sent over HTTPS to the Open-Meteo weather service to fetch the forecast for the place, and nowhere else; the developer receives no location data.
+
 ## Console record (2026-11-13)
 
 Filled in the owner's personal developer account (8446656778368889827) on the owner's order, with the owner's yes of the
